@@ -8,44 +8,23 @@ const ProjectsSection = () => {
     {
       title: "Sheraton Montazah Hotel",
       category: "Major Renovation",
-      image: "https://cache.marriott.com/content/dam/marriott-renditions/ALYSI/alysi-entrance-2382-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1215px:*",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       description: "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network.",
       results: "25% increase in RevPAR and 30% improvement in guest satisfaction scores."
     },
     {
       title: "The V Luxury Resort Sahl Hasheesh",
       category: "Pre-Opening",
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/381223867.jpg?k=f22bf19b524e291b08678d403444f98ee5af9febc00a3c577e400e53c3c492d9&o=&hp=1",
+      image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80",
       description: "Managed pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved exceptional initial occupancy.",
       results: "90% occupancy within 4 months of launch, setting a new market benchmark."
     },
     {
       title: "Porto Said Resort",
       category: "Major Renovation",
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/470037205.jpg?k=992d9e81f7b25c87e7fe87fcdcd2b9e2042625e01df9ecc4e91e8d843f731537&o=&hp=1",
+      image: "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
       description: "Directed $3.5M refurbishment project (168 rooms), achieving significant growth in key performance indicators within just 4 months.",
       results: "18% occupancy growth and 20% F&B revenue increase."
-    },
-    {
-      title: "Fourpoint by Sheraton King Abdulaziz Road",
-      category: "Pre-Opening",
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/515740598.jpg?k=499864a4bedbba3e4a2ba17a74e1ddc353d553832ed670975a19e0bea41196f5&o=&hp=1", 
-      description: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
-      results: "12% reduction in pre-opening budget and 90% operational readiness at launch."
-    },
-    {
-      title: "Sheraton Miramar Resort",
-      category: "Major Renovation",
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/100288595.jpg?k=78a486022a018d90048c0035352976e0b8e72ce902e9750bf26d0dbad449f5a4&o=&hp=1",
-      description: "Managed $5M refurbishment project for 339-room property, improving guest satisfaction through strategic repositioning.",
-      results: "12% improvement in guest satisfaction and 15% increase in ADR."
-    },
-    {
-      title: "Four Points by Sheraton & Sheraton Tripoli",
-      category: "Pre-Opening",
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/60956498.jpg?k=d84a564aef0d255c73e297150bc22e74ef6e5c60d6ab2edc0d9e1119e88d3123&o=&hp=1",
-      description: "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
-      results: "95% operational readiness achieved and 15% higher guest satisfaction than regional average."
     },
   ];
 
@@ -61,7 +40,7 @@ const ProjectsSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.slice(0, 3).map((project, index) => (
+          {projects.map((project, index) => (
             <div 
               key={index}
               className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
