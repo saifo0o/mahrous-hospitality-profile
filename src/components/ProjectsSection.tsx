@@ -8,21 +8,21 @@ const ProjectsSection = () => {
     {
       title: "Sheraton Montazah Hotel",
       category: "Major Renovation",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/ab/c2/be/sheraton-montazah-hotel.jpg?w=1200&h=-1&s=1",
       description: "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network.",
       results: "25% increase in RevPAR and 30% improvement in guest satisfaction scores."
     },
     {
       title: "The V Luxury Resort Sahl Hasheesh",
       category: "Pre-Opening",
-      image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/261360699.jpg?k=35fb172f7fccb2cfa4cc1efcec0a46d67710fac98dbe1388a2334f1d69faae66&o=&hp=1",
       description: "Managed pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved exceptional initial occupancy.",
       results: "90% occupancy within 4 months of launch, setting a new market benchmark."
     },
     {
       title: "Porto Said Resort",
       category: "Major Renovation",
-      image: "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      image: "https://q-xx.bstatic.com/xdata/images/hotel/max500/92396395.jpg?k=2ab94ff5afd5f9a4fbea31d6646a0b2943a8e43b57a5b6d5cc7d04556ea20fe8&o=",
       description: "Directed $3.5M refurbishment project (168 rooms), achieving significant growth in key performance indicators within just 4 months.",
       results: "18% occupancy growth and 20% F&B revenue increase."
     },

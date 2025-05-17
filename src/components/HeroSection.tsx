@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowRight, FileText, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HeroSection = () => {
   return (
@@ -19,33 +20,40 @@ const HeroSection = () => {
       ></div>
       
       <div className="container mx-auto px-4 md:px-8 relative z-10 py-20 md:py-0">
-        <div className="max-w-3xl animate-fade-in">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-            <span className="text-luxury-gold">30+ Years</span> of Transforming Hospitality Landscapes Worldwide
-          </h1>
+        <div className="max-w-3xl animate-fade-in flex flex-col md:flex-row items-center gap-8">
+          <Avatar className="w-32 h-32 border-4 border-luxury-gold shadow-xl">
+            <AvatarImage src="https://i.ibb.co/McYJKhH/islam-mahrous-profile.jpg" alt="Islam Mahrous" />
+            <AvatarFallback>IM</AvatarFallback>
+          </Avatar>
           
-          <p className="text-xl md:text-2xl text-gray-200 mb-8">
-            Hospitality Executive specializing in pre-opening operations, 
-            large-scale renovations, and operational excellence.
-          </p>
-          
-          <div className="flex flex-wrap gap-4">
-            <Button className="bg-luxury-gold hover:bg-yellow-600 text-luxury-navy font-medium rounded-md px-6 py-3 flex items-center gap-2 transition-all duration-300">
-              <User size={18} />
-              <Link to="/about">View My Story</Link>
-            </Button>
+          <div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+              <span className="text-luxury-gold">30+ Years</span> of Transforming Hospitality Landscapes Worldwide
+            </h1>
             
-            <Button className="bg-transparent hover:bg-white/10 border border-white text-white font-medium rounded-md px-6 py-3 flex items-center gap-2 transition-all duration-300">
-              <FileText size={18} />
-              <a href="/Islam-Mahrous-CV.pdf" download>Download CV</a>
-            </Button>
+            <p className="text-xl md:text-2xl text-gray-200 mb-8">
+              Hospitality Executive specializing in pre-opening operations, 
+              large-scale renovations, and operational excellence.
+            </p>
             
-            <Button variant="link" className="text-white hover:text-luxury-gold flex items-center gap-1 transition-all duration-300">
-              <Link to="/projects" className="flex items-center gap-1">
-                See My Work
-                <ArrowRight size={16} />
-              </Link>
-            </Button>
+            <div className="flex flex-wrap gap-4">
+              <Button className="bg-luxury-gold hover:bg-yellow-600 text-luxury-navy font-medium rounded-md px-6 py-3 flex items-center gap-2 transition-all duration-300">
+                <User size={18} />
+                <Link to="/about">View My Story</Link>
+              </Button>
+              
+              <Button className="bg-transparent hover:bg-white/10 border border-white text-white font-medium rounded-md px-6 py-3 flex items-center gap-2 transition-all duration-300">
+                <FileText size={18} />
+                <a href="/Islam-Mahrous-CV.pdf" download>Download CV</a>
+              </Button>
+              
+              <Button variant="link" className="text-white hover:text-luxury-gold flex items-center gap-1 transition-all duration-300">
+                <Link to="/projects" className="flex items-center gap-1">
+                  See My Work
+                  <ArrowRight size={16} />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
