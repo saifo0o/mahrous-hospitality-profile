@@ -1,13 +1,10 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Briefcase, Award, User, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 const About = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       
       <main className="flex-grow pt-20">
@@ -26,11 +23,7 @@ const About = () => {
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col md:flex-row gap-12">
               <div className="md:w-1/3">
-                <img 
-                  src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
-                  alt="Islam Mahrous" 
-                  className="w-full rounded-lg shadow-lg h-auto object-cover"
-                />
+                <img alt="Islam Mahrous" className="w-full rounded-lg shadow-lg h-auto object-cover" src="/lovable-uploads/da33041c-c376-4cee-8b09-2725fc644e80.jpg" />
               </div>
               
               <div className="md:w-2/3">
@@ -150,27 +143,17 @@ const About = () => {
             <h2 className="section-heading text-center mb-12">Key Skills & Expertise</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                "Revenue Growth", "Managing Budgets", "Operational Efficiency",
-                "Operational Processes", "Enhance Customer Experiences", "Financial Management",
-                "Strategic Thinking", "Team Leadership", "Adaptability",
-                "Performance Evaluation", "Performance Improvement", "Sustainable Organization",
-                "Positive Team Morale", "Business Strategies", "Develop Contingency Plans"
-              ].map((skill, index) => (
-                <div key={index} className="flex items-center p-3 bg-gray-50 rounded-md">
+              {["Revenue Growth", "Managing Budgets", "Operational Efficiency", "Operational Processes", "Enhance Customer Experiences", "Financial Management", "Strategic Thinking", "Team Leadership", "Adaptability", "Performance Evaluation", "Performance Improvement", "Sustainable Organization", "Positive Team Morale", "Business Strategies", "Develop Contingency Plans"].map((skill, index) => <div key={index} className="flex items-center p-3 bg-gray-50 rounded-md">
                   <div className="w-2 h-2 bg-luxury-gold rounded-full mr-3"></div>
                   <span className="text-luxury-navy">{skill}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
             
             <h3 className="font-bold text-luxury-navy mt-10 mb-4">Technical Skills</h3>
             <div className="flex flex-wrap gap-3">
-              {["HIS", "Fidelio", "Opera", "MS Office"].map((tech, index) => (
-                <span key={index} className="px-3 py-1 bg-luxury-navy text-white rounded-full text-sm">
+              {["HIS", "Fidelio", "Opera", "MS Office"].map((tech, index) => <span key={index} className="px-3 py-1 bg-luxury-navy text-white rounded-full text-sm">
                   {tech}
-                </span>
-              ))}
+                </span>)}
             </div>
           </div>
         </section>
@@ -267,8 +250,6 @@ const About = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
