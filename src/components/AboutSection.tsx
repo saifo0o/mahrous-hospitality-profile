@@ -1,19 +1,12 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
 const AboutSection = () => {
-  return (
-    <section id="about" className="py-20">
+  return <section id="about" className="py-20">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
-            <img 
-              src="https://i.ibb.co/McYJKhH/islam-mahrous-profile.jpg"
-              alt="Islam Mahrous - Hospitality Executive" 
-              className="rounded-lg shadow-xl w-full max-w-md mx-auto object-cover h-[500px]"
-            />
+            <img alt="Islam Mahrous - Hospitality Executive" className="rounded-lg shadow-xl w-full max-w-md mx-auto object-cover h-[500px]" src="/lovable-uploads/eec2c35e-d78c-4fba-9a8d-e569e376342c.jpg" />
           </div>
           
           <div className="md:w-1/2">
@@ -44,8 +37,6 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
