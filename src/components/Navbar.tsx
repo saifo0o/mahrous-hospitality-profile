@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +30,13 @@ const Navbar = () => {
     { name: 'Awards', path: '/awards' },
     { name: 'Contact', path: '/contact' }
   ];
+
+  const isActive = (path) => {
+    if (path === '/') {
+      return location.pathname === path;
+    }
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <nav 
@@ -54,8 +62,11 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               className={cn(
-                "nav-link font-medium",
-                scrolled ? "text-luxury-navy" : "text-white"
+                "nav-link font-medium transition-colors relative",
+                scrolled ? "text-luxury-navy" : "text-white",
+                isActive(link.path) && 
+                  (scrolled ? "text-luxury-gold font-semibold after:w-full" : 
+                             "font-semibold after:w-full")
               )}
             >
               {link.name}
@@ -65,7 +76,10 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-luxury-navy"
+          className={cn(
+            "md:hidden",
+            scrolled ? "text-luxury-navy" : "text-white"
+          )}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
@@ -81,7 +95,12 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-luxury-navy hover:text-luxury-gold py-2 px-4 rounded-md transition-colors"
+                className={cn(
+                  "py-2 px-4 rounded-md transition-colors",
+                  isActive(link.path)
+                    ? "bg-luxury-gold/10 text-luxury-gold font-medium"
+                    : "text-luxury-navy hover:text-luxury-gold"
+                )}
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

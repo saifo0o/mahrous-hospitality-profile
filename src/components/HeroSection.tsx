@@ -41,8 +41,10 @@ const HeroSection = () => {
             </Button>
             
             <Button variant="link" className="text-white hover:text-luxury-gold flex items-center gap-1 transition-all duration-300">
-              <Link to="/projects">See My Work</Link>
-              <ArrowRight size={16} />
+              <Link to="/projects" className="flex items-center gap-1">
+                See My Work
+                <ArrowRight size={16} />
+              </Link>
             </Button>
           </div>
         </div>
