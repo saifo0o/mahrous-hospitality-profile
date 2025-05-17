@@ -8,23 +8,44 @@ const ProjectsSection = () => {
     {
       title: "Sheraton Montazah Hotel",
       category: "Major Renovation",
-      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/ab/c2/be/sheraton-montazah-hotel.jpg?w=1200&h=-1&s=1",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/69014366.jpg?k=e915f6708de4297b1a76088d74c34846d91f298bf7d3d5bbeabd4955ae2b4e77&o=&hp=1",
       description: "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network.",
       results: "25% increase in RevPAR and 30% improvement in guest satisfaction scores."
     },
     {
       title: "The V Luxury Resort Sahl Hasheesh",
       category: "Pre-Opening",
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/261360699.jpg?k=35fb172f7fccb2cfa4cc1efcec0a46d67710fac98dbe1388a2334f1d69faae66&o=&hp=1",
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/75/63/ee/the-v-sahl-hasheesh-resort.jpg?w=1200&h=-1&s=1",
       description: "Managed pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved exceptional initial occupancy.",
       results: "90% occupancy within 4 months of launch, setting a new market benchmark."
     },
     {
       title: "Porto Said Resort",
       category: "Major Renovation",
-      image: "https://q-xx.bstatic.com/xdata/images/hotel/max500/92396395.jpg?k=2ab94ff5afd5f9a4fbea31d6646a0b2943a8e43b57a5b6d5cc7d04556ea20fe8&o=",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/470037221.jpg?k=cda5c4d67fbdea4f2572573eb916e844408acc0c98692b0293bf98b9a27dd7af&o=&hp=1",
       description: "Directed $3.5M refurbishment project (168 rooms), achieving significant growth in key performance indicators within just 4 months.",
       results: "18% occupancy growth and 20% F&B revenue increase."
+    },
+    {
+      title: "Fourpoint by Sheraton King Abdulaziz Road",
+      category: "Pre-Opening",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/515740598.jpg?k=499864a4bedbba3e4a2ba17a74e1ddc353d553832ed670975a19e0bea41196f5&o=&hp=1", 
+      description: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
+      results: "12% reduction in pre-opening budget and 90% operational readiness at launch."
+    },
+    {
+      title: "Sheraton Miramar Resort",
+      category: "Major Renovation",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/100288595.jpg?k=78a486022a018d90048c0035352976e0b8e72ce902e9750bf26d0dbad449f5a4&o=&hp=1",
+      description: "Managed $5M refurbishment project for 339-room property, improving guest satisfaction through strategic repositioning.",
+      results: "12% improvement in guest satisfaction and 15% increase in ADR."
+    },
+    {
+      title: "Four Points by Sheraton & Sheraton Tripoli",
+      category: "Pre-Opening",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/60956498.jpg?k=d84a564aef0d255c73e297150bc22e74ef6e5c60d6ab2edc0d9e1119e88d3123&o=&hp=1",
+      description: "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
+      results: "95% operational readiness achieved and 15% higher guest satisfaction than regional average."
     },
   ];
 
@@ -40,7 +61,7 @@ const ProjectsSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.slice(0, 3).map((project, index) => (
             <div 
               key={index}
               className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
