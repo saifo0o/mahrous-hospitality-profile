@@ -142,7 +142,7 @@ const ContactSection = () => {
                   <Linkedin size={22} className="text-luxury-gold mr-4 mt-1" />
                   <div>
                     <h4 className="font-medium text-luxury-navy">LinkedIn</h4>
-                    <a href="https://www.linkedin.com/in/islam-mahrous/" target="_blank" rel="noopener noreferrer" className="text-luxury-navy hover:text-luxury-gold underline transition-colors">linkedin.com/in/islam-mahrous-</a>
+                    <a href="https://www.linkedin.com/in/islam-mahrous/" target="_blank" rel="noopener noreferrer" className="text-luxury-navy hover:text-luxury-gold underline transition-colors">https://www.linkedin.com/in/islam-mahrous-/</a>
                   </div>
                 </div>
               </div>
