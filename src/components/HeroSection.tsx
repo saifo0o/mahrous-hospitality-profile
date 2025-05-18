@@ -37,7 +37,7 @@ const HeroSection = () => {
             
             <Button className="bg-transparent hover:bg-white/10 border border-white text-white font-medium rounded-md px-6 py-3 flex items-center gap-2 transition-all duration-300">
               <FileText size={18} />
-              <a href="/Islam-Mahrous-CV.pdf" download>Download CV</a>
+              <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Download CV</a>
             </Button>
             
             <Button variant="link" className="text-white hover:text-luxury-gold flex items-center gap-1 transition-all duration-300">

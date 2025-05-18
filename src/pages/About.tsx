@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -85,7 +86,7 @@ const About = () => {
                 
                 <div className="mt-8">
                   <Button className="bg-luxury-gold hover:bg-yellow-600 text-luxury-navy">
-                    <a href="/Islam-Mahrous-CV.pdf" download>Download Full CV</a>
+                    <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Download Full CV</a>
                   </Button>
                 </div>
               </div>

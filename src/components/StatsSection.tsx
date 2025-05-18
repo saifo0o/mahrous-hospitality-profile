@@ -6,7 +6,7 @@ import { Trophy, Users, BarChart, Building } from 'lucide-react';
 const StatsSection = () => {
   const stats = [
     { value: '30+', label: 'Years of Experience', icon: <Trophy className="text-luxury-gold h-8 w-8" /> },
-    { value: '200+', label: 'Employees Trained & Mentored', icon: <Users className="text-luxury-gold h-8 w-8" /> },
+    { value: '5000+', label: 'Employees Trained & Mentored', icon: <Users className="text-luxury-gold h-8 w-8" /> },
     { value: '25%+', label: 'Average RevPAR Increase', icon: <BarChart className="text-luxury-gold h-8 w-8" /> },
     { value: '$8.5M+', label: 'Managed in Renovation Budgets', icon: <Building className="text-luxury-gold h-8 w-8" /> }
   ];
