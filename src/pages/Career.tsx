@@ -1,11 +1,33 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { CalendarRange, Building, MapPin, Award, Briefcase } from 'lucide-react';
+import { 
+  CalendarRange, 
+  Building, 
+  MapPin, 
+  Award, 
+  Briefcase, 
+  TrendingUp, 
+  Users, 
+  BarChart,
+  ChevronDown,
+  ChevronUp
+} from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 const Career = () => {
+  const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
+
+  const toggleExperience = (index: number) => {
+    if (expandedExperience === index) {
+      setExpandedExperience(null);
+    } else {
+      setExpandedExperience(index);
+    }
+  };
+
   const experiences = [
     {
       position: "General Manager",
@@ -18,7 +40,12 @@ const Career = () => {
         "Implementing new service standards and training programs",
         "Developing strategic partnerships with local businesses",
         "Optimizing operational processes for enhanced guest experience"
-      ]
+      ],
+      metrics: {
+        occupancy: "+10%",
+        revenue: "+15%",
+        satisfaction: "+8%"
+      }
     },
     {
       position: "Owner Representative (Pre-Opening)",
@@ -31,7 +58,12 @@ const Career = () => {
         "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget while maintaining quality standards and timeline requirements",
         "Directed comprehensive recruitment and training initiatives for 150+ staff",
         "Developed tailored programs aligned with Marriott International standards and local market expectations"
-      ]
+      ],
+      metrics: {
+        budget: "-12%",
+        readiness: "90%",
+        staffing: "100%"
+      }
     },
     {
       position: "General Manager",
@@ -44,7 +76,13 @@ const Career = () => {
         "Led and mentored a diverse team of 200+ staff",
         "Implemented targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 15%",
         "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
-      ]
+      ],
+      metrics: {
+        occupancy: "+18%",
+        revenue: "+20%",
+        efficiency: "+15%",
+        costs: "-10%"
+      }
     },
     {
       position: "General Manager",
@@ -57,7 +95,12 @@ const Career = () => {
         "Enhanced guest satisfaction scores by 12% through development and implementation of targeted service training programs and personalized guest experience initiatives",
         "Implemented data-driven operational strategies",
         "Established the property as a market leader in the region"
-      ]
+      ],
+      metrics: {
+        occupancy: "90%",
+        timeToReachOccupancy: "4 months",
+        satisfaction: "+12%"
+      }
     },
     {
       position: "General Manager",
@@ -74,7 +117,13 @@ const Career = () => {
         "Achieved 25% increase in RevPAR and 30% improvement in guest satisfaction scores",
         "Modernized all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network, reducing energy consumption by 15% and maintenance costs by 20%",
         "Collaborated with Owning Company and Marriott Design team to develop and implement model room concepts"
-      ]
+      ],
+      metrics: {
+        revpar: "+25%",
+        satisfaction: "+30%",
+        energySavings: "-15%",
+        maintenanceSavings: "-20%"
+      }
     },
     {
       position: "General Manager in Charge of Operational Excellence",
@@ -87,7 +136,12 @@ const Career = () => {
         "Improved guest satisfaction by 10% and F&B revenue by 8%",
         "Coordinated cross-property initiatives and best practice sharing, driving an average 3% increase in RevPAR across all properties",
         "Facilitated quarterly performance reviews and strategic planning sessions, ensuring alignment with Marriott International standards across diverse property portfolio"
-      ]
+      ],
+      metrics: {
+        satisfaction: "+10%",
+        revenue: "+8%",
+        revpar: "+3%"
+      }
     },
     {
       position: "Deputy General Manager in Charge",
@@ -99,7 +153,12 @@ const Career = () => {
       achievements: [
         "Reduced payroll expenses by 7% while maintaining service standards through innovative scheduling and cross-training initiatives",
         "Implemented revenue management strategies that increased ADR by 15% and occupancy by 8% within first year post-renovation"
-      ]
+      ],
+      metrics: {
+        payrollSavings: "-7%",
+        adr: "+15%",
+        occupancy: "+8%"
+      }
     },
     {
       position: "Cluster Executive Assistant Manager (Pre-Opening)",
@@ -111,7 +170,11 @@ const Career = () => {
       achievements: [
         "Led staff training and operational setup, resulting in 15% higher guest satisfaction",
         "Established operational systems and procedures aligned with Starwood brand standards"
-      ]
+      ],
+      metrics: {
+        readiness: "95%",
+        satisfaction: "+15%"
+      }
     },
     {
       position: "Director of Operational Innovation",
@@ -128,7 +191,8 @@ const Career = () => {
         "Contributed to management team that achieved \"Best EBITDA Margin Growth\" in EMEA Division",
         "Implemented Six Sigma methodologies to enhance operational efficiency and guest satisfaction",
         "Transferred from Sheraton Soma Bay due to outstanding performance"
-      ]
+      ],
+      metrics: {}
     },
     {
       position: "Early Career Progression",
@@ -137,6 +201,26 @@ const Career = () => {
     }
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { 
+        staggerChildren: 0.2 
+      } 
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -144,7 +228,12 @@ const Career = () => {
       <main className="flex-grow pt-24">
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-12">
+            <motion.div 
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <h1 className="text-3xl md:text-4xl font-bold mb-6 inline-block relative">
                 Career Journey
                 <span className="absolute left-0 -bottom-2 w-1/2 h-1 bg-luxury-gold"></span>
@@ -153,27 +242,34 @@ const Career = () => {
                 Over 30 years of progressive leadership experience across international hospitality brands and markets,
                 specializing in pre-opening operations, renovations, and operational excellence.
               </p>
-            </div>
+            </motion.div>
 
             <div className="relative">
               <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-luxury-gold"></div>
               
-              <div className="space-y-16">
+              <motion.div 
+                className="space-y-16"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
                 {experiences.map((exp, index) => (
                   <motion.div 
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    variants={itemVariants}
                     className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                   >
                     <div className="md:w-1/2 flex justify-center items-center">
-                      <div className={`bg-white p-6 rounded-lg shadow-lg border-t-4 border-luxury-gold max-w-md ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
-                        <h3 className="text-2xl font-bold text-luxury-navy mb-2">{exp.position}</h3>
-                        {exp.company && <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>}
-                        
-                        {exp.location && (
+                      <Card 
+                        className={cn(
+                          "bg-white border-t-4 border-luxury-gold max-w-md w-full transition-all duration-300",
+                          expandedExperience === index ? "shadow-xl" : "shadow-lg hover:shadow-xl"
+                        )}
+                      >
+                        <CardContent className="p-6">
+                          <h3 className="text-2xl font-bold text-luxury-navy mb-2">{exp.position}</h3>
+                          {exp.company && <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>}
+                          
                           <div className="flex flex-wrap items-center text-luxury-gray mb-2">
                             <MapPin size={18} className="mr-2" />
                             <span className="mr-4">{exp.location}</span>
@@ -184,57 +280,101 @@ const Career = () => {
                               </>
                             )}
                           </div>
-                        )}
-                        
-                        <div className="flex items-center text-luxury-gray mb-4">
-                          <CalendarRange size={18} className="mr-2" />
-                          <span>{exp.period}</span>
-                        </div>
-
-                        {exp.previousRoles && exp.previousRoles.length > 0 && (
-                          <div className="mb-4">
-                            <h5 className="font-semibold text-luxury-navy mb-2">Previous Roles:</h5>
-                            <ul className="space-y-1">
-                              {exp.previousRoles.map((role, i) => (
-                                <li key={i} className="pl-4 border-l-2 border-luxury-gold">
-                                  <div className="font-medium">{role.title}</div>
-                                  <div className="text-sm text-luxury-gray">{role.period}</div>
-                                </li>
-                              ))}
-                            </ul>
+                          
+                          <div className="flex items-center text-luxury-gray mb-4">
+                            <CalendarRange size={18} className="mr-2" />
+                            <span>{exp.period}</span>
                           </div>
-                        )}
-                        
-                        <p className="text-luxury-gray mb-4">{exp.description}</p>
-                        
-                        {exp.achievements && exp.achievements.length > 0 && (
-                          <div className="mt-4">
-                            <h5 className="font-semibold text-luxury-navy mb-2">Key Achievements:</h5>
-                            <ul className="list-disc list-inside space-y-1">
-                              {exp.achievements.map((achievement, i) => (
-                                <li key={i} className="text-sm text-luxury-gray">{achievement}</li>
+                          
+                          <p className="text-luxury-gray mb-4">{exp.description}</p>
+                          
+                          {/* Interactive Metrics Dashboard */}
+                          {exp.metrics && (
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-4 mb-4">
+                              {Object.entries(exp.metrics).map(([key, value], i) => (
+                                <div 
+                                  key={i} 
+                                  className="bg-gray-50 p-3 rounded-lg text-center hover:bg-gray-100 transition-colors"
+                                >
+                                  <div className="text-luxury-navy font-bold text-lg">
+                                    {value}
+                                  </div>
+                                  <div className="text-xs text-luxury-gray capitalize">
+                                    {key}
+                                  </div>
+                                </div>
                               ))}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
+                            </div>
+                          )}
+                          
+                          {/* Expandable achievements section */}
+                          {exp.achievements && exp.achievements.length > 0 && (
+                            <div className="mt-4">
+                              <button 
+                                onClick={() => toggleExperience(index)} 
+                                className="flex items-center justify-between w-full text-luxury-navy font-semibold hover:text-luxury-gold transition-colors"
+                              >
+                                <span>Key Achievements</span>
+                                {expandedExperience === index ? (
+                                  <ChevronUp size={18} />
+                                ) : (
+                                  <ChevronDown size={18} />
+                                )}
+                              </button>
+                              
+                              {expandedExperience === index && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.3 }}
+                                  className="mt-3"
+                                >
+                                  <ul className="list-disc list-inside space-y-2">
+                                    {exp.achievements.map((achievement, i) => (
+                                      <motion.li 
+                                        key={i} 
+                                        className="text-sm text-luxury-gray"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                      >
+                                        {achievement}
+                                      </motion.li>
+                                    ))}
+                                  </ul>
+                                </motion.div>
+                              )}
+                            </div>
+                          )}
+                        </CardContent>
+                      </Card>
                     </div>
                     
                     <div className="hidden md:flex md:w-1/2 justify-center">
                       <div className="relative">
-                        <div className="h-8 w-8 bg-luxury-gold rounded-full z-10 relative"></div>
+                        <motion.div 
+                          className="h-8 w-8 bg-luxury-gold rounded-full z-10 relative"
+                          whileHover={{ scale: 1.2 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => toggleExperience(index)}
+                        />
                       </div>
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
             
             <div className="text-center mt-16">
-              <div className="inline-block px-6 py-3 bg-luxury-navy text-white rounded-lg font-medium">
+              <motion.div 
+                className="inline-block px-6 py-3 bg-luxury-navy text-white rounded-lg font-medium"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Award className="inline-block mr-2" size={20} />
                 <span>View more career highlights in the <a href="/awards" className="text-luxury-gold hover:underline">Awards section</a></span>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
