@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { CalendarRange, Building, MapPin, Award } from 'lucide-react';
+import { CalendarRange, Building, MapPin, Award, Briefcase } from 'lucide-react';
 
 const Career = () => {
   const experiences = [
@@ -28,9 +28,9 @@ const Career = () => {
       description: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
       rooms: 172,
       achievements: [
-        "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget",
+        "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget while maintaining quality standards and timeline requirements",
         "Directed comprehensive recruitment and training initiatives for 150+ staff",
-        "Developed tailored programs aligned with Marriott International standards"
+        "Developed tailored programs aligned with Marriott International standards and local market expectations"
       ]
     },
     {
@@ -42,8 +42,8 @@ const Career = () => {
       rooms: 168,
       achievements: [
         "Led and mentored a diverse team of 200+ staff",
-        "Implemented targeted training programs that improved operational efficiency by 15%",
-        "Developed strategic cost-saving initiatives reducing operational expenses by 10%"
+        "Implemented targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 15%",
+        "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
       ]
     },
     {
@@ -51,10 +51,10 @@ const Career = () => {
       company: "The V Luxury Resort Sahl Hasheesh",
       location: "Hurghada, Egypt",
       period: "April 2023 - February 2024",
-      description: "Orchestrated pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved 90% occupancy within 4 months of launch.",
+      description: "Orchestrated pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved 90% occupancy within 4 months of launch, setting a new market benchmark.",
       rooms: 298,
       achievements: [
-        "Enhanced guest satisfaction scores by 12% through targeted service training",
+        "Enhanced guest satisfaction scores by 12% through development and implementation of targeted service training programs and personalized guest experience initiatives",
         "Implemented data-driven operational strategies",
         "Established the property as a market leader in the region"
       ]
@@ -64,12 +64,16 @@ const Career = () => {
       company: "Sheraton Montazah Hotel",
       location: "Alexandria, Egypt",
       period: "January 2021 - March 2023",
+      previousRoles: [
+        { title: "Hotel Manager in Charge", period: "July 2015 - December 2020" },
+        { title: "Deputy General Manager", period: "June 2014 - June 2015" }
+      ],
       description: "Directed comprehensive renovation with operation of 40-year-old property (288 rooms), including complete infrastructure overhaul.",
       rooms: 288,
       achievements: [
         "Achieved 25% increase in RevPAR and 30% improvement in guest satisfaction scores",
-        "Modernized all mechanical systems, reducing energy consumption by 15%",
-        "Collaborated with Marriott Design team to develop model room concepts"
+        "Modernized all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network, reducing energy consumption by 15% and maintenance costs by 20%",
+        "Collaborated with Owning Company and Marriott Design team to develop and implement model room concepts"
       ]
     },
     {
@@ -81,9 +85,55 @@ const Career = () => {
       rooms: 2200,
       achievements: [
         "Improved guest satisfaction by 10% and F&B revenue by 8%",
-        "Coordinated cross-property initiatives driving an average 3% increase in RevPAR",
-        "Facilitated quarterly performance reviews and strategic planning sessions"
+        "Coordinated cross-property initiatives and best practice sharing, driving an average 3% increase in RevPAR across all properties",
+        "Facilitated quarterly performance reviews and strategic planning sessions, ensuring alignment with Marriott International standards across diverse property portfolio"
       ]
+    },
+    {
+      position: "Deputy General Manager in Charge",
+      company: "Sheraton Miramar Resort",
+      location: "El Gouna, Hurghada, Egypt",
+      period: "July 2011 - June 2014",
+      description: "Managed $5M refurbishment project for 339-room property, improving guest satisfaction by 12% and driving strong post-renovation growth through strategic repositioning.",
+      rooms: 339,
+      achievements: [
+        "Reduced payroll expenses by 7% while maintaining service standards through innovative scheduling and cross-training initiatives",
+        "Implemented revenue management strategies that increased ADR by 15% and occupancy by 8% within first year post-renovation"
+      ]
+    },
+    {
+      position: "Cluster Executive Assistant Manager (Pre-Opening)",
+      company: "Four Points by Sheraton & Sheraton",
+      location: "Tripoli, Libya",
+      period: "December 2009 - June 2011",
+      description: "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
+      rooms: 718,
+      achievements: [
+        "Led staff training and operational setup, resulting in 15% higher guest satisfaction",
+        "Established operational systems and procedures aligned with Starwood brand standards"
+      ]
+    },
+    {
+      position: "Director of Operational Innovation",
+      company: "Sheraton Miramar Resort",
+      location: "El Gouna, Hurghada, Egypt",
+      period: "January 2005 - November 2009",
+      previousRoles: [
+        { title: "Deputy Director of Guest Services & Six Sigma Green Belt", period: "June 2003 - June 2004" }
+      ],
+      description: "Led divisional projects to increase guest satisfaction, employee satisfaction, and revenue.",
+      achievements: [
+        "Exported 4 Best Practices to Europe, Africa, and Middle East Division",
+        "Selected as Director of Operational Innovation Coach for 5 properties in Egypt and Morocco",
+        "Contributed to management team that achieved \"Best EBITDA Margin Growth\" in EMEA Division",
+        "Implemented Six Sigma methodologies to enhance operational efficiency and guest satisfaction",
+        "Transferred from Sheraton Soma Bay due to outstanding performance"
+      ]
+    },
+    {
+      position: "Early Career Progression",
+      period: "1993 - 2004",
+      description: "Held progressive roles within various international hospitality chains in UAE & Egypt, advancing from Receptionist to Assistant Director of Front Office through demonstrated excellence in guest service and operational management."
     }
   ];
 
@@ -121,30 +171,52 @@ const Career = () => {
                     <div className="md:w-1/2 flex justify-center items-center">
                       <div className={`bg-white p-6 rounded-lg shadow-lg border-t-4 border-luxury-gold max-w-md ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
                         <h3 className="text-2xl font-bold text-luxury-navy mb-2">{exp.position}</h3>
-                        <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>
+                        {exp.company && <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>}
                         
-                        <div className="flex flex-wrap items-center text-luxury-gray mb-2">
-                          <MapPin size={18} className="mr-2" />
-                          <span className="mr-4">{exp.location}</span>
-                          <Building size={18} className="mr-2" />
-                          <span>{exp.rooms} Rooms</span>
-                        </div>
+                        {exp.location && (
+                          <div className="flex flex-wrap items-center text-luxury-gray mb-2">
+                            <MapPin size={18} className="mr-2" />
+                            <span className="mr-4">{exp.location}</span>
+                            {exp.rooms && (
+                              <>
+                                <Building size={18} className="mr-2" />
+                                <span>{exp.rooms} Rooms</span>
+                              </>
+                            )}
+                          </div>
+                        )}
                         
                         <div className="flex items-center text-luxury-gray mb-4">
                           <CalendarRange size={18} className="mr-2" />
                           <span>{exp.period}</span>
                         </div>
+
+                        {exp.previousRoles && exp.previousRoles.length > 0 && (
+                          <div className="mb-4">
+                            <h5 className="font-semibold text-luxury-navy mb-2">Previous Roles:</h5>
+                            <ul className="space-y-1">
+                              {exp.previousRoles.map((role, i) => (
+                                <li key={i} className="pl-4 border-l-2 border-luxury-gold">
+                                  <div className="font-medium">{role.title}</div>
+                                  <div className="text-sm text-luxury-gray">{role.period}</div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                         
                         <p className="text-luxury-gray mb-4">{exp.description}</p>
                         
-                        <div className="mt-4">
-                          <h5 className="font-semibold text-luxury-navy mb-2">Key Achievements:</h5>
-                          <ul className="list-disc list-inside space-y-1">
-                            {exp.achievements.map((achievement, i) => (
-                              <li key={i} className="text-sm text-luxury-gray">{achievement}</li>
-                            ))}
-                          </ul>
-                        </div>
+                        {exp.achievements && exp.achievements.length > 0 && (
+                          <div className="mt-4">
+                            <h5 className="font-semibold text-luxury-navy mb-2">Key Achievements:</h5>
+                            <ul className="list-disc list-inside space-y-1">
+                              {exp.achievements.map((achievement, i) => (
+                                <li key={i} className="text-sm text-luxury-gray">{achievement}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
                     </div>
                     

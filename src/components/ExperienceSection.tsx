@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Calendar, MapPin, Building } from 'lucide-react';
+import { Calendar, MapPin, Building, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -76,7 +76,8 @@ const ExperienceSection = () => {
         </div>
         
         <div className="text-center mt-10">
-          <Button className="bg-luxury-navy hover:bg-blue-900">
+          <Button className="bg-luxury-navy hover:bg-blue-900 flex items-center gap-2">
+            <Briefcase size={16} />
             <Link to="/career">View Full Career Journey</Link>
           </Button>
         </div>
