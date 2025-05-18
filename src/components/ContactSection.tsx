@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,9 +5,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Linkedin, Send } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from 'react-router-dom';
-
 const ContactSection = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,24 +16,28 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const handleChange = e => {
+    const {
+      name,
+      value
+    } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       // Success notification
       toast({
         title: "Message sent successfully",
-        description: "Thank you for your message. Islam will get back to you soon.",
+        description: "Thank you for your message. Islam will get back to you soon."
       });
-      
+
       // Reset form
       setFormData({
         name: '',
@@ -41,13 +45,10 @@ const ContactSection = () => {
         subject: '',
         message: ''
       });
-      
       setIsSubmitting(false);
     }, 1500);
   };
-
-  return (
-    <section id="contact" className="py-20">
+  return <section id="contact" className="py-20">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
           <h2 className="section-heading inline-block">Get In Touch</h2>
@@ -65,31 +66,14 @@ const ContactSection = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name
                   </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your Name"
-                    required
-                    className="w-full"
-                  />
+                  <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" required className="w-full" />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                     Email Address
                   </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your Email"
-                    required
-                    className="w-full"
-                  />
+                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Your Email" required className="w-full" />
                 </div>
               </div>
               
@@ -97,40 +81,18 @@ const ContactSection = () => {
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
                   Subject
                 </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Subject of your message"
-                  required
-                  className="w-full"
-                />
+                <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject of your message" required className="w-full" />
               </div>
               
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                   Message
                 </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Your message"
-                  rows={5}
-                  required
-                  className="w-full"
-                />
+                <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Your message" rows={5} required className="w-full" />
               </div>
               
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full bg-luxury-navy hover:bg-blue-900 flex items-center justify-center gap-2"
-              >
-                {isSubmitting ? (
-                  <>
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-luxury-navy hover:bg-blue-900 flex items-center justify-center gap-2">
+                {isSubmitting ? <>
                     <span className="animate-spin">
                       <svg className="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -138,13 +100,10 @@ const ContactSection = () => {
                       </svg>
                     </span>
                     <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
+                  </> : <>
                     <Send size={18} />
                     <span>Send Message</span>
-                  </>
-                )}
+                  </>}
               </Button>
             </form>
           </div>
@@ -183,14 +142,7 @@ const ContactSection = () => {
                   <Linkedin size={22} className="text-luxury-gold mr-4 mt-1" />
                   <div>
                     <h4 className="font-medium text-luxury-navy">LinkedIn</h4>
-                    <a 
-                      href="https://www.linkedin.com/in/islam-mahrous/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-luxury-navy hover:text-luxury-gold underline transition-colors"
-                    >
-                      linkedin.com/in/islam-mahrous
-                    </a>
+                    <a href="https://www.linkedin.com/in/islam-mahrous/" target="_blank" rel="noopener noreferrer" className="text-luxury-navy hover:text-luxury-gold underline transition-colors">linkedin.com/in/islam-mahrous-</a>
                   </div>
                 </div>
               </div>
@@ -211,8 +163,6 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ContactSection;
