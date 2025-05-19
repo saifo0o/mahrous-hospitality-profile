@@ -108,11 +108,7 @@ const MediaSection = () => {
         
         <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {mediaItems.map((item, index) => <motion.div key={index} variants={itemVariants} className="bg-white dark:bg-luxury-navy/30 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-1">
-              <div className="h-24 bg-gray-50 dark:bg-gray-800 flex items-center justify-center p-4 border-b border-gray-100 dark:border-gray-700">
-                <div className="h-16 flex items-center justify-center">
-                  {item.logo ? <img src={item.logo} alt={item.source} className="max-h-full max-w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity" /> : <span className="text-xl font-bold text-luxury-navy dark:text-white">{item.source}</span>}
-                </div>
-              </div>
+              
               
               <div className="p-6 flex flex-col h-[calc(100%-6rem)]">
                 <div className="flex-grow">
