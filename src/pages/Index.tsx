@@ -12,8 +12,11 @@ import ContactSection from '@/components/ContactSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
 import MediaSection from '@/components/MediaSection';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Index = () => {
+  const { isRTL } = useLanguage();
+  
   // Smooth scroll to top on page load
   useEffect(() => {
     window.scrollTo({
@@ -23,7 +26,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}>
       <Navbar />
       <main className="flex-grow">
         <HeroSection />

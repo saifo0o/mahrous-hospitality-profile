@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const { t, language } = useLanguage();
+  const { t, language, isRTL } = useLanguage();
   
   const navLinks = [
     { name: t('home'), path: '/' },
@@ -60,7 +60,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 md:px-8">
-        <nav className="flex justify-between items-center">
+        <nav className={`flex ${isRTL ? 'flex-row-reverse' : ''} justify-between items-center`}>
           {/* Logo */}
           <Link 
             to="/" 
@@ -85,7 +85,7 @@ const Navbar = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className={`hidden md:flex items-center ${isRTL ? 'flex-row-reverse space-x-reverse' : ''} space-x-8`}>
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.path}
@@ -117,7 +117,7 @@ const Navbar = () => {
           </div>
           
           {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden space-x-4">
+          <div className={`flex items-center md:hidden ${isRTL ? 'flex-row-reverse' : ''} space-x-4`}>
             <LanguageSelector />
             <Button 
               variant="ghost" 
@@ -142,11 +142,11 @@ const Navbar = () => {
             className="md:hidden bg-white dark:bg-luxury-navy border-t border-gray-100 dark:border-gray-800"
           >
             <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col space-y-4">
+              <nav className={`flex flex-col space-y-4 ${isRTL ? 'items-end' : ''}`}>
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.path}
-                    initial={{ opacity: 0, x: -10 }}
+                    initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >

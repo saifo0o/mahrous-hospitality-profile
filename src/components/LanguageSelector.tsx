@@ -18,7 +18,10 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className }) => {
   const { language, setLanguage } = useLanguage();
 
   const handleLanguageChange = (langCode: 'en' | 'ar') => {
-    setLanguage(langCode);
+    if (langCode !== language.code) {
+      console.log(`Switching language from ${language.code} to ${langCode}`);
+      setLanguage(langCode);
+    }
   };
 
   return (
@@ -35,18 +38,20 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className }) => {
           <DropdownMenuItem
             key="en"
             onClick={() => handleLanguageChange('en')}
-            className="cursor-pointer flex items-center gap-2"
+            className={`cursor-pointer flex items-center gap-2 ${language.code === 'en' ? 'bg-gray-100 font-medium' : ''}`}
           >
             <span>{languages.en.flag}</span>
             <span>{languages.en.name}</span>
+            {language.code === 'en' && <span className="ml-auto">✓</span>}
           </DropdownMenuItem>
           <DropdownMenuItem
             key="ar"
             onClick={() => handleLanguageChange('ar')}
-            className="cursor-pointer flex items-center gap-2"
+            className={`cursor-pointer flex items-center gap-2 ${language.code === 'ar' ? 'bg-gray-100 font-medium' : ''}`}
           >
             <span>{languages.ar.flag}</span>
             <span>{languages.ar.name}</span>
+            {language.code === 'ar' && <span className="ml-auto">✓</span>}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

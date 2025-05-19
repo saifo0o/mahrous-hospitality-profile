@@ -43,25 +43,42 @@ type LanguageContextType = {
   language: typeof languages.en | typeof languages.ar;
   setLanguage: (lang: 'en' | 'ar') => void;
   t: (key: string) => string;
+  isRTL: boolean;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Check localStorage or default to 'en'
+  // Check localStorage for saved language or default to browser language
   const getInitialLanguage = () => {
     const savedLang = localStorage.getItem('language');
-    return savedLang === 'ar' ? languages.ar : languages.en;
+    if (savedLang === 'ar' || savedLang === 'en') {
+      return languages[savedLang];
+    }
+    // Try to detect browser language
+    const browserLang = navigator.language.split('-')[0];
+    return browserLang === 'ar' ? languages.ar : languages.en;
   };
 
   const [language, setLanguageState] = useState(getInitialLanguage);
+  const [isRTL, setIsRTL] = useState(getInitialLanguage().dir === 'rtl');
 
   const setLanguage = (langCode: 'en' | 'ar') => {
     const newLang = languages[langCode];
     setLanguageState(newLang);
+    setIsRTL(newLang.dir === 'rtl');
     localStorage.setItem('language', langCode);
+    
+    // Update document direction and language attributes
     document.documentElement.lang = langCode;
     document.documentElement.dir = newLang.dir;
+    
+    // Force layout recalculation for RTL changes
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = '';
+    
+    console.log(`Language changed to ${langCode}, direction: ${newLang.dir}`);
   };
 
   // Translation function
@@ -69,14 +86,16 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     return language.translations[key as keyof typeof language.translations] || key;
   };
 
-  // Set initial direction on mount
+  // Set initial direction and language on mount
   useEffect(() => {
     document.documentElement.lang = language.code;
     document.documentElement.dir = language.dir;
-  }, [language]);
+    setIsRTL(language.dir === 'rtl');
+    console.log(`Initial language set to ${language.code}, direction: ${language.dir}`);
+  }, []);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, isRTL }}>
       {children}
     </LanguageContext.Provider>
   );
