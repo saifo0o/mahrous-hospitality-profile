@@ -67,9 +67,9 @@ const TestimonialsSection = () => {
             }}
             className="w-full"
             onSelect={(api) => {
+              // Only update state if the API is available
               if (api) {
-                const selectedIndex = api.selectedScrollSnap();
-                setCurrentTestimonial(selectedIndex);
+                setCurrentTestimonial(api.selectedScrollSnap());
               }
             }}
           >
