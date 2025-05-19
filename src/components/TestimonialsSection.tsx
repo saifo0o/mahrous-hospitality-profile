@@ -6,6 +6,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi
 } from "@/components/ui/carousel";
 import { TestimonialCard } from './TestimonialCard';
 import { motion } from 'framer-motion';
@@ -42,6 +43,20 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+
+  React.useEffect(() => {
+    if (!api) return;
+    
+    const handleSelect = () => {
+      setCurrentTestimonial(api.selectedScrollSnap());
+    };
+    
+    api.on("select", handleSelect);
+    return () => {
+      api.off("select", handleSelect);
+    };
+  }, [api]);
 
   return (
     <section id="testimonials" className="py-20 bg-white">
@@ -66,12 +81,7 @@ const TestimonialsSection = () => {
               loop: true,
             }}
             className="w-full"
-            onSelect={(api) => {
-              // Only update state if the API is available
-              if (api) {
-                setCurrentTestimonial(api.selectedScrollSnap());
-              }
-            }}
+            setApi={setApi}
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
@@ -91,7 +101,7 @@ const TestimonialsSection = () => {
                     className={`h-2 rounded-full transition-all ${
                       currentTestimonial === index ? "w-8 bg-luxury-gold" : "w-2 bg-gray-300"
                     }`}
-                    onClick={() => setCurrentTestimonial(index)}
+                    onClick={() => api?.scrollTo(index)}
                     aria-label={`Go to testimonial ${index + 1}`}
                   />
                 ))}

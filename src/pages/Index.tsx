@@ -10,18 +10,20 @@ import ProjectsSection from '@/components/ProjectsSection';
 import AwardsSection from '@/components/AwardsSection';
 import ContactSection from '@/components/ContactSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import CaseStudiesSection from '@/components/CaseStudiesSection';
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <HeroSection />
         <StatsSection />
         <AboutSection />
         <ExperienceSection />
-        <ProjectsSection />
+        <CaseStudiesSection />
         <TestimonialsSection />
+        <ProjectsSection />
         <AwardsSection />
         <ContactSection />
       </main>
