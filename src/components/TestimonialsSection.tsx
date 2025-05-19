@@ -66,7 +66,12 @@ const TestimonialsSection = () => {
               loop: true,
             }}
             className="w-full"
-            onSelect={(index) => setCurrentTestimonial(index)}
+            onSelect={(api) => {
+              if (api !== undefined) {
+                const selectedIndex = api.selectedScrollSnap();
+                setCurrentTestimonial(selectedIndex);
+              }
+            }}
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
