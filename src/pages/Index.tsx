@@ -11,6 +11,7 @@ import AwardsSection from '@/components/AwardsSection';
 import ContactSection from '@/components/ContactSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
+import MediaSection from '@/components/MediaSection';
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
         <AboutSection />
         <ExperienceSection />
         <CaseStudiesSection />
+        <MediaSection />
         <TestimonialsSection />
         <ProjectsSection />
         <AwardsSection />

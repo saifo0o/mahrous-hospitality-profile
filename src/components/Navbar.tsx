@@ -5,21 +5,23 @@ import { Button } from '@/components/ui/button';
 import { X, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import LanguageSelector from './LanguageSelector';
-
-// Navigation links
-const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Career', path: '/career' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Awards', path: '/awards' },
-  { name: 'Contact', path: '/contact' },
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+  
+  // Navigation links with translation keys
+  const navLinks = [
+    { name: t('home'), path: '/' },
+    { name: t('about'), path: '/about' },
+    { name: t('career'), path: '/career' },
+    { name: t('projects'), path: '/projects' },
+    { name: t('awards'), path: '/awards' },
+    { name: t('contact'), path: '/contact' },
+  ];
   
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +56,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.path}
                 to={link.path}
                 className={`text-sm font-medium transition-colors hover:text-luxury-gold ${
                   location.pathname === link.path ? 'text-luxury-gold' : 'text-luxury-navy'
@@ -94,7 +96,7 @@ const Navbar = () => {
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.path}
                   to={link.path}
                   className={`py-2 text-base font-medium ${
                     location.pathname === link.path ? 'text-luxury-gold' : 'text-luxury-navy'
