@@ -1,8 +1,11 @@
+
 import React from 'react';
 import { Mail, Phone, Linkedin, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Footer = () => {
+  const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -14,7 +17,10 @@ const Footer = () => {
               <span className="text-luxury-gold">I</span>slam <span className="text-luxury-gold">M</span>ahrous
             </h3>
             <p className="text-gray-300 mb-4">
-              Hospitality Executive with over 30 years of progressive leadership experience specializing in pre-opening operations, renovations, and operational excellence.
+              {language.code === 'ar' 
+                ? "تنفيذي في مجال الضيافة مع أكثر من 30 عامًا من الخبرة القيادية المتقدمة متخصص في عمليات ما قبل الافتتاح والتجديدات والتميز التشغيلي."
+                : "Hospitality Executive with over 30 years of progressive leadership experience specializing in pre-opening operations, renovations, and operational excellence."
+              }
             </p>
             <div className="flex space-x-4">
               <a 
@@ -37,35 +43,49 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-luxury-gold transition-colors">Home</Link>
+                <Link to="/" className="text-gray-300 hover:text-luxury-gold transition-colors">
+                  {t('home')}
+                </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-luxury-gold transition-colors">About</Link>
+                <Link to="/about" className="text-gray-300 hover:text-luxury-gold transition-colors">
+                  {t('about')}
+                </Link>
               </li>
               <li>
-                <Link to="/career" className="text-gray-300 hover:text-luxury-gold transition-colors">Career</Link>
+                <Link to="/career" className="text-gray-300 hover:text-luxury-gold transition-colors">
+                  {t('career')}
+                </Link>
               </li>
               <li>
-                <Link to="/projects" className="text-gray-300 hover:text-luxury-gold transition-colors">Projects</Link>
+                <Link to="/projects" className="text-gray-300 hover:text-luxury-gold transition-colors">
+                  {t('projects')}
+                </Link>
               </li>
               <li>
-                <Link to="/awards" className="text-gray-300 hover:text-luxury-gold transition-colors">Awards</Link>
+                <Link to="/awards" className="text-gray-300 hover:text-luxury-gold transition-colors">
+                  {t('awards')}
+                </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-luxury-gold transition-colors">Contact</Link>
+                <Link to="/contact" className="text-gray-300 hover:text-luxury-gold transition-colors">
+                  {t('contact')}
+                </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-4">Contact</h3>
+            <h3 className="text-xl font-bold mb-4">{t('contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <MapPin size={18} className="mr-2 text-luxury-gold" />
-                <span className="text-gray-300">Jubail, KSA</span>
+                <span className="text-gray-300">
+                  {language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, KSA"}
+                </span>
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="mr-2 text-luxury-gold" />
@@ -85,7 +105,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-700 mt-8 pt-6 text-center">
           <p className="text-gray-300">
-            &copy; {currentYear} Islam Mahrous. All rights reserved.
+            &copy; {currentYear} Islam Mahrous. {language.code === 'ar' ? "جميع الحقوق محفوظة." : "All rights reserved."}
           </p>
         </div>
       </div>

@@ -1,39 +1,48 @@
 
-import React, { useState } from 'react';
-import { Calendar, MapPin, Building, Briefcase, TrendingUp, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { Calendar, MapPin, Building, Briefcase, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ExperienceSection = () => {
+  const { t, language } = useLanguage();
+  
   const experiences = [
     {
-      position: "General Manager",
-      company: "Warwick Jubail Hotel",
-      location: "Jubail, KSA",
-      period: "January 2024 - Present",
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "فندق وارويك الجبيل" : "Warwick Jubail Hotel",
+      location: language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, KSA",
+      period: language.code === 'ar' ? "يناير 2024 - حالياً" : "January 2024 - Present",
       rooms: 105,
-      description: "Leading operations for this 105-room luxury property, focusing on service excellence and operational efficiency.",
-      highlight: "Service Excellence"
+      description: language.code === 'ar' 
+        ? "قيادة العمليات لهذا العقار الفاخر المكون من 105 غرفة، مع التركيز على التميز في الخدمة والكفاءة التشغيلية."
+        : "Leading operations for this 105-room luxury property, focusing on service excellence and operational efficiency.",
+      highlight: language.code === 'ar' ? "تميز الخدمة" : "Service Excellence"
     },
     {
-      position: "Owner Representative (Pre-Opening)",
-      company: "Fourpoint by Sheraton King Abdulaziz Road",
-      location: "Riyadh, KSA",
-      period: "August 2024 - January 2025",
+      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner Representative (Pre-Opening)",
+      company: language.code === 'ar' ? "فورنقاط باي شيراتون طريق الملك عبدالعزيز" : "Fourpoint by Sheraton King Abdulaziz Road",
+      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
+      period: language.code === 'ar' ? "أغسطس 2024 - يناير 2025" : "August 2024 - January 2025",
       rooms: 172,
-      description: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
-      highlight: "Pre-Opening Expert"
+      description: language.code === 'ar'
+        ? "قاد عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية."
+        : "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
+      highlight: language.code === 'ar' ? "خبير ما قبل الافتتاح" : "Pre-Opening Expert"
     },
     {
-      position: "General Manager",
-      company: "Porto Said Resort",
-      location: "Port Said, Egypt",
-      period: "February 2024 - August 2024",
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
+      location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
+      period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024 - August 2024",
       rooms: 168,
-      description: "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
-      highlight: "Revenue Growth"
+      description: language.code === 'ar'
+        ? "قاد مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة ومجمع تجاري يضم 24 منفذًا، مما أدى إلى نمو الإشغال بنسبة 18٪ وزيادة إيرادات الأغذية والمشروبات بنسبة 20٪."
+        : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
+      highlight: language.code === 'ar' ? "نمو الإيرادات" : "Revenue Growth"
     }
   ];
 
@@ -67,10 +76,12 @@ const ExperienceSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-heading inline-block">Career Highlights</h2>
+          <h2 className="section-heading inline-block">{t('careerHighlights')}</h2>
           <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
-            Over 30 years of progressive leadership experience across international hospitality brands and markets, 
-            driving operational excellence and business transformation.
+            {language.code === 'ar' 
+              ? "أكثر من 30 عامًا من الخبرة القيادية المتقدمة عبر العلامات التجارية والأسواق الدولية للضيافة، مما يدفع التميز التشغيلي وتحويل الأعمال."
+              : "Over 30 years of progressive leadership experience across international hospitality brands and markets, driving operational excellence and business transformation."
+            }
           </p>
         </motion.div>
         
@@ -110,7 +121,7 @@ const ExperienceSection = () => {
                   
                   <div className="flex items-center text-sm text-luxury-gray mb-4">
                     <Building size={16} className="mr-1" />
-                    <span>{exp.rooms} Rooms</span>
+                    <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
                   </div>
                   
                   <p className="text-sm mt-auto mb-4 leading-relaxed">{exp.description}</p>
@@ -120,7 +131,7 @@ const ExperienceSection = () => {
                       to="/career" 
                       className="text-sm text-luxury-gold hover:underline flex items-center"
                     >
-                      View Details
+                      {language.code === 'ar' ? "عرض التفاصيل" : "View Details"}
                       <ChevronRight size={16} className="ml-1" />
                     </Link>
                   </div>
@@ -143,7 +154,7 @@ const ExperienceSection = () => {
           >
             <Link to="/career">
               <Briefcase size={16} />
-              View Full Career Journey
+              {t('viewFullCareerJourney')}
             </Link>
           </Button>
         </motion.div>
