@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
@@ -14,18 +14,26 @@ import CaseStudiesSection from '@/components/CaseStudiesSection';
 import MediaSection from '@/components/MediaSection';
 
 const Index = () => {
+  // Smooth scroll to top on page load
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pt-20">
+      <main className="flex-grow">
         <HeroSection />
         <StatsSection />
         <AboutSection />
         <ExperienceSection />
         <CaseStudiesSection />
+        <ProjectsSection />
         <MediaSection />
         <TestimonialsSection />
-        <ProjectsSection />
         <AwardsSection />
         <ContactSection />
       </main>

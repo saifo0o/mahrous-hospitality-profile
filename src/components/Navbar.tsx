@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { X, Menu } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSelector from './LanguageSelector';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -11,9 +11,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
-  // Navigation links with translation keys
   const navLinks = [
     { name: t('home'), path: '/' },
     { name: t('about'), path: '/about' },
@@ -38,35 +37,83 @@ const Navbar = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
+
+  // Define nav link variants for animations
+  const navLinkVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: i => ({ 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.4
+      }
+    })
+  };
   
   return (
     <header 
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+        scrolled 
+          ? 'bg-white/90 backdrop-blur-md shadow-md py-2 dark:bg-luxury-navy/80' 
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="container mx-auto px-4 md:px-8">
         <nav className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-luxury-navy">
-            <span className="text-luxury-gold">Islam</span> Mahrous
+          <Link 
+            to="/" 
+            className={`text-2xl font-bold ${scrolled ? 'text-luxury-navy' : 'text-white'} transition-colors duration-300`}
+          >
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-luxury-gold"
+            >
+              Islam
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className={scrolled ? 'text-luxury-navy' : 'text-white'}
+            >
+              {" "}Mahrous
+            </motion.span>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link, index) => (
+              <motion.div
                 key={link.path}
-                to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-luxury-gold ${
-                  location.pathname === link.path ? 'text-luxury-gold' : 'text-luxury-navy'
-                }`}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={navLinkVariants}
               >
-                {link.name}
-              </Link>
+                <Link
+                  to={link.path}
+                  className={`text-sm font-medium transition-colors nav-link ${
+                    location.pathname === link.path 
+                      ? 'text-luxury-gold' 
+                      : scrolled ? 'text-luxury-navy hover:text-luxury-gold' : 'text-white hover:text-luxury-gold'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
             ))}
             
-            <LanguageSelector />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
+            >
+              <LanguageSelector />
+            </motion.div>
           </div>
           
           {/* Mobile Menu Button */}
@@ -76,7 +123,7 @@ const Navbar = () => {
               variant="ghost" 
               size="icon" 
               onClick={() => setIsOpen(!isOpen)}
-              className="text-luxury-navy hover:text-luxury-gold"
+              className={scrolled ? "text-luxury-navy hover:text-luxury-gold" : "text-white hover:text-luxury-gold"}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -85,31 +132,42 @@ const Navbar = () => {
       </div>
       
       {/* Mobile Navigation */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="md:hidden bg-white shadow-lg"
-        >
-          <div className="container mx-auto px-4 py-4">
-            <nav className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`py-2 text-base font-medium ${
-                    location.pathname === link.path ? 'text-luxury-gold' : 'text-luxury-navy'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white dark:bg-luxury-navy border-t border-gray-100 dark:border-gray-800"
+          >
+            <div className="container mx-auto px-4 py-4">
+              <nav className="flex flex-col space-y-4">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.path}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      to={link.path}
+                      className={`py-2 text-base font-medium transition-all duration-300 ${
+                        location.pathname === link.path 
+                          ? 'text-luxury-gold' 
+                          : 'text-luxury-navy dark:text-white hover:text-luxury-gold'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
