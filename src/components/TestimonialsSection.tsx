@@ -67,7 +67,7 @@ const TestimonialsSection = () => {
             }}
             className="w-full"
             onSelect={(api) => {
-              if (api !== undefined) {
+              if (api) {
                 const selectedIndex = api.selectedScrollSnap();
                 setCurrentTestimonial(selectedIndex);
               }
