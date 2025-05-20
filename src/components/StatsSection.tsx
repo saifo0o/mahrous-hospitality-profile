@@ -2,11 +2,13 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useAnimation } from "framer-motion";
 import { Trophy, Users, BarChart, Building } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const StatsSection = () => {
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const { t, isRTL } = useLanguage();
   
   useEffect(() => {
     if (isInView) {
@@ -15,10 +17,26 @@ const StatsSection = () => {
   }, [controls, isInView]);
   
   const stats = [
-    { value: '30+', label: 'Years of Experience', icon: <Trophy className="text-luxury-gold h-10 w-10" /> },
-    { value: '5000+', label: 'Employees Trained & Mentored', icon: <Users className="text-luxury-gold h-10 w-10" /> },
-    { value: '25%+', label: 'Average RevPAR Increase', icon: <BarChart className="text-luxury-gold h-10 w-10" /> },
-    { value: '$8.5M+', label: 'Managed in Renovation Budgets', icon: <Building className="text-luxury-gold h-10 w-10" /> }
+    { 
+      value: '30+', 
+      label: t('yearsOfExperienceShort'), 
+      icon: <Trophy className="text-luxury-gold h-10 w-10" /> 
+    },
+    { 
+      value: '5000+', 
+      label: t('employeesTrained'), 
+      icon: <Users className="text-luxury-gold h-10 w-10" /> 
+    },
+    { 
+      value: '25%+', 
+      label: t('revparIncrease'), 
+      icon: <BarChart className="text-luxury-gold h-10 w-10" /> 
+    },
+    { 
+      value: '$8.5M+', 
+      label: t('renovationBudgets'), 
+      icon: <Building className="text-luxury-gold h-10 w-10" /> 
+    }
   ];
 
   const containerVariants = {
@@ -41,19 +59,24 @@ const StatsSection = () => {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="stats-section" ref={ref} className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={controls}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          dir={isRTL ? 'rtl' : 'ltr'}
         >
           {stats.map((stat, index) => (
             <motion.div 
               key={index}
               variants={itemVariants}
-              className="bg-white dark:bg-luxury-navy/60 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-luxury-gold flex flex-col items-center text-center group hover:-translate-y-1"
+              className="bg-white dark:bg-luxury-navy/60 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-500 border-t-4 border-luxury-gold flex flex-col items-center text-center group hover:-translate-y-1"
+              whileHover={{
+                y: -5,
+                transition: { duration: 0.2 }
+              }}
             >
               <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
                 {stat.icon}

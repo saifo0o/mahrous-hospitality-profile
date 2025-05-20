@@ -26,7 +26,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}>
+    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <Navbar />
       <main className="flex-grow">
         <HeroSection />

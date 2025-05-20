@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { QuoteIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+
 interface Testimonial {
   id: number;
   content: string;
@@ -11,9 +13,11 @@ interface Testimonial {
   relationship: string;
   avatar: string;
 }
+
 interface TestimonialCardProps {
   testimonial: Testimonial;
 }
+
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({
   testimonial
 }) => {
@@ -44,7 +48,16 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
         
         {/* Author information */}
         <div className="flex items-center">
-          
+          <div className="w-12 h-12 rounded-full overflow-hidden mr-4 border-2 border-luxury-gold/30">
+            <img 
+              src={testimonial.avatar} 
+              alt={testimonial.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(testimonial.name);
+              }}
+            />
+          </div>
           <div>
             <h4 className="font-bold text-luxury-navy">{testimonial.name}</h4>
             <p className="text-sm text-luxury-gray">{testimonial.title}, {testimonial.company}</p>
