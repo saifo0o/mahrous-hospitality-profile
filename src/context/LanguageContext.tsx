@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
 // Define available languages
@@ -97,7 +96,7 @@ export const languages = {
       'learnMoreAboutMe': 'اعرف المزيد عني',
       'sendMessage': 'إرسال رسالة',
       'fullName': 'الاسم الكامل',
-      'emailAddress': 'البريد الإلكتروني',
+      'emailAddress': 'البريد ��لإلكتروني',
       'subject': 'الموضوع',
       'message': 'الرسالة',
       'yourName': 'اسمك',
