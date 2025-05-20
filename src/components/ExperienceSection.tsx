@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/context/LanguageContext';
 
 const ExperienceSection = () => {
-  const { t, language, isRTL } = useLanguage();
+  const { t, language } = useLanguage();
   
   const experiences = [
     {
@@ -20,8 +20,7 @@ const ExperienceSection = () => {
       description: language.code === 'ar' 
         ? "قيادة العمليات لهذا العقار الفاخر المكون من 105 غرفة، مع التركيز على التميز في الخدمة والكفاءة التشغيلية."
         : "Leading operations for this 105-room luxury property, focusing on service excellence and operational efficiency.",
-      highlight: language.code === 'ar' ? "تميز الخدمة" : "Service Excellence",
-      bgImage: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      highlight: language.code === 'ar' ? "تميز الخدمة" : "Service Excellence"
     },
     {
       position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner Representative (Pre-Opening)",
@@ -32,8 +31,7 @@ const ExperienceSection = () => {
       description: language.code === 'ar'
         ? "قاد عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية."
         : "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
-      highlight: language.code === 'ar' ? "خبير ما قبل الافتتاح" : "Pre-Opening Expert",
-      bgImage: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      highlight: language.code === 'ar' ? "خبير ما قبل الافتتاح" : "Pre-Opening Expert"
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
@@ -44,8 +42,7 @@ const ExperienceSection = () => {
       description: language.code === 'ar'
         ? "قاد مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة ومجمع تجاري يضم 24 منفذًا، مما أدى إلى نمو الإشغال بنسبة 18٪ وزيادة إيرادات الأغذية والمشروبات بنسبة 20٪."
         : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
-      highlight: language.code === 'ar' ? "نمو الإيرادات" : "Revenue Growth",
-      bgImage: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      highlight: language.code === 'ar' ? "نمو الإيرادات" : "Revenue Growth"
     }
   ];
 
@@ -94,7 +91,6 @@ const ExperienceSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          dir={isRTL ? 'rtl' : 'ltr'}
         >
           {experiences.map((exp, index) => (
             <motion.div 
@@ -102,35 +98,29 @@ const ExperienceSection = () => {
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
-              <Card className="h-full group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="relative w-full h-40 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
-                  <img 
-                    src={exp.bgImage} 
-                    alt={exp.company} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute top-3 right-3 bg-luxury-navy text-white text-xs px-2 py-1 rounded-full">
-                    {exp.highlight}
+              <Card className="h-full bg-white border-t-2 border-luxury-gold hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="font-bold text-xl text-luxury-navy">{exp.position}</h3>
+                    <div className="bg-luxury-navy text-white text-xs px-2 py-1 rounded-full">
+                      {exp.highlight}
+                    </div>
                   </div>
-                </div>
-                
-                <CardContent className="p-6 flex flex-col h-full bg-white">
-                  <h3 className="font-bold text-xl text-luxury-navy mb-2">{exp.position}</h3>
-                  <h4 className="font-semibold text-lg mb-3 text-luxury-gray">{exp.company}</h4>
+                  
+                  <h4 className="font-semibold text-lg mb-3">{exp.company}</h4>
                   
                   <div className="flex items-center text-sm text-luxury-gray mb-2">
-                    <MapPin size={16} className={`${isRTL ? 'ml-1' : 'mr-1'} text-luxury-gold`} />
+                    <MapPin size={16} className="mr-1" />
                     <span>{exp.location}</span>
                   </div>
                   
                   <div className="flex items-center text-sm text-luxury-gray mb-2">
-                    <Calendar size={16} className={`${isRTL ? 'ml-1' : 'mr-1'} text-luxury-gold`} />
+                    <Calendar size={16} className="mr-1" />
                     <span>{exp.period}</span>
                   </div>
                   
                   <div className="flex items-center text-sm text-luxury-gray mb-4">
-                    <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'} text-luxury-gold`} />
+                    <Building size={16} className="mr-1" />
                     <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
                   </div>
                   
@@ -139,10 +129,10 @@ const ExperienceSection = () => {
                   <div className="mt-auto">
                     <Link 
                       to="/career" 
-                      className="text-sm text-luxury-gold hover:underline flex items-center group"
+                      className="text-sm text-luxury-gold hover:underline flex items-center"
                     >
                       {language.code === 'ar' ? "عرض التفاصيل" : "View Details"}
-                      <ChevronRight size={16} className={`${isRTL ? 'mr-1 group-hover:-translate-x-1 rotate-180' : 'ml-1 group-hover:translate-x-1'} transition-transform`} />
+                      <ChevronRight size={16} className="ml-1" />
                     </Link>
                   </div>
                 </CardContent>
@@ -152,18 +142,18 @@ const ExperienceSection = () => {
         </motion.div>
         
         <motion.div 
-          className="text-center mt-12"
+          className="text-center mt-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <Button 
-            className="bg-luxury-navy hover:bg-blue-900 flex items-center gap-2 py-6 px-8 text-base shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            className="bg-luxury-navy hover:bg-blue-900 flex items-center gap-2"
             asChild
           >
             <Link to="/career">
-              <Briefcase size={18} />
+              <Briefcase size={16} />
               {t('viewFullCareerJourney')}
             </Link>
           </Button>
