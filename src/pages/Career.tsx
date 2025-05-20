@@ -58,56 +58,40 @@ const Career = () => {
       }
     },
     {
-      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner Representative (Pre-Opening)",
-      company: language.code === 'ar' ? "فورنقاط باي شيراتون طريق الملك عبدالعزيز" : "Fourpoint by Sheraton King Abdulaziz Road",
-      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "أغسطس 2024 - يناير 2025" : "August 2024 - January 2025",
-      description: language.code === 'ar'
-        ? "قاد عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية."
-        : "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
+      position: "Owner Representative (Pre-Opening)",
+      company: "Fourpoint by Sheraton King Abdulaziz Road",
+      location: "Riyadh, KSA",
+      period: "August 2024 - January 2025",
+      description: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
       rooms: 172,
-      achievements: language.code === 'ar'
-        ? [
-          "تفاوض وأعاد هيكلة عقود الموردين، مما أدى إلى تخفيض بنسبة 12٪ في ميزانية ما قبل الافتتاح مع الحفاظ على معايير الجودة ومتطلبات الجدول الزمني",
-          "أدار مبادرات شاملة للتوظيف والتدريب لأكثر من 150 موظفًا",
-          "طور برامج مخصصة تتماشى مع معايير ماريوت الدولية وتوقعات السوق المحلية"
-        ]
-        : [
-          "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget while maintaining quality standards and timeline requirements",
-          "Directed comprehensive recruitment and training initiatives for 150+ staff",
-          "Developed tailored programs aligned with Marriott International standards and local market expectations"
-        ],
+      achievements: [
+        "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget while maintaining quality standards and timeline requirements",
+        "Directed comprehensive recruitment and training initiatives for 150+ staff",
+        "Developed tailored programs aligned with Marriott International standards and local market expectations"
+      ],
       metrics: {
-        budget: language.code === 'ar' ? "-12%" : "-12%",
-        readiness: language.code === 'ar' ? "90%" : "90%",
-        staffing: language.code === 'ar' ? "100%" : "100%"
+        budget: "-12%",
+        readiness: "90%",
+        staffing: "100%"
       }
     },
     {
-      position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
-      location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
-      period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024 - August 2024",
-      description: language.code === 'ar'
-        ? "قاد مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة ومجمع تجاري يضم 24 منفذًا، مما أدى إلى نمو الإشغال بنسبة 18٪ وزيادة إيرادات الأغذية والمشروبات بنسبة 20٪."
-        : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
+      position: "General Manager",
+      company: "Porto Said Resort",
+      location: "Port Said, Egypt",
+      period: "February 2024 - August 2024",
+      description: "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
       rooms: 168,
-      achievements: language.code === 'ar'
-        ? [
-          "قاد وأرشد فريقًا متنوعًا من أكثر من 200 موظف",
-          "نفذ برامج تدريبية مستهدفة حسنت الكفاءة التشغيلية بنسبة 15٪ ودرجات رضا الضيوف بنسبة 15٪",
-          "طور ونفذ مبادرات استراتيجية لتوفير التكاليف عبر جميع الأقسام، مما قلل النفقات التشغيلية بنسبة 10٪ مع الحفاظ على تميز الخدمة ورضا الضيوف"
-        ]
-        : [
-          "Led and mentored a diverse team of 200+ staff",
-          "Implemented targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 15%",
-          "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
-        ],
+      achievements: [
+        "Led and mentored a diverse team of 200+ staff",
+        "Implemented targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 15%",
+        "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
+      ],
       metrics: {
-        occupancy: language.code === 'ar' ? "+18%" : "+18%",
-        revenue: language.code === 'ar' ? "+20%" : "+20%",
-        efficiency: language.code === 'ar' ? "+15%" : "+15%",
-        costs: language.code === 'ar' ? "-10%" : "-10%"
+        occupancy: "+18%",
+        revenue: "+20%",
+        efficiency: "+15%",
+        costs: "-10%"
       }
     },
     {
@@ -329,7 +313,7 @@ const Career = () => {
                                   </div>
                                   <div className="text-xs text-luxury-gray capitalize">
                                     {language.code === 'ar' ? (
-                                      key === 'occupancy' ? 'الإش��ال' :
+                                      key === 'occupancy' ? 'الإشغال' :
                                       key === 'revenue' ? 'الإيرادات' :
                                       key === 'satisfaction' ? 'رضا الضيوف' :
                                       key === 'budget' ? 'الميزانية' :

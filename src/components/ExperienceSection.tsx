@@ -77,7 +77,7 @@ const ExperienceSection = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="section-heading inline-block">{t('careerHighlights')}</h2>
-          <p className={`text-luxury-gray mt-4 max-w-2xl mx-auto ${isRTL ? 'text-right' : ''}`}>
+          <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
             {language.code === 'ar' 
               ? "أكثر من 30 عامًا من الخبرة القيادية المتقدمة عبر العلامات التجارية والأسواق الدولية للضيافة، مما يدفع التميز التشغيلي وتحويل الأعمال."
               : "Over 30 years of progressive leadership experience across international hospitality brands and markets, driving operational excellence and business transformation."
@@ -101,35 +101,35 @@ const ExperienceSection = () => {
               <Card className="h-full bg-white border-t-2 border-luxury-gold hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-3">
-                    <h3 className={`font-bold text-xl text-luxury-navy ${isRTL ? 'text-right' : ''}`}>{exp.position}</h3>
+                    <h3 className="font-bold text-xl text-luxury-navy">{exp.position}</h3>
                     <div className="bg-luxury-navy text-white text-xs px-2 py-1 rounded-full">
                       {exp.highlight}
                     </div>
                   </div>
                   
-                  <h4 className={`font-semibold text-lg mb-3 ${isRTL ? 'text-right' : ''}`}>{exp.company}</h4>
+                  <h4 className="font-semibold text-lg mb-3">{exp.company}</h4>
                   
-                  <div className={`flex items-center text-sm text-luxury-gray mb-2 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
+                  <div className="flex items-center text-sm text-luxury-gray mb-2">
                     <MapPin size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                     <span>{exp.location}</span>
                   </div>
                   
-                  <div className={`flex items-center text-sm text-luxury-gray mb-2 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
+                  <div className="flex items-center text-sm text-luxury-gray mb-2">
                     <Calendar size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                     <span>{exp.period}</span>
                   </div>
                   
-                  <div className={`flex items-center text-sm text-luxury-gray mb-4 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
+                  <div className="flex items-center text-sm text-luxury-gray mb-4">
                     <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                     <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
                   </div>
                   
-                  <p className={`text-sm mt-auto mb-4 leading-relaxed ${isRTL ? 'text-right' : ''}`}>{exp.description}</p>
+                  <p className="text-sm mt-auto mb-4 leading-relaxed">{exp.description}</p>
                   
                   <div className="mt-auto">
                     <Link 
                       to="/career" 
-                      className={`text-sm text-luxury-gold hover:underline flex items-center ${isRTL ? 'flex-row-reverse justify-end' : ''}`}
+                      className="text-sm text-luxury-gold hover:underline flex items-center"
                     >
                       {language.code === 'ar' ? "عرض التفاصيل" : "View Details"}
                       <ChevronRight size={16} className={`${isRTL ? 'mr-1 rotate-180' : 'ml-1'}`} />
