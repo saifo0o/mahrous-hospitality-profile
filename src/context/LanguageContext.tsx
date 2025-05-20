@@ -10,6 +10,7 @@ export const languages = {
     dir: 'ltr',
     translations: {
       'about': 'About Me',
+      'aboutIslam': 'About Islam Mahrous',
       'contact': 'Contact',
       'media': 'In the Media',
       'email': 'Email',
@@ -61,7 +62,10 @@ export const languages = {
       'revenueGrowth': 'Revenue Growth',
       'viewDetails': 'View Details',
       'rooms': 'Rooms',
-      'keyAchievements': 'Key Achievements'
+      'keyAchievements': 'Key Achievements',
+      'professionalBio': 'Professional Bio',
+      'careerJourney': 'Career Journey',
+      'messageOnWhatsApp': 'Message me on WhatsApp'
     }
   },
   ar: {
@@ -71,6 +75,7 @@ export const languages = {
     dir: 'rtl',
     translations: {
       'about': 'عنّي',
+      'aboutIslam': 'عن إسلام محروس',
       'contact': 'تواصل', 
       'media': 'في وسائل الإعلام',
       'email': 'البريد الإلكتروني',
@@ -122,7 +127,10 @@ export const languages = {
       'revenueGrowth': 'نمو الإيرادات',
       'viewDetails': 'عرض التفاصيل',
       'rooms': 'غرفة',
-      'keyAchievements': 'الإنجازات الرئيسية'
+      'keyAchievements': 'الإنجازات الرئيسية',
+      'professionalBio': 'السيرة المهنية',
+      'careerJourney': 'المسار المهني',
+      'messageOnWhatsApp': 'راسلني على واتساب'
     }
   }
 };

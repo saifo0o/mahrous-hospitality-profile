@@ -12,6 +12,7 @@ import ContactSection from '@/components/ContactSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
 import MediaSection from '@/components/MediaSection';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Index = () => {
@@ -41,6 +42,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

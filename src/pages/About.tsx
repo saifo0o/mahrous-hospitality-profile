@@ -4,17 +4,25 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Briefcase, Award, User, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
+
 const About = () => {
-  return <div className="min-h-screen flex flex-col">
+  const { language, t, isRTL } = useLanguage();
+  
+  return (
+    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
       
       <main className="flex-grow pt-20">
         {/* Page Header */}
         <div className="bg-luxury-navy text-white py-20">
           <div className="container mx-auto px-4 md:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">About Me</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('about')}</h1>
             <p className="text-xl text-gray-300 max-w-2xl">
-              A hospitality leader with a passion for excellence, transformation, and innovation.
+              {language.code === 'ar' 
+                ? "قائد في مجال الضيافة مع شغف للتميز والتحول والابتكار."
+                : "A hospitality leader with a passion for excellence, transformation, and innovation."
+              }
             </p>
           </div>
         </div>
@@ -22,33 +30,47 @@ const About = () => {
         {/* Bio Section */}
         <section className="py-16">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="flex flex-col md:flex-row gap-12">
+            <div className={`flex flex-col md:flex-row gap-12 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
               <div className="md:w-1/3">
-                <img alt="Islam Mahrous" className="w-full rounded-lg shadow-lg h-auto object-cover" src="/lovable-uploads/2a742c4a-aaea-4c0f-ad38-ea2891228c62.jpg" />
+                <img alt={language.code === 'ar' ? "إسلام محروس" : "Islam Mahrous"} className="w-full rounded-lg shadow-lg h-auto object-cover" src="/lovable-uploads/2a742c4a-aaea-4c0f-ad38-ea2891228c62.jpg" />
               </div>
               
               <div className="md:w-2/3">
-                <h2 className="section-heading">Professional Bio</h2>
+                <h2 className="section-heading">{t('professionalBio')}</h2>
                 
                 <p className="text-luxury-gray mb-4 leading-relaxed">
-                  As an accomplished Hospitality Executive with over 30 years of progressive leadership experience, I have specialized in pre-opening operations, large-scale renovations, and operational excellence. Throughout my career, I have maintained a proven track record of driving record-breaking financial results, elevating guest satisfaction metrics, and fostering long-term stakeholder relationships across international markets.
+                  {language.code === 'ar'
+                    ? "كمدير تنفيذي متميز في مجال الضيافة مع أكثر من 30 عامًا من الخبرة القيادية التقدمية، تخصصت في عمليات ما قبل الافتتاح، وعمليات التجديد واسعة النطاق، والتميز التشغيلي. طوال مسيرتي المهنية، حافظت على سجل حافل في تحقيق نتائج مالية قياسية، ورفع مقاييس رضا الضيوف، وتعزيز العلاقات طويلة الأمد مع أصحاب المصلحة عبر الأسواق الدولية."
+                    : "As an accomplished Hospitality Executive with over 30 years of progressive leadership experience, I have specialized in pre-opening operations, large-scale renovations, and operational excellence. Throughout my career, I have maintained a proven track record of driving record-breaking financial results, elevating guest satisfaction metrics, and fostering long-term stakeholder relationships across international markets."
+                  }
                 </p>
                 
                 <p className="text-luxury-gray mb-4 leading-relaxed">
-                  I have been recognized with prestigious industry awards for innovation, customer excellence, and operational leadership. My expertise lies in leading high-performing teams through complex transformations while maintaining exceptional service standards and profitability.
+                  {language.code === 'ar'
+                    ? "لقد حصلت على اعتراف من خلال جوائز صناعية مرموقة للابتكار والتميز في خدمة العملاء والقيادة التشغيلية. تكمن خبرتي في قيادة فرق عالية الأداء خلال التحولات المعقدة مع الحفاظ على معايير خدمة استثنائية والربحية."
+                    : "I have been recognized with prestigious industry awards for innovation, customer excellence, and operational leadership. My expertise lies in leading high-performing teams through complex transformations while maintaining exceptional service standards and profitability."
+                  }
                 </p>
                 
                 <p className="text-luxury-gray mb-4 leading-relaxed">
-                  My international experience spans across Egypt, Saudi Arabia, Libya, and the UAE, giving me a unique perspective on regional hospitality trends and cultural nuances that impact guest experiences and operational strategies.
+                  {language.code === 'ar'
+                    ? "تمتد خبرتي الدولية عبر مصر والمملكة العربية السعودية وليبيا والإمارات العربية المتحدة، مما يمنحني منظورًا فريدًا حول اتجاهات الضيافة الإقليمية والفروق الثقافية التي تؤثر على تجارب الضيوف والاستراتيجيات التشغيلية."
+                    : "My international experience spans across Egypt, Saudi Arabia, Libya, and the UAE, giving me a unique perspective on regional hospitality trends and cultural nuances that impact guest experiences and operational strategies."
+                  }
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                   <div className="flex items-start">
                     <Briefcase className="text-luxury-gold mr-3 mt-1" size={20} />
                     <div>
-                      <h3 className="font-semibold text-luxury-navy mb-1">Professional Experience</h3>
+                      <h3 className="font-semibold text-luxury-navy mb-1">
+                        {language.code === 'ar' ? "الخبرة المهنية" : "Professional Experience"}
+                      </h3>
                       <p className="text-sm text-luxury-gray">
-                        30+ years in luxury hospitality, including roles with Marriott, Sheraton, Four Points by Sheraton, and other premium brands.
+                        {language.code === 'ar'
+                          ? "+30 عامًا في ضيافة الفاخرة، بما في ذلك أدوار مع ماريوت، وشيراتون، وفور بوينتس من شيراتون، وغيرها من العلامات التجارية المتميزة."
+                          : "30+ years in luxury hospitality, including roles with Marriott, Sheraton, Four Points by Sheraton, and other premium brands."
+                        }
                       </p>
                     </div>
                   </div>
@@ -56,9 +78,14 @@ const About = () => {
                   <div className="flex items-start">
                     <Award className="text-luxury-gold mr-3 mt-1" size={20} />
                     <div>
-                      <h3 className="font-semibold text-luxury-navy mb-1">Expertise</h3>
+                      <h3 className="font-semibold text-luxury-navy mb-1">
+                        {language.code === 'ar' ? "التخصص" : "Expertise"}
+                      </h3>
                       <p className="text-sm text-luxury-gray">
-                        Pre-opening operations, renovations, operational excellence, financial management, team leadership.
+                        {language.code === 'ar'
+                          ? "عمليات ما قبل الافتتاح، التجديدات، التميز التشغيلي، الإدارة المالية، قيادة الفريق."
+                          : "Pre-opening operations, renovations, operational excellence, financial management, team leadership."
+                        }
                       </p>
                     </div>
                   </div>
@@ -66,9 +93,14 @@ const About = () => {
                   <div className="flex items-start">
                     <User className="text-luxury-gold mr-3 mt-1" size={20} />
                     <div>
-                      <h3 className="font-semibold text-luxury-navy mb-1">Personal Qualities</h3>
+                      <h3 className="font-semibold text-luxury-navy mb-1">
+                        {language.code === 'ar' ? "الصفات الشخصية" : "Personal Qualities"}
+                      </h3>
                       <p className="text-sm text-luxury-gray">
-                        Energizer, Supporter, Committed, Enthusiastic, Analytical, Passionate for excellence.
+                        {language.code === 'ar'
+                          ? "محفِّز، داعم، ملتزم، متحمس، تحليلي، شغوف بالتميز."
+                          : "Energizer, Supporter, Committed, Enthusiastic, Analytical, Passionate for excellence."
+                        }
                       </p>
                     </div>
                   </div>
@@ -76,9 +108,14 @@ const About = () => {
                   <div className="flex items-start">
                     <FileText className="text-luxury-gold mr-3 mt-1" size={20} />
                     <div>
-                      <h3 className="font-semibold text-luxury-navy mb-1">Educational Background</h3>
+                      <h3 className="font-semibold text-luxury-navy mb-1">
+                        {language.code === 'ar' ? "الخلفية التعليمية" : "Educational Background"}
+                      </h3>
                       <p className="text-sm text-luxury-gray">
-                        MBA from Arab Academy for Science and Technology, Rooms Division Diploma from Glion Institute.
+                        {language.code === 'ar'
+                          ? "ماجستير إدارة الأعمال من الأكاديمية العربية للعلوم والتكنولوجيا، دبلوم في إدارة الغرف من معهد جليون."
+                          : "MBA from Arab Academy for Science and Technology, Rooms Division Diploma from Glion Institute."
+                        }
                       </p>
                     </div>
                   </div>
@@ -86,7 +123,9 @@ const About = () => {
                 
                 <div className="mt-8">
                   <Button className="bg-luxury-gold hover:bg-yellow-600 text-luxury-navy">
-                    <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Download Full CV</a>
+                    <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
+                      {t('downloadCV')}
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -251,6 +290,8 @@ const About = () => {
       </main>
       
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default About;

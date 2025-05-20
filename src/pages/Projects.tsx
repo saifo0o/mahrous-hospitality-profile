@@ -1,32 +1,48 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 import { Building, Calendar, MapPin, BarChart, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Projects = () => {
+  const { language, t, isRTL } = useLanguage();
+  
   const projects = [
     {
-      title: "Sheraton Montazah Hotel",
-      category: "Major Renovation",
-      location: "Alexandria, Egypt",
-      period: "2016 - 2023",
+      title: language.code === 'ar' ? "فندق شيراتون المنتزه" : "Sheraton Montazah Hotel",
+      category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
+      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
+      period: language.code === 'ar' ? "2016 - 2023" : "2016 - 2023",
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       rooms: 288,
-      budget: "$7.2M",
-      description: "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network.",
-      challenges: [
-        "Managing full renovation while maintaining 72% occupancy",
-        "Coordinating complex mechanical systems upgrades",
-        "Aligning owner demands with Marriott brand standards"
-      ],
-      results: [
-        "25% increase in RevPAR",
-        "30% improvement in guest satisfaction scores",
-        "15% reduction in energy consumption"
-      ]
+      budget: language.code === 'ar' ? "7.2 مليون دولار" : "$7.2M",
+      description: language.code === 'ar' 
+        ? "قيادة تجديد شامل لعقار يبلغ عمره 40 عامًا (288 غرفة)، وتحديث جميع الأنظمة الميكانيكية بما في ذلك الغلايات والمحولات والمولدات والمبردات وشبكة السلامة من الحرائق."
+        : "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network.",
+      challenges: language.code === 'ar' 
+        ? [
+          "إدارة التجديد الكامل مع الحفاظ على إشغال 72٪",
+          "تنسيق ترقيات الأنظمة الميكانيكية المعقدة",
+          "مواءمة طلبات المالك مع معايير علامة ماريوت التجارية"
+        ] 
+        : [
+          "Managing full renovation while maintaining 72% occupancy",
+          "Coordinating complex mechanical systems upgrades",
+          "Aligning owner demands with Marriott brand standards"
+        ],
+      results: language.code === 'ar'
+        ? [
+          "زيادة بنسبة 25٪ في إيرادات الغرفة المتاحة",
+          "تحسين بنسبة 30٪ في درجات رضا الضيوف",
+          "انخفاض بنسبة 15٪ في استهلاك الطاقة"
+        ]
+        : [
+          "25% increase in RevPAR",
+          "30% improvement in guest satisfaction scores",
+          "15% reduction in energy consumption"
+        ]
     },
     {
       title: "The V Luxury Resort Sahl Hasheesh",
@@ -131,7 +147,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
       
       <main className="flex-grow pt-24">
@@ -139,12 +155,14 @@ const Projects = () => {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-12">
               <h1 className="text-3xl md:text-4xl font-bold mb-6 inline-block relative">
-                Signature Projects
-                <span className="absolute left-0 -bottom-2 w-1/2 h-1 bg-luxury-gold"></span>
+                {language.code === 'ar' ? "المشاريع المميزة" : "Signature Projects"}
+                <span className={`absolute ${isRTL ? 'right-0' : 'left-0'} -bottom-2 w-1/2 h-1 bg-luxury-gold`}></span>
               </h1>
               <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
-                Transformative renovations and successful pre-openings that demonstrate expertise in 
-                hospitality operations, strategic planning, and financial management.
+                {language.code === 'ar' 
+                  ? "تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في عمليات الضيافة والتخطيط الاستراتيجي والإدارة المالية."
+                  : "Transformative renovations and successful pre-openings that demonstrate expertise in hospitality operations, strategic planning, and financial management."
+                }
               </p>
             </div>
 
@@ -164,7 +182,7 @@ const Projects = () => {
                       alt={project.title} 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute top-0 right-0 bg-luxury-gold text-white text-sm font-medium py-1 px-3 rounded-bl-lg">
+                    <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} bg-luxury-gold text-white text-sm font-medium py-1 px-3 ${isRTL ? 'rounded-br-lg' : 'rounded-bl-lg'}`}>
                       {project.category}
                     </div>
                   </div>
@@ -174,23 +192,23 @@ const Projects = () => {
                     
                     <div className="flex flex-wrap gap-4 text-sm text-luxury-gray mb-4">
                       <div className="flex items-center">
-                        <MapPin size={16} className="mr-1" />
+                        <MapPin size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                         <span>{project.location}</span>
                       </div>
                       
                       <div className="flex items-center">
-                        <Calendar size={16} className="mr-1" />
+                        <Calendar size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                         <span>{project.period}</span>
                       </div>
                       
                       <div className="flex items-center">
-                        <Building size={16} className="mr-1" />
-                        <span>{project.rooms} Rooms</span>
+                        <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
+                        <span>{project.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
                       </div>
                       
                       <div className="flex items-center">
-                        <BarChart size={16} className="mr-1" />
-                        <span>Budget: {project.budget}</span>
+                        <BarChart size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
+                        <span>{language.code === 'ar' ? "الميزانية: " : "Budget: "}{project.budget}</span>
                       </div>
                     </div>
                     
@@ -198,8 +216,8 @@ const Projects = () => {
                     
                     <div className="mt-4 space-y-4">
                       <div>
-                        <h4 className="font-semibold text-luxury-navy mb-2">Key Challenges:</h4>
-                        <ul className="list-disc list-inside space-y-1">
+                        <h4 className="font-semibold text-luxury-navy mb-2">{language.code === 'ar' ? "التحديات الرئيسية:" : "Key Challenges:"}</h4>
+                        <ul className={`list-disc ${isRTL ? 'mr-5' : 'list-inside'} space-y-1`}>
                           {project.challenges.map((challenge, i) => (
                             <li key={i} className="text-sm text-luxury-gray">{challenge}</li>
                           ))}
@@ -207,8 +225,8 @@ const Projects = () => {
                       </div>
                       
                       <div className="bg-gray-50 p-4 rounded-md">
-                        <h4 className="font-semibold text-luxury-navy mb-2">Results:</h4>
-                        <ul className="list-disc list-inside space-y-1">
+                        <h4 className="font-semibold text-luxury-navy mb-2">{language.code === 'ar' ? "النتائج:" : "Results:"}</h4>
+                        <ul className={`list-disc ${isRTL ? 'mr-5' : 'list-inside'} space-y-1`}>
                           {project.results.map((result, i) => (
                             <li key={i} className="text-sm font-medium text-luxury-navy">{result}</li>
                           ))}
@@ -222,8 +240,8 @@ const Projects = () => {
             
             <div className="text-center mt-16">
               <Button className="bg-luxury-navy hover:bg-blue-900 inline-flex items-center gap-2">
-                <ArrowRight size={16} />
-                <a href="/career">View Full Career Journey</a>
+                <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
+                <a href="/career">{language.code === 'ar' ? "عرض المسار المهني الكامل" : "View Full Career Journey"}</a>
               </Button>
             </div>
           </div>

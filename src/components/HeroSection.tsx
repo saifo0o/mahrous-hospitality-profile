@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, FileText, User } from 'lucide-react';
+import { ArrowRight, FileText, User, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -8,7 +8,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
-  const { language, isRTL } = useLanguage();
+  const { language, isRTL, t } = useLanguage();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -83,19 +83,27 @@ const HeroSection = () => {
           >
             <Button className="bg-luxury-gold hover:bg-amber-500 text-luxury-navy font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 shadow-gold hover:shadow-gold-lg text-base">
               <User size={18} />
-              <Link to="/about">{language.code === 'ar' ? 'عرض قصتي' : 'View My Story'}</Link>
+              <Link to="/about">{t('viewMyStory')}</Link>
             </Button>
             
             <Button className="bg-transparent hover:bg-white/15 border border-white text-white font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 backdrop-blur-sm text-base">
               <FileText size={18} />
               <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
-                {language.code === 'ar' ? 'تحميل السيرة الذاتية' : 'Download CV'}
+                {t('downloadCV')}
+              </a>
+            </Button>
+            
+            {/* WhatsApp CTA Button */}
+            <Button className="bg-[#25D366] hover:bg-[#128C7E] text-white font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-base">
+              <MessageCircle size={18} />
+              <a href="https://wa.me/201XXXXXXXXX" target="_blank" rel="noopener noreferrer">
+                {t('messageOnWhatsApp')}
               </a>
             </Button>
             
             <Button variant="link" className="text-white hover:text-luxury-gold flex items-center gap-1 transition-all duration-300 text-base">
               <Link to="/projects" className={`flex items-center gap-1 group ${isRTL ? 'flex-row-reverse' : ''}`}>
-                {language.code === 'ar' ? 'استعرض أعمالي' : 'See My Work'}
+                {t('seeMyWork')}
                 <ArrowRight size={16} className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform ${isRTL ? 'rotate-180' : ''}`} />
               </Link>
             </Button>

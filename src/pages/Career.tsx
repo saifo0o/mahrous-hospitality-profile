@@ -16,9 +16,11 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Career = () => {
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
+  const { language, t, isRTL } = useLanguage();
 
   const toggleExperience = (index: number) => {
     if (expandedExperience === index) {
@@ -30,21 +32,29 @@ const Career = () => {
 
   const experiences = [
     {
-      position: "General Manager",
-      company: "Warwick Jubail Hotel",
-      location: "Jubail, KSA",
-      period: "January 2024 - Present",
-      description: "Leading operations for this 105-room luxury property, focusing on service excellence and operational efficiency.",
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "فندق وارويك الجبيل" : "Warwick Jubail Hotel",
+      location: language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, KSA",
+      period: language.code === 'ar' ? "يناير 2024 - حالياً" : "January 2024 - Present",
+      description: language.code === 'ar' 
+        ? "قيادة العمليات لهذا العقار الفاخر المكون من 105 غرفة، مع التركيز على التميز في الخدمة والكفاءة التشغيلية."
+        : "Leading operations for this 105-room luxury property, focusing on service excellence and operational efficiency.",
       rooms: 105,
-      achievements: [
-        "Implementing new service standards and training programs",
-        "Developing strategic partnerships with local businesses",
-        "Optimizing operational processes for enhanced guest experience"
-      ],
+      achievements: language.code === 'ar' 
+        ? [
+          "تنفيذ معايير خدمة جديدة وبرامج تدريبية",
+          "تطوير شراكات استراتيجية مع الشركات المحلية",
+          "تحسين العمليات التشغيلية لتعزيز تجربة الضيوف"
+        ] 
+        : [
+          "Implementing new service standards and training programs",
+          "Developing strategic partnerships with local businesses",
+          "Optimizing operational processes for enhanced guest experience"
+        ],
       metrics: {
-        occupancy: "+10%",
-        revenue: "+15%",
-        satisfaction: "+8%"
+        occupancy: language.code === 'ar' ? "+10%" : "+10%",
+        revenue: language.code === 'ar' ? "+15%" : "+15%",
+        satisfaction: language.code === 'ar' ? "+8%" : "+8%"
       }
     },
     {
@@ -222,7 +232,7 @@ const Career = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
       
       <main className="flex-grow pt-24">
@@ -235,12 +245,14 @@ const Career = () => {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-3xl md:text-4xl font-bold mb-6 inline-block relative">
-                Career Journey
-                <span className="absolute left-0 -bottom-2 w-1/2 h-1 bg-luxury-gold"></span>
+                {t('careerJourney')}
+                <span className={`absolute ${isRTL ? 'right-0' : 'left-0'} -bottom-2 w-1/2 h-1 bg-luxury-gold`}></span>
               </h1>
               <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
-                Over 30 years of progressive leadership experience across international hospitality brands and markets,
-                specializing in pre-opening operations, renovations, and operational excellence.
+                {language.code === 'ar'
+                  ? "أكثر من 30 عامًا من الخبرة القيادية التقدمية عبر العلامات التجارية والأسواق الدولية للضيافة، متخصصًا في عمليات ما قبل الافتتاح، والتجديدات، والتميز التشغيلي."
+                  : "Over 30 years of progressive leadership experience across international hospitality brands and markets, specializing in pre-opening operations, renovations, and operational excellence."
+                }
               </p>
             </motion.div>
 
@@ -257,7 +269,7 @@ const Career = () => {
                   <motion.div 
                     key={index}
                     variants={itemVariants}
-                    className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                    className={`flex flex-col ${index % 2 === 0 ? `md:flex-row ${isRTL ? 'md:flex-row-reverse' : ''}` : `md:flex-row-reverse ${isRTL ? 'md:flex-row' : ''}`}`}
                   >
                     <div className="md:w-1/2 flex justify-center items-center">
                       <Card 
@@ -271,18 +283,18 @@ const Career = () => {
                           {exp.company && <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>}
                           
                           <div className="flex flex-wrap items-center text-luxury-gray mb-2">
-                            <MapPin size={18} className="mr-2" />
-                            <span className="mr-4">{exp.location}</span>
+                            <MapPin size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
+                            <span className={isRTL ? 'ml-4' : 'mr-4'}>{exp.location}</span>
                             {exp.rooms && (
                               <>
-                                <Building size={18} className="mr-2" />
-                                <span>{exp.rooms} Rooms</span>
+                                <Building size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
+                                <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
                               </>
                             )}
                           </div>
                           
                           <div className="flex items-center text-luxury-gray mb-4">
-                            <CalendarRange size={18} className="mr-2" />
+                            <CalendarRange size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
                             <span>{exp.period}</span>
                           </div>
                           
@@ -300,7 +312,22 @@ const Career = () => {
                                     {value}
                                   </div>
                                   <div className="text-xs text-luxury-gray capitalize">
-                                    {key}
+                                    {language.code === 'ar' ? (
+                                      key === 'occupancy' ? 'الإشغال' :
+                                      key === 'revenue' ? 'الإيرادات' :
+                                      key === 'satisfaction' ? 'رضا الضيوف' :
+                                      key === 'budget' ? 'الميزانية' :
+                                      key === 'readiness' ? 'الجاهزية' :
+                                      key === 'staffing' ? 'التوظيف' :
+                                      key === 'efficiency' ? 'الكفاءة' :
+                                      key === 'costs' ? 'التكاليف' :
+                                      key === 'revpar' ? 'إيرادات الغرفة' :
+                                      key === 'energySavings' ? 'توفير الطاقة' :
+                                      key === 'maintenanceSavings' ? 'توفير الصيانة' :
+                                      key === 'payrollSavings' ? 'توفير الرواتب' :
+                                      key === 'adr' ? 'متوسط سعر الغرفة' :
+                                      key
+                                    ) : key}
                                   </div>
                                 </div>
                               ))}
@@ -314,7 +341,7 @@ const Career = () => {
                                 onClick={() => toggleExperience(index)} 
                                 className="flex items-center justify-between w-full text-luxury-navy font-semibold hover:text-luxury-gold transition-colors"
                               >
-                                <span>Key Achievements</span>
+                                <span>{language.code === 'ar' ? 'الإنجازات الرئيسية' : 'Key Achievements'}</span>
                                 {expandedExperience === index ? (
                                   <ChevronUp size={18} />
                                 ) : (
@@ -330,12 +357,12 @@ const Career = () => {
                                   transition={{ duration: 0.3 }}
                                   className="mt-3"
                                 >
-                                  <ul className="list-disc list-inside space-y-2">
+                                  <ul className={`${isRTL ? 'list-disc mr-5' : 'list-disc list-inside'} space-y-2`}>
                                     {exp.achievements.map((achievement, i) => (
                                       <motion.li 
                                         key={i} 
                                         className="text-sm text-luxury-gray"
-                                        initial={{ opacity: 0, x: -10 }}
+                                        initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: i * 0.1 }}
                                       >
@@ -373,7 +400,13 @@ const Career = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Award className="inline-block mr-2" size={20} />
-                <span>View more career highlights in the <a href="/awards" className="text-luxury-gold hover:underline">Awards section</a></span>
+                <span>{language.code === 'ar' 
+                  ? "شاهد المزيد من الإنجازات المهنية في " 
+                  : "View more career highlights in the "}
+                  <a href="/awards" className="text-luxury-gold hover:underline">
+                    {language.code === 'ar' ? "قسم الجوائز" : "Awards section"}
+                  </a>
+                </span>
               </motion.div>
             </div>
           </div>
