@@ -41,7 +41,27 @@ export const languages = {
       'sending': 'Sending...',
       'viewArticle': 'View Article',
       'visitLink': 'Visit Link',
-      'quickLinks': 'Quick Links'
+      'quickLinks': 'Quick Links',
+      'signatureProjects': 'Signature Projects',
+      'hospitalityExecutive': 'Hospitality Executive',
+      'viewMyStory': 'View My Story',
+      'downloadCV': 'Download CV',
+      'seeMyWork': 'See My Work',
+      'viewAllProjects': 'View All Projects',
+      'results': 'Results:',
+      'yearsOfExperience': 'Years of Experience',
+      'employeesTrained': 'Employees Trained & Mentored',
+      'averageRevPARIncrease': 'Average RevPAR Increase',
+      'managedRenovationBudgets': 'Managed in Renovation Budgets',
+      'challenge': 'Challenge:',
+      'solution': 'Solution:',
+      'keyResults': 'Key Results:',
+      'serviceExcellence': 'Service Excellence',
+      'preOpeningExpert': 'Pre-Opening Expert',
+      'revenueGrowth': 'Revenue Growth',
+      'viewDetails': 'View Details',
+      'rooms': 'Rooms',
+      'keyAchievements': 'Key Achievements'
     }
   },
   ar: {
@@ -82,7 +102,27 @@ export const languages = {
       'sending': 'جاري الإرسال...',
       'viewArticle': 'عرض المقال',
       'visitLink': 'زيارة الرابط',
-      'quickLinks': 'روابط سريعة'
+      'quickLinks': 'روابط سريعة',
+      'signatureProjects': 'المشاريع المميزة',
+      'hospitalityExecutive': 'مدير تنفيذي في الضيافة',
+      'viewMyStory': 'عرض قصتي',
+      'downloadCV': 'تحميل السيرة الذاتية',
+      'seeMyWork': 'استعرض أعمالي',
+      'viewAllProjects': 'عرض جميع المشاريع',
+      'results': 'النتائج:',
+      'yearsOfExperience': 'سنوات الخبرة',
+      'employeesTrained': 'الموظفين المدربين والموجهين',
+      'averageRevPARIncrease': 'متوسط زيادة عائد الغرفة المتاحة',
+      'managedRenovationBudgets': 'ميزانيات التجديد المدارة',
+      'challenge': 'التحدي:',
+      'solution': 'الحل:',
+      'keyResults': 'النتائج الرئيسية:',
+      'serviceExcellence': 'تميز الخدمة',
+      'preOpeningExpert': 'خبير ما قبل الافتتاح',
+      'revenueGrowth': 'نمو الإيرادات',
+      'viewDetails': 'عرض التفاصيل',
+      'rooms': 'غرفة',
+      'keyAchievements': 'الإنجازات الرئيسية'
     }
   }
 };

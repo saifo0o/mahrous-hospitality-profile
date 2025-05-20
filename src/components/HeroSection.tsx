@@ -4,9 +4,11 @@ import { ArrowRight, FileText, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
+  const { language, isRTL } = useLanguage();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +40,7 @@ const HeroSection = () => {
       
       <div className="container mx-auto px-4 md:px-8 relative z-10 py-20 md:py-0">
         <motion.div 
-          className="max-w-3xl"
+          className={`max-w-3xl ${isRTL ? 'mr-auto ml-0 text-right' : ''}`}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -49,7 +51,7 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Hospitality Excellence
+            {language.code === 'ar' ? 'التميز في الضيافة' : 'Hospitality Excellence'}
           </motion.span>
           
           <motion.h1 
@@ -58,7 +60,7 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <span className="text-luxury-gold">30+ Years</span> of Transforming Hospitality Landscapes Worldwide
+            <span className="text-luxury-gold">{language.code === 'ar' ? '+30 عامًا' : '30+ Years'}</span> {language.code === 'ar' ? 'من تحويل مشهد الضيافة على مستوى العالم' : 'of Transforming Hospitality Landscapes Worldwide'}
           </motion.h1>
           
           <motion.p 
@@ -67,30 +69,34 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.6 }}
           >
-            Hospitality Executive specializing in pre-opening operations, 
-            large-scale renovations, and operational excellence.
+            {language.code === 'ar' 
+              ? 'مدير تنفيذي في مجال الضيافة متخصص في عمليات ما قبل الافتتاح، وعمليات التجديد واسعة النطاق، والتميز التشغيلي.'
+              : 'Hospitality Executive specializing in pre-opening operations, large-scale renovations, and operational excellence.'
+            }
           </motion.p>
           
           <motion.div 
-            className="flex flex-wrap gap-4"
+            className={`flex flex-wrap gap-4 ${isRTL ? 'justify-start' : ''}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.6 }}
           >
             <Button className="bg-luxury-gold hover:bg-amber-500 text-luxury-navy font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 shadow-gold hover:shadow-gold-lg text-base">
               <User size={18} />
-              <Link to="/about">View My Story</Link>
+              <Link to="/about">{language.code === 'ar' ? 'عرض قصتي' : 'View My Story'}</Link>
             </Button>
             
             <Button className="bg-transparent hover:bg-white/15 border border-white text-white font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 backdrop-blur-sm text-base">
               <FileText size={18} />
-              <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Download CV</a>
+              <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
+                {language.code === 'ar' ? 'تحميل السيرة الذاتية' : 'Download CV'}
+              </a>
             </Button>
             
             <Button variant="link" className="text-white hover:text-luxury-gold flex items-center gap-1 transition-all duration-300 text-base">
-              <Link to="/projects" className="flex items-center gap-1 group">
-                See My Work
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <Link to="/projects" className={`flex items-center gap-1 group ${isRTL ? 'flex-row-reverse' : ''}`}>
+                {language.code === 'ar' ? 'استعرض أعمالي' : 'See My Work'}
+                <ArrowRight size={16} className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform ${isRTL ? 'rotate-180' : ''}`} />
               </Link>
             </Button>
           </motion.div>

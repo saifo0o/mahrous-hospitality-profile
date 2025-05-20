@@ -2,11 +2,13 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useAnimation } from "framer-motion";
 import { Trophy, Users, BarChart, Building } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const StatsSection = () => {
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const { language, t } = useLanguage();
   
   useEffect(() => {
     if (isInView) {
@@ -15,10 +17,26 @@ const StatsSection = () => {
   }, [controls, isInView]);
   
   const stats = [
-    { value: '30+', label: 'Years of Experience', icon: <Trophy className="text-luxury-gold h-10 w-10" /> },
-    { value: '5000+', label: 'Employees Trained & Mentored', icon: <Users className="text-luxury-gold h-10 w-10" /> },
-    { value: '25%+', label: 'Average RevPAR Increase', icon: <BarChart className="text-luxury-gold h-10 w-10" /> },
-    { value: '$8.5M+', label: 'Managed in Renovation Budgets', icon: <Building className="text-luxury-gold h-10 w-10" /> }
+    { 
+      value: '30+', 
+      label: language.code === 'ar' ? 'سنوات الخبرة' : 'Years of Experience', 
+      icon: <Trophy className="text-luxury-gold h-10 w-10" /> 
+    },
+    { 
+      value: '5000+', 
+      label: language.code === 'ar' ? 'الموظفين المدربين والموجهين' : 'Employees Trained & Mentored', 
+      icon: <Users className="text-luxury-gold h-10 w-10" /> 
+    },
+    { 
+      value: '25%+', 
+      label: language.code === 'ar' ? 'متوسط زيادة عائد الغرفة المتاحة' : 'Average RevPAR Increase', 
+      icon: <BarChart className="text-luxury-gold h-10 w-10" /> 
+    },
+    { 
+      value: '$8.5M+', 
+      label: language.code === 'ar' ? 'ميزانيات التجديد المدارة' : 'Managed in Renovation Budgets', 
+      icon: <Building className="text-luxury-gold h-10 w-10" /> 
+    }
   ];
 
   const containerVariants = {
