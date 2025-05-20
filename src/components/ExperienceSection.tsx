@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/context/LanguageContext';
 
 const ExperienceSection = () => {
-  const { t, language } = useLanguage();
+  const { t, language, isRTL } = useLanguage();
   
   const experiences = [
     {
@@ -110,17 +110,17 @@ const ExperienceSection = () => {
                   <h4 className="font-semibold text-lg mb-3">{exp.company}</h4>
                   
                   <div className="flex items-center text-sm text-luxury-gray mb-2">
-                    <MapPin size={16} className="mr-1" />
+                    <MapPin size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                     <span>{exp.location}</span>
                   </div>
                   
                   <div className="flex items-center text-sm text-luxury-gray mb-2">
-                    <Calendar size={16} className="mr-1" />
+                    <Calendar size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                     <span>{exp.period}</span>
                   </div>
                   
                   <div className="flex items-center text-sm text-luxury-gray mb-4">
-                    <Building size={16} className="mr-1" />
+                    <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                     <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
                   </div>
                   
@@ -132,7 +132,7 @@ const ExperienceSection = () => {
                       className="text-sm text-luxury-gold hover:underline flex items-center"
                     >
                       {language.code === 'ar' ? "عرض التفاصيل" : "View Details"}
-                      <ChevronRight size={16} className="ml-1" />
+                      <ChevronRight size={16} className={`${isRTL ? 'mr-1 rotate-180' : 'ml-1'}`} />
                     </Link>
                   </div>
                 </CardContent>

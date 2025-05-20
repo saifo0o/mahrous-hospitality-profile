@@ -47,7 +47,7 @@ const ProjectsSection = () => {
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
-          <h2 className="section-heading inline-block">{language.code === 'ar' ? 'المشاريع المميزة' : 'Signature Projects'}</h2>
+          <h2 className="section-heading inline-block">{t('signatureProjects')}</h2>
           <p className={`text-luxury-gray mt-4 max-w-2xl mx-auto ${isRTL ? 'text-right' : 'text-left'}`}>
             {language.code === 'ar' 
               ? 'تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في عمليات الضيافة والتخطيط الاستراتيجي والإدارة المالية.'
@@ -78,7 +78,7 @@ const ProjectsSection = () => {
                 <p className={`text-luxury-gray mb-4 text-sm ${isRTL ? 'text-right' : ''}`}>{project.description}</p>
                 <div className="bg-gray-50 p-3 rounded-md">
                   <p className={`text-sm font-semibold text-luxury-navy ${isRTL ? 'text-right' : ''}`}>
-                    {language.code === 'ar' ? 'النتائج:' : 'Results:'} {project.results}
+                    {t('results')} {project.results}
                   </p>
                 </div>
               </div>
@@ -88,7 +88,7 @@ const ProjectsSection = () => {
         
         <div className="text-center mt-10">
           <Button className="bg-luxury-navy hover:bg-blue-900">
-            <Link to="/projects">{language.code === 'ar' ? 'عرض جميع المشاريع' : 'View All Projects'}</Link>
+            <Link to="/projects">{t('viewAllProjects')}</Link>
           </Button>
         </div>
       </div>
