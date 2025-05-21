@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Building, Calendar, MapPin, BarChart, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Projects = () => {
   const { language, t, isRTL } = useLanguage();
@@ -226,7 +227,7 @@ const Projects = () => {
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-12">
               <h1 className="text-3xl md:text-4xl font-bold mb-6 inline-block relative">
-                {language.code === 'ar' ? "المشاريع المميزة" : "Signature Projects"}
+                {t('signatureProjects')}
                 <span className={`absolute ${isRTL ? 'right-0' : 'left-0'} -bottom-2 w-1/2 h-1 bg-luxury-gold`}></span>
               </h1>
               <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
@@ -261,23 +262,23 @@ const Projects = () => {
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-luxury-navy mb-2">{project.title}</h3>
                     
-                    <div className="flex flex-wrap gap-4 text-sm text-luxury-gray mb-4">
-                      <div className="flex items-center">
+                    <div className={`flex flex-wrap gap-4 text-sm text-luxury-gray mb-4 ${isRTL ? 'justify-end' : ''}`}>
+                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <MapPin size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                         <span>{project.location}</span>
                       </div>
                       
-                      <div className="flex items-center">
+                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <Calendar size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                         <span>{project.period}</span>
                       </div>
                       
-                      <div className="flex items-center">
+                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                        <span>{project.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
+                        <span>{project.rooms} {t('rooms')}</span>
                       </div>
                       
-                      <div className="flex items-center">
+                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <BarChart size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                         <span>{language.code === 'ar' ? "الميزانية: " : "Budget: "}{project.budget}</span>
                       </div>
@@ -296,7 +297,7 @@ const Projects = () => {
                       </div>
                       
                       <div className="bg-gray-50 p-4 rounded-md">
-                        <h4 className="font-semibold text-luxury-navy mb-2">{language.code === 'ar' ? "النتائج:" : "Results:"}</h4>
+                        <h4 className="font-semibold text-luxury-navy mb-2">{t('results')}</h4>
                         <ul className={`list-disc ${isRTL ? 'mr-5' : 'ml-5'} space-y-1`}>
                           {project.results.map((result, i) => (
                             <li key={i} className="text-sm font-medium text-luxury-navy">{result}</li>
@@ -312,7 +313,7 @@ const Projects = () => {
             <div className="text-center mt-16">
               <Button className="bg-luxury-navy hover:bg-blue-900 inline-flex items-center gap-2">
                 <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
-                <a href="/career">{language.code === 'ar' ? "عرض المسار المهني الكامل" : "View Full Career Journey"}</a>
+                <a href="/career">{t('viewFullCareerJourney')}</a>
               </Button>
             </div>
           </div>
@@ -320,6 +321,7 @@ const Projects = () => {
       </main>
       
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -17,6 +18,7 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Career = () => {
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
@@ -58,156 +60,231 @@ const Career = () => {
       }
     },
     {
-      position: "Owner Representative (Pre-Opening)",
-      company: "Fourpoint by Sheraton King Abdulaziz Road",
-      location: "Riyadh, KSA",
-      period: "August 2024 - January 2025",
-      description: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
+      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner Representative (Pre-Opening)",
+      company: language.code === 'ar' ? "فورنقاط باي شيراتون طريق الملك عبدالعزيز" : "Fourpoint by Sheraton King Abdulaziz Road",
+      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
+      period: language.code === 'ar' ? "أغسطس 2024 - يناير 2025" : "August 2024 - January 2025",
+      description: language.code === 'ar' 
+        ? "قيادة عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية."
+        : "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
       rooms: 172,
-      achievements: [
-        "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget while maintaining quality standards and timeline requirements",
-        "Directed comprehensive recruitment and training initiatives for 150+ staff",
-        "Developed tailored programs aligned with Marriott International standards and local market expectations"
-      ],
+      achievements: language.code === 'ar'
+        ? [
+          "تفاوض وإعادة هيكلة عقود الموردين، مما أدى إلى تخفيض بنسبة 12٪ في ميزانية ما قبل الافتتاح مع الحفاظ على معايير الجودة ومتطلبات الجدول الزمني",
+          "إدارة مبادرات توظيف وتدريب شاملة لأكثر من 150 موظف",
+          "تطوير برامج مخصصة متوافقة مع معايير ماريوت الدولية وتوقعات السوق المحلية"
+        ]
+        : [
+          "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget while maintaining quality standards and timeline requirements",
+          "Directed comprehensive recruitment and training initiatives for 150+ staff",
+          "Developed tailored programs aligned with Marriott International standards and local market expectations"
+        ],
       metrics: {
-        budget: "-12%",
-        readiness: "90%",
-        staffing: "100%"
+        budget: language.code === 'ar' ? "-12%" : "-12%",
+        readiness: language.code === 'ar' ? "90%" : "90%",
+        staffing: language.code === 'ar' ? "100%" : "100%"
       }
     },
     {
-      position: "General Manager",
-      company: "Porto Said Resort",
-      location: "Port Said, Egypt",
-      period: "February 2024 - August 2024",
-      description: "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
+      location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
+      period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024 - August 2024",
+      description: language.code === 'ar'
+        ? "قيادة مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة و 24 متجر، مما أدى إلى زيادة الإشغال بنسبة 18٪ وزيادة إيرادات الأطعمة والمشروبات بنسبة 20٪."
+        : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
       rooms: 168,
-      achievements: [
-        "Led and mentored a diverse team of 200+ staff",
-        "Implemented targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 15%",
-        "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
-      ],
+      achievements: language.code === 'ar'
+        ? [
+          "قيادة وتوجيه فريق متنوع من أكثر من 200 موظف",
+          "تنفيذ برامج تدريبية مستهدفة أدت إلى تحسين الكفاءة التشغيلية بنسبة 15٪ ودرجات رضا الضيوف بنسبة 15٪",
+          "تطوير وتنفيذ مبادرات استراتيجية لخفض التكاليف عبر جميع الأقسام، مما أدى إلى تقليل المصروفات التشغيلية بنسبة 10٪ مع الحفاظ على التميز في الخدمة ورضا الضيوف"
+        ]
+        : [
+          "Led and mentored a diverse team of 200+ staff",
+          "Implemented targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 15%",
+          "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
+        ],
       metrics: {
-        occupancy: "+18%",
-        revenue: "+20%",
-        efficiency: "+15%",
-        costs: "-10%"
+        occupancy: language.code === 'ar' ? "+18%" : "+18%",
+        revenue: language.code === 'ar' ? "+20%" : "+20%",
+        efficiency: language.code === 'ar' ? "+15%" : "+15%",
+        costs: language.code === 'ar' ? "-10%" : "-10%"
       }
     },
     {
-      position: "General Manager",
-      company: "The V Luxury Resort Sahl Hasheesh",
-      location: "Hurghada, Egypt",
-      period: "April 2023 - February 2024",
-      description: "Orchestrated pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved 90% occupancy within 4 months of launch, setting a new market benchmark.",
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "منتجع ذا في الفاخر سهل حشيش" : "The V Luxury Resort Sahl Hasheesh",
+      location: language.code === 'ar' ? "الغردقة، مصر" : "Hurghada, Egypt",
+      period: language.code === 'ar' ? "أبريل 2023 - فبراير 2024" : "April 2023 - February 2024",
+      description: language.code === 'ar'
+        ? "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة، وتنفيذ استراتيجيات تسويقية مبتكرة حققت نسبة إشغال 90٪ في غضون 4 أشهر من الإطلاق، مما وضع معيارًا جديدًا للسوق."
+        : "Orchestrated pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved 90% occupancy within 4 months of launch, setting a new market benchmark.",
       rooms: 298,
-      achievements: [
-        "Enhanced guest satisfaction scores by 12% through development and implementation of targeted service training programs and personalized guest experience initiatives",
-        "Implemented data-driven operational strategies",
-        "Established the property as a market leader in the region"
-      ],
+      achievements: language.code === 'ar'
+        ? [
+          "تعزيز درجات رضا الضيوف بنسبة 12٪ من خلال تطوير وتنفيذ برامج تدريب خدمة مستهدفة ومبادرات تجربة ضيوف مخصصة",
+          "تنفيذ استراتيجيات تشغيلية قائمة على البيانات",
+          "ترسيخ العقار كرائد في السوق في المنطقة"
+        ]
+        : [
+          "Enhanced guest satisfaction scores by 12% through development and implementation of targeted service training programs and personalized guest experience initiatives",
+          "Implemented data-driven operational strategies",
+          "Established the property as a market leader in the region"
+        ],
       metrics: {
-        occupancy: "90%",
-        timeToReachOccupancy: "4 months",
-        satisfaction: "+12%"
+        occupancy: language.code === 'ar' ? "90%" : "90%",
+        timeToReachOccupancy: language.code === 'ar' ? "4 أشهر" : "4 months",
+        satisfaction: language.code === 'ar' ? "+12%" : "+12%"
       }
     },
     {
-      position: "General Manager",
-      company: "Sheraton Montazah Hotel",
-      location: "Alexandria, Egypt",
-      period: "January 2021 - March 2023",
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "فندق شيراتون المنتزه" : "Sheraton Montazah Hotel",
+      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
+      period: language.code === 'ar' ? "يناير 2021 - مارس 2023" : "January 2021 - March 2023",
       previousRoles: [
-        { title: "Hotel Manager in Charge", period: "July 2015 - December 2020" },
-        { title: "Deputy General Manager", period: "June 2014 - June 2015" }
+        { 
+          title: language.code === 'ar' ? "مدير الفندق المسؤول" : "Hotel Manager in Charge", 
+          period: language.code === 'ar' ? "يوليو 2015 - ديسمبر 2020" : "July 2015 - December 2020" 
+        },
+        { 
+          title: language.code === 'ar' ? "نائب المدير العام" : "Deputy General Manager", 
+          period: language.code === 'ar' ? "يونيو 2014 - يونيو 2015" : "June 2014 - June 2015" 
+        }
       ],
-      description: "Directed comprehensive renovation with operation of 40-year-old property (288 rooms), including complete infrastructure overhaul.",
+      description: language.code === 'ar'
+        ? "إدارة تجديد شامل مع تشغيل عقار يبلغ عمره 40 عامًا (288 غرفة)، بما في ذلك تجديد البنية التحتية بالكامل."
+        : "Directed comprehensive renovation with operation of 40-year-old property (288 rooms), including complete infrastructure overhaul.",
       rooms: 288,
-      achievements: [
-        "Achieved 25% increase in RevPAR and 30% improvement in guest satisfaction scores",
-        "Modernized all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network, reducing energy consumption by 15% and maintenance costs by 20%",
-        "Collaborated with Owning Company and Marriott Design team to develop and implement model room concepts"
-      ],
+      achievements: language.code === 'ar'
+        ? [
+          "تحقيق زيادة بنسبة 25٪ في عائد الغرفة المتاحة وتحسين بنسبة 30٪ في درجات رضا الضيوف",
+          "تحديث جميع الأنظمة الميكانيكية بما في ذلك الغلايات والمحولات والمولدات والمبردات وشبكة السلامة من الحرائق، مما أدى إلى تقليل استهلاك الطاقة بنسبة 15٪ وتكاليف الصيانة بنسبة 20٪",
+          "التعاون مع الشركة المالكة وفريق التصميم في ماريوت لتطوير وتنفيذ مفاهيم غرف النموذج"
+        ]
+        : [
+          "Achieved 25% increase in RevPAR and 30% improvement in guest satisfaction scores",
+          "Modernized all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network, reducing energy consumption by 15% and maintenance costs by 20%",
+          "Collaborated with Owning Company and Marriott Design team to develop and implement model room concepts"
+        ],
       metrics: {
-        revpar: "+25%",
-        satisfaction: "+30%",
-        energySavings: "-15%",
-        maintenanceSavings: "-20%"
+        revpar: language.code === 'ar' ? "+25%" : "+25%",
+        satisfaction: language.code === 'ar' ? "+30%" : "+30%",
+        energySavings: language.code === 'ar' ? "-15%" : "-15%",
+        maintenanceSavings: language.code === 'ar' ? "-20%" : "-20%"
       }
     },
     {
-      position: "General Manager in Charge of Operational Excellence",
-      company: "Marriott Egypt General Managers Council",
-      location: "Egypt",
-      period: "2018 - 2022",
-      description: "Led operational excellence initiatives across 19 properties (2200+ rooms), implementing standardized service protocols.",
+      position: language.code === 'ar' ? "المدير العام المسؤول عن التميز التشغيلي" : "General Manager in Charge of Operational Excellence",
+      company: language.code === 'ar' ? "مجلس المديرين العامين لماريوت مصر" : "Marriott Egypt General Managers Council",
+      location: language.code === 'ar' ? "مصر" : "Egypt",
+      period: language.code === 'ar' ? "2018 - 2022" : "2018 - 2022",
+      description: language.code === 'ar'
+        ? "قيادة مبادرات التميز التشغيلي عبر 19 عقار (أكثر من 2200 غرفة)، وتنفيذ بروتوكولات خدمة موحدة."
+        : "Led operational excellence initiatives across 19 properties (2200+ rooms), implementing standardized service protocols.",
       rooms: 2200,
-      achievements: [
-        "Improved guest satisfaction by 10% and F&B revenue by 8%",
-        "Coordinated cross-property initiatives and best practice sharing, driving an average 3% increase in RevPAR across all properties",
-        "Facilitated quarterly performance reviews and strategic planning sessions, ensuring alignment with Marriott International standards across diverse property portfolio"
-      ],
+      achievements: language.code === 'ar'
+        ? [
+          "تحسين رضا الضيوف بنسبة 10٪ وزيادة إيرادات الأطعمة والمشروبات بنسبة 8٪",
+          "تنسيق المبادرات عبر العقارات المختلفة وتبادل أفضل الممارسات، مما أدى إلى زيادة متوسطة بنسبة 3٪ في عائد الغرفة المتاحة عبر جميع العقارات",
+          "تسهيل مراجعات الأداء الفصلية وجلسات التخطيط الاستراتيجي، مما يضمن التوافق مع معايير ماريوت الدولية عبر محفظة العقارات المتنوعة"
+        ]
+        : [
+          "Improved guest satisfaction by 10% and F&B revenue by 8%",
+          "Coordinated cross-property initiatives and best practice sharing, driving an average 3% increase in RevPAR across all properties",
+          "Facilitated quarterly performance reviews and strategic planning sessions, ensuring alignment with Marriott International standards across diverse property portfolio"
+        ],
       metrics: {
-        satisfaction: "+10%",
-        revenue: "+8%",
-        revpar: "+3%"
+        satisfaction: language.code === 'ar' ? "+10%" : "+10%",
+        revenue: language.code === 'ar' ? "+8%" : "+8%",
+        revpar: language.code === 'ar' ? "+3%" : "+3%"
       }
     },
     {
-      position: "Deputy General Manager in Charge",
-      company: "Sheraton Miramar Resort",
-      location: "El Gouna, Hurghada, Egypt",
-      period: "July 2011 - June 2014",
-      description: "Managed $5M refurbishment project for 339-room property, improving guest satisfaction by 12% and driving strong post-renovation growth through strategic repositioning.",
+      position: language.code === 'ar' ? "نائب المدير العام المسؤول" : "Deputy General Manager in Charge",
+      company: language.code === 'ar' ? "منتجع شيراتون ميرامار" : "Sheraton Miramar Resort",
+      location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
+      period: language.code === 'ar' ? "يوليو 2011 - يونيو 2014" : "July 2011 - June 2014",
+      description: language.code === 'ar'
+        ? "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة، وتحسين رضا الضيوف بنسبة 12٪ وتحقيق نمو قوي بعد التجديد من خلال إعادة تموضع استراتيجي."
+        : "Managed $5M refurbishment project for 339-room property, improving guest satisfaction by 12% and driving strong post-renovation growth through strategic repositioning.",
       rooms: 339,
-      achievements: [
-        "Reduced payroll expenses by 7% while maintaining service standards through innovative scheduling and cross-training initiatives",
-        "Implemented revenue management strategies that increased ADR by 15% and occupancy by 8% within first year post-renovation"
-      ],
+      achievements: language.code === 'ar'
+        ? [
+          "تخفيض نفقات الرواتب بنسبة 7٪ مع الحفاظ على معايير الخدمة من خلال مبادرات الجدولة المبتكرة والتدريب المتبادل",
+          "تنفيذ استراتيجيات إدارة الإيرادات التي زادت متوسط سعر الغرفة اليومي بنسبة 15٪ والإشغال بنسبة 8٪ خلال السنة الأولى بعد التجديد"
+        ]
+        : [
+          "Reduced payroll expenses by 7% while maintaining service standards through innovative scheduling and cross-training initiatives",
+          "Implemented revenue management strategies that increased ADR by 15% and occupancy by 8% within first year post-renovation"
+        ],
       metrics: {
-        payrollSavings: "-7%",
-        adr: "+15%",
-        occupancy: "+8%"
+        payrollSavings: language.code === 'ar' ? "-7%" : "-7%",
+        adr: language.code === 'ar' ? "+15%" : "+15%",
+        occupancy: language.code === 'ar' ? "+8%" : "+8%"
       }
     },
     {
-      position: "Cluster Executive Assistant Manager (Pre-Opening)",
-      company: "Four Points by Sheraton & Sheraton",
-      location: "Tripoli, Libya",
-      period: "December 2009 - June 2011",
-      description: "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
+      position: language.code === 'ar' ? "مساعد المدير التنفيذي المجمع (ما قبل الافتتاح)" : "Cluster Executive Assistant Manager (Pre-Opening)",
+      company: language.code === 'ar' ? "فور بوينتس باي شيراتون وشيراتون" : "Four Points by Sheraton & Sheraton",
+      location: language.code === 'ar' ? "طرابلس، ليبيا" : "Tripoli, Libya",
+      period: language.code === 'ar' ? "ديسمبر 2009 - يونيو 2011" : "December 2009 - June 2011",
+      description: language.code === 'ar'
+        ? "إدارة عمليات ما قبل الافتتاح، وضمان 95٪ من الجاهزية التشغيلية في ظروف سياسية صعبة."
+        : "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
       rooms: 718,
-      achievements: [
-        "Led staff training and operational setup, resulting in 15% higher guest satisfaction",
-        "Established operational systems and procedures aligned with Starwood brand standards"
-      ],
+      achievements: language.code === 'ar'
+        ? [
+          "قيادة تدريب الموظفين والإعداد التشغيلي، مما أدى إلى رضا الضيوف أعلى بنسبة 15٪",
+          "إنشاء أنظمة وإجراءات تشغيلية متوافقة مع معايير العلامة التجارية ستاروود"
+        ]
+        : [
+          "Led staff training and operational setup, resulting in 15% higher guest satisfaction",
+          "Established operational systems and procedures aligned with Starwood brand standards"
+        ],
       metrics: {
-        readiness: "95%",
-        satisfaction: "+15%"
+        readiness: language.code === 'ar' ? "95%" : "95%",
+        satisfaction: language.code === 'ar' ? "+15%" : "+15%"
       }
     },
     {
-      position: "Director of Operational Innovation",
-      company: "Sheraton Miramar Resort",
-      location: "El Gouna, Hurghada, Egypt",
-      period: "January 2005 - November 2009",
+      position: language.code === 'ar' ? "مدير الابتكار التشغيلي" : "Director of Operational Innovation",
+      company: language.code === 'ar' ? "منتجع شيراتون ميرامار" : "Sheraton Miramar Resort",
+      location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
+      period: language.code === 'ar' ? "يناير 2005 - نوفمبر 2009" : "January 2005 - November 2009",
       previousRoles: [
-        { title: "Deputy Director of Guest Services & Six Sigma Green Belt", period: "June 2003 - June 2004" }
+        { 
+          title: language.code === 'ar' ? "نائب مدير خدمات الضيوف والحزام الأخضر سيكس سيجما" : "Deputy Director of Guest Services & Six Sigma Green Belt", 
+          period: language.code === 'ar' ? "يونيو 2003 - يونيو 2004" : "June 2003 - June 2004" 
+        }
       ],
-      description: "Led divisional projects to increase guest satisfaction, employee satisfaction, and revenue.",
-      achievements: [
-        "Exported 4 Best Practices to Europe, Africa, and Middle East Division",
-        "Selected as Director of Operational Innovation Coach for 5 properties in Egypt and Morocco",
-        "Contributed to management team that achieved \"Best EBITDA Margin Growth\" in EMEA Division",
-        "Implemented Six Sigma methodologies to enhance operational efficiency and guest satisfaction",
-        "Transferred from Sheraton Soma Bay due to outstanding performance"
-      ],
+      description: language.code === 'ar'
+        ? "قيادة مشاريع قسمية لزيادة رضا الضيوف، ورضا الموظفين، والإيرادات."
+        : "Led divisional projects to increase guest satisfaction, employee satisfaction, and revenue.",
+      achievements: language.code === 'ar'
+        ? [
+          "تصدير 4 أفضل ممارسات إلى قسم أوروبا وأفريقيا والشرق الأوسط",
+          "تم اختياره كمدرب مدير الابتكار التشغيلي لـ 5 عقارات في مصر والمغرب",
+          "المساهمة في فريق الإدارة الذي حقق \"أفضل نمو هامش EBITDA\" في قسم أوروبا والشرق الأوسط وأفريقيا",
+          "تنفيذ منهجيات سيكس سيجما لتعزيز الكفاءة التشغيلية ورضا الضيوف",
+          "تم النقل من شيراتون سوما باي بسبب الأداء المتميز"
+        ]
+        : [
+          "Exported 4 Best Practices to Europe, Africa, and Middle East Division",
+          "Selected as Director of Operational Innovation Coach for 5 properties in Egypt and Morocco",
+          "Contributed to management team that achieved \"Best EBITDA Margin Growth\" in EMEA Division",
+          "Implemented Six Sigma methodologies to enhance operational efficiency and guest satisfaction",
+          "Transferred from Sheraton Soma Bay due to outstanding performance"
+        ],
       metrics: {}
     },
     {
-      position: "Early Career Progression",
-      period: "1993 - 2004",
-      description: "Held progressive roles within various international hospitality chains in UAE & Egypt, advancing from Receptionist to Assistant Director of Front Office through demonstrated excellence in guest service and operational management."
+      position: language.code === 'ar' ? "التقدم المهني المبكر" : "Early Career Progression",
+      period: language.code === 'ar' ? "1993 - 2004" : "1993 - 2004",
+      description: language.code === 'ar'
+        ? "شغل أدوارًا تقدمية في سلاسل ضيافة دولية مختلفة في الإمارات العربية المتحدة ومصر، متقدمًا من موظف استقبال إلى مساعد مدير مكتب أمامي من خلال التميز في خدمة الضيوف والإدارة التشغيلية."
+        : "Held progressive roles within various international hospitality chains in UAE & Egypt, advancing from Receptionist to Assistant Director of Front Office through demonstrated excellence in guest service and operational management."
     }
   ];
 
@@ -282,18 +359,18 @@ const Career = () => {
                           <h3 className="text-2xl font-bold text-luxury-navy mb-2">{exp.position}</h3>
                           {exp.company && <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>}
                           
-                          <div className="flex flex-wrap items-center text-luxury-gray mb-2">
+                          <div className={`flex flex-wrap items-center text-luxury-gray mb-2 ${isRTL ? 'justify-end' : ''}`}>
                             <MapPin size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
                             <span className={isRTL ? 'ml-4' : 'mr-4'}>{exp.location}</span>
                             {exp.rooms && (
                               <>
                                 <Building size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
-                                <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
+                                <span>{exp.rooms} {t('rooms')}</span>
                               </>
                             )}
                           </div>
                           
-                          <div className="flex items-center text-luxury-gray mb-4">
+                          <div className={`flex items-center text-luxury-gray mb-4 ${isRTL ? 'justify-end' : ''}`}>
                             <CalendarRange size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
                             <span>{exp.period}</span>
                           </div>
@@ -301,7 +378,7 @@ const Career = () => {
                           <p className="text-luxury-gray mb-4">{exp.description}</p>
                           
                           {/* Interactive Metrics Dashboard */}
-                          {exp.metrics && (
+                          {exp.metrics && Object.entries(exp.metrics).length > 0 && (
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-4 mb-4">
                               {Object.entries(exp.metrics).map(([key, value], i) => (
                                 <div 
@@ -326,6 +403,7 @@ const Career = () => {
                                       key === 'maintenanceSavings' ? 'توفير الصيانة' :
                                       key === 'payrollSavings' ? 'توفير الرواتب' :
                                       key === 'adr' ? 'متوسط سعر الغرفة' :
+                                      key === 'timeToReachOccupancy' ? 'وقت الوصول للإشغال' :
                                       key
                                     ) : key}
                                   </div>
@@ -339,7 +417,7 @@ const Career = () => {
                             <div className="mt-4">
                               <button 
                                 onClick={() => toggleExperience(index)} 
-                                className="flex items-center justify-between w-full text-luxury-navy font-semibold hover:text-luxury-gold transition-colors"
+                                className={`flex items-center justify-between w-full text-luxury-navy font-semibold hover:text-luxury-gold transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                               >
                                 <span>{language.code === 'ar' ? 'الإنجازات الرئيسية' : 'Key Achievements'}</span>
                                 {expandedExperience === index ? (
@@ -414,6 +492,7 @@ const Career = () => {
       </main>
       
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

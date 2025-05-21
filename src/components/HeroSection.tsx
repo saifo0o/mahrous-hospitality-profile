@@ -96,7 +96,7 @@ const HeroSection = () => {
             {/* WhatsApp CTA Button */}
             <Button className="bg-[#25D366] hover:bg-[#128C7E] text-white font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-base">
               <MessageCircle size={18} />
-              <a href="https://wa.me/201XXXXXXXXX" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/201095556779" target="_blank" rel="noopener noreferrer">
                 {t('messageOnWhatsApp')}
               </a>
             </Button>

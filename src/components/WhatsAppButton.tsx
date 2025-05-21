@@ -5,7 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 
 const WhatsAppButton = () => {
-  const { language, isRTL } = useLanguage();
+  const { t, isRTL } = useLanguage();
   
   return (
     <motion.div
@@ -29,7 +29,7 @@ const WhatsAppButton = () => {
       >
         <MessageCircle size={20} />
         <span className="hidden sm:inline">
-          {language.code === 'ar' ? 'راسلني على واتساب' : 'Message me on WhatsApp'}
+          {t('messageOnWhatsApp')}
         </span>
       </a>
     </motion.div>
