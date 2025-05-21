@@ -9,13 +9,13 @@ const TrackingScripts: React.FC<TrackingScriptsProps> = () => {
   return (
     <Helmet>
       {/* Google Analytics GA4 */}
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`} />
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=G-8ZR0GLS69G`} />
       <script>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX');
+          gtag('config', 'G-8ZR0GLS69G');
         `}
       </script>
       

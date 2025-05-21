@@ -2,7 +2,7 @@
 // Function to track pageviews
 export const trackPageView = (path: string) => {
   if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('config', 'G-XXXXXXXXXX', {
+    (window as any).gtag('config', 'G-8ZR0GLS69G', {
       page_path: path,
     });
   }
