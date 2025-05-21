@@ -1,0 +1,47 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://islam-mahrous.com/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://islam-mahrous.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/about?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/about?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://islam-mahrous.com/career</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/career?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/career?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://islam-mahrous.com/projects</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/projects?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/projects?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://islam-mahrous.com/awards</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/awards?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/awards?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://islam-mahrous.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/contact?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/contact?lang=ar"/>
+  </url>
+</urlset>

@@ -1,7 +1,8 @@
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from './components/ui/toaster';
+import { useEffect } from 'react';
 
 import Index from './pages/Index';
 import About from './pages/About';
@@ -10,16 +11,35 @@ import Projects from './pages/Projects';
 import Awards from './pages/Awards';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
-import { LanguageProvider } from './context/LanguageContext';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import WhatsAppButton from './components/WhatsAppButton';
+import TrackingScripts from './components/TrackingScripts';
+import { trackPageView, trackLanguageChange } from './utils/analytics';
 
 const queryClient = new QueryClient();
+
+// Page tracker component
+const PageTracker = () => {
+  const location = useLocation();
+  const { language } = useLanguage();
+  
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+  }, [location]);
+  
+  useEffect(() => {
+    trackLanguageChange(language.code);
+  }, [language.code]);
+  
+  return null;
+};
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <BrowserRouter>
+          <TrackingScripts />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -29,6 +49,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <PageTracker />
           <WhatsAppButton />
           <Toaster />
         </BrowserRouter>

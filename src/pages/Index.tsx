@@ -15,6 +15,7 @@ import MediaSection from '@/components/MediaSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
+import SEOHead from '@/components/SEOHead';
 
 const Index = () => {
   const { isRTL } = useLanguage();
@@ -60,6 +61,7 @@ const Index = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
+      <SEOHead />
       <Navbar />
       <main className="flex-grow">
         <HeroSection />

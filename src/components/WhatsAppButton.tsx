@@ -3,9 +3,14 @@ import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
+import { trackButtonClick } from '@/utils/analytics';
 
 const WhatsAppButton = () => {
   const { t, isRTL } = useLanguage();
+  
+  const handleWhatsAppClick = () => {
+    trackButtonClick('WhatsApp');
+  };
   
   return (
     <motion.div
@@ -26,6 +31,8 @@ const WhatsAppButton = () => {
         target="_blank" 
         rel="noopener noreferrer"
         className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300"
+        onClick={handleWhatsAppClick}
+        aria-label="Contact through WhatsApp"
       >
         <MessageCircle size={20} />
         <span className="hidden sm:inline">
