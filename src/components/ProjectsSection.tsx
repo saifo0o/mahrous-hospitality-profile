@@ -1,11 +1,15 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
+import { motion } from 'framer-motion';
+import { useAnimation } from '@/hooks/useAnimation';
 
 const ProjectsSection = () => {
   const { t, language, isRTL } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  useAnimation(sectionRef, 'up');
   
   const projects = [
     {
@@ -34,17 +38,57 @@ const ProjectsSection = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
+  };
+
   return (
-    <section className={`py-16 bg-gray-50 ${isRTL ? 'text-right' : ''}`}>
+    <section ref={sectionRef} className={`py-16 bg-gray-50 ${isRTL ? 'text-right' : ''}`}>
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className={`text-3xl font-bold mb-2 ${isRTL ? 'text-right' : ''}`}>
-          {t('signatureProjects')}
-        </h2>
-        <div className={`w-20 h-1 bg-luxury-gold mb-12 ${isRTL ? 'mr-0' : 'ml-0'}`}></div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className={`text-3xl font-bold mb-2 ${isRTL ? 'text-right' : ''}`}>
+            {t('signatureProjects')}
+          </h2>
+          <div className={`w-20 h-1 bg-luxury-gold mb-12 ${isRTL ? 'mr-0' : 'ml-0'}`}></div>
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {projects.map((project, index) => (
-            <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <motion.div 
+              key={index} 
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              variants={itemVariants}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.2 }}
+            >
               <div className="relative h-48">
                 <img 
                   src={project.image} 
@@ -61,34 +105,40 @@ const ProjectsSection = () => {
                 <p className="text-sm text-luxury-gray line-clamp-3 mb-4">{project.description}</p>
                 <Link 
                   to="/projects" 
-                  className={`text-sm font-medium text-luxury-gold hover:text-amber-600 transition-colors flex items-center ${isRTL ? 'flex-row-reverse justify-end' : ''}`}
+                  className={`text-sm font-medium text-luxury-gold hover:text-amber-600 transition-colors flex items-center link-underline ${isRTL ? 'flex-row-reverse justify-end' : ''}`}
                 >
                   {isRTL ? (
                     <>
                       {t('viewDetails')}
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
                     </>
                   ) : (
                     <>
                       {t('viewDetails')}
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
                     </>
                   )}
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         
-        <div className="text-center mt-12">
-          <Button className="bg-luxury-navy hover:bg-blue-900 transition-colors">
+        <motion.div 
+          className="text-center mt-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          <Button className="bg-luxury-navy hover:bg-blue-900 transition-colors hover-lift">
             <Link to="/projects">{t('viewAllProjects')}</Link>
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

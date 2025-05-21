@@ -73,10 +73,31 @@ const StatsSection = () => {
               variants={itemVariants}
               className="bg-white dark:bg-luxury-navy/60 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-luxury-gold flex flex-col items-center text-center group hover:-translate-y-1"
             >
-              <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
+              <motion.div 
+                className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-full mb-4"
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 200, 
+                  delay: 0.3 + index * 0.1, 
+                  duration: 0.6 
+                }}
+                whileHover={{ 
+                  rotate: [0, 5, -5, 0],
+                  transition: { duration: 0.5, ease: "easeInOut" }
+                }}
+              >
                 {stat.icon}
-              </div>
-              <h3 className="text-4xl font-bold text-luxury-navy dark:text-white mt-2 font-playfair">{stat.value}</h3>
+              </motion.div>
+              <motion.h3 
+                className="text-4xl font-bold text-luxury-navy dark:text-white mt-2 font-playfair"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
+              >
+                {stat.value}
+              </motion.h3>
               <p className="text-luxury-gray dark:text-gray-300 mt-2 text-lg">{stat.label}</p>
             </motion.div>
           ))}
