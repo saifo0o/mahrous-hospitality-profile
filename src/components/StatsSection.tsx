@@ -44,17 +44,62 @@ const StatsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        duration: 0.5,
+        staggerChildren: 0.15
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.95
+    },
     visible: {
-      y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" }
+      y: 0,
+      scale: 1,
+      transition: { 
+        duration: 0.5, 
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const iconVariants = {
+    hidden: { 
+      scale: 0.8, 
+      rotate: -10,
+      opacity: 0
+    },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        delay: 0.2
+      }
+    }
+  };
+
+  const numberVariants = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.8
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        delay: 0.3
+      }
     }
   };
 
@@ -71,34 +116,39 @@ const StatsSection = () => {
             <motion.div 
               key={index}
               variants={itemVariants}
-              className="bg-white dark:bg-luxury-navy/60 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-luxury-gold flex flex-col items-center text-center group hover:-translate-y-1"
+              className="bg-white dark:bg-luxury-navy/60 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-luxury-gold flex flex-col items-center text-center group card-hover"
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
             >
               <motion.div 
                 className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-full mb-4"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 200, 
-                  delay: 0.3 + index * 0.1, 
-                  duration: 0.6 
-                }}
+                variants={iconVariants}
                 whileHover={{ 
                   rotate: [0, 5, -5, 0],
+                  scale: 1.1,
                   transition: { duration: 0.5, ease: "easeInOut" }
                 }}
               >
                 {stat.icon}
               </motion.div>
+              
               <motion.h3 
                 className="text-4xl font-bold text-luxury-navy dark:text-white mt-2 font-playfair"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
+                variants={numberVariants}
               >
                 {stat.value}
               </motion.h3>
-              <p className="text-luxury-gray dark:text-gray-300 mt-2 text-lg">{stat.label}</p>
+              
+              <motion.p 
+                className="text-luxury-gray dark:text-gray-300 mt-2 text-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+              >
+                {stat.label}
+              </motion.p>
             </motion.div>
           ))}
         </motion.div>

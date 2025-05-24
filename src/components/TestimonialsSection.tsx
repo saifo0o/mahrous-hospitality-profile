@@ -9,7 +9,7 @@ import {
   type CarouselApi
 } from "@/components/ui/carousel";
 import { TestimonialCard } from './TestimonialCard';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 const testimonials = [
   {
@@ -19,7 +19,7 @@ const testimonials = [
     title: "Regional Director",
     company: "Middle East Hotels Group",
     relationship: "Former Supervisor",
-    avatar: "/placeholder.svg" // Replace with actual image when available
+    avatar: "/placeholder.svg"
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const testimonials = [
     title: "Operations Director",
     company: "Sheraton Hotels",
     relationship: "Colleague",
-    avatar: "/placeholder.svg" // Replace with actual image when available
+    avatar: "/placeholder.svg"
   },
   {
     id: 3,
@@ -37,13 +37,15 @@ const testimonials = [
     title: "CEO",
     company: "International Hospitality Investments",
     relationship: "Former Employer",
-    avatar: "/placeholder.svg" // Replace with actual image when available
+    avatar: "/placeholder.svg"
   }
 ];
 
 const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   React.useEffect(() => {
     if (!api) return;
@@ -58,23 +60,78 @@ const TestimonialsSection = () => {
     };
   }, [api]);
 
+  const headerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const carouselVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        delay: 0.2,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const controlsVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0.4,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section id="testimonials" className="py-20 bg-white">
+    <section id="testimonials" className="py-20 bg-white" ref={ref}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div 
           className="text-center mb-12"
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          variants={headerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
-          <h2 className="section-heading inline-block">Industry Testimonials</h2>
-          <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
+          <motion.h2 
+            className="section-heading inline-block"
+            whileHover={{
+              scale: 1.02,
+              transition: { duration: 0.2 }
+            }}
+          >
+            Industry Testimonials
+          </motion.h2>
+          <motion.p 
+            className="text-luxury-gray mt-4 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
             Endorsements from industry colleagues and partners who have witnessed Islam's expertise and leadership firsthand.
-          </p>
+          </motion.p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <motion.div 
+          className="max-w-4xl mx-auto"
+          variants={carouselVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <Carousel
             opts={{
               align: "center",
@@ -86,30 +143,56 @@ const TestimonialsSection = () => {
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={testimonial.id} className="px-4 md:px-8 py-4">
-                  <div className="h-full flex items-center justify-center">
+                  <motion.div 
+                    className="h-full flex items-center justify-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.1,
+                      ease: "easeOut"
+                    }}
+                  >
                     <TestimonialCard testimonial={testimonial} />
-                  </div>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center items-center mt-8">
-              <CarouselPrevious className="position-static relative mr-2" />
+            
+            <motion.div 
+              className="flex justify-center items-center mt-8"
+              variants={controlsVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <CarouselPrevious className="position-static relative mr-2 hover-lift" />
+              </motion.div>
+              
               <div className="flex space-x-2 mx-4">
                 {testimonials.map((_, index) => (
-                  <button
+                  <motion.button
                     key={index}
                     className={`h-2 rounded-full transition-all ${
                       currentTestimonial === index ? "w-8 bg-luxury-gold" : "w-2 bg-gray-300"
                     }`}
                     onClick={() => api?.scrollTo(index)}
                     aria-label={`Go to testimonial ${index + 1}`}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
                   />
                 ))}
               </div>
-              <CarouselNext className="position-static relative ml-2" />
-            </div>
+              
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <CarouselNext className="position-static relative ml-2 hover-lift" />
+              </motion.div>
+            </motion.div>
           </Carousel>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

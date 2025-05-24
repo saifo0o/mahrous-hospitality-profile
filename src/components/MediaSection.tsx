@@ -21,7 +21,7 @@ const MediaSection = () => {
     source: "Discover Egypt Magazine",
     title: language.code === 'ar' ? "شيراتون المنتزه يستضيف البطولة العربية الثانية والعشرون لكمال الأجسام" : "Sheraton Montazah Hosts the 22nd Arab Championship for Body Building",
     url: "https://discoveregyptmagazine.com/sheraton-montazah-hosts-the-22nd-arab-championship-for-body-building/",
-    logo: "/placeholder.svg" // Replace with actual logo when available
+    logo: "/placeholder.svg"
   }, {
     source: "Egypt Today",
     title: language.code === 'ar' ? "تعيين إسلام محروس مديراً عاماً لفندق شيراتون المنتزه" : "Islam Mahrous Appointed as General Manager of The Sheraton Montazah",
@@ -31,43 +31,84 @@ const MediaSection = () => {
     source: "Magnificent Online",
     title: language.code === 'ar' ? "مع الرجل على رأس مجلس إدارة شيراتون المنتزه" : "With the Man on Top of Board of Sheraton Montazah",
     url: "https://magnificentonline.com/with-the-man-on-top-of-board-of-sheraton-montazah/",
-    logo: "/placeholder.svg" // Replace with actual logo when available
+    logo: "/placeholder.svg"
   }, {
     source: "Groubna Blog",
     title: language.code === 'ar' ? "قصة ريادة أعمال JW ماريوت" : "JW Marriott Entrepreneurship Story",
     url: "https://groubna.com/blog-1/f/jwmarriott-entrepreneurship-story",
-    logo: "/placeholder.svg" // Replace with actual logo when available
+    logo: "/placeholder.svg"
   }, {
     source: "YouTube Interview",
     title: language.code === 'ar' ? "مقابلة حصرية مع إسلام محروس" : "Exclusive Interview with Islam Mahrous",
     url: "https://www.youtube.com/watch?v=RR9PInTWLJ4",
-    logo: "https://www.youtube.com/s/desktop/e1f448ab/img/favicon_144x144.png" // YouTube logo
+    logo: "https://www.youtube.com/s/desktop/e1f448ab/img/favicon_144x144.png"
   }];
 
+  const headerVariants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const underlineVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        delay: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
   const containerVariants = {
-    hidden: {
-      opacity: 0
-    },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        duration: 0.5,
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   };
 
   const itemVariants = {
     hidden: {
-      y: 20,
-      opacity: 0
+      opacity: 0,
+      y: 30,
+      scale: 0.95
     },
     visible: {
-      y: 0,
       opacity: 1,
+      y: 0,
+      scale: 1,
       transition: {
         duration: 0.5,
         ease: "easeOut"
       }
+    }
+  };
+
+  const cardHoverVariants = {
+    hover: {
+      y: -8,
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    },
+    tap: {
+      scale: 0.98
     }
   };
 
@@ -76,49 +117,29 @@ const MediaSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
           <motion.h2 
-            initial={{
-              opacity: 0,
-              y: -10
-            }} 
-            animate={isInView ? {
-              opacity: 1,
-              y: 0
-            } : {}} 
-            transition={{
-              duration: 0.6
-            }} 
+            variants={headerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className="text-3xl md:text-5xl font-bold mb-6 text-luxury-navy dark:text-white font-playfair"
+            whileHover={{
+              scale: 1.02,
+              transition: { duration: 0.2 }
+            }}
           >
             {t('inTheMedia')}
           </motion.h2>
           
           <motion.div 
-            initial={{
-              opacity: 0,
-              scaleX: 0
-            }} 
-            animate={isInView ? {
-              opacity: 1,
-              scaleX: 1
-            } : {}} 
-            transition={{
-              duration: 0.6,
-              delay: 0.3
-            }} 
+            variants={underlineVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className="h-1 w-20 bg-luxury-gold mx-auto mb-8"
           ></motion.div>
           
           <motion.p 
-            initial={{
-              opacity: 0
-            }} 
-            animate={isInView ? {
-              opacity: 1
-            } : {}} 
-            transition={{
-              duration: 0.8,
-              delay: 0.5
-            }} 
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="text-luxury-gray dark:text-gray-300 max-w-2xl mx-auto text-lg"
           >
             {language.code === 'ar' ? "ظهوري وإنجازاتي في وسائل الإعلام المحلية والدولية" : "Media features and appearances highlighting my work and achievements"}
@@ -134,29 +155,51 @@ const MediaSection = () => {
           {mediaItems.map((item, index) => (
             <motion.div 
               key={index} 
-              variants={itemVariants} 
-              className="bg-white dark:bg-luxury-navy/30 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-1"
+              variants={itemVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className="bg-white dark:bg-luxury-navy/30 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer"
             >
-              <div className="p-6 flex flex-col h-[calc(100%-6rem)]">
+              <motion.div
+                variants={cardHoverVariants}
+                className="p-6 flex flex-col h-[calc(100%-6rem)]"
+              >
                 <div className="flex-grow">
-                  <h3 className="font-bold text-luxury-gold mb-3 text-lg">
+                  <motion.h3 
+                    className="font-bold text-luxury-gold mb-3 text-lg"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 + index * 0.05, duration: 0.5 }}
+                  >
                     {item.source}
-                  </h3>
-                  <p className="text-luxury-navy dark:text-white mb-4 line-clamp-3 text-lg">
+                  </motion.h3>
+                  <motion.p 
+                    className="text-luxury-navy dark:text-white mb-4 line-clamp-3 text-lg"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
+                  >
                     {item.title}
-                  </p>
+                  </motion.p>
                 </div>
                 
-                <a 
+                <motion.a 
                   href={item.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="flex items-center gap-2 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors group-hover:underline mt-4"
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <span>{language.code === 'ar' ? 'زيارة الرابط' : 'View Article'}</span>
-                  <ExternalLink size={16} />
-                </a>
-              </div>
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ExternalLink size={16} />
+                  </motion.div>
+                </motion.a>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
