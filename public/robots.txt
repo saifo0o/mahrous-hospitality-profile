@@ -6,5 +6,5 @@ Allow: /
 # Sitemap location
 Sitemap: https://islam-mahrous.com/sitemap.xml
 
-# Disallow specific paths if needed in the future
-# Disallow: /admin/
+# Crawl-delay to be respectful
+Crawl-delay: 1

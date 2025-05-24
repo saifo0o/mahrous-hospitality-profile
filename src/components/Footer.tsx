@@ -103,10 +103,25 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-gray-700 mt-8 pt-6 text-center">
-          <p className="text-gray-300">
-            &copy; {currentYear} Islam Mahrous. {language.code === 'ar' ? "جميع الحقوق محفوظة." : "All rights reserved."}
-          </p>
+        {/* Logo and Copyright Section */}
+        <div className="border-t border-gray-700 mt-8 pt-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Logo */}
+            <div className="flex items-center">
+              <div className="h-10 w-auto flex items-center justify-center bg-luxury-gold rounded-md px-3">
+                <span className="text-luxury-navy font-bold text-lg font-playfair">
+                  <span className="text-luxury-navy">I</span>M
+                </span>
+              </div>
+            </div>
+            
+            {/* Copyright */}
+            <div className="text-center md:text-right">
+              <p className="text-gray-300">
+                &copy; {currentYear} Islam Mahrous. {language.code === 'ar' ? "جميع الحقوق محفوظة." : "All rights reserved."}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

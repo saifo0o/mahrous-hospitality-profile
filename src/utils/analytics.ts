@@ -1,9 +1,17 @@
 
+// Islam Mahrous Portfolio Analytics Tracking
+// Custom analytics utilities for islam-mahrous.com
+
 // Function to track pageviews
 export const trackPageView = (path: string) => {
   if (typeof window !== 'undefined' && (window as any).gtag) {
     (window as any).gtag('config', 'G-8ZR0GLS69G', {
       page_path: path,
+      page_title: document.title,
+      page_location: window.location.href,
+      custom_map: {
+        'site_owner': 'Islam Mahrous'
+      }
     });
   }
 };
@@ -15,6 +23,7 @@ export const trackEvent = (action: string, category: string, label?: string, val
       event_category: category,
       event_label: label,
       value: value,
+      site_owner: 'Islam Mahrous'
     });
   }
 };
@@ -32,4 +41,9 @@ export const trackFormSubmit = (formName: string) => {
 // Track language changes
 export const trackLanguageChange = (language: string) => {
   trackEvent('change', 'language', language);
+};
+
+// Track contact interactions
+export const trackContactInteraction = (method: string) => {
+  trackEvent('contact', 'interaction', method);
 };
