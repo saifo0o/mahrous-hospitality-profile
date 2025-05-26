@@ -1,0 +1,17 @@
+
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="#1a365d"/>
+  
+  <!-- Luxury gold accent -->
+  <circle cx="32" cy="32" r="28" fill="none" stroke="#d4af37" stroke-width="2"/>
+  
+  <!-- Monogram "IM" -->
+  <text x="32" y="40" text-anchor="middle" fill="#d4af37" font-family="serif" font-size="24" font-weight="bold">IM</text>
+  
+  <!-- Small hospitality icon (building/hotel symbol) -->
+  <rect x="26" y="18" width="12" height="8" fill="none" stroke="#d4af37" stroke-width="1.5" rx="1"/>
+  <rect x="28" y="20" width="2" height="2" fill="#d4af37"/>
+  <rect x="31" y="20" width="2" height="2" fill="#d4af37"/>
+  <rect x="34" y="20" width="2" height="2" fill="#d4af37"/>
+</svg>
