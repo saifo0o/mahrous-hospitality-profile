@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -13,6 +12,11 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
 import MediaSection from '@/components/MediaSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import BlogSection from '@/components/BlogSection';
+import SpeakingSection from '@/components/SpeakingSection';
+import SocialProofWidget from '@/components/SocialProofWidget';
+import InteractiveTimeline from '@/components/InteractiveTimeline';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import EnhancedSEO from '@/components/EnhancedSEO';
@@ -78,12 +82,20 @@ const Index = () => {
         <HeroSection />
         <StatsSection />
         <AboutSection />
+        <SocialProofWidget />
         <ExperienceSection />
         <CaseStudiesSection />
         <ProjectsSection />
+        <BlogSection />
+        <SpeakingSection />
         <MediaSection />
         <TestimonialsSection />
         <AwardsSection />
+        <div className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4 md:px-8">
+            <NewsletterSignup />
+          </div>
+        </div>
         <ContactSection />
       </main>
       <Footer />
