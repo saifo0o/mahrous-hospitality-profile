@@ -15,10 +15,10 @@ import MediaSection from '@/components/MediaSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
-import SEOHead from '@/components/SEOHead';
+import EnhancedSEO from '@/components/EnhancedSEO';
 
 const Index = () => {
-  const { isRTL } = useLanguage();
+  const { isRTL, language } = useLanguage();
   const pageRef = useRef<HTMLDivElement>(null);
   
   // Smooth scroll to top on page load
@@ -61,7 +61,18 @@ const Index = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <SEOHead />
+      <EnhancedSEO 
+        title={language.code === 'ar' 
+          ? 'إسلام محروس | مدير تنفيذي عالمي في الضيافة'
+          : 'Islam Mahrous | Global Hospitality Executive'
+        }
+        description={language.code === 'ar'
+          ? 'مدير تنفيذي في مجال الضيافة مع أكثر من 30 عاماً من الخبرة متخصص في عمليات ما قبل الافتتاح والتجديدات والتميز التشغيلي في أسواق الشرق الأوسط وشمال إفريقيا والأسواق الدولية.'
+          : 'Hospitality Executive with over 30 years of experience specializing in pre-opening, renovations, and operational excellence across MENA and international markets.'
+        }
+        tags={['hospitality', 'hotel management', 'general manager', 'MENA', 'luxury hotels']}
+        type="website"
+      />
       <Navbar />
       <main className="flex-grow">
         <HeroSection />

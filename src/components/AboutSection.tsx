@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
+import OptimizedImage from './OptimizedImage';
 
 const AboutSection = () => {
   const { t, language, isRTL } = useLanguage();
@@ -12,10 +13,13 @@ const AboutSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className={`flex flex-col md:flex-row items-center gap-12 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
           <div className="md:w-1/2">
-            <img 
-              alt={language.code === 'ar' ? "إسلام محروس - تنفيذي في مجال الضيافة" : "Islam Mahrous - Hospitality Executive"} 
-              className="rounded-lg shadow-xl w-full max-w-md mx-auto object-cover h-[500px]" 
-              src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg" 
+            <OptimizedImage
+              src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg"
+              alt={language.code === 'ar' ? "إسلام محروس - تنفيذي في مجال الضيافة" : "Islam Mahrous - Hospitality Executive"}
+              className="rounded-lg shadow-xl w-full max-w-md mx-auto h-[500px]"
+              priority={true}
+              width={400}
+              height={500}
             />
           </div>
           
