@@ -1,25 +1,17 @@
+
 import React, { useEffect, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection';
 import StatsSection from '@/components/StatsSection';
-import ExperienceSection from '@/components/ExperienceSection';
-import ProjectsSection from '@/components/ProjectsSection';
-import AwardsSection from '@/components/AwardsSection';
 import ContactSection from '@/components/ContactSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import CaseStudiesSection from '@/components/CaseStudiesSection';
-import MediaSection from '@/components/MediaSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import BlogSection from '@/components/BlogSection';
-import SpeakingSection from '@/components/SpeakingSection';
-import SocialProofWidget from '@/components/SocialProofWidget';
-import InteractiveTimeline from '@/components/InteractiveTimeline';
-import NewsletterSignup from '@/components/NewsletterSignup';
+import DynamicLoader from '@/components/DynamicLoader';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import SkeletonLoader from '@/components/SkeletonLoader';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
-import EnhancedSEO from '@/components/EnhancedSEO';
+import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 
 const Index = () => {
   const { isRTL, language } = useLanguage();
@@ -55,6 +47,8 @@ const Index = () => {
     duration: 0.5
   };
 
+  const sectionFallback = <SkeletonLoader type="card" className="min-h-[400px]" />;
+
   return (
     <motion.div 
       ref={pageRef}
@@ -65,7 +59,7 @@ const Index = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <EnhancedSEO 
+      <EnhancedSEOHead 
         title={language.code === 'ar' 
           ? 'إسلام محروس | مدير تنفيذي عالمي في الضيافة'
           : 'Islam Mahrous | Global Hospitality Executive'
@@ -81,21 +75,55 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         <StatsSection />
-        <AboutSection />
-        <SocialProofWidget />
-        <ExperienceSection />
-        <CaseStudiesSection />
-        <ProjectsSection />
-        <BlogSection />
-        <SpeakingSection />
-        <MediaSection />
-        <TestimonialsSection />
-        <AwardsSection />
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="AboutSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="SocialProofWidget" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="ExperienceSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="CaseStudiesSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="ProjectsSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="BlogSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="SpeakingSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="MediaSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="TestimonialsSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <DynamicLoader componentPath="AwardsSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
         <div className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 md:px-8">
-            <NewsletterSignup />
+            <ErrorBoundary>
+              <DynamicLoader componentPath="NewsletterSignup" fallback={sectionFallback} />
+            </ErrorBoundary>
           </div>
         </div>
+        
         <ContactSection />
       </main>
       <Footer />
