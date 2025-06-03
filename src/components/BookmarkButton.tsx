@@ -48,7 +48,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
           ? `تم إلغاء حفظ "${itemTitle}"`
           : `"${itemTitle}" removed from bookmarks`,
       });
-      trackUserEngagement('bookmark', 'remove', itemType, 1);
+      trackUserEngagement('bookmark', 'remove', itemType);
     } else {
       updatedBookmarks = [...bookmarks, itemId];
       setIsBookmarked(true);
@@ -58,7 +58,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
           ? `تم حفظ "${itemTitle}"`
           : `"${itemTitle}" saved to bookmarks`,
       });
-      trackUserEngagement('bookmark', 'add', itemType, 1);
+      trackUserEngagement('bookmark', 'add', itemType);
     }
 
     localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
