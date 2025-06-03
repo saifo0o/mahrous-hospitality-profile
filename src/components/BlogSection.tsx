@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, ArrowRight, TrendingUp, Search, Filter } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import BlogPostModal from './BlogPostModal';
+import ContentFilter, { FilterOption, SortOption } from './ContentFilter';
+import BookmarkButton from './BookmarkButton';
+import ReadingProgress from './ReadingProgress';
 
 interface BlogPost {
   id: string;
@@ -24,8 +26,9 @@ const BlogSection: React.FC = () => {
   const { language, isRTL } = useLanguage();
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedSort, setSelectedSort] = useState('date-desc');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const blogPosts: BlogPost[] = [
     {
@@ -134,19 +137,60 @@ const BlogSection: React.FC = () => {
     }
   ];
 
-  const categories = [
-    { value: 'all', label: language.code === 'ar' ? "الكل" : "All" },
-    { value: language.code === 'ar' ? "استراتيجية" : "Strategy", label: language.code === 'ar' ? "استراتيجية" : "Strategy" },
-    { value: language.code === 'ar' ? "العمليات" : "Operations", label: language.code === 'ar' ? "العمليات" : "Operations" },
-    { value: language.code === 'ar' ? "التكنولوجيا" : "Technology", label: language.code === 'ar' ? "التكنولوجيا" : "Technology" }
+  // Filter and sort options
+  const categoryOptions: FilterOption[] = [
+    { 
+      value: 'all', 
+      label: language.code === 'ar' ? "الكل" : "All",
+      count: blogPosts.length
+    },
+    { 
+      value: language.code === 'ar' ? "استراتيجية" : "Strategy", 
+      label: language.code === 'ar' ? "استراتيجية" : "Strategy",
+      count: blogPosts.filter(p => p.category === (language.code === 'ar' ? "استراتيجية" : "Strategy")).length
+    },
+    { 
+      value: language.code === 'ar' ? "العمليات" : "Operations", 
+      label: language.code === 'ar' ? "العمليات" : "Operations",
+      count: blogPosts.filter(p => p.category === (language.code === 'ar' ? "العمليات" : "Operations")).length
+    },
+    { 
+      value: language.code === 'ar' ? "التكنولوجيا" : "Technology", 
+      label: language.code === 'ar' ? "التكنولوجيا" : "Technology",
+      count: blogPosts.filter(p => p.category === (language.code === 'ar' ? "التكنولوجيا" : "Technology")).length
+    }
   ];
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const sortOptions: SortOption[] = [
+    { value: 'date-desc', label: language.code === 'ar' ? 'الأحدث أولاً' : 'Newest First' },
+    { value: 'date-asc', label: language.code === 'ar' ? 'الأقدم أولاً' : 'Oldest First' },
+    { value: 'title-asc', label: language.code === 'ar' ? 'العنوان (أ-ي)' : 'Title (A-Z)' },
+    { value: 'featured', label: language.code === 'ar' ? 'المميز أولاً' : 'Featured First' }
+  ];
+
+  // Filter and sort posts
+  const filteredAndSortedPosts = React.useMemo(() => {
+    let filtered = selectedCategory === 'all' 
+      ? blogPosts 
+      : blogPosts.filter(post => post.category === selectedCategory);
+
+    // Sort posts
+    switch (selectedSort) {
+      case 'date-asc':
+        filtered.sort((a, b) => new Date(a.publishDate).getTime() - new Date(b.publishDate).getTime());
+        break;
+      case 'title-asc':
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'featured':
+        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+        break;
+      default: // date-desc
+        filtered.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+    }
+
+    return filtered;
+  }, [selectedCategory, selectedSort]);
 
   const handlePostClick = (post: BlogPost) => {
     setSelectedPost(post);
@@ -155,6 +199,8 @@ const BlogSection: React.FC = () => {
 
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <ReadingProgress />
+      
       <div className="container mx-auto px-4 md:px-8">
         <motion.div 
           className="text-center mb-12"
@@ -174,48 +220,35 @@ const BlogSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Search and Filter Controls */}
+        {/* Content Filter */}
         <motion.div 
-          className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between"
+          className="mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-            <Input
-              placeholder={language.code === 'ar' ? "ابحث في المقالات..." : "Search articles..."}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <Filter className="h-4 w-4 text-gray-500" />
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="p-2 border border-gray-300 rounded-md bg-white dark:bg-gray-800"
-            >
-              {categories.map(category => (
-                <option key={category.value} value={category.value}>
-                  {category.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          <ContentFilter
+            categories={categoryOptions}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+            sortOptions={sortOptions}
+            selectedSort={selectedSort}
+            onSortChange={setSelectedSort}
+            viewMode={viewMode}
+            onViewModeChange={setViewMode}
+            resultCount={filteredAndSortedPosts.length}
+          />
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, staggerChildren: 0.1 }}
         >
-          {filteredPosts.map((post) => (
+          {filteredAndSortedPosts.map((post) => (
             <motion.div 
               key={post.id}
               initial={{ opacity: 0, y: 20 }}
@@ -226,31 +259,42 @@ const BlogSection: React.FC = () => {
               <Card 
                 className={`h-full hover:shadow-lg transition-all duration-300 cursor-pointer group ${
                   post.featured ? 'ring-2 ring-luxury-gold' : ''
-                }`}
+                } ${viewMode === 'list' ? 'flex-row' : ''}`}
                 onClick={() => handlePostClick(post)}
               >
                 <CardContent className="p-6 flex flex-col h-full">
-                  {post.featured && (
-                    <div className="flex items-center mb-3">
-                      <TrendingUp className="h-4 w-4 text-luxury-gold mr-2" />
-                      <span className="text-luxury-gold text-sm font-medium">
-                        {language.code === 'ar' ? "مميز" : "Featured"}
-                      </span>
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      {post.featured && (
+                        <div className="flex items-center mb-3">
+                          <TrendingUp className="h-4 w-4 text-luxury-gold mr-2" />
+                          <span className="text-luxury-gold text-sm font-medium">
+                            {language.code === 'ar' ? "مميز" : "Featured"}
+                          </span>
+                        </div>
+                      )}
+                      
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                        <span className="bg-luxury-navy text-white px-2 py-1 rounded text-xs">
+                          {post.category}
+                        </span>
+                        <div className="flex items-center">
+                          <Calendar className="h-4 w-4 mr-1" />
+                          {new Date(post.publishDate).toLocaleDateString(language.code === 'ar' ? 'ar-EG' : 'en-US')}
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="h-4 w-4 mr-1" />
+                          {post.readTime}
+                        </div>
+                      </div>
                     </div>
-                  )}
-                  
-                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                    <span className="bg-luxury-navy text-white px-2 py-1 rounded text-xs">
-                      {post.category}
-                    </span>
-                    <div className="flex items-center">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      {new Date(post.publishDate).toLocaleDateString(language.code === 'ar' ? 'ar-EG' : 'en-US')}
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="h-4 w-4 mr-1" />
-                      {post.readTime}
-                    </div>
+                    
+                    <BookmarkButton
+                      itemId={post.id}
+                      itemType="blog"
+                      itemTitle={post.title}
+                      onClick={(e) => e.stopPropagation()}
+                    />
                   </div>
                   
                   <h3 className="text-xl font-bold text-luxury-navy dark:text-white mb-3 group-hover:text-luxury-gold transition-colors">
@@ -273,7 +317,7 @@ const BlogSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {filteredPosts.length === 0 && (
+        {filteredAndSortedPosts.length === 0 && (
           <motion.div 
             className="text-center py-12"
             initial={{ opacity: 0 }}
