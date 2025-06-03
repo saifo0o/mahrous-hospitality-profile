@@ -16,7 +16,7 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
 
   useEffect(() => {
     const updateProgress = () => {
-      const targetElement = document.querySelector(target);
+      const targetElement = document.querySelector(target) as HTMLElement;
       if (!targetElement) return;
 
       const scrollTop = window.scrollY;

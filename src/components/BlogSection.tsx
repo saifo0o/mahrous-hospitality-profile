@@ -293,7 +293,6 @@ const BlogSection: React.FC = () => {
                       itemId={post.id}
                       itemType="blog"
                       itemTitle={post.title}
-                      onClick={(e) => e.stopPropagation()}
                     />
                   </div>
                   

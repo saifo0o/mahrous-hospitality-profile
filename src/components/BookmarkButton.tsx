@@ -33,7 +33,9 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
     setIsBookmarked(bookmarks.includes(itemId));
   }, [itemId]);
 
-  const toggleBookmark = () => {
+  const toggleBookmark = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent event bubbling
+    
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
     let updatedBookmarks;
 
@@ -46,7 +48,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
           ? `تم إلغاء حفظ "${itemTitle}"`
           : `"${itemTitle}" removed from bookmarks`,
       });
-      trackUserEngagement('bookmark', 'remove', itemType);
+      trackUserEngagement('bookmark', 'remove', itemType, 1);
     } else {
       updatedBookmarks = [...bookmarks, itemId];
       setIsBookmarked(true);
@@ -56,7 +58,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
           ? `تم حفظ "${itemTitle}"`
           : `"${itemTitle}" saved to bookmarks`,
       });
-      trackUserEngagement('bookmark', 'add', itemType);
+      trackUserEngagement('bookmark', 'add', itemType, 1);
     }
 
     localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
