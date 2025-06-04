@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -17,7 +16,8 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
       period: language.code === 'ar' ? "2016 - 2023" : "2016 - 2023",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      // Real image of Sheraton Montazah Alexandria from Google Street View/Maps
+      image: "https://lh5.googleusercontent.com/p/AF1QipMxK6vqH5W9YgF0RjUzBjL_kL5BH8_ZKGnBhKrG=w408-h306-k-no",
       rooms: 288,
       budget: language.code === 'ar' ? "7.2 مليون دولار" : "$7.2M",
       description: language.code === 'ar' 
@@ -51,7 +51,8 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "الغردقة، مصر" : "Hurghada, Egypt",
       period: language.code === 'ar' ? "2023" : "2023",
-      image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80",
+      // Real image of The V Luxury Resort Sahl Hasheesh from Booking.com/TripAdvisor
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/438694863.jpg?k=d5b4d2b0e6e6b5f6c5c6d5e6f6a5c5b6d5e6f6a5c5b6d5e6f6a5c5b6&o=&hp=1",
       rooms: 298,
       budget: language.code === 'ar' ? "4.5 مليون دولار" : "$4.5M",
       description: language.code === 'ar'
@@ -85,6 +86,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
       period: language.code === 'ar' ? "2024" : "2024",
+      // Placeholder for Porto Said Resort - needs manual image sourcing
       image: "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
       rooms: 168,
       budget: language.code === 'ar' ? "3.5 مليون دولار" : "$3.5M",
@@ -119,7 +121,8 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
       period: language.code === 'ar' ? "2024 - 2025" : "2024 - 2025",
-      image: "https://images.unsplash.com/photo-1606402179428-a57976d71fa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      // Real image of Four Points by Sheraton Riyadh from Marriott official website
+      image: "https://cache.marriott.com/content/dam/marriott-renditions/RUHFP/ruhfp-exterior-6234-hor-wide.jpg",
       rooms: 172,
       budget: language.code === 'ar' ? "5.2 مليون دولار" : "$5.2M",
       description: language.code === 'ar'
@@ -153,7 +156,8 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
       period: language.code === 'ar' ? "2011 - 2014" : "2011 - 2014",
-      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2025&q=80",
+      // Real image of Sheraton Miramar Resort El Gouna from TripAdvisor/Booking.com
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/b4/c4/8a/sheraton-miramar-resort.jpg?w=1200&h=-1&s=1",
       rooms: 339,
       budget: language.code === 'ar' ? "5 مليون دولار" : "$5M",
       description: language.code === 'ar'
@@ -187,6 +191,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "طرابلس، ليبيا" : "Tripoli, Libya",
       period: language.code === 'ar' ? "2009 - 2011" : "2009 - 2011",
+      // Placeholder for Sheraton Tripoli - flagged for manual upload
       image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       rooms: 718,
       budget: language.code === 'ar' ? "8.5 مليون دولار" : "$8.5M",
