@@ -81,7 +81,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
             ? `تم إلغاء حفظ "${itemTitle}"`
             : `"${itemTitle}" removed from bookmarks`,
         });
-        trackUserEngagement('bookmark_remove', itemType, { value: 1 });
+        trackUserEngagement('bookmark_remove', itemType, 1);
       } else {
         updatedBookmarks = [...bookmarks, itemId];
         setIsBookmarked(true);
@@ -91,7 +91,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
             ? `تم حفظ "${itemTitle}"`
             : `"${itemTitle}" saved to bookmarks`,
         });
-        trackUserEngagement('bookmark_add', itemType, { value: 1 });
+        trackUserEngagement('bookmark_add', itemType, 1);
       }
 
       localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
@@ -118,7 +118,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
             ? `تم إلغاء حفظ "${itemTitle}"`
             : `"${itemTitle}" removed from bookmarks`,
         });
-        trackUserEngagement('bookmark_remove', itemType, { value: 1 });
+        trackUserEngagement('bookmark_remove', itemType, 1);
       } else {
         // Add bookmark
         const { error } = await supabase
@@ -139,7 +139,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
             ? `تم حفظ "${itemTitle}"`
             : `"${itemTitle}" saved to bookmarks`,
         });
-        trackUserEngagement('bookmark_add', itemType, { value: 1 });
+        trackUserEngagement('bookmark_add', itemType, 1);
       }
     } catch (error) {
       console.error('Error toggling bookmark:', error);

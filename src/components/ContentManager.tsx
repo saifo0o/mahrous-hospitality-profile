@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,8 +19,8 @@ interface ContentItem {
   title: string;
   excerpt: string | null;
   content: string | null;
-  content_type: string;
-  status: string;
+  content_type: 'blog' | 'project' | 'speaking' | 'testimonial' | 'award' | 'media';
+  status: 'draft' | 'published' | 'archived';
   featured: boolean;
   category: string | null;
   tags: string[] | null;
@@ -34,7 +33,17 @@ const ContentManager: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<ContentItem | null>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    title: string;
+    excerpt: string;
+    content: string;
+    content_type: 'blog' | 'project' | 'speaking' | 'testimonial' | 'award' | 'media';
+    status: 'draft' | 'published' | 'archived';
+    featured: boolean;
+    category: string;
+    tags: string;
+    publish_date: string;
+  }>({
     title: '',
     excerpt: '',
     content: '',
@@ -101,7 +110,7 @@ const ContentManager: React.FC = () => {
       } else {
         const { error } = await supabase
           .from('content')
-          .insert([contentData]);
+          .insert(contentData);
 
         if (error) throw error;
         
@@ -236,7 +245,9 @@ const ContentManager: React.FC = () => {
                   <Label htmlFor="content_type">Type</Label>
                   <Select
                     value={formData.content_type}
-                    onValueChange={(value) => setFormData({ ...formData, content_type: value })}
+                    onValueChange={(value: 'blog' | 'project' | 'speaking' | 'testimonial' | 'award' | 'media') => 
+                      setFormData({ ...formData, content_type: value })
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -278,7 +289,9 @@ const ContentManager: React.FC = () => {
                   <Label htmlFor="status">Status</Label>
                   <Select
                     value={formData.status}
-                    onValueChange={(value) => setFormData({ ...formData, status: value })}
+                    onValueChange={(value: 'draft' | 'published' | 'archived') => 
+                      setFormData({ ...formData, status: value })
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue />

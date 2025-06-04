@@ -14,7 +14,7 @@ interface UserProfile {
   id: string;
   email: string;
   full_name: string | null;
-  role: string;
+  role: 'admin' | 'editor' | 'viewer';
   avatar_url: string | null;
   created_at: string;
 }
@@ -50,7 +50,7 @@ const UserManager: React.FC = () => {
     }
   };
 
-  const updateUserRole = async (userId: string, newRole: string) => {
+  const updateUserRole = async (userId: string, newRole: 'admin' | 'editor' | 'viewer') => {
     try {
       const { error } = await supabase
         .from('profiles')
@@ -128,7 +128,7 @@ const UserManager: React.FC = () => {
                   <TableCell>
                     <Select
                       value={user.role}
-                      onValueChange={(newRole) => updateUserRole(user.id, newRole)}
+                      onValueChange={(newRole: 'admin' | 'editor' | 'viewer') => updateUserRole(user.id, newRole)}
                     >
                       <SelectTrigger className="w-32">
                         <SelectValue />
