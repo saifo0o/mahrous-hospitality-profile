@@ -2,16 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { X, Menu } from 'lucide-react';
+import { X, Menu, User, LogOut, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSelector from './LanguageSelector';
+import AuthModal from './AuthModal';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAuth } from '@/context/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const location = useLocation();
   const { t, language, isRTL } = useLanguage();
+  const { user, userRole, signOut } = useAuth();
   
   const navLinks = [
     { name: t('home'), path: '/' },
@@ -107,12 +111,67 @@ const Navbar = () => {
               </motion.div>
             ))}
             
+            {/* Admin link for admin/editor users */}
+            {(userRole === 'admin' || userRole === 'editor') && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.7 }}
+              >
+                <Link
+                  to="/admin"
+                  className={`text-sm font-medium transition-colors nav-link ${
+                    location.pathname === '/admin' 
+                      ? 'text-luxury-gold' 
+                      : scrolled ? 'text-luxury-navy hover:text-luxury-gold' : 'text-white hover:text-luxury-gold'
+                  }`}
+                >
+                  <Settings className="inline h-4 w-4 mr-1" />
+                  {language.code === 'ar' ? 'إدارة' : 'Admin'}
+                </Link>
+              </motion.div>
+            )}
+            
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.6 }}
             >
               <LanguageSelector />
+            </motion.div>
+            
+            {/* Auth Section */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
+              className="flex items-center space-x-2"
+            >
+              {user ? (
+                <div className="flex items-center space-x-2">
+                  <span className={`text-sm ${scrolled ? 'text-luxury-navy' : 'text-white'}`}>
+                    {user.email}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={signOut}
+                    className={scrolled ? "text-luxury-navy hover:text-luxury-gold" : "text-white hover:text-luxury-gold"}
+                  >
+                    <LogOut className="h-4 w-4" />
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className={scrolled ? "text-luxury-navy hover:text-luxury-gold" : "text-white hover:text-luxury-gold"}
+                >
+                  <User className="h-4 w-4 mr-1" />
+                  {language.code === 'ar' ? 'دخول' : 'Login'}
+                </Button>
+              )}
             </motion.div>
           </div>
           
@@ -163,11 +222,79 @@ const Navbar = () => {
                     </Link>
                   </motion.div>
                 ))}
+                
+                {/* Mobile Admin Link */}
+                {(userRole === 'admin' || userRole === 'editor') && (
+                  <motion.div
+                    initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navLinks.length * 0.1 }}
+                  >
+                    <Link
+                      to="/admin"
+                      className={`py-2 text-base font-medium transition-all duration-300 ${
+                        location.pathname === '/admin' 
+                          ? 'text-luxury-gold' 
+                          : 'text-luxury-navy dark:text-white hover:text-luxury-gold'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Settings className="inline h-4 w-4 mr-1" />
+                      {language.code === 'ar' ? 'إدارة' : 'Admin'}
+                    </Link>
+                  </motion.div>
+                )}
+                
+                {/* Mobile Auth Section */}
+                <motion.div
+                  initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: (navLinks.length + 1) * 0.1 }}
+                  className="pt-2 border-t border-gray-200"
+                >
+                  {user ? (
+                    <div className="space-y-2">
+                      <p className="text-sm text-luxury-navy dark:text-white">
+                        {user.email}
+                      </p>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          signOut();
+                          setIsOpen(false);
+                        }}
+                        className="w-full"
+                      >
+                        <LogOut className="h-4 w-4 mr-2" />
+                        {language.code === 'ar' ? 'خروج' : 'Logout'}
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setIsAuthModalOpen(true);
+                        setIsOpen(false);
+                      }}
+                      className="w-full"
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      {language.code === 'ar' ? 'دخول' : 'Login'}
+                    </Button>
+                  )}
+                </motion.div>
               </nav>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+      
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
     </header>
   );
 };
