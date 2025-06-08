@@ -75,7 +75,8 @@ export const useGlobalSearch = () => {
           : "Comprehensive guide to ensuring successful launches from planning to operations",
         type: 'speaking' as const,
         url: '/speaking/pre-opening-strategies',
-        category: language.code === 'ar' ? "استراتيجية" : "Strategy"
+        category: language.code === 'ar' ? "استراتيجية" : "Strategy",
+        date: "2024-03-15"
       }
     ];
 
