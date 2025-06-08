@@ -6,9 +6,10 @@ import HeroSection from '@/components/HeroSection';
 import StatsSection from '@/components/StatsSection';
 import ContactSection from '@/components/ContactSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import ReadingProgress from '@/components/ReadingProgress';
 import DynamicLoader from '@/components/DynamicLoader';
 import ErrorBoundary from '@/components/ErrorBoundary';
-import SkeletonLoader from '@/components/SkeletonLoader';
+import EnhancedLoader from '@/components/EnhancedLoader';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
@@ -47,12 +48,12 @@ const Index = () => {
     duration: 0.5
   };
 
-  const sectionFallback = <SkeletonLoader type="card" className="min-h-[400px]" />;
+  const sectionFallback = <EnhancedLoader type="card" className="min-h-[400px]" />;
 
   return (
     <motion.div 
       ref={pageRef}
-      className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}
+      className={`min-h-screen flex flex-col reading-content ${isRTL ? 'text-right' : 'text-left'}`}
       initial="initial"
       animate="in"
       exit="out"
@@ -71,7 +72,10 @@ const Index = () => {
         tags={['hospitality', 'hotel management', 'general manager', 'MENA', 'luxury hotels']}
         type="website"
       />
+      
+      <ReadingProgress />
       <Navbar />
+      
       <main className="flex-grow">
         <HeroSection />
         <StatsSection />
