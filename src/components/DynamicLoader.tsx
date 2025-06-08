@@ -18,7 +18,6 @@ const componentMap = {
   'AwardsSection': lazy(() => import('./AwardsSection')),
   'BlogSection': lazy(() => import('./BlogSection')),
   'SpeakingSection': lazy(() => import('./SpeakingSection')),
-  'InteractiveTimeline': lazy(() => import('./InteractiveTimeline')),
   'NewsletterSignup': lazy(() => import('./NewsletterSignup')),
 };
 
