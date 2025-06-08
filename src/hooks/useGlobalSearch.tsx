@@ -45,6 +45,19 @@ export const useGlobalSearch = () => {
         url: '/blog/pre-opening-operations',
         category: language.code === 'ar' ? "العمليات" : "Operations",
         date: "2024-10-28"
+      },
+      {
+        id: 'blog-3',
+        title: language.code === 'ar'
+          ? "تحويل تجربة الضيوف من خلال الذكاء الاصطناعي"
+          : "Transforming Guest Experience Through AI",
+        excerpt: language.code === 'ar'
+          ? "كيف يمكن للذكاء الاصطناعي أن يرفع من مستوى تجربة الضيوف في الفنادق الفاخرة."
+          : "How artificial intelligence can elevate guest experience in luxury hotels.",
+        type: 'blog' as const,
+        url: '/blog/ai-guest-experience',
+        category: language.code === 'ar' ? "تقنية" : "Technology",
+        date: "2024-09-20"
       }
     ];
 
@@ -61,6 +74,19 @@ export const useGlobalSearch = () => {
         url: '/projects/sheraton-alexandria',
         category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
         date: "2018-2020"
+      },
+      {
+        id: 'project-2',
+        title: language.code === 'ar'
+          ? "افتتاح منتجع الجونة الفاخر"
+          : "El Gouna Luxury Resort Pre-Opening",
+        excerpt: language.code === 'ar'
+          ? "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر من 5 نجوم على البحر الأحمر."
+          : "Managing pre-opening operations for a 5-star luxury resort on the Red Sea.",
+        type: 'project' as const,
+        url: '/projects/el-gouna-resort',
+        category: language.code === 'ar' ? "افتتاح جديد" : "New Opening",
+        date: "2019-2021"
       }
     ];
 
@@ -77,10 +103,55 @@ export const useGlobalSearch = () => {
         url: '/speaking/pre-opening-strategies',
         category: language.code === 'ar' ? "استراتيجية" : "Strategy",
         date: "2024-03-15"
+      },
+      {
+        id: 'speaking-2',
+        title: language.code === 'ar'
+          ? "القيادة في صناعة الضيافة: رؤى من الشرق الأوسط"
+          : "Leadership in Hospitality: Insights from the Middle East",
+        excerpt: language.code === 'ar'
+          ? "تطوير مهارات القيادة الفعالة في بيئة الضيافة المتنوعة ثقافياً"
+          : "Developing effective leadership skills in culturally diverse hospitality environments",
+        type: 'speaking' as const,
+        url: '/speaking/hospitality-leadership',
+        category: language.code === 'ar' ? "قيادة" : "Leadership",
+        date: "2024-01-20"
       }
     ];
 
-    return [...blogPosts, ...projects, ...speakingTopics];
+    const awards = [
+      {
+        id: 'award-1',
+        title: language.code === 'ar'
+          ? "جائزة أفضل مدير عام في منطقة الشرق الأوسط"
+          : "Best General Manager Award - Middle East",
+        excerpt: language.code === 'ar'
+          ? "تقدير للتميز في الإدارة والقيادة في صناعة الضيافة"
+          : "Recognition for excellence in hospitality management and leadership",
+        type: 'award' as const,
+        url: '/awards/best-general-manager',
+        category: language.code === 'ar' ? "إدارة" : "Management",
+        date: "2023-12-01"
+      }
+    ];
+
+    const testimonials = [
+      {
+        id: 'testimonial-1',
+        title: language.code === 'ar'
+          ? "شهادة من الرئيس التنفيذي لشركة شيراتون"
+          : "Testimonial from Sheraton CEO",
+        excerpt: language.code === 'ar'
+          ? "إسلام قائد استثنائي بقدرة فريدة على تحويل التحديات إلى فرص نجاح"
+          : "Islam is an exceptional leader with a unique ability to turn challenges into success opportunities",
+        type: 'testimonial' as const,
+        url: '/testimonials/sheraton-ceo',
+        category: language.code === 'ar' ? "قيادة" : "Leadership",
+        date: "2023-06-15"
+      }
+    ];
+
+    return [...blogPosts, ...projects, ...speakingTopics, ...awards, ...testimonials];
   }, [language]);
 
   const searchResults = useMemo(() => {

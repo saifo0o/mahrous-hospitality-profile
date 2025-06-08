@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Search, X, ArrowRight, Clock, BookOpen, Award, Briefcase } from 'lucide-react';
+import { Search, X, ArrowRight, Clock, BookOpen, Award, Briefcase, User, Trophy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
@@ -37,7 +37,9 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
     switch (type) {
       case 'blog': return <BookOpen className="w-4 h-4" />;
       case 'project': return <Briefcase className="w-4 h-4" />;
-      case 'award': return <Award className="w-4 h-4" />;
+      case 'award': return <Trophy className="w-4 h-4" />;
+      case 'speaking': return <User className="w-4 h-4" />;
+      case 'testimonial': return <Award className="w-4 h-4" />;
       default: return <Search className="w-4 h-4" />;
     }
   };
@@ -47,9 +49,15 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
       blog: language.code === 'ar' ? 'مدونة' : 'Blog',
       project: language.code === 'ar' ? 'مشروع' : 'Project',
       award: language.code === 'ar' ? 'جائزة' : 'Award',
-      speaking: language.code === 'ar' ? 'محاضرة' : 'Speaking'
+      speaking: language.code === 'ar' ? 'محاضرة' : 'Speaking',
+      testimonial: language.code === 'ar' ? 'شهادة' : 'Testimonial'
     };
     return labels[type as keyof typeof labels] || type;
+  };
+
+  const clearRecentSearches = () => {
+    setRecentSearches([]);
+    localStorage.removeItem('recentSearches');
   };
 
   useEffect(() => {
@@ -107,7 +115,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
             {isSearching && hasResults && (
               <div className="p-4">
                 <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
-                  {language.code === 'ar' ? 'النتائج' : 'Results'}
+                  {language.code === 'ar' ? `النتائج (${results.length})` : `Results (${results.length})`}
                 </h3>
                 <div className="space-y-2">
                   {results.map((result) => (
@@ -115,7 +123,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
                       key={result.id}
                       to={result.url}
                       onClick={onClose}
-                      className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
                     >
                       <div className="flex items-start gap-3">
                         <div className="text-luxury-gold mt-1">
@@ -123,7 +131,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <h4 className="font-medium text-gray-900 dark:text-white truncate">
+                            <h4 className="font-medium text-gray-900 dark:text-white truncate group-hover:text-luxury-gold transition-colors">
                               {result.title}
                             </h4>
                             <span className="text-xs px-2 py-1 bg-luxury-gold/10 text-luxury-gold rounded-full">
@@ -137,7 +145,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
                             <p className="text-xs text-gray-500 mt-1">{result.date}</p>
                           )}
                         </div>
-                        <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" />
+                        <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1 group-hover:text-luxury-gold transition-colors" />
                       </div>
                     </Link>
                   ))}
@@ -149,6 +157,9 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
               <div className="p-8 text-center text-gray-500 dark:text-gray-400">
                 <Search className="w-8 h-8 mx-auto mb-2 opacity-50" />
                 <p>{language.code === 'ar' ? 'لم يتم العثور على نتائج' : 'No results found'}</p>
+                <p className="text-sm mt-1">
+                  {language.code === 'ar' ? 'جرب مصطلحات بحث مختلفة' : 'Try different search terms'}
+                </p>
               </div>
             )}
 
@@ -156,9 +167,19 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
               <div className="p-4">
                 {recentSearches.length > 0 && (
                   <>
-                    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
-                      {language.code === 'ar' ? 'عمليات البحث الأخيرة' : 'Recent Searches'}
-                    </h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        {language.code === 'ar' ? 'عمليات البحث الأخيرة' : 'Recent Searches'}
+                      </h3>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={clearRecentSearches}
+                        className="text-xs text-gray-400 hover:text-gray-600"
+                      >
+                        {language.code === 'ar' ? 'مسح' : 'Clear'}
+                      </Button>
+                    </div>
                     <div className="space-y-1 mb-6">
                       {recentSearches.map((search, index) => (
                         <button
