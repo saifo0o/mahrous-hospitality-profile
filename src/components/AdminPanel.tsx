@@ -7,6 +7,8 @@ import { useLanguage } from '@/context/LanguageContext';
 import ContentManager from './ContentManager';
 import MediaManager from './MediaManager';
 import UserManager from './UserManager';
+import SiteSettingsManager from './SiteSettingsManager';
+import NavigationManager from './NavigationManager';
 
 const AdminPanel: React.FC = () => {
   const { userRole } = useAuth();
@@ -33,22 +35,34 @@ const AdminPanel: React.FC = () => {
     <div className="container mx-auto px-4 py-8">
       <Card>
         <CardHeader>
-          <CardTitle>
-            {language.code === 'ar' ? 'لوحة الإدارة' : 'Admin Panel'}
+          <CardTitle className="text-3xl">
+            {language.code === 'ar' ? 'لوحة الإدارة الشاملة' : 'Comprehensive Admin Panel'}
           </CardTitle>
+          <p className="text-muted-foreground">
+            {language.code === 'ar' 
+              ? 'تحكم كامل في جميع جوانب الموقع والمحتوى' 
+              : 'Complete control over all website aspects and content'
+            }
+          </p>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="content" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-5 lg:grid-cols-5">
               <TabsTrigger value="content">
-                {language.code === 'ar' ? 'إدارة المحتوى' : 'Content'}
+                {language.code === 'ar' ? 'المحتوى' : 'Content'}
+              </TabsTrigger>
+              <TabsTrigger value="navigation">
+                {language.code === 'ar' ? 'التنقل' : 'Navigation'}
               </TabsTrigger>
               <TabsTrigger value="media">
-                {language.code === 'ar' ? 'إدارة الوسائط' : 'Media'}
+                {language.code === 'ar' ? 'الوسائط' : 'Media'}
+              </TabsTrigger>
+              <TabsTrigger value="settings">
+                {language.code === 'ar' ? 'الإعدادات' : 'Settings'}
               </TabsTrigger>
               {userRole === 'admin' && (
                 <TabsTrigger value="users">
-                  {language.code === 'ar' ? 'إدارة المستخدمين' : 'Users'}
+                  {language.code === 'ar' ? 'المستخدمين' : 'Users'}
                 </TabsTrigger>
               )}
             </TabsList>
@@ -57,8 +71,16 @@ const AdminPanel: React.FC = () => {
               <ContentManager />
             </TabsContent>
             
+            <TabsContent value="navigation" className="mt-6">
+              <NavigationManager />
+            </TabsContent>
+            
             <TabsContent value="media" className="mt-6">
               <MediaManager />
+            </TabsContent>
+            
+            <TabsContent value="settings" className="mt-6">
+              <SiteSettingsManager />
             </TabsContent>
             
             {userRole === 'admin' && (
