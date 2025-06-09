@@ -128,12 +128,21 @@ const SocialShareWidget: React.FC<SocialShareWidgetProps> = ({
     }
   };
 
+  // Map our size prop to valid Button sizes
+  const getButtonSize = () => {
+    switch (size) {
+      case 'sm': return 'sm';
+      case 'lg': return 'lg';
+      default: return 'default'; // 'md' maps to 'default'
+    }
+  };
+
   return (
     <div className={`relative ${className}`}>
       {/* Share Button */}
       <Button
         variant="outline"
-        size={size}
+        size={getButtonSize()}
         onClick={() => setIsOpen(!isOpen)}
         className="gap-2"
       >
