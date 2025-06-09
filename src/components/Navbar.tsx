@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, LogOut, User, Shield } from 'lucide-react';
@@ -79,7 +80,7 @@ const Navbar = () => {
               onClick={handleLogoClick}
             >
               <div className="text-2xl font-bold text-primary">
-                {language.code === 'ar' ? 'أحمد سليم' : 'Ahmed Saleem'}
+                {language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
               </div>
             </Link>
 
