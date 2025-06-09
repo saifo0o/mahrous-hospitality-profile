@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AdvancedSearchModal from './AdvancedSearchModal';
@@ -8,6 +8,19 @@ import { useLanguage } from '@/context/LanguageContext';
 const SearchButton: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { language } = useLanguage();
+
+  // Add keyboard shortcut listener inside the component
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <>
@@ -36,19 +49,5 @@ const SearchButton: React.FC = () => {
     </>
   );
 };
-
-// Add keyboard shortcut listener
-React.useEffect(() => {
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-      event.preventDefault();
-      const searchButton = document.querySelector('[title*="Search"]') as HTMLButtonElement;
-      searchButton?.click();
-    }
-  };
-
-  document.addEventListener('keydown', handleKeyDown);
-  return () => document.removeEventListener('keydown', handleKeyDown);
-}, []);
 
 export default SearchButton;
