@@ -41,6 +41,7 @@ const Career = () => {
         ? "قيادة استراتيجيات شاملة لتحسين الإيرادات وتجربة الضيوف بما يتماشى مع ديناميكيات السوق التنافسية."
         : "Spearheading full-spectrum revenue optimization and guest experience strategies in alignment with competitive market dynamics.",
       rooms: 105,
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-03-20_dl8ixh.webp",
       achievements: language.code === 'ar' 
         ? [
           "دفع تحسينات أداء الفندق من خلال مبادرات قائمة على البيانات ومتوافقة مع أهداف التحول السياحي لرؤية السعودية 2030",
@@ -67,6 +68,7 @@ const Career = () => {
         ? "تمثيل مصالح الملكية طوال مرحلة ما قبل الافتتاح لحماية الاستثمار الرأسمالي وضمان التوافق مع رؤية الأصول."
         : "Represented ownership interests throughout the pre-opening phase to safeguard capital investment and ensure alignment with asset vision.",
       rooms: 172,
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg",
       achievements: language.code === 'ar'
         ? [
           "قيادة التنسيق بين ماريوت الدولية وفرق البناء وموردي الأثاث والتجهيزات، وتحقيق 90٪ من الجاهزية التشغيلية رغم الجداول الزمنية الضيقة والتحديات اللوجستية",
@@ -93,6 +95,7 @@ const Career = () => {
         ? "قيادة مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة و 24 متجر، مما أدى إلى زيادة الإشغال بنسبة 18٪ وزيادة إيرادات الأطعمة والمشروبات بنسبة 20٪."
         : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
       rooms: 168,
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg",
       achievements: language.code === 'ar'
         ? [
           "قيادة وتوجيه فريق متنوع من أكثر من 200 موظف",
@@ -120,6 +123,7 @@ const Career = () => {
         ? "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة، وتنفيذ استراتيجيات تسويقية مبتكرة حققت نسبة إشغال 90٪ في غضون 4 أشهر من الإطلاق، مما وضع معيارًا جديدًا للسوق."
         : "Orchestrated pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved 90% occupancy within 4 months of launch, setting a new market benchmark.",
       rooms: 298,
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg",
       achievements: language.code === 'ar'
         ? [
           "تعزيز درجات رضا الضيوف بنسبة 12٪ من خلال تطوير وتنفيذ برامج تدريب خدمة مستهدفة ومبادرات تجربة ضيوف مخصصة",
@@ -156,6 +160,7 @@ const Career = () => {
         ? "إدارة تجديد شامل مع تشغيل عقار يبلغ عمره 40 عامًا (288 غرفة)، بما في ذلك تجديد البنية التحتية بالكامل."
         : "Directed comprehensive renovation with operation of 40-year-old property (288 rooms), including complete infrastructure overhaul.",
       rooms: 288,
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp",
       achievements: language.code === 'ar'
         ? [
           "تحقيق زيادة بنسبة 25٪ في عائد الغرفة المتاحة وتحسين بنسبة 30٪ في درجات رضا الضيوف",
@@ -209,6 +214,7 @@ const Career = () => {
         ? "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة، وتحسين رضا الضيوف بنسبة 12٪ وتحقيق نمو قوي بعد التجديد من خلال إعادة تموضع استراتيجي."
         : "Managed $5M refurbishment project for 339-room property, improving guest satisfaction by 12% and driving strong post-renovation growth through strategic repositioning.",
       rooms: 339,
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg",
       achievements: language.code === 'ar'
         ? [
           "تخفيض نفقات الرواتب بنسبة 7٪ مع الحفاظ على معايير الخدمة من خلال مبادرات الجدولة المبتكرة والتدريب المتبادل",
@@ -233,6 +239,7 @@ const Career = () => {
         ? "إدارة عمليات ما قبل الافتتاح، وضمان 95٪ من الجاهزية التشغيلية في ظروف سياسية صعبة."
         : "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
       rooms: 718,
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg",
       achievements: language.code === 'ar'
         ? [
           "قيادة تدريب الموظفين والإعداد التشغيلي، مما أدى إلى رضا الضيوف أعلى بنسبة 15٪",
@@ -355,6 +362,17 @@ const Career = () => {
                         )}
                       >
                         <CardContent className="p-6">
+                          {/* Hotel Image */}
+                          {exp.image && (
+                            <div className="mb-4 overflow-hidden rounded-lg">
+                              <img 
+                                src={exp.image} 
+                                alt={exp.company} 
+                                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
+                          )}
+                          
                           <h3 className="text-2xl font-bold text-luxury-navy mb-2">{exp.position}</h3>
                           {exp.company && <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>}
                           
