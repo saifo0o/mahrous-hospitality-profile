@@ -93,6 +93,7 @@ const ProjectsSection = () => {
                   src={project.image} 
                   alt={project.title} 
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} bg-luxury-gold text-white text-xs font-medium px-2 py-1 ${isRTL ? 'rounded-br-md' : 'rounded-bl-md'}`}>
                   {project.category}

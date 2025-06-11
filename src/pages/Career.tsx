@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -37,52 +36,52 @@ const Career = () => {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
       company: language.code === 'ar' ? "فندق وارويك الجبيل" : "Warwick Jubail Hotel",
       location: language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, KSA",
-      period: language.code === 'ar' ? "يناير 2024 - حالياً" : "January 2024 - Present",
+      period: language.code === 'ar' ? "أكتوبر 2024 - حالياً" : "October 2024–Present",
       description: language.code === 'ar' 
-        ? "قيادة العمليات لهذا العقار الفاخر المكون من 105 غرفة، مع التركيز على التميز في الخدمة والكفاءة التشغيلية."
-        : "Leading operations for this 105-room luxury property, focusing on service excellence and operational efficiency.",
+        ? "قيادة استراتيجيات شاملة لتحسين الإيرادات وتجربة الضيوف بما يتماشى مع ديناميكيات السوق التنافسية."
+        : "Spearheading full-spectrum revenue optimization and guest experience strategies in alignment with competitive market dynamics.",
       rooms: 105,
       achievements: language.code === 'ar' 
         ? [
-          "تنفيذ معايير خدمة جديدة وبرامج تدريبية",
-          "تطوير شراكات استراتيجية مع الشركات المحلية",
-          "تحسين العمليات التشغيلية لتعزيز تجربة الضيوف"
+          "دفع تحسينات أداء الفندق من خلال مبادرات قائمة على البيانات ومتوافقة مع أهداف التحول السياحي لرؤية السعودية 2030",
+          "رعاية علاقات قوية مع أصحاب المصلحة الرئيسيين لضمان الموضع المستدام في السوق والربحية طويلة الأمد",
+          "تنفيذ مبادرات استراتيجية متوافقة مع أهداف رؤية 2030 لتحويل السياحة"
         ] 
         : [
-          "Implementing new service standards and training programs",
-          "Developing strategic partnerships with local businesses",
-          "Optimizing operational processes for enhanced guest experience"
+          "Driving hotel performance improvements through data-led initiatives aligned with Saudi Vision 2030's tourism transformation goals",
+          "Cultivating strong relationships with key stakeholders to ensure sustainable market positioning and long-term profitability",
+          "Implementing strategic initiatives aligned with Vision 2030 tourism transformation objectives"
         ],
       metrics: {
-        occupancy: language.code === 'ar' ? "+10%" : "+10%",
-        revenue: language.code === 'ar' ? "+15%" : "+15%",
-        satisfaction: language.code === 'ar' ? "+8%" : "+8%"
+        visionAlignment: language.code === 'ar' ? "رؤية 2030" : "Vision 2030",
+        stakeholders: language.code === 'ar' ? "متعددة" : "Multiple",
+        performance: language.code === 'ar' ? "محسن" : "Enhanced"
       }
     },
     {
-      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner Representative (Pre-Opening)",
-      company: language.code === 'ar' ? "فورنقاط باي شيراتون طريق الملك عبدالعزيز" : "Fourpoint by Sheraton King Abdulaziz Road",
+      position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (مهمة ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening Assignment)",
+      company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "Four Points by Sheraton – King Abdulaziz Road",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "أغسطس 2024 - يناير 2025" : "August 2024 - January 2025",
+      period: language.code === 'ar' ? "أغسطس 2024 - أكتوبر 2024" : "August 2024–October 2024",
       description: language.code === 'ar' 
-        ? "قيادة عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية."
-        : "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
+        ? "تمثيل مصالح الملكية طوال مرحلة ما قبل الافتتاح لحماية الاستثمار الرأسمالي وضمان التوافق مع رؤية الأصول."
+        : "Represented ownership interests throughout the pre-opening phase to safeguard capital investment and ensure alignment with asset vision.",
       rooms: 172,
       achievements: language.code === 'ar'
         ? [
-          "تفاوض وإعادة هيكلة عقود الموردين، مما أدى إلى تخفيض بنسبة 12٪ في ميزانية ما قبل الافتتاح مع الحفاظ على معايير الجودة ومتطلبات الجدول الزمني",
-          "إدارة مبادرات توظيف وتدريب شاملة لأكثر من 150 موظف",
-          "تطوير برامج مخصصة متوافقة مع معايير ماريوت الدولية وتوقعات السوق المحلية"
+          "قيادة التنسيق بين ماريوت الدولية وفرق البناء وموردي الأثاث والتجهيزات، وتحقيق 90٪ من الجاهزية التشغيلية رغم الجداول الزمنية الضيقة والتحديات اللوجستية",
+          "حماية مصالح الملكية وضمان التوافق مع استراتيجية الأصول طويلة المدى",
+          "تجاوز التوقعات في تسليم المشروع رغم القيود الإقليمية"
         ]
         : [
-          "Negotiated and restructured vendor contracts, resulting in 12% reduction in pre-opening budget while maintaining quality standards and timeline requirements",
-          "Directed comprehensive recruitment and training initiatives for 150+ staff",
-          "Developed tailored programs aligned with Marriott International standards and local market expectations"
+          "Led coordination between Marriott International, construction teams, and FF&E vendors, achieving 90% operational readiness despite aggressive timelines and logistical challenges",
+          "Safeguarded ownership interests and ensured alignment with long-term asset strategy",
+          "Exceeded project delivery expectations despite regional constraints"
         ],
       metrics: {
-        budget: language.code === 'ar' ? "-12%" : "-12%",
         readiness: language.code === 'ar' ? "90%" : "90%",
-        staffing: language.code === 'ar' ? "100%" : "100%"
+        timeline: language.code === 'ar' ? "ضيق" : "Aggressive",
+        coordination: language.code === 'ar' ? "متعدد الأطراف" : "Multi-party"
       }
     },
     {
@@ -498,3 +497,5 @@ const Career = () => {
 };
 
 export default Career;
+
+</initial_code>

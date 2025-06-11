@@ -96,6 +96,12 @@ const CaseStudiesSection = () => {
                       src={study.image}
                       alt={study.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      style={{ 
+                        imageRendering: 'crisp-edges',
+                        objectFit: 'cover',
+                        minHeight: '300px'
+                      }}
                     />
                   </div>
                   
