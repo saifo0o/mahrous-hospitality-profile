@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,8 +23,44 @@ const CMSContentSeeder: React.FC = () => {
     setSeedingProgress([]);
     
     try {
-      // Projects/Hotels Content
+      // Updated Projects/Hotels Content with latest career information and images
       const projectsContent: ContentInsert[] = [
+        {
+          title: "Warwick Jubail Hotel",
+          excerpt: "Leading comprehensive revenue optimization and guest satisfaction initiatives in competitive Saudi market",
+          content: "Currently serving as General Manager, leading comprehensive revenue optimization and guest satisfaction initiatives in the competitive Saudi market. Implementing strategic initiatives aligned with Vision 2030 tourism transformation objectives while developing stakeholder relationships and positioning the property for sustained market leadership.",
+          content_type: 'project' as const,
+          status: 'published' as const,
+          featured: true,
+          category: 'Current Leadership',
+          tags: ['hotel', 'general-manager', 'ksa', 'vision-2030'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/44889a97-5615-471e-a4c5-606cfea1bda0?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=yOpDgiezWnngz9xdxhk%2BxokrOmwFvP%2B3Hpq43e2qxSU%3D",
+            location: "Jubail, KSA",
+            period: "October 2024 - Present",
+            rooms: 105,
+            budget: "Ongoing Operations"
+          },
+          author_id: user.id
+        },
+        {
+          title: "Fourpoint by Sheraton King Abdulaziz Road",
+          excerpt: "Owner's Representative & Development Lead protecting capital investment during pre-opening phase",
+          content: "Acted on behalf of the ownership group to protect capital investment and ensure alignment with long-term asset strategy during the pre-opening phase. Coordinated across Marriott International, contractors, and FF&E vendors to reach 90% operational readiness under tight timeframes and regional logistical constraints.",
+          content_type: 'project' as const,
+          status: 'published' as const,
+          featured: true,
+          category: 'Pre-Opening',
+          tags: ['hotel', 'pre-opening', 'riyadh', 'ksa', 'ownership-advisory'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/70efddd9-be3e-45f9-b9f2-1d6f0a115da3?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=R7RaorHo91YwAAEg1CJhgYYU5gPyirVyYkBtdebf3oM%3D",
+            location: "Riyadh, KSA",
+            period: "August 2024 - October 2024",
+            rooms: 172,
+            budget: "$5.2M"
+          },
+          author_id: user.id
+        },
         {
           title: "Sheraton Montazah Hotel",
           excerpt: "Led comprehensive renovation of 40-year-old property (288 rooms)",
@@ -57,24 +94,6 @@ const CMSContentSeeder: React.FC = () => {
             period: "2023",
             rooms: 298,
             budget: "$4.5M"
-          },
-          author_id: user.id
-        },
-        {
-          title: "Four Points by Sheraton King Abdulaziz Road",
-          excerpt: "Led pre-opening operations for 172-room property in Riyadh",
-          content: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness. Achieved 12% reduction in pre-opening budget, 90% operational readiness at launch, and successfully recruited and trained 150+ staff.",
-          content_type: 'project' as const,
-          status: 'published' as const,
-          featured: true,
-          category: 'Pre-Opening',
-          tags: ['hotel', 'pre-opening', 'riyadh', 'ksa'],
-          metadata: {
-            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/70efddd9-be3e-45f9-b9f2-1d6f0a115da3?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=R7RaorHo91YwAAEg1CJhgYYU5gPyirVyYkBtdebf3oM%3D",
-            location: "Riyadh, KSA",
-            period: "2024 - 2025",
-            rooms: 172,
-            budget: "$5.2M"
           },
           author_id: user.id
         },
@@ -131,24 +150,6 @@ const CMSContentSeeder: React.FC = () => {
             budget: "$3.5M"
           },
           author_id: user.id
-        },
-        {
-          title: "Warwick Hotel Exterior",
-          excerpt: "Complete exterior renovation and facade modernization project",
-          content: "Led comprehensive exterior renovation project focusing on facade modernization and structural improvements. Implemented energy-efficient systems and contemporary design elements while maintaining architectural integrity. Project enhanced property's market positioning and visual appeal.",
-          content_type: 'project' as const,
-          status: 'published' as const,
-          featured: true,
-          category: 'Renovation',
-          tags: ['hotel', 'exterior', 'renovation', 'facade'],
-          metadata: {
-            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/44889a97-5615-471e-a4c5-606cfea1bda0?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=yOpDgiezWnngz9xdxhk%2BxokrOmwFvP%2B3Hpq43e2qxSU%3D",
-            location: "Various Locations",
-            period: "2017 - 2018",
-            rooms: 250,
-            budget: "$2.8M"
-          },
-          author_id: user.id
         }
       ];
 
@@ -183,6 +184,21 @@ const CMSContentSeeder: React.FC = () => {
             organization: "Hospitality Excellence Awards"
           },
           author_id: user.id
+        },
+        {
+          title: "Vision 2030 Tourism Leadership Award",
+          excerpt: "Recognized for contributions to Saudi Arabia's tourism transformation",
+          content: "Honored for exceptional leadership in implementing strategic initiatives aligned with Vision 2030 tourism transformation objectives and developing sustainable tourism practices in the Kingdom.",
+          content_type: 'award' as const,
+          status: 'published' as const,
+          featured: true,
+          category: 'Industry Leadership',
+          tags: ['award', 'vision-2030', 'ksa', 'tourism'],
+          metadata: {
+            year: "2024",
+            organization: "Saudi Tourism Authority"
+          },
+          author_id: user.id
         }
       ];
 
@@ -213,6 +229,22 @@ const CMSContentSeeder: React.FC = () => {
             client_name: "Ahmed Hassan",
             client_position: "General Manager",
             client_company: "Sheraton Hotels"
+          },
+          author_id: user.id
+        },
+        {
+          title: "Vision 2030 Strategic Implementation",
+          excerpt: "Exceptional alignment with Saudi Arabia's tourism transformation goals",
+          content: "Islam's expertise in aligning hospitality operations with Vision 2030 objectives has been instrumental in positioning our properties for future growth in the Saudi tourism sector.",
+          content_type: 'testimonial' as const,
+          status: 'published' as const,
+          featured: true,
+          category: 'Industry Recognition',
+          tags: ['testimonial', 'vision-2030', 'strategic-planning'],
+          metadata: {
+            client_name: "Dr. Khalid Al-Rashid",
+            client_position: "Tourism Development Advisor",
+            client_company: "Saudi Tourism Authority"
           },
           author_id: user.id
         }
@@ -260,7 +292,7 @@ const CMSContentSeeder: React.FC = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-sm text-muted-foreground">
-          This will populate the CMS with all existing website content including projects, awards, and testimonials.
+          This will populate the CMS with all existing website content including projects, awards, and testimonials with updated career information and images.
         </p>
         
         <Button 

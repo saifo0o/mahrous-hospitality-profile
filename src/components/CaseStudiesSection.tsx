@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -19,8 +20,7 @@ const CaseStudiesSection = () => {
       challenge: language.code === 'ar' ? "تحويل عقار عمره 40 عامًا يضم 288 غرفة مع الحفاظ على العمليات الجزئية والتعامل مع البنية التحتية القديمة." : "Transforming a 40-year-old property with 288 rooms while maintaining partial operations and dealing with aging infrastructure.",
       solution: language.code === 'ar' ? "تنفيذ نهج تجديد مرحلي، وتحديث جميع الأنظمة الميكانيكية بما في ذلك الغلايات والمحولات والمولدات والمبردات وشبكة السلامة ومكافحة الحرائق بأكملها." : "Implemented a phased renovation approach, modernizing all mechanical systems including boilers, transformers, generators, chillers, and the entire fire & life safety network.",
       results: language.code === 'ar' ? ["زيادة بنسبة 25٪ في الإيرادات لكل غرفة متاحة خلال 6 أشهر بعد التجديد", "تحسين درجات رضا الضيوف بنسبة 30٪", "خفض استهلاك الطاقة بنسبة 50٪", "الحصول على تصنيف 4 نجوم من هيئة السياحة المصرية"] : ["25% increase in RevPAR within 6 months post-renovation", "30% improvement in guest satisfaction scores", "50% reduction in energy consumption", "Achieved 4-star classification from Egyptian Tourism Authority"],
-      // Real image of Sheraton Montazah Alexandria from Google Street View
-      image: "https://lh5.googleusercontent.com/p/AF1QipMxK6vqH5W9YgF0RjUzBjL_kL5BH8_ZKGnBhKrG=w408-h306-k-no",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/cc6b8137-1488-4939-8d61-eab1e9e2046f?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=NUHumgsaVc5WhmljjESsfajRiYIqX5j3XpBwoWAOa1A%3D",
       testimonial: {
         quote: language.code === 'ar' ? "لقد حول التجديد عقارنا المتقادم إلى فندق حديث وتنافسي يقود الآن شريحة السوق الخاصة بنا." : "The renovation transformed our aging property into a modern, competitive hotel that now leads our market segment.",
         author: language.code === 'ar' ? "إبراهيم صالح" : "Ibrahim Saleh",
@@ -36,8 +36,7 @@ const CaseStudiesSection = () => {
       challenge: language.code === 'ar' ? "إطلاق منتجع فاخر جديد أثناء الوباء العالمي مع قيود سفر شديدة تؤثر على السياحة." : "Launching a new ultra-luxury resort during the global pandemic with severe travel restrictions affecting tourism.",
       solution: language.code === 'ar' ? "تطوير استراتيجيات تسويقية مبتكرة تستهدف السياحة المحلية، وتنفيذ بروتوكولات صحية وسلامة رائدة في الصناعة، وإنشاء تجارب فريدة للضيوف." : "Developed innovative marketing strategies targeting domestic tourism, implemented industry-leading health and safety protocols, and created unique guest experiences.",
       results: language.code === 'ar' ? ["90٪ إشغال خلال 4 أشهر من الافتتاح، مما يضع معيارًا جديدًا للسوق", "الإيرادات أعلى بنسبة 35٪ من التوقعات الأولية على الرغم من ظروف الوباء", "نجاح في توظيف وتدريب أكثر من 450 موظفًا خلال ظروف عمل صعبة", "حصل على جائزة 'أفضل منتجع فاخر جديد' من جوائز السفر المصرية"] : ["90% occupancy within 4 months of opening, setting a new market benchmark", "Revenue 35% above initial projections despite pandemic conditions", "Successfully recruited and trained 450+ staff during challenging labor conditions", "Received 'Best New Luxury Resort' award from Egypt Travel Awards"],
-      // Real image of The V Luxury Resort Sahl Hasheesh from Booking.com
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/438694863.jpg?k=d5b4d2b0e6e6b5f6c5c6d5e6f6a5c5b6d5e6f6a5c5b6d5e6f6a5c5b6&o=&hp=1",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/0389e1f0-cba4-494a-8a30-8133a2998e0d?se=2025-06-11T03%3A30%3A34Z&sp=r&sv=2025-05-05&sr=b&sig=uF/rqcoMO147PnSwGSoHSSG6%2BQyUTGMopCcsIA2jogk%3D",
       testimonial: {
         quote: language.code === 'ar' ? "حولت خبرة إسلام في مرحلة ما قبل الافتتاح ما كان يمكن أن يكون كارثة خلال فترة كوفيد إلى قصة نجاح ملحوظة." : "Islam's pre-opening expertise turned what could have been a disaster during COVID into a remarkable success story.",
         author: language.code === 'ar' ? "خالد المنصور" : "Khalid Al-Mansour",
@@ -46,19 +45,18 @@ const CaseStudiesSection = () => {
     },
     {
       id: 3,
-      title: language.code === 'ar' ? "مشروع إحياء منتجع بورسعيد" : "Porto Said Resort Revitalization Project",
+      title: language.code === 'ar' ? "مشروع إحياء منتجع بورسعيد" : "Portosaid Resort Revitalization Project",
       category: language.code === 'ar' ? "إدارة التحول" : "Turnaround Management",
       location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
       timeline: "2017-2018",
       challenge: language.code === 'ar' ? "عكس الأداء المتراجع لمنتجع ضعيف الأداء مع مرافق متدهورة ومعايير خدمة سيئة." : "Reversing declining performance of an underperforming resort with deteriorating facilities and poor service standards.",
       solution: language.code === 'ar' ? "تنفيذ مشروع تجديد مستهدف بقيمة 3.5 مليون دولار عبر 168 غرفة والمناطق العامة، وإعادة هيكلة فريق الإدارة، وتقديم برامج تدريب شاملة للموظفين." : "Implemented $3.5M targeted refurbishment project across 168 rooms and public areas, restructured the management team, and introduced comprehensive staff training programs.",
       results: language.code === 'ar' ? ["نمو الإشغال بنسبة 18٪ خلال السنة الأولى", "زيادة بنسبة 20٪ في إيرادات الأغذية والمشروبات من خلال هندسة القائمة", "انخفاض معدل دوران الموظفين من 45٪ إلى 15٪ سنويًا", "تحسن تصنيف تريب أدفايزور من المركز 12 إلى المركز 3 في السوق الإقليمية"] : ["18% occupancy growth within first year", "20% increase in F&B revenue through menu engineering", "Staff turnover reduced from 45% to 15% annually", "TripAdvisor ranking improved from #12 to #3 in regional market"],
-      // Placeholder for Porto Said Resort - flagged for manual upload
-      image: "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/bc89229b-bad1-4ef9-9380-f26640049698?se=2025-06-11T03%3A53%3A09Z&sp=r&sv=2025-05-05&sr=b&sig=5h/5mErBsP0X/1TLn%2ByhIr1JDUXthNj5RUybNzuod3A%3D",
       testimonial: {
         quote: language.code === 'ar' ? "قيادة إسلام حولت ليس فقط عقارنا ولكن أيضًا إيمان الفريق بأكمله بما كان ممكنًا لمنتجعنا." : "Islam's leadership transformed not just our property but the entire team's belief in what was possible for our resort.",
         author: language.code === 'ar' ? "محمد فاروق" : "Mohamed Farouk",
-        position: language.code === 'ar' ? "مالك منتجع بورسعيد" : "Owner, Porto Said Resort"
+        position: language.code === 'ar' ? "مالك منتجع بورسعيد" : "Owner, Portosaid Resort"
       }
     }
   ];

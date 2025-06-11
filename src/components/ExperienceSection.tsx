@@ -15,34 +15,34 @@ const ExperienceSection = () => {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
       company: language.code === 'ar' ? "فندق وارويك الجبيل" : "Warwick Jubail Hotel",
       location: language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, KSA",
-      period: language.code === 'ar' ? "يناير 2024 - حالياً" : "January 2024 - Present",
+      period: language.code === 'ar' ? "أكتوبر 2024 - حالياً" : "October 2024 - Present",
       rooms: 105,
       description: language.code === 'ar' 
-        ? "قيادة العمليات لهذا العقار الفاخر المكون من 105 غرفة، مع التركيز على التميز في الخدمة والكفاءة التشغيلية."
-        : "Leading operations for this 105-room luxury property, focusing on service excellence and operational efficiency.",
-      highlight: language.code === 'ar' ? "تميز الخدمة" : "Service Excellence"
+        ? "قيادة مبادرات شاملة لتحسين الإيرادات ورضا الضيوف في السوق السعودي التنافسي. تنفيذ مبادرات استراتيجية متوافقة مع أهداف رؤية 2030 لتحويل السياحة."
+        : "Leading comprehensive revenue optimization and guest satisfaction initiatives in competitive Saudi market. Implementing strategic initiatives aligned with Vision 2030 tourism transformation objectives.",
+      highlight: language.code === 'ar' ? "رؤية 2030" : "Vision 2030"
     },
     {
-      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner Representative (Pre-Opening)",
+      position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening)",
       company: language.code === 'ar' ? "فورنقاط باي شيراتون طريق الملك عبدالعزيز" : "Fourpoint by Sheraton King Abdulaziz Road",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "أغسطس 2024 - يناير 2025" : "August 2024 - January 2025",
+      period: language.code === 'ar' ? "أغسطس 2024 - أكتوبر 2024" : "August 2024 - October 2024",
       rooms: 172,
       description: language.code === 'ar'
-        ? "قاد عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية."
-        : "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
-      highlight: language.code === 'ar' ? "خبير ما قبل الافتتاح" : "Pre-Opening Expert"
+        ? "تصرف نيابة عن مجموعة الملكية لحماية الاستثمار الرأسمالي وضمان التوافق مع استراتيجية الأصول طويلة المدى. تنسيق عبر ماريوت الدولية والمقاولين وموردي التجهيزات للوصول إلى 90٪ من الجاهزية التشغيلية."
+        : "Acted on behalf of the ownership group to protect capital investment and ensure alignment with long-term asset strategy. Coordinated across Marriott International, contractors, and FF&E vendors to reach 90% operational readiness.",
+      highlight: language.code === 'ar' ? "استشاري الملكية" : "Ownership Advisory"
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
+      company: language.code === 'ar' ? "منتجع بورسعيد" : "Portosaid Resort",
       location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
       period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024 - August 2024",
       rooms: 168,
       description: language.code === 'ar'
         ? "قاد مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة ومجمع تجاري يضم 24 منفذًا، مما أدى إلى نمو الإشغال بنسبة 18٪ وزيادة إيرادات الأغذية والمشروبات بنسبة 20٪."
         : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
-      highlight: language.code === 'ar' ? "نمو الإيرادات" : "Revenue Growth"
+      highlight: language.code === 'ar' ? "تحول الأعمال" : "Business Turnaround"
     }
   ];
 
