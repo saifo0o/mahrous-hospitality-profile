@@ -16,8 +16,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
       period: language.code === 'ar' ? "2016 - 2023" : "2016 - 2023",
-      // Real image of Sheraton Montazah Alexandria from Google Street View/Maps
-      image: "https://lh5.googleusercontent.com/p/AF1QipMxK6vqH5W9YgF0RjUzBjL_kL5BH8_ZKGnBhKrG=w408-h306-k-no",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/cc6b8137-1488-4939-8d61-eab1e9e2046f?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=NUHumgsaVc5WhmljjESsfajRiYIqX5j3XpBwoWAOa1A%3D",
       rooms: 288,
       budget: language.code === 'ar' ? "7.2 مليون دولار" : "$7.2M",
       description: language.code === 'ar' 
@@ -51,8 +50,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "الغردقة، مصر" : "Hurghada, Egypt",
       period: language.code === 'ar' ? "2023" : "2023",
-      // Real image of The V Luxury Resort Sahl Hasheesh from Booking.com/TripAdvisor
-      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/438694863.jpg?k=d5b4d2b0e6e6b5f6c5c6d5e6f6a5c5b6d5e6f6a5c5b6d5e6f6a5c5b6&o=&hp=1",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/0389e1f0-cba4-494a-8a30-8133a2998e0d?se=2025-06-11T03%3A30%3A34Z&sp=r&sv=2025-05-05&sr=b&sig=uF/rqcoMO147PnSwGSoHSSG6%2BQyUTGMopCcsIA2jogk%3D",
       rooms: 298,
       budget: language.code === 'ar' ? "4.5 مليون دولار" : "$4.5M",
       description: language.code === 'ar'
@@ -86,8 +84,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
       period: language.code === 'ar' ? "2024" : "2024",
-      // Placeholder for Porto Said Resort - needs manual image sourcing
-      image: "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/44889a97-5615-471e-a4c5-606cfea1bda0?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=yOpDgiezWnngz9xdxhk%2BxokrOmwFvP%2B3Hpq43e2qxSU%3D",
       rooms: 168,
       budget: language.code === 'ar' ? "3.5 مليون دولار" : "$3.5M",
       description: language.code === 'ar'
@@ -121,8 +118,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
       period: language.code === 'ar' ? "2024 - 2025" : "2024 - 2025",
-      // Real image of Four Points by Sheraton Riyadh from Marriott official website
-      image: "https://cache.marriott.com/content/dam/marriott-renditions/RUHFP/ruhfp-exterior-6234-hor-wide.jpg",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/70efddd9-be3e-45f9-b9f2-1d6f0a115da3?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=R7RaorHo91YwAAEg1CJhgYYU5gPyirVyYkBtdebf3oM%3D",
       rooms: 172,
       budget: language.code === 'ar' ? "5.2 مليون دولار" : "$5.2M",
       description: language.code === 'ar'
@@ -156,8 +152,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
       period: language.code === 'ar' ? "2011 - 2014" : "2011 - 2014",
-      // Real image of Sheraton Miramar Resort El Gouna from TripAdvisor/Booking.com
-      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/b4/c4/8a/sheraton-miramar-resort.jpg?w=1200&h=-1&s=1",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/e703128d-63d6-4bf1-a8d8-8ec477447d4d?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=zpAnIdu187ebblkrXGBLrSft1uLIBhXzg%2BFDxytKJJ8%3D",
       rooms: 339,
       budget: language.code === 'ar' ? "5 مليون دولار" : "$5M",
       description: language.code === 'ar'
@@ -191,8 +186,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "طرابلس، ليبيا" : "Tripoli, Libya",
       period: language.code === 'ar' ? "2009 - 2011" : "2009 - 2011",
-      // Placeholder for Sheraton Tripoli - flagged for manual upload
-      image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/3804f390-c379-4bcb-9881-c40de6609f0c?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=0JMcvIEnDazMdPMYd3kmeprMOdKoQaRIihgRgd9LMQg%3D",
       rooms: 718,
       budget: language.code === 'ar' ? "8.5 مليون دولار" : "$8.5M",
       description: language.code === 'ar'

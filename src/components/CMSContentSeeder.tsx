@@ -1,0 +1,285 @@
+
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/context/AuthContext';
+import { Loader2, Database, CheckCircle } from 'lucide-react';
+
+const CMSContentSeeder: React.FC = () => {
+  const [isSeeding, setIsSeeding] = useState(false);
+  const [seedingProgress, setSeedingProgress] = useState<string[]>([]);
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  const seedContent = async () => {
+    if (!user) return;
+    
+    setIsSeeding(true);
+    setSeedingProgress([]);
+    
+    try {
+      // Projects/Hotels Content
+      const projectsContent = [
+        {
+          title: "Sheraton Montazah Hotel",
+          title_ar: "فندق شيراتون المنتزه",
+          excerpt: "Led comprehensive renovation of 40-year-old property (288 rooms)",
+          excerpt_ar: "قيادة تجديد شامل لعقار يبلغ عمره 40 عامًا (288 غرفة)",
+          content: "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network. Achieved 25% increase in RevPAR, 30% improvement in guest satisfaction scores, and 15% reduction in energy consumption.",
+          content_ar: "قيادة تجديد شامل لعقار يبلغ عمره 40 عامًا (288 غرفة)، وتحديث جميع الأنظمة الميكانيكية بما في ذلك الغلايات والمحولات والمولدات والمبردات وشبكة السلامة من الحرائق. تحقيق زيادة بنسبة 25٪ في إيرادات الغرفة المتاحة، وتحسين بنسبة 30٪ في درجات رضا الضيوف، وانخفاض بنسبة 15٪ في استهلاك الطاقة.",
+          content_type: 'project',
+          status: 'published',
+          featured: true,
+          category: 'Major Renovation',
+          tags: ['hotel', 'renovation', 'sheraton', 'alexandria'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/cc6b8137-1488-4939-8d61-eab1e9e2046f?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=NUHumgsaVc5WhmljjESsfajRiYIqX5j3XpBwoWAOa1A%3D",
+            location: "Alexandria, Egypt",
+            period: "2016 - 2023",
+            rooms: 288,
+            budget: "$7.2M"
+          },
+          author_id: user.id
+        },
+        {
+          title: "The V Luxury Resort Sahl Hasheesh",
+          title_ar: "منتجع ذا في الفاخر سهل حشيش",
+          excerpt: "Managed pre-opening operations for 298-room luxury resort",
+          excerpt_ar: "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة",
+          content: "Managed pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved exceptional initial occupancy. Achieved 90% occupancy within 4 months of launch, 12% increase in guest satisfaction scores, and established as market leader in the region.",
+          content_ar: "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة، وتنفيذ استراتيجيات تسويقية مبتكرة حققت نسبة إشغال استثنائية في البداية. تحقيق 90٪ نسبة الإشغال خلال 4 أشهر من الإطلاق، وزيادة بنسبة 12٪ في درجات رضا الضيوف، وتأسيس الفندق كرائد في السوق المحلية.",
+          content_type: 'project',
+          status: 'published',
+          featured: true,
+          category: 'Pre-Opening',
+          tags: ['resort', 'luxury', 'pre-opening', 'hurghada'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/0389e1f0-cba4-494a-8a30-8133a2998e0d?se=2025-06-11T03%3A30%3A34Z&sp=r&sv=2025-05-05&sr=b&sig=uF/rqcoMO147PnSwGSoHSSG6%2BQyUTGMopCcsIA2jogk%3D",
+            location: "Hurghada, Egypt",
+            period: "2023",
+            rooms: 298,
+            budget: "$4.5M"
+          },
+          author_id: user.id
+        },
+        {
+          title: "Four Points by Sheraton King Abdulaziz Road",
+          title_ar: "فندق فورنقاط باي شيراتون طريق الملك عبدالعزيز",
+          excerpt: "Led pre-opening operations for 172-room property in Riyadh",
+          excerpt_ar: "قيادة عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة في الرياض",
+          content: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness. Achieved 12% reduction in pre-opening budget, 90% operational readiness at launch, and successfully recruited and trained 150+ staff.",
+          content_ar: "قيادة عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية. تحقيق تخفيض ميزانية ما قبل الافتتاح بنسبة 12٪، و90٪ من الجاهزية التشغيلية عند الإطلاق، وتوظيف وتدريب أكثر من 150 موظفًا بنجاح.",
+          content_type: 'project',
+          status: 'published',
+          featured: true,
+          category: 'Pre-Opening',
+          tags: ['hotel', 'pre-opening', 'riyadh', 'ksa'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/70efddd9-be3e-45f9-b9f2-1d6f0a115da3?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=R7RaorHo91YwAAEg1CJhgYYU5gPyirVyYkBtdebf3oM%3D",
+            location: "Riyadh, KSA",
+            period: "2024 - 2025",
+            rooms: 172,
+            budget: "$5.2M"
+          },
+          author_id: user.id
+        },
+        {
+          title: "Sheraton Miramar Resort",
+          title_ar: "منتجع شيراتون ميرامار",
+          excerpt: "Managed $5M refurbishment project for 339-room property",
+          excerpt_ar: "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة",
+          content: "Managed $5M refurbishment project for 339-room property, improving guest satisfaction through strategic repositioning. Achieved 12% improvement in guest satisfaction, 15% increase in ADR, and 8% increase in occupancy within first year post-renovation.",
+          content_ar: "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة، وتحسين رضا الضيوف من خلال إعادة تموضع استراتيجي. تحقيق تحسين بنسبة 12٪ في رضا الضيوف، وزيادة بنسبة 15٪ في متوسط سعر الغرفة اليومي، وزيادة بنسبة 8٪ في نسبة الإشغال خلال السنة الأولى بعد التجديد.",
+          content_type: 'project',
+          status: 'published',
+          featured: true,
+          category: 'Major Renovation',
+          tags: ['resort', 'renovation', 'el-gouna'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/e703128d-63d6-4bf1-a8d8-8ec477447d4d?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=zpAnIdu187ebblkrXGBLrSft1uLIBhXzg%2BFDxytKJJ8%3D",
+            location: "El Gouna, Hurghada, Egypt",
+            period: "2011 - 2014",
+            rooms: 339,
+            budget: "$5M"
+          },
+          author_id: user.id
+        },
+        {
+          title: "Four Points by Sheraton & Sheraton Tripoli",
+          title_ar: "فندق فور بوينتس باي شيراتون وشيراتون طرابلس",
+          excerpt: "Managed pre-opening operations ensuring 95% operational readiness",
+          excerpt_ar: "إدارة عمليات ما قبل الافتتاح وضمان 95٪ من الجاهزية التشغيلية",
+          content: "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions. Achieved 95% operational readiness, 15% higher guest satisfaction than regional average, and successfully established Sheraton brand standards in new market.",
+          content_ar: "إدارة عمليات ما قبل الافتتاح، وضمان 95٪ من الجاهزية التشغيلية في ظروف سياسية صعبة. تحقيق 95٪ من الجاهزية التشغيلية، ورضا ضيوف أعلى بنسبة 15٪ من متوسط المنطقة، ونجاح في ترسيخ معايير علامة شيراتون التجارية في سوق جديدة.",
+          content_type: 'project',
+          status: 'published',
+          featured: true,
+          category: 'Pre-Opening',
+          tags: ['hotel', 'pre-opening', 'tripoli', 'libya'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/3804f390-c379-4bcb-9881-c40de6609f0c?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=0JMcvIEnDazMdPMYd3kmeprMOdKoQaRIihgRgd9LMQg%3D",
+            location: "Tripoli, Libya",
+            period: "2009 - 2011",
+            rooms: 718,
+            budget: "$8.5M"
+          },
+          author_id: user.id
+        }
+      ];
+
+      setSeedingProgress(prev => [...prev, "Starting content seeding..."]);
+
+      // Seed projects
+      for (const project of projectsContent) {
+        const { error } = await supabase
+          .from('content')
+          .insert(project);
+        
+        if (error && !error.message.includes('duplicate')) {
+          throw error;
+        }
+      }
+      
+      setSeedingProgress(prev => [...prev, "✓ Projects content seeded successfully"]);
+
+      // Seed awards
+      const awardsContent = [
+        {
+          title: "Excellence in Hotel Operations",
+          title_ar: "التميز في عمليات الفندق",
+          excerpt: "Recognition for outstanding operational excellence in hospitality management",
+          excerpt_ar: "تقدير للتميز التشغيلي المتفوق في إدارة الضيافة",
+          content: "Awarded for demonstrating exceptional leadership in hotel operations, achieving outstanding guest satisfaction scores and operational efficiency across multiple properties.",
+          content_ar: "تم منح الجائزة لإظهار قيادة استثنائية في عمليات الفندق، وتحقيق درجات متميزة في رضا الضيوف والكفاءة التشغيلية عبر عدة عقارات.",
+          content_type: 'award',
+          status: 'published',
+          featured: true,
+          category: 'Professional Excellence',
+          tags: ['award', 'excellence', 'operations'],
+          metadata: {
+            year: "2023",
+            organization: "Hospitality Excellence Awards"
+          },
+          author_id: user.id
+        }
+      ];
+
+      for (const award of awardsContent) {
+        const { error } = await supabase
+          .from('content')
+          .insert(award);
+        
+        if (error && !error.message.includes('duplicate')) {
+          throw error;
+        }
+      }
+
+      setSeedingProgress(prev => [...prev, "✓ Awards content seeded successfully"]);
+
+      // Seed testimonials
+      const testimonialsContent = [
+        {
+          title: "Outstanding Leadership in Hospitality",
+          title_ar: "قيادة متميزة في الضيافة",
+          excerpt: "Islam's leadership transformed our hotel operations completely",
+          excerpt_ar: "قيادة إسلام حولت عمليات فندقنا بالكامل",
+          content: "Islam Mahrous demonstrated exceptional leadership skills during the Sheraton Montazah renovation project. His strategic approach and attention to detail resulted in significant improvements in both guest satisfaction and operational efficiency.",
+          content_ar: "أظهر إسلام محروس مهارات قيادية استثنائية خلال مشروع تجديد شيراتون المنتزه. نهجه الاستراتيجي واهتمامه بالتفاصيل أدى إلى تحسينات كبيرة في كل من رضا الضيوف والكفاءة التشغيلية.",
+          content_type: 'testimonial',
+          status: 'published',
+          featured: true,
+          category: 'Client Testimonial',
+          tags: ['testimonial', 'leadership', 'renovation'],
+          metadata: {
+            client_name: "Ahmed Hassan",
+            client_position: "General Manager",
+            client_company: "Sheraton Hotels"
+          },
+          author_id: user.id
+        }
+      ];
+
+      for (const testimonial of testimonialsContent) {
+        const { error } = await supabase
+          .from('content')
+          .insert(testimonial);
+        
+        if (error && !error.message.includes('duplicate')) {
+          throw error;
+        }
+      }
+
+      setSeedingProgress(prev => [...prev, "✓ Testimonials content seeded successfully"]);
+
+      setSeedingProgress(prev => [...prev, "🎉 All content seeded successfully!"]);
+      
+      toast({
+        title: "Success",
+        description: "All website content has been integrated into the CMS",
+      });
+
+    } catch (error) {
+      console.error('Error seeding content:', error);
+      setSeedingProgress(prev => [...prev, "❌ Error occurred during seeding"]);
+      toast({
+        title: "Error",
+        description: "Failed to seed content into CMS",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSeeding(false);
+    }
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Database className="h-5 w-5" />
+          CMS Content Integration
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <p className="text-sm text-muted-foreground">
+          This will populate the CMS with all existing website content including projects, awards, and testimonials.
+        </p>
+        
+        <Button 
+          onClick={seedContent} 
+          disabled={isSeeding}
+          className="w-full"
+        >
+          {isSeeding ? (
+            <>
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              Seeding Content...
+            </>
+          ) : (
+            <>
+              <Database className="h-4 w-4 mr-2" />
+              Seed Website Content into CMS
+            </>
+          )}
+        </Button>
+
+        {seedingProgress.length > 0 && (
+          <div className="bg-gray-50 p-4 rounded-md">
+            <h4 className="font-medium mb-2">Seeding Progress:</h4>
+            <div className="space-y-1">
+              {seedingProgress.map((step, index) => (
+                <div key={index} className="text-sm flex items-center gap-2">
+                  {step.includes('✓') && <CheckCircle className="h-3 w-3 text-green-600" />}
+                  <span>{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+export default CMSContentSeeder;

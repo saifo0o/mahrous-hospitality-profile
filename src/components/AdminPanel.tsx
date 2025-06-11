@@ -9,6 +9,7 @@ import MediaManager from './MediaManager';
 import UserManager from './UserManager';
 import SiteSettingsManager from './SiteSettingsManager';
 import NavigationManager from './NavigationManager';
+import CMSContentSeeder from './CMSContentSeeder';
 
 const AdminPanel: React.FC = () => {
   const { userRole } = useAuth();
@@ -46,6 +47,10 @@ const AdminPanel: React.FC = () => {
           </p>
         </CardHeader>
         <CardContent>
+          <div className="mb-6">
+            <CMSContentSeeder />
+          </div>
+          
           <Tabs defaultValue="content" className="w-full">
             <TabsList className="grid w-full grid-cols-5 lg:grid-cols-5">
               <TabsTrigger value="content">
