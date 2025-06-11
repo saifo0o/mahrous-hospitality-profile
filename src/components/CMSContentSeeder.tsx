@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -112,6 +111,42 @@ const CMSContentSeeder: React.FC = () => {
             period: "2009 - 2011",
             rooms: 718,
             budget: "$8.5M"
+          },
+          author_id: user.id
+        },
+        {
+          title: "Portosaid Resort",
+          excerpt: "Managed $3.5M refurbishment project for 168-room beachfront property",
+          content: "Directed $3.5M refurbishment project (168 rooms), achieving significant growth in key performance indicators within just 4 months. Transformed beachfront property with modern amenities while preserving coastal charm. Resulted in 25% increase in occupancy and 18% improvement in guest satisfaction scores.",
+          content_type: 'project' as const,
+          status: 'published' as const,
+          featured: true,
+          category: 'Major Renovation',
+          tags: ['resort', 'renovation', 'beachfront', 'portosaid'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/bc89229b-bad1-4ef9-9380-f26640049698?se=2025-06-11T03%3A53%3A09Z&sp=r&sv=2025-05-05&sr=b&sig=5h/5mErBsP0X/1TLn%2ByhIr1JDUXthNj5RUybNzuod3A%3D",
+            location: "Port Said, Egypt",
+            period: "2015 - 2016",
+            rooms: 168,
+            budget: "$3.5M"
+          },
+          author_id: user.id
+        },
+        {
+          title: "Warwick Hotel Exterior",
+          excerpt: "Complete exterior renovation and facade modernization project",
+          content: "Led comprehensive exterior renovation project focusing on facade modernization and structural improvements. Implemented energy-efficient systems and contemporary design elements while maintaining architectural integrity. Project enhanced property's market positioning and visual appeal.",
+          content_type: 'project' as const,
+          status: 'published' as const,
+          featured: true,
+          category: 'Renovation',
+          tags: ['hotel', 'exterior', 'renovation', 'facade'],
+          metadata: {
+            image_url: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/44889a97-5615-471e-a4c5-606cfea1bda0?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=yOpDgiezWnngz9xdxhk%2BxokrOmwFvP%2B3Hpq43e2qxSU%3D",
+            location: "Various Locations",
+            period: "2017 - 2018",
+            rooms: 250,
+            budget: "$2.8M"
           },
           author_id: user.id
         }

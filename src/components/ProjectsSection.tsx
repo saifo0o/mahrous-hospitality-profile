@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -29,9 +28,9 @@ const ProjectsSection = () => {
         : "Managed pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved exceptional initial occupancy."
     },
     {
-      title: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
+      title: language.code === 'ar' ? "منتجع بورسعيد" : "Portosaid Resort",
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
-      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/44889a97-5615-471e-a4c5-606cfea1bda0?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=yOpDgiezWnngz9xdxhk%2BxokrOmwFvP%2B3Hpq43e2qxSU%3D",
+      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/bc89229b-bad1-4ef9-9380-f26640049698?se=2025-06-11T03%3A53%3A09Z&sp=r&sv=2025-05-05&sr=b&sig=5h/5mErBsP0X/1TLn%2ByhIr1JDUXthNj5RUybNzuod3A%3D",
       description: language.code === 'ar'
         ? "إدارة مشروع تجديد بقيمة 3.5 مليون دولار (168 غرفة)، مع تحقيق نمو كبير في مؤشرات الأداء الرئيسية في غضون 4 أشهر فقط."
         : "Directed $3.5M refurbishment project (168 rooms), achieving significant growth in key performance indicators within just 4 months."
