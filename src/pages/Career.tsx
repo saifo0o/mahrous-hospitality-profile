@@ -497,5 +497,3 @@ const Career = () => {
 };
 
 export default Career;
-
-</initial_code>
