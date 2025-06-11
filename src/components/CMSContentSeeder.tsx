@@ -6,6 +6,9 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
 import { Loader2, Database, CheckCircle } from 'lucide-react';
+import type { Database as DatabaseType } from '@/integrations/supabase/types';
+
+type ContentInsert = DatabaseType['public']['Tables']['content']['Insert'];
 
 const CMSContentSeeder: React.FC = () => {
   const [isSeeding, setIsSeeding] = useState(false);
@@ -21,16 +24,13 @@ const CMSContentSeeder: React.FC = () => {
     
     try {
       // Projects/Hotels Content
-      const projectsContent = [
+      const projectsContent: ContentInsert[] = [
         {
           title: "Sheraton Montazah Hotel",
-          title_ar: "فندق شيراتون المنتزه",
           excerpt: "Led comprehensive renovation of 40-year-old property (288 rooms)",
-          excerpt_ar: "قيادة تجديد شامل لعقار يبلغ عمره 40 عامًا (288 غرفة)",
           content: "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network. Achieved 25% increase in RevPAR, 30% improvement in guest satisfaction scores, and 15% reduction in energy consumption.",
-          content_ar: "قيادة تجديد شامل لعقار يبلغ عمره 40 عامًا (288 غرفة)، وتحديث جميع الأنظمة الميكانيكية بما في ذلك الغلايات والمحولات والمولدات والمبردات وشبكة السلامة من الحرائق. تحقيق زيادة بنسبة 25٪ في إيرادات الغرفة المتاحة، وتحسين بنسبة 30٪ في درجات رضا الضيوف، وانخفاض بنسبة 15٪ في استهلاك الطاقة.",
-          content_type: 'project',
-          status: 'published',
+          content_type: 'project' as const,
+          status: 'published' as const,
           featured: true,
           category: 'Major Renovation',
           tags: ['hotel', 'renovation', 'sheraton', 'alexandria'],
@@ -45,13 +45,10 @@ const CMSContentSeeder: React.FC = () => {
         },
         {
           title: "The V Luxury Resort Sahl Hasheesh",
-          title_ar: "منتجع ذا في الفاخر سهل حشيش",
           excerpt: "Managed pre-opening operations for 298-room luxury resort",
-          excerpt_ar: "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة",
           content: "Managed pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved exceptional initial occupancy. Achieved 90% occupancy within 4 months of launch, 12% increase in guest satisfaction scores, and established as market leader in the region.",
-          content_ar: "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة، وتنفيذ استراتيجيات تسويقية مبتكرة حققت نسبة إشغال استثنائية في البداية. تحقيق 90٪ نسبة الإشغال خلال 4 أشهر من الإطلاق، وزيادة بنسبة 12٪ في درجات رضا الضيوف، وتأسيس الفندق كرائد في السوق المحلية.",
-          content_type: 'project',
-          status: 'published',
+          content_type: 'project' as const,
+          status: 'published' as const,
           featured: true,
           category: 'Pre-Opening',
           tags: ['resort', 'luxury', 'pre-opening', 'hurghada'],
@@ -66,13 +63,10 @@ const CMSContentSeeder: React.FC = () => {
         },
         {
           title: "Four Points by Sheraton King Abdulaziz Road",
-          title_ar: "فندق فورنقاط باي شيراتون طريق الملك عبدالعزيز",
           excerpt: "Led pre-opening operations for 172-room property in Riyadh",
-          excerpt_ar: "قيادة عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة في الرياض",
           content: "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness. Achieved 12% reduction in pre-opening budget, 90% operational readiness at launch, and successfully recruited and trained 150+ staff.",
-          content_ar: "قيادة عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية. تحقيق تخفيض ميزانية ما قبل الافتتاح بنسبة 12٪، و90٪ من الجاهزية التشغيلية عند الإطلاق، وتوظيف وتدريب أكثر من 150 موظفًا بنجاح.",
-          content_type: 'project',
-          status: 'published',
+          content_type: 'project' as const,
+          status: 'published' as const,
           featured: true,
           category: 'Pre-Opening',
           tags: ['hotel', 'pre-opening', 'riyadh', 'ksa'],
@@ -87,13 +81,10 @@ const CMSContentSeeder: React.FC = () => {
         },
         {
           title: "Sheraton Miramar Resort",
-          title_ar: "منتجع شيراتون ميرامار",
           excerpt: "Managed $5M refurbishment project for 339-room property",
-          excerpt_ar: "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة",
           content: "Managed $5M refurbishment project for 339-room property, improving guest satisfaction through strategic repositioning. Achieved 12% improvement in guest satisfaction, 15% increase in ADR, and 8% increase in occupancy within first year post-renovation.",
-          content_ar: "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة، وتحسين رضا الضيوف من خلال إعادة تموضع استراتيجي. تحقيق تحسين بنسبة 12٪ في رضا الضيوف، وزيادة بنسبة 15٪ في متوسط سعر الغرفة اليومي، وزيادة بنسبة 8٪ في نسبة الإشغال خلال السنة الأولى بعد التجديد.",
-          content_type: 'project',
-          status: 'published',
+          content_type: 'project' as const,
+          status: 'published' as const,
           featured: true,
           category: 'Major Renovation',
           tags: ['resort', 'renovation', 'el-gouna'],
@@ -108,13 +99,10 @@ const CMSContentSeeder: React.FC = () => {
         },
         {
           title: "Four Points by Sheraton & Sheraton Tripoli",
-          title_ar: "فندق فور بوينتس باي شيراتون وشيراتون طرابلس",
           excerpt: "Managed pre-opening operations ensuring 95% operational readiness",
-          excerpt_ar: "إدارة عمليات ما قبل الافتتاح وضمان 95٪ من الجاهزية التشغيلية",
           content: "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions. Achieved 95% operational readiness, 15% higher guest satisfaction than regional average, and successfully established Sheraton brand standards in new market.",
-          content_ar: "إدارة عمليات ما قبل الافتتاح، وضمان 95٪ من الجاهزية التشغيلية في ظروف سياسية صعبة. تحقيق 95٪ من الجاهزية التشغيلية، ورضا ضيوف أعلى بنسبة 15٪ من متوسط المنطقة، ونجاح في ترسيخ معايير علامة شيراتون التجارية في سوق جديدة.",
-          content_type: 'project',
-          status: 'published',
+          content_type: 'project' as const,
+          status: 'published' as const,
           featured: true,
           category: 'Pre-Opening',
           tags: ['hotel', 'pre-opening', 'tripoli', 'libya'],
@@ -145,16 +133,13 @@ const CMSContentSeeder: React.FC = () => {
       setSeedingProgress(prev => [...prev, "✓ Projects content seeded successfully"]);
 
       // Seed awards
-      const awardsContent = [
+      const awardsContent: ContentInsert[] = [
         {
           title: "Excellence in Hotel Operations",
-          title_ar: "التميز في عمليات الفندق",
           excerpt: "Recognition for outstanding operational excellence in hospitality management",
-          excerpt_ar: "تقدير للتميز التشغيلي المتفوق في إدارة الضيافة",
           content: "Awarded for demonstrating exceptional leadership in hotel operations, achieving outstanding guest satisfaction scores and operational efficiency across multiple properties.",
-          content_ar: "تم منح الجائزة لإظهار قيادة استثنائية في عمليات الفندق، وتحقيق درجات متميزة في رضا الضيوف والكفاءة التشغيلية عبر عدة عقارات.",
-          content_type: 'award',
-          status: 'published',
+          content_type: 'award' as const,
+          status: 'published' as const,
           featured: true,
           category: 'Professional Excellence',
           tags: ['award', 'excellence', 'operations'],
@@ -179,16 +164,13 @@ const CMSContentSeeder: React.FC = () => {
       setSeedingProgress(prev => [...prev, "✓ Awards content seeded successfully"]);
 
       // Seed testimonials
-      const testimonialsContent = [
+      const testimonialsContent: ContentInsert[] = [
         {
           title: "Outstanding Leadership in Hospitality",
-          title_ar: "قيادة متميزة في الضيافة",
           excerpt: "Islam's leadership transformed our hotel operations completely",
-          excerpt_ar: "قيادة إسلام حولت عمليات فندقنا بالكامل",
           content: "Islam Mahrous demonstrated exceptional leadership skills during the Sheraton Montazah renovation project. His strategic approach and attention to detail resulted in significant improvements in both guest satisfaction and operational efficiency.",
-          content_ar: "أظهر إسلام محروس مهارات قيادية استثنائية خلال مشروع تجديد شيراتون المنتزه. نهجه الاستراتيجي واهتمامه بالتفاصيل أدى إلى تحسينات كبيرة في كل من رضا الضيوف والكفاءة التشغيلية.",
-          content_type: 'testimonial',
-          status: 'published',
+          content_type: 'testimonial' as const,
+          status: 'published' as const,
           featured: true,
           category: 'Client Testimonial',
           tags: ['testimonial', 'leadership', 'renovation'],
