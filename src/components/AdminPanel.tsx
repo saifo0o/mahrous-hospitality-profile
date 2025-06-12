@@ -10,6 +10,7 @@ import UserManager from './UserManager';
 import SiteSettingsManager from './SiteSettingsManager';
 import NavigationManager from './NavigationManager';
 import CMSContentSeeder from './CMSContentSeeder';
+import ContentSync from './ContentSync';
 
 const AdminPanel: React.FC = () => {
   const { userRole } = useAuth();
@@ -47,7 +48,8 @@ const AdminPanel: React.FC = () => {
           </p>
         </CardHeader>
         <CardContent>
-          <div className="mb-6">
+          <div className="mb-6 space-y-4">
+            <ContentSync />
             <CMSContentSeeder />
           </div>
           
