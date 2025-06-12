@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -16,7 +17,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
       period: language.code === 'ar' ? "2016 - 2023" : "2016 - 2023",
-      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/cc6b8137-1488-4939-8d61-eab1e9e2046f?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=NUHumgsaVc5WhmljjESsfajRiYIqX5j3XpBwoWAOa1A%3D",
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp",
       rooms: 288,
       budget: language.code === 'ar' ? "7.2 مليون دولار" : "$7.2M",
       description: language.code === 'ar' 
@@ -50,7 +51,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "الغردقة، مصر" : "Hurghada, Egypt",
       period: language.code === 'ar' ? "2023" : "2023",
-      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/0389e1f0-cba4-494a-8a30-8133a2998e0d?se=2025-06-11T03%3A30%3A34Z&sp=r&sv=2025-05-05&sr=b&sig=uF/rqcoMO147PnSwGSoHSSG6%2BQyUTGMopCcsIA2jogk%3D",
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg",
       rooms: 298,
       budget: language.code === 'ar' ? "4.5 مليون دولار" : "$4.5M",
       description: language.code === 'ar'
@@ -84,7 +85,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
       period: language.code === 'ar' ? "2024" : "2024",
-      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/44889a97-5615-471e-a4c5-606cfea1bda0?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=yOpDgiezWnngz9xdxhk%2BxokrOmwFvP%2B3Hpq43e2qxSU%3D",
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg",
       rooms: 168,
       budget: language.code === 'ar' ? "3.5 مليون دولار" : "$3.5M",
       description: language.code === 'ar'
@@ -118,7 +119,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
       period: language.code === 'ar' ? "2024 - 2025" : "2024 - 2025",
-      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/70efddd9-be3e-45f9-b9f2-1d6f0a115da3?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=R7RaorHo91YwAAEg1CJhgYYU5gPyirVyYkBtdebf3oM%3D",
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg",
       rooms: 172,
       budget: language.code === 'ar' ? "5.2 مليون دولار" : "$5.2M",
       description: language.code === 'ar'
@@ -152,7 +153,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
       period: language.code === 'ar' ? "2011 - 2014" : "2011 - 2014",
-      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/e703128d-63d6-4bf1-a8d8-8ec477447d4d?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=zpAnIdu187ebblkrXGBLrSft1uLIBhXzg%2BFDxytKJJ8%3D",
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg",
       rooms: 339,
       budget: language.code === 'ar' ? "5 مليون دولار" : "$5M",
       description: language.code === 'ar'
@@ -186,7 +187,7 @@ const Projects = () => {
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
       location: language.code === 'ar' ? "طرابلس، ليبيا" : "Tripoli, Libya",
       period: language.code === 'ar' ? "2009 - 2011" : "2009 - 2011",
-      image: "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/a6e760d0-fa94-46d8-8eb3-a53f2a3e7111/3804f390-c379-4bcb-9881-c40de6609f0c?se=2025-06-11T03%3A30%3A33Z&sp=r&sv=2025-05-05&sr=b&sig=0JMcvIEnDazMdPMYd3kmeprMOdKoQaRIihgRgd9LMQg%3D",
+      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg",
       rooms: 718,
       budget: language.code === 'ar' ? "8.5 مليون دولار" : "$8.5M",
       description: language.code === 'ar'
