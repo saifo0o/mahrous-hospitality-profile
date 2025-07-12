@@ -173,8 +173,6 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     document.body.style.display = 'none';
     document.body.offsetHeight; // Trigger reflow
     document.body.style.display = '';
-    
-    console.log(`Language changed to ${langCode}, direction: ${newLang.dir}`);
   };
 
   // Translation function
@@ -187,7 +185,6 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     document.documentElement.lang = language.code;
     document.documentElement.dir = language.dir;
     setIsRTL(language.dir === 'rtl');
-    console.log(`Initial language set to ${language.code}, direction: ${language.dir}`);
   }, []);
 
   return (

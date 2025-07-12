@@ -88,7 +88,7 @@ const SocialShareWidget: React.FC<SocialShareWidgetProps> = ({
           url
         });
       } catch (error) {
-        console.log('Error sharing:', error);
+        // Silently handle share error
       }
       return;
     }

@@ -19,7 +19,6 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className }) => {
 
   const handleLanguageChange = (langCode: 'en' | 'ar') => {
     if (langCode !== language.code) {
-      console.log(`Switching language from ${language.code} to ${langCode}`);
       setLanguage(langCode);
     }
   };

@@ -138,7 +138,7 @@ const AdvancedMediaGallery: React.FC<AdvancedMediaGalleryProps> = ({ items, clas
           url: window.location.href
         });
       } catch (error) {
-        console.log('Error sharing:', error);
+        // Silently handle share error
       }
     } else {
       navigator.clipboard.writeText(window.location.href);

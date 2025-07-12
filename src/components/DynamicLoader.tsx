@@ -19,6 +19,7 @@ const componentMap = {
   'BlogSection': lazy(() => import('./BlogSection')),
   'SpeakingSection': lazy(() => import('./SpeakingSection')),
   'NewsletterSignup': lazy(() => import('./NewsletterSignup')),
+  'SocialProofWidget': lazy(() => import('./SocialProofWidget')),
 };
 
 const DynamicLoader: React.FC<DynamicLoaderProps> = ({ 
@@ -29,8 +30,13 @@ const DynamicLoader: React.FC<DynamicLoaderProps> = ({
   const Component = componentMap[componentPath as keyof typeof componentMap];
   
   if (!Component) {
-    console.warn(`Component ${componentPath} not found in componentMap`);
-    return null;
+    return (
+      <div className="flex items-center justify-center min-h-[200px] p-8">
+        <div className="text-center">
+          <p className="text-muted-foreground">Component "{componentPath}" not found</p>
+        </div>
+      </div>
+    );
   }
 
   return (

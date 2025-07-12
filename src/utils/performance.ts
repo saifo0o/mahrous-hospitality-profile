@@ -8,17 +8,23 @@ export const measurePerformance = (name: string, fn: () => void | Promise<void>)
   if (result instanceof Promise) {
     return result.finally(() => {
       const end = performance.now();
-      console.log(`${name} took ${end - start} milliseconds`);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`${name} took ${end - start} milliseconds`);
+      }
     });
   } else {
     const end = performance.now();
-    console.log(`${name} took ${end - start} milliseconds`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`${name} took ${end - start} milliseconds`);
+    }
     return result;
   }
 };
 
 export const reportWebVitals = (metric: any) => {
-  console.log(metric);
+  if (process.env.NODE_ENV === 'development') {
+    console.log(metric);
+  }
   
   // Send to analytics
   if (typeof window !== 'undefined' && (window as any).gtag) {

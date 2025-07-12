@@ -178,7 +178,6 @@ const AdvancedSearchModal: React.FC<AdvancedSearchModalProps> = ({ isOpen, onClo
                       animate={{ opacity: 1, y: 0 }}
                       className="p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer group"
                       onClick={() => {
-                        console.log('Navigate to:', result.url);
                         onClose();
                       }}
                     >

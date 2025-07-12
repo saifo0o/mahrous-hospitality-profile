@@ -18,8 +18,6 @@ const ContentSync = () => {
     setIssues([]);
     
     try {
-      console.log('Checking content integrity...');
-      
       // Check if content table exists and is accessible
       const { data: contentData, error: contentError } = await supabase
         .from('content')
@@ -27,10 +25,7 @@ const ContentSync = () => {
         .limit(1);
       
       if (contentError) {
-        console.error('Content table error:', contentError);
         setIssues(prev => [...prev, `Content table access error: ${contentError.message}`]);
-      } else {
-        console.log('Content table accessible:', contentData);
       }
 
       // Check if bookmarks table has UUID issues
@@ -40,7 +35,6 @@ const ContentSync = () => {
         .limit(1);
       
       if (bookmarkError) {
-        console.error('Bookmark table error:', bookmarkError);
         setIssues(prev => [...prev, `Bookmark table error: ${bookmarkError.message}`]);
       }
 
@@ -51,7 +45,6 @@ const ContentSync = () => {
         .limit(1);
       
       if (profileError) {
-        console.error('Profile table error:', profileError);
         setIssues(prev => [...prev, `Profile table error: ${profileError.message}`]);
       }
 
@@ -64,7 +57,6 @@ const ContentSync = () => {
       }
 
     } catch (error) {
-      console.error('Content integrity check failed:', error);
       setIssues(prev => [...prev, `System error: ${error instanceof Error ? error.message : 'Unknown error'}`]);
     } finally {
       setIsChecking(false);
@@ -75,15 +67,12 @@ const ContentSync = () => {
     setIsChecking(true);
     
     try {
-      console.log('Attempting to fix CMS issues...');
-      
       // Clear any problematic cache
       if ('caches' in window) {
         const cacheNames = await caches.keys();
         await Promise.all(
           cacheNames.map(cacheName => caches.delete(cacheName))
         );
-        console.log('Browser caches cleared');
       }
 
       // Force refresh the content data
@@ -95,8 +84,6 @@ const ContentSync = () => {
       if (refreshError) {
         throw new Error(`Failed to refresh content: ${refreshError.message}`);
       }
-
-      console.log('Content refreshed successfully:', refreshedContent?.length, 'items');
 
       setIsFixed(true);
       setIssues([]);
@@ -112,7 +99,6 @@ const ContentSync = () => {
       }, 2000);
 
     } catch (error) {
-      console.error('Failed to fix CMS issues:', error);
       toast({
         title: "Fix Failed",
         description: error instanceof Error ? error.message : "Unknown error occurred",
