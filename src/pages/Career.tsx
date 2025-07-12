@@ -33,85 +33,63 @@ const Career = () => {
 
   const experiences = [
     {
-      position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "فندق وارويك الجبيل" : "Warwick Jubail Hotel",
-      location: language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, KSA",
-      period: language.code === 'ar' ? "أكتوبر 2024 - حالياً" : "October 2024–Present",
-      description: language.code === 'ar' 
-        ? "قيادة استراتيجيات شاملة لتحسين الإيرادات وتجربة الضيوف بما يتماشى مع ديناميكيات السوق التنافسية."
-        : "Spearheading full-spectrum revenue optimization and guest experience strategies in alignment with competitive market dynamics.",
-      rooms: 105,
-      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-03-20_dl8ixh.webp",
-      achievements: language.code === 'ar' 
-        ? [
-          "دفع تحسينات أداء الفندق من خلال مبادرات قائمة على البيانات ومتوافقة مع أهداف التحول السياحي لرؤية السعودية 2030",
-          "رعاية علاقات قوية مع أصحاب المصلحة الرئيسيين لضمان الموضع المستدام في السوق والربحية طويلة الأمد",
-          "تنفيذ مبادرات استراتيجية متوافقة مع أهداف رؤية 2030 لتحويل السياحة"
-        ] 
-        : [
-          "Driving hotel performance improvements through data-led initiatives aligned with Saudi Vision 2030's tourism transformation goals",
-          "Cultivating strong relationships with key stakeholders to ensure sustainable market positioning and long-term profitability",
-          "Implementing strategic initiatives aligned with Vision 2030 tourism transformation objectives"
-        ],
-      metrics: {
-        visionAlignment: language.code === 'ar' ? "رؤية 2030" : "Vision 2030",
-        stakeholders: language.code === 'ar' ? "متعددة" : "Multiple",
-        performance: language.code === 'ar' ? "محسن" : "Enhanced"
-      }
-    },
-    {
-      position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (مهمة ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening Assignment)",
-      company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "Four Points by Sheraton – King Abdulaziz Road",
+      position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening)",
+      company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "FOURPOINT BY SHERATON KING ABDULAZIZ ROAD",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "أغسطس 2024 - أكتوبر 2024" : "August 2024–October 2024",
+      period: language.code === 'ar' ? "أغسطس 2024 - يوليو 2025" : "August 2024-July 2025",
       description: language.code === 'ar' 
-        ? "تمثيل مصالح الملكية طوال مرحلة ما قبل الافتتاح لحماية الاستثمار الرأسمالي وضمان التوافق مع رؤية الأصول."
-        : "Represented ownership interests throughout the pre-opening phase to safeguard capital investment and ensure alignment with asset vision.",
+        ? "تمثيل مصالح المالك عبر جميع مراحل التطوير من التخطيط إلى التسليم."
+        : "Represented the owner's interests across all stages of development from planning to handover.",
       rooms: 172,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg",
       achievements: language.code === 'ar'
         ? [
-          "قيادة التنسيق بين ماريوت الدولية وفرق البناء وموردي الأثاث والتجهيزات، وتحقيق 90٪ من الجاهزية التشغيلية رغم الجداول الزمنية الضيقة والتحديات اللوجستية",
-          "حماية مصالح الملكية وضمان التوافق مع استراتيجية الأصول طويلة المدى",
-          "تجاوز التوقعات في تسليم المشروع رغم القيود الإقليمية"
+          "التنسيق مع المهندسين المعماريين والمهندسين والمقاولين وفريق الخدمات التقنية في ماريوت لضمان التوافق مع معايير العلامة التجارية والتشغيل",
+          "مراقبة المعالم المهمة للمشروع ومراجعة تحديثات البناء ومعالجة القضايا التقنية أو التصميمية بسرعة",
+          "مراجعة والموافقة على قرارات التصميم والشراء الرئيسية التي تؤثر على الوظائف التشغيلية",
+          "المشاركة في وضع الميزانية وموافقات الأثاث والتجهيزات والتخطيط لما قبل الافتتاح إلى جانب فرق عمليات الفندق",
+          "ضمان الانتهاء في الوقت المحدد والتسليم والاستعداد للعقار للافتتاح التدريجي والإطلاق الرسمي"
         ]
         : [
-          "Led coordination between Marriott International, construction teams, and FF&E vendors, achieving 90% operational readiness despite aggressive timelines and logistical challenges",
-          "Safeguarded ownership interests and ensured alignment with long-term asset strategy",
-          "Exceeded project delivery expectations despite regional constraints"
+          "Coordinated with architects, engineers, contractors, and Marriott's technical services team to ensure alignment with brand and operational standards",
+          "Monitored project milestones, reviewed construction updates, and addressed technical or design issues promptly",
+          "Reviewed and approved key design and procurement decisions impacting operational functionality",
+          "Participated in budgeting, FF&E approvals, and pre-opening planning alongside hotel operations teams",
+          "Ensured timely completion, handover, and readiness of the property for soft opening and official launch"
         ],
       metrics: {
-        readiness: language.code === 'ar' ? "90%" : "90%",
-        timeline: language.code === 'ar' ? "ضيق" : "Aggressive",
-        coordination: language.code === 'ar' ? "متعدد الأطراف" : "Multi-party"
+        rooms: language.code === 'ar' ? "172 غرفة" : "172 Rooms",
+        timeline: language.code === 'ar' ? "في الوقت المحدد" : "On Time",
+        alignment: language.code === 'ar' ? "معايير ماريوت" : "Marriott Standards"
       }
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
+      company: language.code === 'ar' ? "منتجع بورسعيد" : "PORTO SAID RESORT",
       location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
-      period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024 - August 2024",
+      period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024-August 2024",
       description: language.code === 'ar'
-        ? "قيادة مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة و 24 متجر، مما أدى إلى زيادة الإشغال بنسبة 18٪ وزيادة إيرادات الأطعمة والمشروبات بنسبة 20٪."
+        ? "قيادة مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة و 24 متجر تجاري، مما أدى إلى نمو الإشغال بنسبة 18٪ وزيادة إيرادات الأطعمة والمشروبات بنسبة 20٪."
         : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
       rooms: 168,
+      outlets: 24,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg",
       achievements: language.code === 'ar'
         ? [
-          "قيادة وتوجيه فريق متنوع من أكثر من 200 موظف",
-          "تنفيذ برامج تدريبية مستهدفة أدت إلى تحسين الكفاءة التشغيلية بنسبة 15٪ ودرجات رضا الضيوف بنسبة 15٪",
+          "قيادة وتوجيه فريق متنوع من أكثر من 200 موظف، وتنفيذ برامج تدريبية مستهدفة أدت إلى تحسين الكفاءة التشغيلية بنسبة 15٪ ودرجات رضا الضيوف بنسبة 25٪",
           "تطوير وتنفيذ مبادرات استراتيجية لخفض التكاليف عبر جميع الأقسام، مما أدى إلى تقليل المصروفات التشغيلية بنسبة 10٪ مع الحفاظ على التميز في الخدمة ورضا الضيوف"
         ]
         : [
-          "Led and mentored a diverse team of 200+ staff",
-          "Implemented targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 15%",
+          "Led and mentored a diverse team of 200+ staff, implementing targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 25%",
           "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
         ],
       metrics: {
+        refurbishment: language.code === 'ar' ? "3.5 مليون دولار" : "$3.5M",
         occupancy: language.code === 'ar' ? "+18%" : "+18%",
         revenue: language.code === 'ar' ? "+20%" : "+20%",
+        staff: language.code === 'ar' ? "200+" : "200+",
         efficiency: language.code === 'ar' ? "+15%" : "+15%",
-        costs: language.code === 'ar' ? "-10%" : "-10%"
+        satisfaction: language.code === 'ar' ? "+25%" : "+25%"
       }
     },
     {
