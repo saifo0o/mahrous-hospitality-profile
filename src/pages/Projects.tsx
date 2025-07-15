@@ -2,6 +2,8 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import BreadcrumbNav, { BreadcrumbItem } from '@/components/BreadcrumbNav';
+import BackToTopButton from '@/components/BackToTopButton';
 import { motion } from 'framer-motion';
 import { Building, Calendar, MapPin, BarChart, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,6 +12,13 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Projects = () => {
   const { language, t, isRTL } = useLanguage();
+  
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      label: language.code === 'ar' ? 'المشاريع' : 'Projects',
+      active: true
+    }
+  ];
   
   const projects = [
     {
@@ -223,6 +232,10 @@ const Projects = () => {
       <Navbar />
       
       <main className="flex-grow pt-24">
+        {/* Breadcrumb */}
+        <div className="container mx-auto px-4 md:px-8 py-4">
+          <BreadcrumbNav items={breadcrumbItems} />
+        </div>
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 md:px-8">
             <div className="text-center mb-12">
@@ -322,6 +335,7 @@ const Projects = () => {
       
       <Footer />
       <WhatsAppButton />
+      <BackToTopButton />
     </div>
   );
 };

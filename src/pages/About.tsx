@@ -2,6 +2,8 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import BreadcrumbNav, { BreadcrumbItem } from '@/components/BreadcrumbNav';
+import BackToTopButton from '@/components/BackToTopButton';
 import { Briefcase, Award, User, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
@@ -10,11 +12,22 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 const About = () => {
   const { language, t, isRTL } = useLanguage();
   
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      label: language.code === 'ar' ? 'من نحن' : 'About',
+      active: true
+    }
+  ];
+  
   return (
     <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
       
       <main className="flex-grow pt-20">
+        {/* Breadcrumb */}
+        <div className="container mx-auto px-4 md:px-8 py-4">
+          <BreadcrumbNav items={breadcrumbItems} />
+        </div>
         {/* Page Header */}
         <div className="bg-luxury-navy text-white py-20">
           <div className="container mx-auto px-4 md:px-8">
@@ -392,6 +405,7 @@ const About = () => {
       
       <Footer />
       <WhatsAppButton />
+      <BackToTopButton />
     </div>
   );
 };

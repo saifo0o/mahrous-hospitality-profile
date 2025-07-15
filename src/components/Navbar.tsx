@@ -132,8 +132,9 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            {/* Mobile Menu Button and Search */}
+            <div className="md:hidden flex items-center gap-2">
+              <SearchButton />
               <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                 <span className="sr-only">{language.code === 'ar' ? 'فتح القائمة' : 'Open menu'}</span>
@@ -141,29 +142,72 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Enhanced Mobile Menu */}
           {isOpen && (
-            <div className="md:hidden py-4">
-              <div className="flex flex-col space-y-4">
+            <div className="md:hidden py-4 bg-white/95 backdrop-blur-md border-t border-gray-200">
+              <div className="flex flex-col space-y-3">
                 {navigationItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="block py-2 text-gray-700 hover:text-primary transition-colors duration-200"
+                    className={`block py-3 px-4 rounded-md transition-colors duration-200 ${
+                      location.pathname === item.path 
+                        ? 'bg-primary/10 text-primary font-semibold' 
+                        : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                    }`}
+                    onClick={() => setIsOpen(false)}
                   >
                     {item.label}
                   </Link>
                 ))}
-                <LanguageSelector />
-                {user ? (
-                  <Button variant="ghost" onClick={handleSignOut}>
-                    {language.code === 'ar' ? 'تسجيل الخروج' : 'Log Out'}
-                  </Button>
-                ) : (
-                  <Link to="/auth">
-                    <Button>{language.code === 'ar' ? 'تسجيل الدخول' : 'Sign In'}</Button>
-                  </Link>
-                )}
+                <div className="px-4 py-2">
+                  <LanguageSelector />
+                </div>
+                <div className="px-4">
+                  {user ? (
+                    <div className="space-y-2">
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-start"
+                        onClick={() => {
+                          navigate('/profile');
+                          setIsOpen(false);
+                        }}
+                      >
+                        <User className="mr-2 h-4 w-4" />
+                        {language.code === 'ar' ? 'الملف الشخصي' : 'Profile'}
+                      </Button>
+                      {userRole === 'admin' && (
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-start"
+                          onClick={() => {
+                            navigate('/admin');
+                            setIsOpen(false);
+                          }}
+                        >
+                          <Shield className="mr-2 h-4 w-4" />
+                          {language.code === 'ar' ? 'لوحة التحكم' : 'Admin Panel'}
+                        </Button>
+                      )}
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-start text-red-600 hover:text-red-700"
+                        onClick={() => {
+                          handleSignOut();
+                          setIsOpen(false);
+                        }}
+                      >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        {language.code === 'ar' ? 'تسجيل الخروج' : 'Log Out'}
+                      </Button>
+                    </div>
+                  ) : (
+                    <Link to="/auth" onClick={() => setIsOpen(false)}>
+                      <Button className="w-full">{language.code === 'ar' ? 'تسجيل الدخول' : 'Sign In'}</Button>
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
           )}

@@ -10,6 +10,8 @@ import ReadingProgress from '@/components/ReadingProgress';
 import DynamicLoader from '@/components/DynamicLoader';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import EnhancedLoader from '@/components/EnhancedLoader';
+import BackToTopButton from '@/components/BackToTopButton';
+import SmoothScrollWrapper from '@/components/SmoothScrollWrapper';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
@@ -51,15 +53,16 @@ const Index = () => {
   const sectionFallback = <EnhancedLoader type="card" className="min-h-[400px]" />;
 
   return (
-    <motion.div 
-      ref={pageRef}
-      className={`min-h-screen flex flex-col reading-content ${isRTL ? 'text-right' : 'text-left'}`}
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
+    <SmoothScrollWrapper>
+      <motion.div 
+        ref={pageRef}
+        className={`min-h-screen flex flex-col reading-content ${isRTL ? 'text-right' : 'text-left'}`}
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
       <EnhancedSEOHead 
         title={language.code === 'ar' 
           ? 'إسلام محروس | مدير تنفيذي عالمي في الضيافة'
@@ -132,7 +135,9 @@ const Index = () => {
       </main>
       <Footer />
       <WhatsAppButton />
+      <BackToTopButton />
     </motion.div>
+    </SmoothScrollWrapper>
   );
 };
 
