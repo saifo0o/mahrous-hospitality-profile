@@ -12,12 +12,16 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import EnhancedLoader from '@/components/EnhancedLoader';
 import BackToTopButton from '@/components/BackToTopButton';
 import SmoothScrollWrapper from '@/components/SmoothScrollWrapper';
+import PWAInstallPrompt from '@/components/PWAInstallPrompt';
+import { LoadingState } from '@/components/OptimizedSkeleton';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import { useAdvancedAnalytics } from '@/utils/advanced-analytics';
 
 const Index = () => {
   const { isRTL, language } = useLanguage();
+  const { trackCustomEvent } = useAdvancedAnalytics();
   const pageRef = useRef<HTMLDivElement>(null);
   
   // Smooth scroll to top on page load
@@ -26,7 +30,11 @@ const Index = () => {
       top: 0,
       behavior: 'smooth'
     });
-  }, []);
+
+    // Track page load performance
+    const loadTime = performance.now();
+    trackCustomEvent('page_load', 'performance', 'index', loadTime);
+  }, [trackCustomEvent]);
 
   // Page transition variants
   const pageVariants = {
@@ -51,6 +59,14 @@ const Index = () => {
   };
 
   const sectionFallback = <EnhancedLoader type="card" className="min-h-[400px]" />;
+
+  const handlePWAInstall = () => {
+    trackCustomEvent('pwa_install', 'engagement', 'prompt_accepted');
+  };
+
+  const handlePWADismiss = () => {
+    trackCustomEvent('pwa_install', 'engagement', 'prompt_dismissed');
+  };
 
   return (
     <SmoothScrollWrapper>
@@ -136,6 +152,7 @@ const Index = () => {
       <Footer />
       <WhatsAppButton />
       <BackToTopButton />
+      <PWAInstallPrompt onInstall={handlePWAInstall} onDismiss={handlePWADismiss} />
     </motion.div>
     </SmoothScrollWrapper>
   );

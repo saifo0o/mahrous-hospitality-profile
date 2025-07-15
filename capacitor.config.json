@@ -1,0 +1,21 @@
+{
+  "appId": "app.lovable.25eb8779b98e4906a4d835846ab5ee78",
+  "appName": "mahrous-hospitality-profile",
+  "webDir": "dist",
+  "server": {
+    "url": "https://25eb8779-b98e-4906-a4d8-35846ab5ee78.lovableproject.com?forceHideBadge=true",
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#1a365d",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": true,
+      "spinnerColor": "#d69e2e"
+    },
+    "StatusBar": {
+      "style": "dark"
+    }
+  }
+}
