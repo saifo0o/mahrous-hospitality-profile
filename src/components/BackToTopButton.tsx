@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 const BackToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { isRTL } = useLanguage();
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -37,7 +39,7 @@ const BackToTopButton: React.FC = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-8 right-8 z-50"
+          className={`fixed bottom-20 z-40 ${isRTL ? 'left-8' : 'right-8'}`}
         >
           <Button
             onClick={scrollToTop}

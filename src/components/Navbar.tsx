@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, LogOut, User, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ThemeToggle';
+import AccessibilityEnhancements from '@/components/AccessibilityEnhancements';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 

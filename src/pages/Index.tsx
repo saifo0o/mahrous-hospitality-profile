@@ -12,11 +12,15 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import EnhancedLoader from '@/components/EnhancedLoader';
 import BackToTopButton from '@/components/BackToTopButton';
 import SmoothScrollWrapper from '@/components/SmoothScrollWrapper';
-import PWAInstallPrompt from '@/components/PWAInstallPrompt';
+
 import { LoadingState } from '@/components/OptimizedSkeleton';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import EnhancedSEOSchema from '@/components/EnhancedSEOSchema';
+import PerformanceMonitoring from '@/components/PerformanceMonitoring';
+import InteractiveCareerTimeline from '@/components/InteractiveCareerTimeline';
+import TestimonialVideoIntegration from '@/components/TestimonialVideoIntegration';
 import { useAdvancedAnalytics } from '@/utils/advanced-analytics';
 
 const Index = () => {
@@ -60,13 +64,6 @@ const Index = () => {
 
   const sectionFallback = <EnhancedLoader type="card" className="min-h-[400px]" />;
 
-  const handlePWAInstall = () => {
-    trackCustomEvent('pwa_install', 'engagement', 'prompt_accepted');
-  };
-
-  const handlePWADismiss = () => {
-    trackCustomEvent('pwa_install', 'engagement', 'prompt_dismissed');
-  };
 
   return (
     <SmoothScrollWrapper>
@@ -92,10 +89,24 @@ const Index = () => {
         type="website"
       />
       
+      <EnhancedSEOSchema
+        type="person"
+        title={language.code === 'ar' 
+          ? 'إسلام محروس | مدير تنفيذي عالمي في الضيافة'
+          : 'Islam Mahrous | Global Hospitality Executive'
+        }
+        description={language.code === 'ar'
+          ? 'مدير تنفيذي في مجال الضيافة مع أكثر من 30 عاماً من الخبرة متخصص في عمليات ما قبل الافتتاح والتجديدات والتميز التشغيلي في أسواق الشرق الأوسط وشمال إفريقيا والأسواق الدولية.'
+          : 'Hospitality Executive with over 30 years of experience specializing in pre-opening, renovations, and operational excellence across MENA and international markets.'
+        }
+      />
+      
+      <PerformanceMonitoring />
+      
       <ReadingProgress />
       <Navbar />
       
-      <main className="flex-grow">
+      <main id="main" className="flex-grow">
         <HeroSection />
         <StatsSection />
         
@@ -109,6 +120,10 @@ const Index = () => {
         
         <ErrorBoundary>
           <DynamicLoader componentPath="ExperienceSection" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <InteractiveCareerTimeline />
         </ErrorBoundary>
         
         <ErrorBoundary>
@@ -136,10 +151,14 @@ const Index = () => {
         </ErrorBoundary>
         
         <ErrorBoundary>
+          <TestimonialVideoIntegration />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
           <DynamicLoader componentPath="AwardsSection" fallback={sectionFallback} />
         </ErrorBoundary>
         
-        <div className="py-16 bg-gray-50">
+        <div className="py-16 bg-muted/50">
           <div className="container mx-auto px-4 md:px-8">
             <ErrorBoundary>
               <DynamicLoader componentPath="NewsletterSignup" fallback={sectionFallback} />
@@ -152,7 +171,7 @@ const Index = () => {
       <Footer />
       <WhatsAppButton />
       <BackToTopButton />
-      <PWAInstallPrompt onInstall={handlePWAInstall} onDismiss={handlePWADismiss} />
+      
     </motion.div>
     </SmoothScrollWrapper>
   );
