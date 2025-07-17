@@ -70,7 +70,7 @@ const SocialProofWidget: React.FC = () => {
     },
     {
       icon: <Users className="h-6 w-6" />,
-      value: "2,500+",
+      value: "5,000+",
       label: language.code === 'ar' ? "موظف مدرب" : "Staff Trained",
       trend: "+15%"
     },

@@ -1,154 +1,131 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
+import { cn } from '@/lib/utils';
 
 interface EnhancedLoaderProps {
-  type?: 'page' | 'content' | 'card' | 'inline';
-  size?: 'sm' | 'md' | 'lg';
-  text?: string;
+  type?: 'card' | 'text' | 'image' | 'full';
   className?: string;
+  lines?: number;
 }
 
 const EnhancedLoader: React.FC<EnhancedLoaderProps> = ({ 
-  type = 'content', 
-  size = 'md',
-  text,
-  className = '' 
+  type = 'card', 
+  className,
+  lines = 3 
 }) => {
-  const { language } = useLanguage();
+  const pulseVariants = {
+    pulse: {
+      opacity: [0.4, 0.8, 0.4],
+      scale: [1, 1.02, 1],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
 
   const shimmerVariants = {
-    initial: { x: '-100%' },
-    animate: { 
-      x: '100%',
+    shimmer: {
+      x: ['-100%', '100%'],
       transition: {
-        repeat: Infinity,
         duration: 1.5,
-        ease: 'easeInOut'
-      }
-    }
-  };
-
-  const pulseVariants = {
-    initial: { opacity: 0.6 },
-    animate: { 
-      opacity: 1,
-      transition: {
         repeat: Infinity,
-        repeatType: 'reverse' as const,
-        duration: 1
+        ease: "easeInOut"
       }
     }
   };
 
-  const sizeClasses = {
-    sm: 'h-4',
-    md: 'h-6', 
-    lg: 'h-8'
-  };
-
-  if (type === 'page') {
+  if (type === 'card') {
     return (
-      <div className={`min-h-screen flex items-center justify-center ${className}`}>
-        <div className="text-center">
-          <motion.div
-            className="w-16 h-16 border-4 border-luxury-gold/20 border-t-luxury-gold rounded-full mx-auto mb-4"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-          />
-          <motion.p 
-            className="text-luxury-gray"
-            variants={pulseVariants}
-            initial="initial"
-            animate="animate"
-          >
-            {text || (language.code === 'ar' ? 'جاري التحميل...' : 'Loading...')}
-          </motion.p>
-        </div>
-      </div>
-    );
-  }
-
-  if (type === 'inline') {
-    return (
-      <motion.div
-        className={`inline-flex items-center gap-2 ${className}`}
+      <motion.div 
+        className={cn("bg-white/50 backdrop-blur-sm rounded-lg p-6 space-y-4", className)}
         variants={pulseVariants}
-        initial="initial"
-        animate="animate"
+        animate="pulse"
       >
-        <div className="w-4 h-4 bg-luxury-gold rounded-full animate-pulse" />
-        <span className="text-sm text-luxury-gray">
-          {text || (language.code === 'ar' ? 'جاري التحميل...' : 'Loading...')}
-        </span>
+        <div className="flex items-center space-x-4">
+          <div className="relative overflow-hidden bg-gradient-to-r from-gray-200 to-gray-300 rounded-full h-12 w-12">
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+              variants={shimmerVariants}
+              animate="shimmer"
+            />
+          </div>
+          <div className="space-y-2 flex-1">
+            <div className="relative overflow-hidden bg-gradient-to-r from-gray-200 to-gray-300 h-4 rounded w-3/4">
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                variants={shimmerVariants}
+                animate="shimmer"
+              />
+            </div>
+            <div className="relative overflow-hidden bg-gradient-to-r from-gray-200 to-gray-300 h-3 rounded w-1/2">
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                variants={shimmerVariants}
+                animate="shimmer"
+              />
+            </div>
+          </div>
+        </div>
+        {Array.from({ length: lines }).map((_, i) => (
+          <div key={i} className="relative overflow-hidden bg-gradient-to-r from-gray-200 to-gray-300 h-3 rounded">
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+              variants={shimmerVariants}
+              animate="shimmer"
+              style={{ animationDelay: `${i * 0.2}s` }}
+            />
+          </div>
+        ))}
       </motion.div>
     );
   }
 
-  if (type === 'card') {
+  if (type === 'image') {
     return (
-      <div className={`animate-pulse space-y-4 p-6 ${className}`}>
-        <div className="flex items-center space-x-4">
-          <div className="rounded-full bg-gray-200 h-12 w-12"></div>
-          <div className="flex-1 space-y-2">
-            <div className="h-4 bg-gray-200 rounded w-3/4 relative overflow-hidden">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-                variants={shimmerVariants}
-                initial="initial"
-                animate="animate"
-              />
-            </div>
-            <div className="h-3 bg-gray-200 rounded w-1/2 relative overflow-hidden">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-                variants={shimmerVariants}
-                initial="initial"
-                animate="animate"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="space-y-2">
-          <div className="h-3 bg-gray-200 rounded relative overflow-hidden">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-              variants={shimmerVariants}
-              initial="initial"
-              animate="animate"
-            />
-          </div>
-          <div className="h-3 bg-gray-200 rounded w-5/6 relative overflow-hidden">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-              variants={shimmerVariants}
-              initial="initial"
-              animate="animate"
-            />
-          </div>
-        </div>
+      <motion.div 
+        className={cn("relative overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg aspect-video", className)}
+        variants={pulseVariants}
+        animate="pulse"
+      >
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+          variants={shimmerVariants}
+          animate="shimmer"
+        />
+      </motion.div>
+    );
+  }
+
+  if (type === 'full') {
+    return (
+      <div className={cn("space-y-6 p-6", className)}>
+        <EnhancedLoader type="card" lines={4} />
+        <EnhancedLoader type="image" />
+        <EnhancedLoader type="card" lines={2} />
       </div>
     );
   }
 
-  // Default content loader
+  // text type
   return (
-    <div className={`space-y-3 ${className}`}>
-      {[...Array(3)].map((_, i) => (
-        <div 
-          key={i} 
-          className={`bg-gray-200 rounded relative overflow-hidden ${sizeClasses[size]}`}
-          style={{ width: `${Math.random() * 40 + 60}%` }}
+    <div className={cn("space-y-3", className)}>
+      {Array.from({ length: lines }).map((_, i) => (
+        <motion.div 
+          key={i}
+          className="relative overflow-hidden bg-gradient-to-r from-gray-200 to-gray-300 h-4 rounded"
+          variants={pulseVariants}
+          animate="pulse"
+          style={{ animationDelay: `${i * 0.1}s` }}
         >
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
             variants={shimmerVariants}
-            initial="initial"
-            animate="animate"
-            style={{ animationDelay: `${i * 0.2}s` }}
+            animate="shimmer"
+            style={{ animationDelay: `${i * 0.3}s` }}
           />
-        </div>
+        </motion.div>
       ))}
     </div>
   );

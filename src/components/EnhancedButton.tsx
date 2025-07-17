@@ -1,87 +1,77 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button, ButtonProps } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-interface EnhancedButtonProps extends ButtonProps {
-  ripple?: boolean;
-  glow?: boolean;
-  scale?: boolean;
+interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'outline' | 'ghost' | 'luxury' | 'glow';
+  size?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
+  className?: string;
+  isLoading?: boolean;
 }
 
-const EnhancedButton: React.FC<EnhancedButtonProps> = ({ 
-  children, 
-  className, 
-  ripple = true,
-  glow = false,
-  scale = true,
-  ...props 
+const EnhancedButton: React.FC<EnhancedButtonProps> = ({
+  variant = 'default',
+  size = 'md',
+  children,
+  className,
+  isLoading = false,
+  ...props
 }) => {
-  const [ripples, setRipples] = React.useState<Array<{ x: number; y: number; id: number }>>([]);
+  const baseClasses = "relative overflow-hidden transition-all duration-300";
+  
+  const variantClasses = {
+    default: "bg-primary hover:bg-primary/90 text-primary-foreground",
+    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
+    ghost: "hover:bg-accent hover:text-accent-foreground",
+    luxury: "bg-gradient-to-r from-luxury-gold to-yellow-600 text-luxury-navy font-semibold shadow-lg hover:shadow-xl hover:from-yellow-600 hover:to-luxury-gold",
+    glow: "bg-primary text-primary-foreground shadow-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-105"
+  };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (ripple) {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const newRipple = { x, y, id: Date.now() };
-      
-      setRipples(prev => [...prev, newRipple]);
-      
-      setTimeout(() => {
-        setRipples(prev => prev.filter(r => r.id !== newRipple.id));
-      }, 600);
-    }
-
-    if (props.onClick) {
-      props.onClick(e);
-    }
+  const sizeClasses = {
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3 text-base",
+    lg: "px-8 py-4 text-lg"
   };
 
   return (
     <motion.div
-      whileHover={scale ? { scale: 1.02 } : undefined}
-      whileTap={scale ? { scale: 0.98 } : undefined}
-      className="relative inline-block"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
       <Button
-        {...props}
-        onClick={handleClick}
         className={cn(
-          'relative overflow-hidden transition-all duration-300',
-          glow && 'shadow-lg hover:shadow-xl hover:shadow-luxury-gold/25',
+          baseClasses,
+          variantClasses[variant],
+          sizeClasses[size],
           className
         )}
+        disabled={isLoading}
+        {...props}
       >
-        {/* Ripple effect */}
-        {ripples.map((ripple) => (
-          <motion.span
-            key={ripple.id}
-            className="absolute bg-white/30 rounded-full pointer-events-none"
-            style={{
-              left: ripple.x - 10,
-              top: ripple.y - 10,
-              width: 20,
-              height: 20,
-            }}
-            initial={{ scale: 0, opacity: 1 }}
-            animate={{ scale: 4, opacity: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          />
-        ))}
-        
-        {/* Shimmer effect on hover */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-          initial={{ x: '-100%' }}
-          whileHover={{ 
-            x: '100%',
-            transition: { duration: 0.6, ease: 'easeInOut' }
-          }}
-        />
+          className="relative z-10 flex items-center justify-center gap-2"
+          initial={false}
+          animate={{ opacity: isLoading ? 0.7 : 1 }}
+        >
+          {isLoading && (
+            <motion.div
+              className="w-4 h-4 border-2 border-current border-t-transparent rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            />
+          )}
+          {children}
+        </motion.div>
         
-        <span className="relative z-10">{children}</span>
+        {/* Ripple effect */}
+        <motion.div
+          className="absolute inset-0 bg-white/20 rounded-full scale-0"
+          whileTap={{ scale: 4, opacity: [0.3, 0] }}
+          transition={{ duration: 0.3 }}
+        />
       </Button>
     </motion.div>
   );
