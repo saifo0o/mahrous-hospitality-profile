@@ -269,8 +269,8 @@ const Contact = () => {
                   <div className="mt-8 p-4 bg-white rounded-md border-l-4 border-luxury-gold shadow-sm">
                     <p className="italic text-luxury-gray">
                       {language.code === 'ar' 
-                        ? '"التميز في الضيافة ليس مجرد خدمة؛ إنه استراتيجية ورؤية واتصال عاطفي."'
-                        : '"Excellence in hospitality is not just service; it\'s strategy, vision, and emotional connection."'
+                         ? '"التميز في الضيافة ليس مجرد خدمة؛ إنه استراتيجية ورؤية وذكاء عاطفي."'
+                         : '"Excellence in hospitality is not just service; it\'s strategy, vision, and emotional intelligence."'
                       }
                     </p>
                     <p className={`${isRTL ? 'text-left' : 'text-right'} text-sm font-medium mt-2`}>- Islam Mahrous</p>

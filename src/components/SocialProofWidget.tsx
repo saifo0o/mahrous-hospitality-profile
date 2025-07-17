@@ -64,27 +64,27 @@ const SocialProofWidget: React.FC = () => {
   const stats: Stat[] = [
     {
       icon: <Building className="h-6 w-6" />,
-      value: "50+",
+      value: "25+",
       label: language.code === 'ar' ? "مشروع مكتمل" : "Projects Completed",
-      trend: "+12%"
+      trend: "+8%"
     },
     {
       icon: <Users className="h-6 w-6" />,
-      value: "10,000+",
+      value: "2,500+",
       label: language.code === 'ar' ? "موظف مدرب" : "Staff Trained",
-      trend: "+25%"
+      trend: "+15%"
     },
     {
       icon: <Award className="h-6 w-6" />,
-      value: "15+",
+      value: "8+",
       label: language.code === 'ar' ? "جائزة مهنية" : "Industry Awards",
-      trend: "+3"
+      trend: "+2"
     },
     {
       icon: <TrendingUp className="h-6 w-6" />,
-      value: "95%",
+      value: "92%",
       label: language.code === 'ar' ? "معدل نجاح المشاريع" : "Project Success Rate",
-      trend: "+5%"
+      trend: "+3%"
     }
   ];
 
@@ -150,79 +150,6 @@ const SocialProofWidget: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Rotating Testimonials */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-2xl font-bold mb-8 text-luxury-gold">
-              {language.code === 'ar' ? "شهادات العملاء" : "Client Testimonials"}
-            </h3>
-            
-            <div className="relative h-80">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentTestimonial}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20"
-                >
-                  <Quote className="h-8 w-8 text-luxury-gold mb-4" />
-                  
-                  <p className="text-lg leading-relaxed mb-6 italic">
-                    "{testimonials[currentTestimonial].quote}"
-                  </p>
-                  
-                  <div className="flex items-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-5 w-5 ${
-                          i < testimonials[currentTestimonial].rating
-                            ? 'text-luxury-gold fill-current'
-                            : 'text-gray-400'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  
-                  <div className="border-t border-white/20 pt-4">
-                    <p className="font-semibold text-lg">
-                      {testimonials[currentTestimonial].name}
-                    </p>
-                    <p className="text-luxury-gold">
-                      {testimonials[currentTestimonial].position}
-                    </p>
-                    <p className="text-gray-300 text-sm">
-                      {testimonials[currentTestimonial].company}
-                    </p>
-                    <p className="text-gray-400 text-xs mt-2">
-                      {testimonials[currentTestimonial].project}
-                    </p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-            
-            {/* Testimonial indicators */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentTestimonial
-                      ? 'bg-luxury-gold'
-                      : 'bg-white/30 hover:bg-white/50'
-                  }`}
-                />
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
     </div>

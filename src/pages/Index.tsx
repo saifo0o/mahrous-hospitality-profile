@@ -19,8 +19,6 @@ import { motion } from 'framer-motion';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 import EnhancedSEOSchema from '@/components/EnhancedSEOSchema';
 import PerformanceMonitoring from '@/components/PerformanceMonitoring';
-import InteractiveCareerTimeline from '@/components/InteractiveCareerTimeline';
-import TestimonialVideoIntegration from '@/components/TestimonialVideoIntegration';
 import { useAdvancedAnalytics } from '@/utils/advanced-analytics';
 
 const Index = () => {
@@ -122,9 +120,6 @@ const Index = () => {
           <DynamicLoader componentPath="ExperienceSection" fallback={sectionFallback} />
         </ErrorBoundary>
         
-        <ErrorBoundary>
-          <InteractiveCareerTimeline />
-        </ErrorBoundary>
         
         <ErrorBoundary>
           <DynamicLoader componentPath="CaseStudiesSection" fallback={sectionFallback} />
@@ -150,9 +145,6 @@ const Index = () => {
           <DynamicLoader componentPath="TestimonialsSection" fallback={sectionFallback} />
         </ErrorBoundary>
         
-        <ErrorBoundary>
-          <TestimonialVideoIntegration />
-        </ErrorBoundary>
         
         <ErrorBoundary>
           <DynamicLoader componentPath="AwardsSection" fallback={sectionFallback} />

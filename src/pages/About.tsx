@@ -207,8 +207,8 @@ const About = () => {
             <div className="mt-16 bg-luxury-navy text-white p-8 rounded-lg">
               <blockquote className="text-xl md:text-2xl italic font-light text-center">
                 {language.code === 'ar'
-                  ? '"التميز في الضيافة ليس مجرد خدمة؛ إنه استراتيجية ورؤية واتصال عاطفي."'
-                  : '"Excellence in hospitality is not just service; it\'s strategy, vision, and emotional connection."'
+                  ? '"التميز في الضيافة ليس مجرد خدمة؛ إنه استراتيجية ورؤية وذكاء عاطفي."'
+                  : '"Excellence in hospitality is not just service; it\'s strategy, vision, and emotional intelligence."'
                 }
                 <footer className="mt-4 text-luxury-gold">— Islam Mahrous</footer>
               </blockquote>
