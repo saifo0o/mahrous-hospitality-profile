@@ -44,7 +44,7 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       "height": 400
     },
     "sameAs": [
-      "https://www.linkedin.com/in/islammahrous/"
+      "https://www.linkedin.com/in/islam-mahrous-"
     ],
     "jobTitle": "Hospitality Executive",
     "worksFor": {

@@ -66,7 +66,7 @@ const SiteSettingsManager: React.FC = () => {
     secondaryColor: '#64748b',
     accentColor: '#f59e0b',
     fontFamily: 'Inter',
-    contactEmail: 'info@islammahrous.com',
+    contactEmail: 'contact@islam-mahrous.com',
     contactPhone: '+971 50 123 4567',
     address: 'Dubai, United Arab Emirates',
     socialMedia: {

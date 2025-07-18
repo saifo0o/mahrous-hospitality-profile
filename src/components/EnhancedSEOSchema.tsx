@@ -42,7 +42,7 @@ const EnhancedSEOSchema: React.FC<SEOSchemaProps> = ({
     "url": url,
     "image": image,
     "sameAs": [
-      "https://www.linkedin.com/in/islam-mahrous",
+      "https://www.linkedin.com/in/islam-mahrous-",
       "https://twitter.com/islammahrous",
     ],
     "worksFor": {

@@ -97,7 +97,7 @@ const SEOHead: React.FC<SEOProps> = ({
     "url": BASE_URL,
     "image": DEFAULT_IMAGE,
     "sameAs": [
-      "https://www.linkedin.com/in/islammahrous/"
+      "https://www.linkedin.com/in/islam-mahrous-"
     ],
     "jobTitle": "Hospitality Executive",
     "worksFor": {

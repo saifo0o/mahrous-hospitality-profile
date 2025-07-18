@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://www.linkedin.com/in/islam-mahrous-/" 
+                href="https://www.linkedin.com/in/islam-mahrous-" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-luxury-gold transition-colors"

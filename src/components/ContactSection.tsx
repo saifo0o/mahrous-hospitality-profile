@@ -185,7 +185,18 @@ const ContactSection = () => {
                   <Mail size={22} className="text-luxury-gold mr-4 mt-1" />
                   <div>
                     <h4 className="font-medium text-luxury-navy">{t('email')}</h4>
-                    <p className="text-luxury-gray">mahrous.islam@yahoo.com</p>
+                    <div className="space-y-1">
+                      <p className="text-luxury-gray">
+                        <a href="mailto:mahrous.islam@yahoo.com" className="hover:text-luxury-navy transition-colors">
+                          mahrous.islam@yahoo.com
+                        </a>
+                      </p>
+                      <p className="text-luxury-gray">
+                        <a href="mailto:contact@islam-mahrous.com" className="hover:text-luxury-navy transition-colors">
+                          contact@islam-mahrous.com
+                        </a>
+                      </p>
+                    </div>
                   </div>
                 </div>
                 
@@ -194,12 +205,12 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-luxury-navy">LinkedIn</h4>
                     <a 
-                      href="https://www.linkedin.com/in/islam-mahrous/" 
+                      href="https://www.linkedin.com/in/islam-mahrous-" 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-luxury-navy hover:text-luxury-gold underline transition-colors"
                     >
-                      https://www.linkedin.com/in/islam-mahrous-/
+                      linkedin.com/in/islam-mahrous-
                     </a>
                   </div>
                 </div>
