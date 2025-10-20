@@ -113,6 +113,10 @@ const Index = () => {
         </ErrorBoundary>
         
         <ErrorBoundary>
+          <DynamicLoader componentPath="ProfessionalGallery" fallback={sectionFallback} />
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
           <DynamicLoader componentPath="SocialProofWidget" fallback={sectionFallback} />
         </ErrorBoundary>
         
