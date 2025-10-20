@@ -10,6 +10,7 @@ interface DynamicLoaderProps {
 
 const componentMap = {
   'AboutSection': lazy(() => import('./AboutSection')),
+  'ProfessionalGallery': lazy(() => import('./ProfessionalGallery')),
   'ExperienceSection': lazy(() => import('./ExperienceSection')),
   'ProjectsSection': lazy(() => import('./ProjectsSection')),
   'TestimonialsSection': lazy(() => import('./TestimonialsSection')),
