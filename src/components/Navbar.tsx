@@ -69,33 +69,49 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-white/98 backdrop-blur-xl shadow-2xl border-b border-border/50' 
+          : 'bg-gradient-to-b from-black/30 to-transparent'
       }`}>
         <div className="container mx-auto px-4 md:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link 
               to="/" 
-              className="flex items-center space-x-2 cursor-pointer"
+              className="flex items-center space-x-3 cursor-pointer group"
               onClick={handleLogoClick}
             >
-              <div className="text-2xl font-bold text-primary">
+              <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                isScrolled ? 'bg-accent' : 'bg-accent/90'
+              } group-hover:scale-110 group-hover:rotate-3 shadow-lg`}>
+                <span className="text-accent-foreground font-bold text-xl font-playfair">IM</span>
+              </div>
+              <div className={`text-2xl font-bold font-playfair transition-colors ${
+                isScrolled ? 'text-primary' : 'text-white'
+              } group-hover:text-accent`}>
                 {language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-8">
               {navigationItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`text-gray-700 hover:text-primary transition-colors duration-200 ${
-                    location.pathname === item.path ? 'text-primary font-semibold' : ''
+                  className={`relative font-medium transition-all duration-300 group ${
+                    isScrolled ? 'text-foreground' : 'text-white'
+                  } ${
+                    location.pathname === item.path 
+                      ? 'text-accent' 
+                      : 'hover:text-accent'
                   }`}
                 >
                   {item.label}
+                  <span className={`absolute left-0 -bottom-1 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full ${
+                    location.pathname === item.path ? 'w-full' : ''
+                  }`}></span>
                 </Link>
               ))}
               <LanguageSelector />
@@ -103,12 +119,20 @@ const Navbar = () => {
               {user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="gap-2 px-0 font-normal">
+                    <Button 
+                      variant="ghost" 
+                      className={`gap-2 px-3 py-2 rounded-lg font-medium transition-all duration-300 ${
+                        isScrolled 
+                          ? 'hover:bg-accent/10 text-foreground' 
+                          : 'hover:bg-white/10 text-white'
+                      }`}
+                    >
+                      <User className="h-4 w-4" />
                       {user.email}
-                      <ChevronDown className="h-4 w-4 opacity-50" />
+                      <ChevronDown className="h-4 w-4 opacity-70" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuContent className="w-64 bg-card/98 backdrop-blur-xl border-border/50 shadow-2xl" align="end" forceMount>
                     <DropdownMenuItem onClick={() => navigate('/profile')}>
                       <User className="mr-2 h-4 w-4" />
                       <span>{language.code === 'ar' ? 'الملف الشخصي' : 'Profile'}</span>
@@ -128,7 +152,9 @@ const Navbar = () => {
                 </DropdownMenu>
               ) : (
                 <Link to="/auth">
-                  <Button>{language.code === 'ar' ? 'تسجيل الدخول' : 'Sign In'}</Button>
+                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                    {language.code === 'ar' ? 'تسجيل الدخول' : 'Sign In'}
+                  </Button>
                 </Link>
               )}
             </div>
@@ -145,7 +171,7 @@ const Navbar = () => {
 
           {/* Enhanced Mobile Menu */}
           {isOpen && (
-            <div className="md:hidden py-4 bg-white/95 backdrop-blur-md border-t border-gray-200">
+            <div className="md:hidden py-6 bg-white/98 backdrop-blur-xl border-t border-border/50 shadow-2xl animate-in slide-in-from-top-4 duration-300">
               <div className="flex flex-col space-y-3">
                 {navigationItems.map((item) => (
                   <Link

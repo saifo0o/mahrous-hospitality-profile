@@ -51,27 +51,34 @@ const AwardsSection = () => {
   };
 
   return (
-    <section className="py-20 bg-luxury-navy text-white" ref={sectionRef}>
-      <div className="container mx-auto px-4 md:px-8">
+    <section className="py-24 bg-gradient-to-b from-primary via-primary/95 to-primary text-white relative overflow-hidden" ref={sectionRef}>
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/50 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 inline-block relative">
-            {t('awardsAndRecognition')}
-            <motion.span 
-              className="absolute left-0 -bottom-2 w-1/2 h-1 bg-luxury-gold"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            ></motion.span>
-          </h2>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-playfair">
+              {t('awardsAndRecognition')}
+            </h2>
+            <div className="w-24 h-1 bg-accent mx-auto mb-8 rounded-full" />
+          </motion.div>
           <motion.p 
-            className="text-gray-300 mt-4 max-w-2xl mx-auto"
+            className="text-gray-200 text-lg max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -85,42 +92,68 @@ const AwardsSection = () => {
         </motion.div>
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           {awards.map((award, index) => (
             <motion.div 
               key={index}
               variants={itemVariants}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-white/5 backdrop-blur-sm p-6 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300 flex flex-col items-center text-center"
+              whileHover={{ 
+                y: -12, 
+                scale: 1.05,
+                transition: { duration: 0.3 }
+              }}
+              className="group relative bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:bg-white/15 hover:border-accent/50 transition-all duration-500 flex flex-col items-center text-center overflow-hidden shadow-xl hover:shadow-2xl"
             >
+              {/* Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Icon */}
               <motion.div
-                initial={{ rotateY: 0 }}
-                whileHover={{ rotateY: 180 }}
-                transition={{ duration: 0.6 }}
+                className="relative z-10 mb-6 p-4 bg-accent/20 rounded-full backdrop-blur-sm"
+                initial={{ rotateY: 0, scale: 1 }}
+                whileHover={{ 
+                  rotateY: 360,
+                  scale: 1.1,
+                  transition: { duration: 0.8 }
+                }}
               >
                 {award.icon}
               </motion.div>
               
-              <h3 className="text-xl font-bold mt-4 mb-2">{award.title}</h3>
-              <p className="text-luxury-gold font-medium mb-2">{award.category}</p>
-              <p className="text-gray-300 text-sm">{award.year}</p>
+              {/* Content */}
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold mt-2 mb-3 line-clamp-3 min-h-[84px]">{award.title}</h3>
+                <p className="text-accent font-semibold mb-2 text-lg">{award.category}</p>
+                <div className="inline-block px-4 py-1 bg-white/10 rounded-full">
+                  <p className="text-gray-200 text-sm font-medium">{award.year}</p>
+                </div>
+              </div>
+              
+              {/* Bottom Shine Effect */}
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent"
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+              />
             </motion.div>
           ))}
         </motion.div>
         
         <motion.div 
-          className="text-center mt-10"
-          initial={{ opacity: 0, y: 10 }}
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <Button className="bg-luxury-gold hover:bg-yellow-600 text-luxury-navy hover-lift">
+          <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-accent/50 hover:scale-105 transition-all duration-300">
             <Link to="/awards">{t('viewAllAwards')}</Link>
           </Button>
         </motion.div>
