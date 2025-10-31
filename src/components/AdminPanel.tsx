@@ -1,22 +1,18 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
-import ContentManager from './ContentManager';
-import MediaManager from './MediaManager';
 import UserManager from './UserManager';
 import SiteSettingsManager from './SiteSettingsManager';
 import NavigationManager from './NavigationManager';
-import CMSContentSeeder from './CMSContentSeeder';
-import ContentSync from './ContentSync';
 
 const AdminPanel: React.FC = () => {
   const { userRole } = useAuth();
   const { language } = useLanguage();
 
-  if (userRole !== 'admin' && userRole !== 'editor') {
+  if (userRole !== 'admin' && userRole !== 'moderator') {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <Card>
@@ -48,21 +44,10 @@ const AdminPanel: React.FC = () => {
           </p>
         </CardHeader>
         <CardContent>
-          <div className="mb-6 space-y-4">
-            <ContentSync />
-            <CMSContentSeeder />
-          </div>
-          
-          <Tabs defaultValue="content" className="w-full">
-            <TabsList className="grid w-full grid-cols-5 lg:grid-cols-5">
-              <TabsTrigger value="content">
-                {language.code === 'ar' ? 'المحتوى' : 'Content'}
-              </TabsTrigger>
+          <Tabs defaultValue="navigation" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 lg:grid-cols-3">
               <TabsTrigger value="navigation">
                 {language.code === 'ar' ? 'التنقل' : 'Navigation'}
-              </TabsTrigger>
-              <TabsTrigger value="media">
-                {language.code === 'ar' ? 'الوسائط' : 'Media'}
               </TabsTrigger>
               <TabsTrigger value="settings">
                 {language.code === 'ar' ? 'الإعدادات' : 'Settings'}
@@ -74,16 +59,8 @@ const AdminPanel: React.FC = () => {
               )}
             </TabsList>
             
-            <TabsContent value="content" className="mt-6">
-              <ContentManager />
-            </TabsContent>
-            
             <TabsContent value="navigation" className="mt-6">
               <NavigationManager />
-            </TabsContent>
-            
-            <TabsContent value="media" className="mt-6">
-              <MediaManager />
             </TabsContent>
             
             <TabsContent value="settings" className="mt-6">

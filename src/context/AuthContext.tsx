@@ -39,19 +39,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          // Fetch user role
+          // Fetch user role from user_roles table
           setTimeout(async () => {
             try {
-              const { data: profile } = await supabase
-                .from('profiles')
+              const { data: roleData } = await supabase
+                .from('user_roles')
                 .select('role')
-                .eq('id', session.user.id)
+                .eq('user_id', session.user.id)
+                .limit(1)
                 .single();
               
-              setUserRole(profile?.role || 'viewer');
+              setUserRole(roleData?.role || 'user');
             } catch (error) {
               console.error('Error fetching user role:', error);
-              setUserRole('viewer');
+              setUserRole('user');
             }
           }, 0);
         } else {

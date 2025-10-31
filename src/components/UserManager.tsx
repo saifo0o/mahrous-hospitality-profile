@@ -14,9 +14,9 @@ interface UserProfile {
   id: string;
   email: string;
   full_name: string | null;
-  role: 'admin' | 'editor' | 'viewer';
   avatar_url: string | null;
   created_at: string;
+  role?: 'admin' | 'moderator' | 'user';
 }
 
 const UserManager: React.FC = () => {
@@ -31,13 +31,31 @@ const UserManager: React.FC = () => {
 
   const fetchUsers = async () => {
     try {
-      const { data, error } = await supabase
+      const { data: profiles, error: profilesError } = await supabase
         .from('profiles')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
-      setUsers(data || []);
+      if (profilesError) throw profilesError;
+
+      // Fetch roles for each user
+      const usersWithRoles = await Promise.all(
+        (profiles || []).map(async (profile) => {
+          const { data: roleData } = await supabase
+            .from('user_roles')
+            .select('role')
+            .eq('user_id', profile.id)
+            .limit(1)
+            .single();
+          
+          return {
+            ...profile,
+            role: (roleData?.role as 'admin' | 'moderator' | 'user') || 'user'
+          };
+        })
+      );
+
+      setUsers(usersWithRoles);
     } catch (error) {
       console.error('Error fetching users:', error);
       toast({
@@ -50,14 +68,31 @@ const UserManager: React.FC = () => {
     }
   };
 
-  const updateUserRole = async (userId: string, newRole: 'admin' | 'editor' | 'viewer') => {
+  const updateUserRole = async (userId: string, newRole: 'admin' | 'moderator' | 'user') => {
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({ role: newRole })
-        .eq('id', userId);
+      // First check if user has a role
+      const { data: existingRole } = await supabase
+        .from('user_roles')
+        .select('id')
+        .eq('user_id', userId)
+        .single();
 
-      if (error) throw error;
+      if (existingRole) {
+        // Update existing role
+        const { error } = await supabase
+          .from('user_roles')
+          .update({ role: newRole })
+          .eq('user_id', userId);
+        
+        if (error) throw error;
+      } else {
+        // Insert new role
+        const { error } = await supabase
+          .from('user_roles')
+          .insert([{ user_id: userId, role: newRole }]);
+        
+        if (error) throw error;
+      }
 
       toast({
         title: "Success",
@@ -78,8 +113,8 @@ const UserManager: React.FC = () => {
   const getRoleBadge = (role: string) => {
     const variants: { [key: string]: "default" | "secondary" | "destructive" | "outline" } = {
       admin: "destructive",
-      editor: "default",
-      viewer: "secondary",
+      moderator: "default",
+      user: "secondary",
     };
     return <Badge variant={variants[role] || "outline"}>{role}</Badge>;
   };
@@ -123,19 +158,19 @@ const UserManager: React.FC = () => {
                     {user.full_name || 'No name'}
                   </TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>{getRoleBadge(user.role)}</TableCell>
+                  <TableCell>{getRoleBadge(user.role || 'user')}</TableCell>
                   <TableCell>{new Date(user.created_at).toLocaleDateString()}</TableCell>
                   <TableCell>
                     <Select
-                      value={user.role}
-                      onValueChange={(newRole: 'admin' | 'editor' | 'viewer') => updateUserRole(user.id, newRole)}
+                      value={user.role || 'user'}
+                      onValueChange={(newRole: 'admin' | 'moderator' | 'user') => updateUserRole(user.id, newRole)}
                     >
                       <SelectTrigger className="w-32">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="viewer">Viewer</SelectItem>
-                        <SelectItem value="editor">Editor</SelectItem>
+                        <SelectItem value="user">User</SelectItem>
+                        <SelectItem value="moderator">Moderator</SelectItem>
                         <SelectItem value="admin">Admin</SelectItem>
                       </SelectContent>
                     </Select>

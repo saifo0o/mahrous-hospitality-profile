@@ -6,7 +6,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import BlogPostModal from './BlogPostModal';
 import ContentFilter, { FilterOption, SortOption } from './ContentFilter';
-import BookmarkButton from './BookmarkButton';
 import ReadingProgress from './ReadingProgress';
 
 interface BlogPost {
@@ -1090,12 +1089,6 @@ const BlogSection: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    
-                    <BookmarkButton
-                      itemId={post.id}
-                      itemType="blog"
-                      itemTitle={post.title}
-                    />
                   </div>
                   
                   <h3 className="text-xl font-bold text-luxury-navy dark:text-white mb-3 group-hover:text-luxury-gold transition-colors">
