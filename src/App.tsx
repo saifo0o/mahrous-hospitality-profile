@@ -8,6 +8,7 @@ import Index from './pages/Index';
 import About from './pages/About';
 import Career from './pages/Career';
 import Projects from './pages/Projects';
+import Blog from './pages/Blog';
 import Awards from './pages/Awards';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
@@ -49,6 +50,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/career" element={<Career />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/blog" element={<Blog />} />
               <Route path="/awards" element={<Awards />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/admin" element={<Admin />} />

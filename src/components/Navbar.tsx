@@ -57,6 +57,7 @@ const Navbar = () => {
   const navigationItems = [
     { label: language.code === 'ar' ? 'من نحن' : 'About', path: '/about' },
     { label: language.code === 'ar' ? 'المشاريع' : 'Projects', path: '/projects' },
+    { label: language.code === 'ar' ? 'المدونة' : 'Blog', path: '/blog' },
     { label: language.code === 'ar' ? 'الجوائز' : 'Awards', path: '/awards' },
     { label: language.code === 'ar' ? 'وظائف' : 'Career', path: '/career' },
     { label: language.code === 'ar' ? 'تواصل معنا' : 'Contact', path: '/contact' },
