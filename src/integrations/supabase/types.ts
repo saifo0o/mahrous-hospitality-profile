@@ -163,6 +163,54 @@ export type Database = {
         }
         Relationships: []
       }
+      consultation_bookings: {
+        Row: {
+          company: string | null
+          created_at: string
+          duration: number
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          preferred_date: string
+          preferred_time: string
+          service_type: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          duration?: number
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          preferred_date: string
+          preferred_time: string
+          service_type: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          duration?: number
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          preferred_date?: string
+          preferred_time?: string
+          service_type?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string | null
@@ -193,6 +241,36 @@ export type Database = {
           phone?: string | null
           status?: string | null
           subject?: string | null
+        }
+        Relationships: []
+      }
+      linkedin_settings: {
+        Row: {
+          access_token: string | null
+          auto_share_enabled: boolean
+          created_at: string
+          expires_at: string | null
+          id: string
+          refresh_token: string | null
+          updated_at: string
+        }
+        Insert: {
+          access_token?: string | null
+          auto_share_enabled?: boolean
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          refresh_token?: string | null
+          updated_at?: string
+        }
+        Update: {
+          access_token?: string | null
+          auto_share_enabled?: boolean
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          refresh_token?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
