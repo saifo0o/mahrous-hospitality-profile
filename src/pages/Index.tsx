@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import StatsSection from '@/components/StatsSection';
 import ContactSection from '@/components/ContactSection';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import AIChatAssistant from '@/components/AIChatAssistant';
 import ReadingProgress from '@/components/ReadingProgress';
 import DynamicLoader from '@/components/DynamicLoader';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -162,6 +163,7 @@ const Index = () => {
       </main>
       <Footer />
       <WhatsAppButton />
+      <AIChatAssistant />
       <BackToTopButton />
       
     </motion.div>
