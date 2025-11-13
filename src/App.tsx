@@ -12,7 +12,6 @@ import Blog from './pages/Blog';
 import Awards from './pages/Awards';
 import Contact from './pages/Contact';
 import BookConsultation from './pages/BookConsultation';
-import Calculators from './pages/Calculators';
 import Admin from './pages/Admin';
 import Auth from './pages/Auth';
 import NotFound from './pages/NotFound';
@@ -56,7 +55,6 @@ function App() {
               <Route path="/awards" element={<Awards />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/book-consultation" element={<BookConsultation />} />
-              <Route path="/calculators" element={<Calculators />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="*" element={<NotFound />} />

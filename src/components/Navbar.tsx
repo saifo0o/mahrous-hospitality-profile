@@ -61,7 +61,6 @@ const Navbar = () => {
     { label: language.code === 'ar' ? 'الجوائز' : 'Awards', path: '/awards' },
     { label: language.code === 'ar' ? 'وظائف' : 'Career', path: '/career' },
     { label: language.code === 'ar' ? 'احجز استشارة' : 'Book Consultation', path: '/book-consultation' },
-    { label: language.code === 'ar' ? 'الحاسبات' : 'Calculators', path: '/calculators' },
     { label: language.code === 'ar' ? 'تواصل معنا' : 'Contact', path: '/contact' },
   ];
 
