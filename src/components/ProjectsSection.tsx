@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useAnimation } from '@/hooks/useAnimation';
 import { Play, X } from 'lucide-react';
 
@@ -12,6 +12,16 @@ const ProjectsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   useAnimation(sectionRef, 'up');
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Create parallax effects for different elements
+  const headerY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   
   const projects = [
     {
@@ -106,6 +116,7 @@ const ProjectsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
+          style={{ y: headerY, opacity }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             {t('signatureProjects')}
@@ -123,6 +134,7 @@ const ProjectsSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
+          style={{ y: cardsY }}
         >
           {projects.map((project, index) => (
             <motion.div 
