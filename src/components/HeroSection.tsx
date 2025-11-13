@@ -79,19 +79,87 @@ const HeroSection = () => {
         }}
       ></motion.div>
       
+      {/* Animated Gradient Overlay */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-luxury-navy/40 via-transparent to-luxury-gold/20"
+        animate={{
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      {/* Floating Particles */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-luxury-gold rounded-full"
+          style={{
+            left: `${20 + i * 15}%`,
+            top: `${30 + (i % 3) * 20}%`,
+          }}
+          animate={{
+            y: [-20, 20, -20],
+            opacity: [0.2, 0.5, 0.2],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{
+            duration: 4 + i,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.5,
+          }}
+        />
+      ))}
+      
       {/* Animated decorative elements */}
       <motion.div 
         className="absolute top-1/4 left-20 w-20 h-20 border-2 border-luxury-gold opacity-20 rounded-full"
         initial={{ opacity: 0, scale: 0.8, rotate: -45 }}
-        animate={{ opacity: 0.2, scale: 1, rotate: 0 }}
-        transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+        animate={{ 
+          opacity: [0.2, 0.3, 0.2], 
+          scale: [1, 1.1, 1], 
+          rotate: [0, 360] 
+        }}
+        transition={{ 
+          duration: 20, 
+          repeat: Infinity,
+          ease: "linear"
+        }}
       ></motion.div>
       <motion.div 
         className="absolute bottom-1/4 right-20 w-32 h-32 border border-luxury-gold opacity-10 rounded-full"
         initial={{ opacity: 0, scale: 0.8, rotate: 45 }}
-        animate={{ opacity: 0.1, scale: 1, rotate: 0 }}
-        transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+        animate={{ 
+          opacity: [0.1, 0.2, 0.1], 
+          scale: [1, 1.2, 1],
+          rotate: [0, -360]
+        }}
+        transition={{ 
+          duration: 25, 
+          repeat: Infinity,
+          ease: "linear"
+        }}
       ></motion.div>
+      
+      {/* Animated mesh gradient background */}
+      <motion.div
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: 'radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(15, 30, 61, 0.15) 0%, transparent 50%)',
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
       
       <div className="container mx-auto px-4 md:px-8 relative z-10 py-20 md:py-0">
         <motion.div 
