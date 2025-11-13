@@ -4,15 +4,32 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import OptimizedImage from './OptimizedImage';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AboutSection = () => {
   const { t, language, isRTL } = useLanguage();
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax effects with different speeds
+  const imageY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const textY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
   
   return (
-    <section id="about" className="py-20">
-      <div className="container mx-auto px-4 md:px-8">
+    <section id="about" className="py-20 overflow-hidden" ref={ref}>
+      <motion.div 
+        className="container mx-auto px-4 md:px-8"
+        style={{ opacity }}
+      >
         <div className={`flex flex-col md:flex-row items-center gap-12 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
-          <div className="md:w-1/2">
+          <motion.div 
+            className="md:w-1/2"
+            style={{ y: imageY }}
+          >
             <OptimizedImage
               src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg"
               alt={language.code === 'ar' ? "إسلام محروس - تنفيذي في مجال الضيافة" : "Islam Mahrous - Hospitality Executive"}
@@ -21,9 +38,12 @@ const AboutSection = () => {
               width={400}
               height={500}
             />
-          </div>
+          </motion.div>
           
-          <div className="md:w-1/2">
+          <motion.div 
+            className="md:w-1/2"
+            style={{ y: textY }}
+          >
             <h2 className={`section-heading ${isRTL ? 'text-right w-full' : ''}`}>
               {t('aboutIslam')}
             </h2>
@@ -54,9 +74,9 @@ const AboutSection = () => {
                 <Link to="/contact">{t('getInTouch')}</Link>
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

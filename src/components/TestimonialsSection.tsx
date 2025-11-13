@@ -9,7 +9,7 @@ import {
   type CarouselApi
 } from "@/components/ui/carousel";
 import { TestimonialCard } from './TestimonialCard';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 const testimonials = [
   {
@@ -46,6 +46,16 @@ const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax effects
+  const headerY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const carouselY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   React.useEffect(() => {
     if (!api) return;
@@ -99,13 +109,14 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-white" ref={ref}>
+    <section id="testimonials" className="py-20 bg-white overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div 
           className="text-center mb-12"
           variants={headerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
+          style={{ y: headerY, opacity }}
         >
           <motion.h2 
             className="section-heading inline-block"
@@ -128,6 +139,7 @@ const TestimonialsSection = () => {
 
         <motion.div 
           className="max-w-4xl mx-auto"
+          style={{ y: carouselY }}
           variants={carouselVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

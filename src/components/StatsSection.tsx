@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation, useScroll, useTransform } from "framer-motion";
 import { Trophy, Users, BarChart, Building } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -9,6 +9,16 @@ const StatsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const { language, t } = useLanguage();
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax effects for stats
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const statsY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   
   useEffect(() => {
     if (isInView) {
@@ -104,13 +114,23 @@ const StatsSection = () => {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 md:px-8">
+    <section ref={ref} className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+      {/* Parallax background element */}
+      <motion.div 
+        className="absolute inset-0 opacity-10"
+        style={{ 
+          y: backgroundY,
+          background: 'radial-gradient(circle at 50% 50%, hsl(var(--luxury-gold)) 0%, transparent 70%)'
+        }}
+      />
+      
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={controls}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          style={{ y: statsY, opacity }}
         >
           {stats.map((stat, index) => (
             <motion.div 
