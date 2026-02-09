@@ -77,26 +77,26 @@ const Index = () => {
       >
       <EnhancedSEOHead 
         title={language.code === 'ar' 
-          ? 'إسلام محروس | مدير تنفيذي عالمي في الضيافة'
-          : 'Islam Mahrous | Global Hospitality Executive'
+          ? 'إسلام محروس | مدير عمليات المجموعة وخبير الضيافة'
+          : 'Islam Mahrous | Group Operations Director & Hospitality Executive'
         }
         description={language.code === 'ar'
-          ? 'مدير تنفيذي في مجال الضيافة مع أكثر من 30 عاماً من الخبرة متخصص في عمليات ما قبل الافتتاح والتجديدات والتميز التشغيلي في أسواق الشرق الأوسط وشمال إفريقيا والأسواق الدولية.'
-          : 'Hospitality Executive with over 30 years of experience specializing in pre-opening, renovations, and operational excellence across MENA and international markets.'
+          ? 'مدير عمليات المجموعة في فنادق برايم مع أكثر من 30 عاماً من الخبرة في عمليات ما قبل الافتتاح وتجديد الفنادق وإدارة الأرباح والخسائر والتميز التشغيلي في المملكة العربية السعودية ومصر والإمارات.'
+          : 'Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening operations, hotel renovations, P&L management, and operational excellence across KSA, Egypt, UAE & MENA.'
         }
-        tags={['hospitality', 'hotel management', 'general manager', 'MENA', 'luxury hotels']}
+        tags={['Islam Mahrous', 'hospitality executive', 'group operations director', 'hotel general manager', 'pre-opening expert', 'hotel renovation', 'P&L management', 'Marriott', 'IHG', 'Accor', 'Saudi Arabia', 'KSA', 'MENA', 'luxury hotels', 'Six Sigma', 'Prime Hotels']}
         type="website"
       />
       
       <EnhancedSEOSchema
         type="person"
         title={language.code === 'ar' 
-          ? 'إسلام محروس | مدير تنفيذي عالمي في الضيافة'
-          : 'Islam Mahrous | Global Hospitality Executive'
+          ? 'إسلام محروس | مدير عمليات المجموعة وخبير الضيافة'
+          : 'Islam Mahrous | Group Operations Director & Hospitality Executive'
         }
         description={language.code === 'ar'
-          ? 'مدير تنفيذي في مجال الضيافة مع أكثر من 30 عاماً من الخبرة متخصص في عمليات ما قبل الافتتاح والتجديدات والتميز التشغيلي في أسواق الشرق الأوسط وشمال إفريقيا والأسواق الدولية.'
-          : 'Hospitality Executive with over 30 years of experience specializing in pre-opening, renovations, and operational excellence across MENA and international markets.'
+          ? 'مدير عمليات المجموعة في فنادق برايم مع أكثر من 30 عاماً من الخبرة في عمليات ما قبل الافتتاح وتجديد الفنادق والتميز التشغيلي.'
+          : 'Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening, renovations, and operational excellence across KSA, Egypt, UAE & international markets.'
         }
       />
       

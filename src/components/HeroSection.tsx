@@ -172,7 +172,7 @@ const HeroSection = () => {
             className="inline-block text-luxury-gold text-lg md:text-xl mb-2 font-light tracking-wider"
             variants={itemVariants}
           >
-            {language.code === 'ar' ? 'التميز في الضيافة' : 'Hospitality Excellence'}
+            {language.code === 'ar' ? 'مدير عمليات المجموعة | فنادق برايم' : 'Group Operations Director | Prime Hotels'}
           </motion.span>
           
           <motion.h1 
@@ -187,7 +187,7 @@ const HeroSection = () => {
             >
               {language.code === 'ar' ? '+30 عامًا' : '30+ Years'}
             </motion.span>{' '}
-            {language.code === 'ar' ? 'من تحويل مشهد الضيافة على مستوى العالم' : 'of Transforming Hospitality Landscapes Worldwide'}
+            {language.code === 'ar' ? 'من القيادة في صناعة الضيافة العالمية' : 'of Global Hospitality Leadership'}
           </motion.h1>
           
           <motion.p 
@@ -195,8 +195,8 @@ const HeroSection = () => {
             variants={itemVariants}
           >
             {language.code === 'ar' 
-              ? 'مدير تنفيذي في مجال الضيافة متخصص في عمليات ما قبل الافتتاح، وعمليات التجديد واسعة النطاق، والتميز التشغيلي.'
-              : 'Hospitality Executive specializing in pre-opening operations, large-scale renovations, and operational excellence.'
+              ? 'خبير في عمليات ما قبل الافتتاح وتجديد الفنادق وإدارة الأرباح والخسائر | ماريوت، آي إتش جي، أكور | المملكة العربية السعودية، مصر، الإمارات'
+              : 'Pre-Opening & Hotel Renovation Expert | P&L Management | Marriott, IHG, Accor | KSA, Egypt, UAE'
             }
           </motion.p>
           
@@ -223,7 +223,7 @@ const HeroSection = () => {
             <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
               <Button className="bg-[#25D366] hover:bg-[#128C7E] text-white font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-base btn-hover">
                 <MessageCircle size={18} />
-                <a href="https://wa.me/201095556779" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer">
                   {t('messageOnWhatsApp')}
                 </a>
               </Button>

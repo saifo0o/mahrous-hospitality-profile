@@ -27,7 +27,7 @@ const WhatsAppButton = () => {
       whileTap={{ scale: 0.9 }}
     >
       <a 
-        href="https://wa.me/201095556779" 
+        href="https://wa.me/966553741020" 
         target="_blank" 
         rel="noopener noreferrer"
         className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300"

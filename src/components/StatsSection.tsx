@@ -29,7 +29,7 @@ const StatsSection = () => {
   const stats = [
     { 
       value: '30+', 
-      label: language.code === 'ar' ? 'سنوات الخبرة' : 'Years of Experience', 
+      label: language.code === 'ar' ? 'سنوات الخبرة القيادية' : 'Years of Leadership', 
       icon: <Trophy className="text-luxury-gold h-10 w-10" /> 
     },
     { 
@@ -38,13 +38,13 @@ const StatsSection = () => {
       icon: <Users className="text-luxury-gold h-10 w-10" /> 
     },
     { 
-      value: '25%+', 
-      label: language.code === 'ar' ? 'متوسط زيادة عائد الغرفة المتاحة' : 'Average RevPAR Increase', 
+      value: '35%+', 
+      label: language.code === 'ar' ? 'زيادة الإيرادات بعد التجديد' : 'Revenue Increase Post-Renovation', 
       icon: <BarChart className="text-luxury-gold h-10 w-10" /> 
     },
     { 
-      value: '$8.5M+', 
-      label: language.code === 'ar' ? 'ميزانيات التجديد المدارة' : 'Managed in Renovation Budgets', 
+      value: '$70M+', 
+      label: language.code === 'ar' ? 'ميزانيات المشاريع المُدارة' : 'Project Budgets Managed', 
       icon: <Building className="text-luxury-gold h-10 w-10" /> 
     }
   ];

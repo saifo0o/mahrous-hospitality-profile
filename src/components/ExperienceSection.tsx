@@ -12,37 +12,40 @@ const ExperienceSection = () => {
   
   const experiences = [
     {
-      position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening)",
-      company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "FOURPOINT BY SHERATON KING ABDULAZIZ ROAD",
+      position: language.code === 'ar' ? "مدير عمليات المجموعة" : "Group Operations Director",
+      company: language.code === 'ar' ? "فنادق برايم" : "PRIME HOTELS",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "أغسطس 2024 - يوليو 2025" : "August 2024-July 2025",
+      period: language.code === 'ar' ? "ديسمبر 2025 - الحاضر" : "December 2025 - Present",
+      rooms: 0,
+      roomsLabel: language.code === 'ar' ? "محفظة متعددة العلامات" : "Multi-Brand Portfolio",
+      description: language.code === 'ar'
+        ? "مسؤول عن عمليات الفنادق على مستوى المجموعة في المملكة العربية السعودية، يشرف على محفظة متعددة العلامات التجارية. أقود الحوكمة التشغيلية والأداء ومواءمة العلامة التجارية مع خطة نمو لبلوغ 10,000 غرفة بحلول 2030."
+        : "Full responsibility for group-wide hotel operations overseeing a multi-brand portfolio. Leading operational governance, performance, and brand alignment with a growth strategy to reach 10,000 rooms by 2030.",
+      highlight: language.code === 'ar' ? "منصب حالي" : "Current Role"
+    },
+    {
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "CROWNE PLAZA ALEXANDRIA MIRAGE",
+      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
+      period: language.code === 'ar' ? "أغسطس 2025 - ديسمبر 2025" : "August 2025 - December 2025",
+      rooms: 0,
+      roomsLabel: language.code === 'ar' ? "تحويل العلامة التجارية" : "Brand Conversion",
+      description: language.code === 'ar'
+        ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا، تنفيذ معايير آي إتش جي وأنظمتها وثقافة الخدمة عبر جميع الأقسام."
+        : "Leading the full brand conversion into Crowne Plaza, implementing IHG standards, systems, and service culture. Driving operational transformation and serving as primary liaison between ownership and IHG.",
+      highlight: language.code === 'ar' ? "تحويل العلامة" : "Brand Conversion"
+    },
+    {
+      position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening)",
+      company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "FOUR POINTS BY SHERATON KING ABDULAZIZ ROAD",
+      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
+      period: language.code === 'ar' ? "أغسطس 2024 - يوليو 2025" : "August 2024 - July 2025",
       rooms: 172,
+      roomsLabel: null,
       description: language.code === 'ar'
-        ? "تمثيل مصالح المالك عبر جميع مراحل التطوير من التخطيط إلى التسليم. التنسيق مع المهندسين المعماريين والمهندسين والمقاولين وفريق الخدمات التقنية في ماريوت لضمان التوافق مع معايير العلامة التجارية والتشغيل."
-        : "Represented the owner's interests across all stages of development from planning to handover. Coordinated with architects, engineers, contractors, and Marriott's technical services team to ensure alignment with brand and operational standards.",
+        ? "أشرف على مشروع تطوير فندقي بقيمة 50+ مليون دولار، وظّف وتدرب فريق ما قبل الافتتاح 150+، وأسس أنظمة إدارة الإيرادات مستهدفاً 25+ مليون دولار إيرادات سنوية."
+        : "Oversaw $50M+ hotel development project. Recruited 150+ pre-opening team. Established revenue management systems targeting $25M+ in projected annual revenue. 80% Saudi national leadership.",
       highlight: language.code === 'ar' ? "استشاري الملكية" : "Ownership Advisory"
-    },
-    {
-      position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "منتجع بورسعيد" : "PORTO SAID RESORT",
-      location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
-      period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024-August 2024",
-      rooms: 168,
-      description: language.code === 'ar'
-        ? "قاد مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة ومجمع تجاري يضم 24 منفذًا، مما أدى إلى نمو الإشغال بنسبة 18٪ وزيادة إيرادات الأغذية والمشروبات بنسبة 20٪."
-        : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
-      highlight: language.code === 'ar' ? "تحول الأعمال" : "Business Turnaround"
-    },
-    {
-      position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "منتجع ذا في الفاخر سهل حشيش" : "THE V LUXURY RESORT SAHL HASHEESH",
-      location: language.code === 'ar' ? "الغردقة، مصر" : "Hurghada, Egypt",
-      period: language.code === 'ar' ? "أبريل 2023 - فبراير 2024" : "April 2023-February 2024",
-      rooms: 298,
-      description: language.code === 'ar'
-        ? "أدار عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة، وتنفيذ استراتيجيات تسويقية مبتكرة حققت نسبة إشغال 90٪ في غضون 4 أشهر من الإطلاق، مما وضع معيارًا جديدًا للسوق."
-        : "Orchestrated pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved 90% occupancy within 4 months of launch, setting a new market benchmark.",
-      highlight: language.code === 'ar' ? "قائد السوق" : "Market Leader"
     }
   ];
 
@@ -119,10 +122,17 @@ const ExperienceSection = () => {
                     <span>{exp.period}</span>
                   </div>
                   
-                  <div className="flex items-center text-sm text-luxury-gray mb-4">
-                    <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                    <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
-                  </div>
+                  {exp.roomsLabel ? (
+                    <div className="flex items-center text-sm text-luxury-gray mb-4">
+                      <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
+                      <span>{exp.roomsLabel}</span>
+                    </div>
+                  ) : exp.rooms > 0 ? (
+                    <div className="flex items-center text-sm text-luxury-gray mb-4">
+                      <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
+                      <span>{exp.rooms} {language.code === 'ar' ? "غرفة" : "Rooms"}</span>
+                    </div>
+                  ) : null}
                   
                   <p className="text-sm mt-auto mb-4 leading-relaxed">{exp.description}</p>
                   
