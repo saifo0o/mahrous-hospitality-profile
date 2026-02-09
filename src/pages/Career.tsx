@@ -33,6 +33,56 @@ const Career = () => {
 
   const experiences = [
     {
+      position: language.code === 'ar' ? "مدير عمليات المجموعة" : "Group Operations Director",
+      company: language.code === 'ar' ? "فنادق برايم" : "Prime Hotels",
+      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
+      period: language.code === 'ar' ? "ديسمبر 2025 - الحاضر" : "December 2025 - Present",
+      description: language.code === 'ar'
+        ? "مسؤول عن عمليات الفنادق على مستوى المجموعة، يشرف على محفظة متعددة العلامات التجارية تضم أربعة عقارات حالياً مع ستة فنادق إضافية مخطط افتتاحها بحلول 2026."
+        : "Full responsibility for group-wide hotel operations overseeing a multi-brand portfolio of four properties, with six additional hotels scheduled to open by 2026.",
+      rooms: 0,
+      achievements: language.code === 'ar'
+        ? [
+          "قيادة الحوكمة التشغيلية والأداء ومواءمة العلامة التجارية عبر المحفظة بالتعاون مع الملاك ومجلس الإدارة والمديرين العامين",
+          "تنفيذ استراتيجية نمو طويلة المدى لبلوغ 10,000 غرفة بحلول 2030 مبنية على عمليات منضبطة وأنظمة قابلة للتوسع",
+          "الإشراف على العقارات الفاخرة والمتوسطة والشقق الفندقية لضمان الاتساق والربحية والتوسع الناجح"
+        ]
+        : [
+          "Leading operational governance, performance, and brand alignment across the portfolio, working closely with ownership, board, and General Managers",
+          "Executing long-term growth strategy to reach 10,000 rooms by 2030, built on disciplined operations and scalable systems",
+          "Overseeing luxury, midscale, and hotel apartment brands ensuring consistency, profitability, and successful expansion"
+        ],
+      metrics: {
+        portfolio: language.code === 'ar' ? "متعدد العلامات" : "Multi-Brand",
+        target: language.code === 'ar' ? "10,000 غرفة بحلول 2030" : "10,000 Rooms by 2030",
+        properties: language.code === 'ar' ? "4+ عقارات" : "4+ Properties"
+      }
+    },
+    {
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "Crowne Plaza Alexandria Mirage",
+      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
+      period: language.code === 'ar' ? "أغسطس 2025 - ديسمبر 2025" : "August 2025 - December 2025",
+      description: language.code === 'ar'
+        ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا، تنفيذ معايير آي إتش جي وأنظمتها وثقافة الخدمة عبر جميع الأقسام."
+        : "Leading the full brand conversion of an independent property into Crowne Plaza, implementing IHG standards, systems, and service culture across all departments.",
+      rooms: 0,
+      achievements: language.code === 'ar'
+        ? [
+          "دفع التحول التشغيلي من خلال ترقية العمليات وإعادة تدريب الموظفين وتعزيز الجودة لتلبية متطلبات تدقيق العلامة التجارية آي إتش جي والسلامة وتجربة الضيوف",
+          "العمل كحلقة وصل رئيسية بين الملكية وآي إتش جي لضمان انتقال سلس والامتثال لتفويضات الامتياز وتحسين أداء الأصول",
+        ]
+        : [
+          "Driving operational transformation through upgraded processes, staff retraining, and quality enhancements to meet IHG brand audit, safety, and guest experience requirements",
+          "Serving as primary liaison between ownership and IHG, ensuring smooth transition, timely compliance with franchise mandates, and optimized asset performance",
+        ],
+      metrics: {
+        type: language.code === 'ar' ? "تحويل علامة تجارية" : "Brand Conversion",
+        brand: "IHG - Crowne Plaza",
+        compliance: language.code === 'ar' ? "100%" : "100%"
+      }
+    },
+    {
       position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening)",
       company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "FOURPOINT BY SHERATON KING ABDULAZIZ ROAD",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
