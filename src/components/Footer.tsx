@@ -44,7 +44,7 @@ const Footer = () => {
                 <Linkedin size={18} />
               </a>
               <a 
-                href="mailto:mahrous.islam@yahoo.com" 
+                href="mailto:saifeldiinislam@gmail.com" 
                 className="w-10 h-10 rounded-lg bg-white/10 hover:bg-accent border border-white/20 hover:border-accent flex items-center justify-center transition-all duration-300 hover:scale-110"
                 aria-label="Email"
               >
@@ -103,7 +103,7 @@ const Footer = () => {
                   <MapPin size={18} className="text-accent group-hover:text-accent-foreground" />
                 </div>
                 <span className="text-gray-300 text-sm pt-2">
-                  {language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, KSA"}
+                  {language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA"}
                 </span>
               </li>
               <li className="flex items-start group">
@@ -111,15 +111,15 @@ const Footer = () => {
                   <Phone size={18} className="text-accent group-hover:text-accent-foreground" />
                 </div>
                 <div className="flex flex-col gap-1 pt-1">
-                  <a href="tel:+966501721876" className="text-gray-300 hover:text-accent transition-colors text-sm">+966 501 721 876</a>
-                  <a href="tel:+201095556779" className="text-gray-300 hover:text-accent transition-colors text-sm">+20 109 555 6779</a>
+                  <a href="tel:+966553741020" className="text-gray-300 hover:text-accent transition-colors text-sm">+966 55 374 1020</a>
+                  <a href="tel:+966501721876" className="text-gray-300 hover:text-accent transition-colors text-sm">+966 50 172 1876</a>
                 </div>
               </li>
               <li className="flex items-start group">
                 <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center mr-3 group-hover:bg-accent transition-all duration-300">
                   <Mail size={18} className="text-accent group-hover:text-accent-foreground" />
                 </div>
-                <a href="mailto:mahrous.islam@yahoo.com" className="text-gray-300 hover:text-accent transition-colors text-sm pt-2 break-all">mahrous.islam@yahoo.com</a>
+                <a href="mailto:saifeldiinislam@gmail.com" className="text-gray-300 hover:text-accent transition-colors text-sm pt-2 break-all">saifeldiinislam@gmail.com</a>
               </li>
             </ul>
           </div>

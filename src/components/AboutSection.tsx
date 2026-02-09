@@ -49,20 +49,20 @@ const AboutSection = () => {
             </h2>
             <p className={`text-luxury-gray mb-6 leading-relaxed ${isRTL ? 'text-right' : ''}`}>
               {language.code === 'ar' 
-                ? "تنفيذي متميز في مجال الضيافة مع أكثر من 30 عامًا من الخبرة القيادية التقدمية متخصص في عمليات ما قبل الافتتاح، وعمليات التجديد واسعة النطاق، والتميز التشغيلي."
-                : "Accomplished Hospitality Executive with over 30 years of progressive leadership experience specializing in pre-opening operations, large-scale renovations, and operational excellence."
+                ? "مدير عمليات المجموعة في فنادق برايم بالمملكة العربية السعودية، مع أكثر من 30 عامًا من الخبرة القيادية في مجال الضيافة متخصص في عمليات ما قبل الافتتاح، والتجديدات واسعة النطاق، وإدارة الأرباح والخسائر."
+                : "Group Operations Director at Prime Hotels in Saudi Arabia, with over 30 years of hospitality leadership specializing in pre-opening operations, large-scale renovations, and P&L management."
               }
             </p>
             <p className={`text-luxury-gray mb-6 leading-relaxed ${isRTL ? 'text-right' : ''}`}>
               {language.code === 'ar'
-                ? "مع سجل حافل من تحقيق نتائج مالية قياسية، ورفع مقاييس رضا الضيوف وتعزيز العلاقات طويلة الأمد مع أصحاب المصلحة عبر الأسواق الدولية، تم الاعتراف بي بجوائز مرموقة في الصناعة للابتكار والتميز في خدمة العملاء والقيادة التشغيلية."
-                : "With a proven track record of driving record-breaking financial results, elevating guest satisfaction metrics and fostering long-term stakeholder relationships across international markets, I've been recognized with prestigious industry awards for innovation, customer excellence, and operational leadership."
+                ? "مع سجل حافل عبر ماريوت وآي إتش جي وأكور، تم الاعتراف بي بجوائز مرموقة في الصناعة للابتكار والتميز في خدمة العملاء والقيادة التشغيلية عبر أسواق المملكة العربية السعودية ومصر والإمارات وليبيا."
+                : "With a proven track record across Marriott, IHG, and Accor, I've been recognized with prestigious industry awards for innovation, customer excellence, and operational leadership across KSA, Egypt, UAE, and Libya."
               }
             </p>
             <p className={`text-luxury-gray mb-8 leading-relaxed ${isRTL ? 'text-right' : ''}`}>
               {language.code === 'ar'
-                ? "أنا بارع في قيادة فرق عالية الأداء خلال التحولات المعقدة مع الحفاظ على معايير خدمة استثنائية والربحية. فلسفتي في القيادة تتمحور حول كوني محفزًا وداعمًا وشريكًا ملتزمًا يجلب التفكير التحليلي والشغف للتميز في كل مشروع."
-                : "I'm adept at leading high-performing teams through complex transformations while maintaining exceptional service standards and profitability. My leadership philosophy is centered on being an energizer, supporter, and committed partner who brings analytical thinking and a passion for excellence to every project."
+                ? "أحمل ماجستير إدارة الأعمال في الإدارة الاستراتيجية ودبلومة من معهد غليون العالي للتعليم، وأتقن العربية والإنجليزية والألمانية والروسية. فلسفتي في القيادة تتمحور حول التفكير التحليلي والشغف للتميز في كل مشروع."
+                : "Holding an MBA in Strategic Management and a Diploma from Glion Institute, I'm fluent in Arabic, English, German, and Russian. My leadership philosophy centers on analytical thinking and a passion for excellence in every project."
               }
             </p>
             

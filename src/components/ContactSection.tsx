@@ -163,7 +163,7 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-luxury-navy">{t('location')}</h4>
                     <p className="text-luxury-gray">
-                      {language.code === 'ar' ? "الجبيل، المملكة العربية السعودية" : "Jubail, Kingdom of Saudi Arabia"}
+                      {language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, Kingdom of Saudi Arabia"}
                     </p>
                   </div>
                 </div>
@@ -173,10 +173,14 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-luxury-navy">{t('phone')}</h4>
                     <p className="text-luxury-gray">
-                      {language.code === 'ar' ? "السعودية: " : "KSA: "}+966 501 721 876
+                      <a href="tel:+966553741020" className="hover:text-luxury-navy transition-colors">
+                        {language.code === 'ar' ? "السعودية: " : "KSA: "}+966 55 374 1020
+                      </a>
                     </p>
                     <p className="text-luxury-gray">
-                      {language.code === 'ar' ? "مصر: " : "Egypt: "}+20 109 555 6779
+                      <a href="tel:+966501721876" className="hover:text-luxury-navy transition-colors">
+                        {language.code === 'ar' ? "السعودية: " : "KSA: "}+966 50 172 1876
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -186,14 +190,14 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-luxury-navy">{t('email')}</h4>
                     <div className="space-y-1">
-                      <p className="text-luxury-gray">
-                        <a href="mailto:mahrous.islam@yahoo.com" className="hover:text-luxury-navy transition-colors">
-                          mahrous.islam@yahoo.com
+                    <p className="text-luxury-gray">
+                        <a href="mailto:saifeldiinislam@gmail.com" className="hover:text-luxury-navy transition-colors">
+                          saifeldiinislam@gmail.com
                         </a>
                       </p>
                       <p className="text-luxury-gray">
-                        <a href="mailto:contact@islam-mahrous.com" className="hover:text-luxury-navy transition-colors">
-                          contact@islam-mahrous.com
+                        <a href="mailto:mahrous.islam@yahoo.com" className="hover:text-luxury-navy transition-colors">
+                          mahrous.islam@yahoo.com
                         </a>
                       </p>
                     </div>
