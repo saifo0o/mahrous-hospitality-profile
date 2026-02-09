@@ -22,6 +22,42 @@ const Projects = () => {
   
   const projects = [
     {
+      title: language.code === 'ar' ? "فنادق برايم - محفظة المجموعة" : "Prime Hotels - Group Portfolio",
+      category: language.code === 'ar' ? "إدارة المجموعة" : "Group Management",
+      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
+      period: language.code === 'ar' ? "2025 - الحاضر" : "2025 - Present",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
+      rooms: 0,
+      budget: language.code === 'ar' ? "متعدد المشاريع" : "Multi-Project",
+      description: language.code === 'ar'
+        ? "الإشراف على عمليات محفظة متعددة العلامات التجارية تضم أربعة عقارات حالياً مع خطة نمو لبلوغ 10,000 غرفة بحلول 2030."
+        : "Overseeing multi-brand portfolio operations across four properties with a growth strategy to reach 10,000 rooms by 2030.",
+      challenges: language.code === 'ar'
+        ? ["إدارة محفظة متعددة العلامات التجارية", "توحيد العمليات والمعايير", "التوسع السريع مع الحفاظ على الجودة"]
+        : ["Managing multi-brand portfolio", "Standardizing operations and standards", "Rapid expansion while maintaining quality"],
+      results: language.code === 'ar'
+        ? ["إنشاء حوكمة تشغيلية موحدة", "6 فنادق إضافية مخطط افتتاحها بحلول 2026", "استراتيجية نمو لـ 10,000 غرفة بحلول 2030"]
+        : ["Established unified operational governance", "6 additional hotels planned for opening by 2026", "Growth strategy for 10,000 rooms by 2030"]
+    },
+    {
+      title: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "Crowne Plaza Alexandria Mirage",
+      category: language.code === 'ar' ? "تحويل العلامة التجارية" : "Brand Conversion",
+      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
+      period: language.code === 'ar' ? "2025" : "2025",
+      image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
+      rooms: 0,
+      budget: language.code === 'ar' ? "تحويل كامل" : "Full Conversion",
+      description: language.code === 'ar'
+        ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا، تنفيذ معايير وأنظمة وثقافة خدمة آي إتش جي."
+        : "Leading full brand conversion from independent property into Crowne Plaza, implementing IHG standards, systems, and service culture.",
+      challenges: language.code === 'ar'
+        ? ["التحويل أثناء التشغيل", "إعادة تدريب جميع الموظفين على معايير آي إتش جي", "الامتثال لتفويضات الامتياز في وقت قياسي"]
+        : ["Conversion while fully operational", "Retraining all staff on IHG standards", "Franchise mandate compliance on tight timeline"],
+      results: language.code === 'ar'
+        ? ["تحول تشغيلي ناجح", "امتثال 100% لمتطلبات آي إتش جي", "تحسين أداء الأصول بعد التحويل"]
+        : ["Successful operational transformation", "100% IHG compliance achieved", "Optimized asset performance post-conversion"]
+    },
+    {
       title: language.code === 'ar' ? "فندق شيراتون المنتزه" : "Sheraton Montazah Hotel",
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
@@ -286,10 +322,12 @@ const Projects = () => {
                         <span>{project.period}</span>
                       </div>
                       
-                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                        <span>{project.rooms} {t('rooms')}</span>
-                      </div>
+                      {project.rooms > 0 && (
+                        <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+                          <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
+                          <span>{project.rooms} {t('rooms')}</span>
+                        </div>
+                      )}
                       
                       <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <BarChart size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />

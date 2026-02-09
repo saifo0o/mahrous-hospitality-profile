@@ -177,11 +177,6 @@ const ContactSection = () => {
                         {language.code === 'ar' ? "السعودية: " : "KSA: "}+966 55 374 1020
                       </a>
                     </p>
-                    <p className="text-luxury-gray">
-                      <a href="tel:+966501721876" className="hover:text-luxury-navy transition-colors">
-                        {language.code === 'ar' ? "السعودية: " : "KSA: "}+966 50 172 1876
-                      </a>
-                    </p>
                   </div>
                 </div>
                 
@@ -190,11 +185,6 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-medium text-luxury-navy">{t('email')}</h4>
                     <div className="space-y-1">
-                    <p className="text-luxury-gray">
-                        <a href="mailto:saifeldiinislam@gmail.com" className="hover:text-luxury-navy transition-colors">
-                          saifeldiinislam@gmail.com
-                        </a>
-                      </p>
                       <p className="text-luxury-gray">
                         <a href="mailto:mahrous.islam@yahoo.com" className="hover:text-luxury-navy transition-colors">
                           mahrous.islam@yahoo.com

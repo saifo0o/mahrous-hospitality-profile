@@ -172,31 +172,33 @@ const HeroSection = () => {
             className="inline-block text-luxury-gold text-lg md:text-xl mb-2 font-light tracking-wider"
             variants={itemVariants}
           >
-            {language.code === 'ar' ? 'مدير عمليات المجموعة | فنادق برايم' : 'Group Operations Director | Prime Hotels'}
+            {language.code === 'ar' ? 'التميز في الضيافة العالمية' : 'Global Hospitality Excellence'}
           </motion.span>
           
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-playfair"
             variants={itemVariants}
           >
-            <motion.span 
-              className="text-luxury-gold"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              {language.code === 'ar' ? '+30 عامًا' : '30+ Years'}
-            </motion.span>{' '}
-            {language.code === 'ar' ? 'من القيادة في صناعة الضيافة العالمية' : 'of Global Hospitality Leadership'}
+            {language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-gray-200 mb-8 font-light"
+            className="text-xl md:text-2xl text-gray-200 mb-4 font-light"
             variants={itemVariants}
           >
             {language.code === 'ar' 
-              ? 'خبير في عمليات ما قبل الافتتاح وتجديد الفنادق وإدارة الأرباح والخسائر | ماريوت، آي إتش جي، أكور | المملكة العربية السعودية، مصر، الإمارات'
-              : 'Pre-Opening & Hotel Renovation Expert | P&L Management | Marriott, IHG, Accor | KSA, Egypt, UAE'
+              ? 'أكثر من 30 عاماً من القيادة في صناعة الضيافة الدولية'
+              : 'Over 30 years shaping world-class hospitality experiences'
+            }
+          </motion.p>
+          
+          <motion.p 
+            className="text-base md:text-lg text-gray-300 mb-8 font-light max-w-2xl"
+            variants={itemVariants}
+          >
+            {language.code === 'ar' 
+              ? 'خبرة مثبتة في عمليات ما قبل الافتتاح، تجديد الفنادق، وإدارة الأرباح والخسائر عبر ماريوت وآي إتش جي وأكور في المملكة العربية السعودية ومصر والإمارات وليبيا.'
+              : 'Proven expertise in pre-opening operations, hotel renovations, and P&L management across Marriott, IHG & Accor in KSA, Egypt, UAE & Libya.'
             }
           </motion.p>
           
