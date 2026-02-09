@@ -165,7 +165,6 @@ const EnhancedSEO: React.FC<EnhancedSEOProps> = ({
       {/* Performance & SEO */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
       <meta name="googlebot" content="index, follow" />
-      <link rel="preload" as="image" href={image} />
       
       {/* Language Alternates */}
       <link rel="alternate" hrefLang="en" href={`${BASE_URL}${location.pathname}?lang=en`} />

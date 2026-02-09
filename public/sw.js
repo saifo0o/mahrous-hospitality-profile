@@ -1,9 +1,7 @@
 // Service Worker for PWA functionality
-const CACHE_NAME = 'mahrous-hospitality-v1.0.0';
+const CACHE_NAME = 'mahrous-hospitality-v1.0.2';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json',
   '/favicon.ico'
 ];
