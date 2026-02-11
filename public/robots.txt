@@ -1,10 +1,6 @@
-
-# Allow all crawlers
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /private
 
-# Sitemap location
 Sitemap: https://islam-mahrous.com/sitemap.xml
-
-# Crawl-delay to be respectful
-Crawl-delay: 1
