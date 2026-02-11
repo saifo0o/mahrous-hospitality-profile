@@ -1,270 +1,203 @@
 
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, FileText, User, MessageCircle } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Download, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
 const HeroSection = () => {
-  const [scrollY, setScrollY] = useState(0);
   const { language, isRTL, t } = useLanguage();
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.1
-      }
+      transition: { duration: 0.8, staggerChildren: 0.15 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
   };
 
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut"
-      }
-    },
-    hover: {
-      scale: 1.02,
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut"
-      }
-    },
-    tap: {
-      scale: 0.98
-    }
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 } }
   };
+
+  const brands = ['Marriott', 'IHG', 'Accor', 'Crowne Plaza', 'Prime Hotels'];
 
   return (
-    <section className="relative min-h-screen flex items-center luxury-gradient overflow-hidden">
-      <div className="absolute inset-0 bg-black opacity-60"></div>
-      
-      {/* Enhanced Parallax Background Effect */}
-      <motion.div 
-        className="absolute inset-0 bg-cover bg-center z-[-1]" 
-        style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1760&q=80')",
-          y: y
-        }}
-      ></motion.div>
-      
-      {/* Animated Gradient Overlay */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-luxury-navy/40 via-transparent to-luxury-gold/20"
-        animate={{
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-      {/* Floating Particles */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-luxury-gold rounded-full"
-          style={{
-            left: `${20 + i * 15}%`,
-            top: `${30 + (i % 3) * 20}%`,
-          }}
-          animate={{
-            y: [-20, 20, -20],
-            opacity: [0.2, 0.5, 0.2],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: 4 + i,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.5,
-          }}
-        />
-      ))}
-      
-      {/* Animated decorative elements */}
-      <motion.div 
-        className="absolute top-1/4 left-20 w-20 h-20 border-2 border-luxury-gold opacity-20 rounded-full"
-        initial={{ opacity: 0, scale: 0.8, rotate: -45 }}
-        animate={{ 
-          opacity: [0.2, 0.3, 0.2], 
-          scale: [1, 1.1, 1], 
-          rotate: [0, 360] 
-        }}
-        transition={{ 
-          duration: 20, 
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      ></motion.div>
-      <motion.div 
-        className="absolute bottom-1/4 right-20 w-32 h-32 border border-luxury-gold opacity-10 rounded-full"
-        initial={{ opacity: 0, scale: 0.8, rotate: 45 }}
-        animate={{ 
-          opacity: [0.1, 0.2, 0.1], 
-          scale: [1, 1.2, 1],
-          rotate: [0, -360]
-        }}
-        transition={{ 
-          duration: 25, 
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      ></motion.div>
-      
-      {/* Animated mesh gradient background */}
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{
-          background: 'radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(15, 30, 61, 0.15) 0%, transparent 50%)',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-      <div className="container mx-auto px-4 md:px-8 relative z-10 py-20 md:py-0">
-        <motion.div 
-          className={`max-w-3xl ${isRTL ? 'mr-auto ml-0 text-right' : ''}`}
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.span 
-            className="inline-block text-luxury-gold text-lg md:text-xl mb-2 font-light tracking-wider"
-            variants={itemVariants}
-          >
-            {language.code === 'ar' ? 'التميز في الضيافة العالمية' : 'Global Hospitality Excellence'}
-          </motion.span>
-          
-          <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-playfair"
-            variants={itemVariants}
-          >
-            {language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-200 mb-4 font-light"
-            variants={itemVariants}
-          >
-            {language.code === 'ar' 
-              ? 'أكثر من 30 عاماً من القيادة في صناعة الضيافة الدولية'
-              : 'Over 30 years shaping world-class hospitality experiences'
-            }
-          </motion.p>
-          
-          <motion.p 
-            className="text-base md:text-lg text-gray-300 mb-8 font-light max-w-2xl"
-            variants={itemVariants}
-          >
-            {language.code === 'ar' 
-              ? 'خبرة مثبتة في عمليات ما قبل الافتتاح، تجديد الفنادق، وإدارة الأرباح والخسائر عبر ماريوت وآي إتش جي وأكور في المملكة العربية السعودية ومصر والإمارات وليبيا.'
-              : 'Proven expertise in pre-opening operations, hotel renovations, and P&L management across Marriott, IHG & Accor in KSA, Egypt, UAE & Libya.'
-            }
-          </motion.p>
-          
-          <motion.div 
-            className={`flex flex-wrap gap-4 ${isRTL ? 'justify-start' : ''}`}
-            variants={itemVariants}
-          >
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-              <Button className="bg-luxury-gold hover:bg-amber-500 text-luxury-navy font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 shadow-gold hover:shadow-gold-lg text-base btn-hover">
-                <User size={18} />
-                <Link to="/about">{t('viewMyStory')}</Link>
-              </Button>
-            </motion.div>
-            
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-              <Button className="bg-transparent hover:bg-white/15 border border-white text-white font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 backdrop-blur-sm text-base btn-hover">
-                <FileText size={18} />
-                <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
-                  {t('downloadCV')}
-                </a>
-              </Button>
-            </motion.div>
-            
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-              <Button className="bg-[#25D366] hover:bg-[#128C7E] text-white font-medium rounded-md px-6 py-6 flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-base btn-hover">
-                <MessageCircle size={18} />
-                <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer">
-                  {t('messageOnWhatsApp')}
-                </a>
-              </Button>
-            </motion.div>
-            
-            <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-              <Button variant="link" className="text-white hover:text-luxury-gold flex items-center gap-1 transition-all duration-300 text-base">
-                <Link to="/projects" className={`flex items-center gap-1 group ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  {t('seeMyWork')}
-                  <motion.div
-                    whileHover={{ x: isRTL ? -2 : 2 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowRight size={16} className={`${isRTL ? 'rotate-180' : ''}`} />
-                  </motion.div>
-                </Link>
-              </Button>
-            </motion.div>
-          </motion.div>
-          
-          <motion.div
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 0.7, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-          >
-            <motion.div 
-              className="text-white cursor-pointer"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-              </svg>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
+      {/* Subtle geometric background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-[60%] h-full bg-gradient-to-bl from-primary/5 via-accent/5 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-[40%] h-[60%] bg-gradient-to-tr from-primary/3 to-transparent" />
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }} />
       </div>
+
+      {/* Accent line */}
+      <motion.div
+        className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-accent to-transparent"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ delay: 1, duration: 1 }}
+      />
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10 pt-28 pb-16 md:pt-32 md:pb-20">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${isRTL ? 'direction-rtl' : ''}`}>
+          
+          {/* Text Content */}
+          <motion.div
+            className={`order-2 lg:order-1 ${isRTL ? 'text-right' : ''}`}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Eyebrow */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                {language.code === 'ar' ? 'أكثر من 30 عامًا في الضيافة العالمية' : '30+ Years in Global Hospitality'}
+              </span>
+            </motion.div>
+
+            {/* Name */}
+            <motion.h1 
+              variants={itemVariants}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold font-playfair text-foreground mb-4 leading-[1.1] tracking-tight"
+            >
+              {language.code === 'ar' ? 'إسلام' : 'Islam'}
+              <br />
+              <span className="gradient-text">{language.code === 'ar' ? 'محروس' : 'Mahrous'}</span>
+            </motion.h1>
+
+            {/* Tagline */}
+            <motion.p
+              variants={itemVariants}
+              className="text-xl md:text-2xl text-muted-foreground font-light mb-3 max-w-lg"
+            >
+              {language.code === 'ar' 
+                ? 'أبني الفنادق التي لا تُنسى' 
+                : 'I build hotels people never forget.'
+              }
+            </motion.p>
+
+            {/* Sub-tagline */}
+            <motion.p
+              variants={itemVariants}
+              className="text-base text-muted-foreground/80 mb-8 max-w-md leading-relaxed"
+            >
+              {language.code === 'ar'
+                ? 'من عمليات ما قبل الافتتاح إلى التجديدات الكبرى — أقود الفنادق نحو التميز التشغيلي والنمو المستدام في الشرق الأوسط وشمال أفريقيا.'
+                : 'From pre-opening to multi-million renovations — I lead hotels to operational excellence and sustainable growth across the MENA region.'
+              }
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div variants={itemVariants} className={`flex flex-wrap gap-4 mb-12 ${isRTL ? 'justify-end' : ''}`}>
+              <Link to="/book-consultation">
+                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-8 py-6 text-base shadow-gold-lg hover:shadow-gold-xl transition-all duration-300 gap-2">
+                  <Calendar size={18} />
+                  {language.code === 'ar' ? 'احجز استشارة' : 'Book a Consultation'}
+                </Button>
+              </Link>
+              <Link to="/projects">
+                <Button variant="outline" className="border-border hover:border-accent text-foreground font-medium rounded-xl px-8 py-6 text-base gap-2 transition-all duration-300">
+                  {language.code === 'ar' ? 'استكشف أعمالي' : 'Explore My Work'}
+                  <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* Brand logos as text badges */}
+            <motion.div variants={itemVariants}>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground/60 mb-3 font-medium">
+                {language.code === 'ar' ? 'خبرة مع' : 'Experience with'}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {brands.map((brand) => (
+                  <span key={brand} className="px-3 py-1.5 rounded-lg bg-muted text-muted-foreground text-sm font-medium border border-border/50">
+                    {brand}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Profile Image */}
+          <motion.div
+            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+            variants={imageVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="relative">
+              {/* Decorative frame */}
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/20 via-primary/10 to-accent/20 blur-sm" />
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent/30 to-primary/20" />
+              
+              {/* Image */}
+              <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[480px] rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg"
+                  alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent" />
+              </div>
+
+              {/* Floating stat card */}
+              <motion.div
+                className="absolute -bottom-4 -left-6 md:-left-10 bg-card rounded-xl shadow-xl border border-border/50 px-5 py-4"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1, duration: 0.6 }}
+              >
+                <p className="text-2xl font-bold font-playfair text-foreground">$70M+</p>
+                <p className="text-xs text-muted-foreground">{language.code === 'ar' ? 'ميزانيات مُدارة' : 'Budgets Managed'}</p>
+              </motion.div>
+
+              {/* Floating location badge */}
+              <motion.div
+                className="absolute -top-3 -right-4 md:-right-8 bg-card rounded-xl shadow-xl border border-border/50 px-4 py-3"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+              >
+                <p className="text-sm font-semibold text-foreground">📍 {language.code === 'ar' ? 'الرياض' : 'Riyadh, KSA'}</p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ delay: 1.5 }}
+      >
+        <motion.div
+          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        >
+          <motion.div
+            className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

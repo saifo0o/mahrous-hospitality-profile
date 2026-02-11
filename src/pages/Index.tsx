@@ -5,169 +5,93 @@ import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
 import StatsSection from '@/components/StatsSection';
 import ContactSection from '@/components/ContactSection';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import AIChatAssistant from '@/components/AIChatAssistant';
 import ReadingProgress from '@/components/ReadingProgress';
 import DynamicLoader from '@/components/DynamicLoader';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import EnhancedLoader from '@/components/EnhancedLoader';
 import BackToTopButton from '@/components/BackToTopButton';
-import SmoothScrollWrapper from '@/components/SmoothScrollWrapper';
 
-import { LoadingState } from '@/components/OptimizedSkeleton';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 import EnhancedSEOSchema from '@/components/EnhancedSEOSchema';
-import PerformanceMonitoring from '@/components/PerformanceMonitoring';
-import { useAdvancedAnalytics } from '@/utils/advanced-analytics';
 
 const Index = () => {
   const { isRTL, language } = useLanguage();
-  const { trackCustomEvent } = useAdvancedAnalytics();
   const pageRef = useRef<HTMLDivElement>(null);
   
-  // Smooth scroll to top on page load
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
-    // Track page load performance
-    const loadTime = performance.now();
-    trackCustomEvent('page_load', 'performance', 'index', loadTime);
-  }, [trackCustomEvent]);
-
-  // Page transition variants
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      y: 10
-    },
-    in: {
-      opacity: 1,
-      y: 0
-    },
-    out: {
-      opacity: 0,
-      y: -10
-    }
-  };
-
-  const pageTransition = {
-    type: "tween",
-    ease: "easeInOut",
-    duration: 0.5
-  };
-
-  const sectionFallback = <EnhancedLoader type="card" className="min-h-[400px]" />;
-
+  const sectionFallback = <EnhancedLoader type="card" className="min-h-[200px]" />;
 
   return (
-    <SmoothScrollWrapper>
-      <motion.div 
-        ref={pageRef}
-        className={`min-h-screen flex flex-col reading-content ${isRTL ? 'text-right' : 'text-left'}`}
-        initial="initial"
-        animate="in"
-        exit="out"
-        variants={pageVariants}
-        transition={pageTransition}
-      >
+    <motion.div 
+      ref={pageRef}
+      className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
       <EnhancedSEOHead 
         title={language.code === 'ar' 
-          ? 'إسلام محروس | مدير عمليات المجموعة وخبير الضيافة'
-          : 'Islam Mahrous | Group Operations Director & Hospitality Executive'
+          ? 'إسلام محروس | قائد الضيافة العالمية'
+          : 'Islam Mahrous | Global Hospitality Leader'
         }
         description={language.code === 'ar'
-          ? 'مدير عمليات المجموعة في فنادق برايم مع أكثر من 30 عاماً من الخبرة في عمليات ما قبل الافتتاح وتجديد الفنادق وإدارة الأرباح والخسائر والتميز التشغيلي في المملكة العربية السعودية ومصر والإمارات.'
-          : 'Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening operations, hotel renovations, P&L management, and operational excellence across KSA, Egypt, UAE & MENA.'
+          ? 'مدير عمليات المجموعة مع 30+ عامًا من الخبرة في عمليات ما قبل الافتتاح والتجديدات وإدارة الأرباح عبر ماريوت وآي إتش جي وأكور.'
+          : 'Group Operations Director with 30+ years leading pre-opening operations, renovations, and P&L management across Marriott, IHG & Accor in MENA.'
         }
-        tags={['Islam Mahrous', 'hospitality executive', 'group operations director', 'hotel general manager', 'pre-opening expert', 'hotel renovation', 'P&L management', 'Marriott', 'IHG', 'Accor', 'Saudi Arabia', 'KSA', 'MENA', 'luxury hotels', 'Six Sigma', 'Prime Hotels']}
+        tags={['Islam Mahrous', 'hospitality leader', 'group operations director', 'hotel general manager', 'pre-opening expert', 'Marriott', 'IHG', 'Accor', 'Saudi Arabia', 'MENA', 'Prime Hotels']}
         type="website"
       />
       
       <EnhancedSEOSchema
         type="person"
-        title={language.code === 'ar' 
-          ? 'إسلام محروس | مدير عمليات المجموعة وخبير الضيافة'
-          : 'Islam Mahrous | Group Operations Director & Hospitality Executive'
-        }
-        description={language.code === 'ar'
-          ? 'مدير عمليات المجموعة في فنادق برايم مع أكثر من 30 عاماً من الخبرة في عمليات ما قبل الافتتاح وتجديد الفنادق والتميز التشغيلي.'
-          : 'Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening, renovations, and operational excellence across KSA, Egypt, UAE & international markets.'
-        }
+        title="Islam Mahrous | Global Hospitality Leader"
+        description="Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening, renovations, and operational excellence across MENA."
       />
-      
-      <PerformanceMonitoring />
       
       <ReadingProgress />
       <Navbar />
       
       <main id="main" className="flex-grow">
+        {/* Hero — The wow moment */}
         <HeroSection />
+        
+        {/* Social proof stats bar */}
         <StatsSection />
         
+        {/* About snapshot */}
         <ErrorBoundary>
           <DynamicLoader componentPath="AboutSection" fallback={sectionFallback} />
         </ErrorBoundary>
         
-        <ErrorBoundary>
-          <DynamicLoader componentPath="SocialProofWidget" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
+        {/* Experience highlights */}
         <ErrorBoundary>
           <DynamicLoader componentPath="ExperienceSection" fallback={sectionFallback} />
         </ErrorBoundary>
         
-        
-        <ErrorBoundary>
-          <DynamicLoader componentPath="CaseStudiesSection" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
+        {/* Featured projects */}
         <ErrorBoundary>
           <DynamicLoader componentPath="ProjectsSection" fallback={sectionFallback} />
         </ErrorBoundary>
         
-        <ErrorBoundary>
-          <DynamicLoader componentPath="BlogSection" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
-        <ErrorBoundary>
-          <DynamicLoader componentPath="SpeakingSection" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
-        <ErrorBoundary>
-          <DynamicLoader componentPath="MediaSection" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
+        {/* Testimonials */}
         <ErrorBoundary>
           <DynamicLoader componentPath="TestimonialsSection" fallback={sectionFallback} />
         </ErrorBoundary>
         
-        
-        <ErrorBoundary>
-          <DynamicLoader componentPath="AwardsSection" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
-        <div className="py-16 bg-muted/50">
-          <div className="container mx-auto px-4 md:px-8">
-            <ErrorBoundary>
-              <DynamicLoader componentPath="NewsletterSignup" fallback={sectionFallback} />
-            </ErrorBoundary>
-          </div>
-        </div>
-        
+        {/* CTA + Contact */}
         <ContactSection />
       </main>
+      
       <Footer />
-      <WhatsAppButton />
       <AIChatAssistant />
       <BackToTopButton />
-      
     </motion.div>
-    </SmoothScrollWrapper>
   );
 };
 

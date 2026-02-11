@@ -1,154 +1,150 @@
 
 import React from 'react';
-import { Mail, Phone, Linkedin, MapPin } from 'lucide-react';
+import { Mail, Phone, Linkedin, MapPin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
+import { Button } from '@/components/ui/button';
 
 const Footer = () => {
   const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
+  const quickLinks = [
+    { label: language.code === 'ar' ? 'من أنا' : 'About', path: '/about' },
+    { label: language.code === 'ar' ? 'المشاريع' : 'Projects', path: '/projects' },
+    { label: language.code === 'ar' ? 'المسيرة' : 'Career', path: '/career' },
+    { label: language.code === 'ar' ? 'المدونة' : 'Blog', path: '/blog' },
+    { label: language.code === 'ar' ? 'الجوائز' : 'Awards', path: '/awards' },
+    { label: language.code === 'ar' ? 'تواصل' : 'Contact', path: '/contact' },
+  ];
+
   return (
-    <footer className="bg-gradient-to-b from-primary to-primary/95 text-white py-16 relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
-        <div className="absolute top-0 right-0 w-72 h-72 bg-accent/50 rounded-full blur-3xl" />
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-14 h-14 rounded-xl bg-accent flex items-center justify-center shadow-xl">
-                <span className="text-accent-foreground font-bold text-2xl font-playfair">IM</span>
+    <>
+      {/* Pre-footer CTA */}
+      <section className="py-20 bg-primary text-primary-foreground relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/50 rounded-full blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair mb-4">
+            {language.code === 'ar' ? 'لنبنِ شيئًا استثنائيًا معًا' : "Let's Build Something Exceptional"}
+          </h2>
+          <p className="text-primary-foreground/70 text-lg mb-8 max-w-xl mx-auto">
+            {language.code === 'ar' 
+              ? 'مستعد للارتقاء بعمليات فندقك؟ احجز استشارة مجانية اليوم.'
+              : 'Ready to elevate your hotel operations? Book a free consultation today.'
+            }
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/book-consultation">
+              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-8 py-6 text-base shadow-lg">
+                {language.code === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultation'}
+              </Button>
+            </Link>
+            <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-8 py-6 text-base">
+                {language.code === 'ar' ? 'راسلني على واتساب' : 'Message on WhatsApp'}
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-foreground text-background py-12">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
+                  <span className="text-accent-foreground font-bold text-lg font-playfair">IM</span>
+                </div>
+                <span className="text-lg font-semibold font-playfair">Islam Mahrous</span>
               </div>
-              <h3 className="text-2xl font-bold font-playfair">
-                Islam Mahrous
-              </h3>
-            </div>
-            <p className="text-gray-300 mb-6 leading-relaxed text-sm">
-              {language.code === 'ar' 
-                ? "تنفيذي في مجال الضيافة مع أكثر من 30 عامًا من الخبرة القيادية المتقدمة متخصص في عمليات ما قبل الافتتاح والتجديدات والتميز التشغيلي."
-                : "Hospitality Executive with over 30 years of progressive leadership experience specializing in pre-opening operations, renovations, and operational excellence."
-              }
-            </p>
-            <div className="flex space-x-3">
+              <p className="text-background/60 text-sm leading-relaxed mb-4">
+                {language.code === 'ar' 
+                  ? 'قائد ضيافة عالمي مع 30+ عامًا من الخبرة في التميز التشغيلي وعمليات ما قبل الافتتاح.'
+                  : 'Global hospitality leader with 30+ years of operational excellence and pre-opening expertise.'
+                }
+              </p>
               <a 
                 href="https://www.linkedin.com/in/islam-mahrous-" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-accent border border-white/20 hover:border-accent flex items-center justify-center transition-all duration-300 hover:scale-110"
-                aria-label="LinkedIn"
+                className="inline-flex items-center gap-2 text-sm text-background/60 hover:text-accent transition-colors"
               >
-                <Linkedin size={18} />
+                <Linkedin size={16} />
+                LinkedIn
+                <ArrowUpRight size={12} />
               </a>
-              <a 
-                href="mailto:mahrous.islam@yahoo.com" 
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-accent border border-white/20 hover:border-accent flex items-center justify-center transition-all duration-300 hover:scale-110"
-                aria-label="Email"
-              >
-                <Mail size={18} />
-              </a>
-            </div>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-bold mb-6 font-playfair">{t('quickLinks')}</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/" className="text-gray-300 hover:text-accent transition-all duration-300 flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-accent group-hover:w-6 transition-all duration-300"></span>
-                  {t('home')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-gray-300 hover:text-accent transition-all duration-300 flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-accent group-hover:w-6 transition-all duration-300"></span>
-                  {t('about')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/career" className="text-gray-300 hover:text-accent transition-all duration-300 flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-accent group-hover:w-6 transition-all duration-300"></span>
-                  {t('career')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" className="text-gray-300 hover:text-accent transition-all duration-300 flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-accent group-hover:w-6 transition-all duration-300"></span>
-                  {t('projects')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/awards" className="text-gray-300 hover:text-accent transition-all duration-300 flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-accent group-hover:w-6 transition-all duration-300"></span>
-                  {t('awards')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-gray-300 hover:text-accent transition-all duration-300 flex items-center gap-2 group">
-                  <span className="w-0 h-0.5 bg-accent group-hover:w-6 transition-all duration-300"></span>
-                  {t('contact')}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-bold mb-6 font-playfair">{t('contact')}</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center mr-3 group-hover:bg-accent transition-all duration-300">
-                  <MapPin size={18} className="text-accent group-hover:text-accent-foreground" />
-                </div>
-                <span className="text-gray-300 text-sm pt-2">
-                  {language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA"}
-                </span>
-              </li>
-              <li className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center mr-3 group-hover:bg-accent transition-all duration-300">
-                  <Phone size={18} className="text-accent group-hover:text-accent-foreground" />
-                </div>
-                <div className="flex flex-col gap-1 pt-1">
-                  <a href="tel:+966553741020" className="text-gray-300 hover:text-accent transition-colors text-sm">+966 55 374 1020</a>
-                </div>
-              </li>
-              <li className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center mr-3 group-hover:bg-accent transition-all duration-300">
-                  <Mail size={18} className="text-accent group-hover:text-accent-foreground" />
-                </div>
-                <a href="mailto:mahrous.islam@yahoo.com" className="text-gray-300 hover:text-accent transition-colors text-sm pt-2 break-all">mahrous.islam@yahoo.com</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        {/* Logo and Copyright Section */}
-        <div className="border-t border-white/10 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Badge */}
-            <div className="flex items-center gap-3">
-              <div className="px-4 py-2 rounded-lg bg-accent/10 border border-accent/30">
-                <span className="text-accent font-semibold text-sm">
-                  {language.code === 'ar' ? '30+ سنة خبرة' : '30+ Years Experience'}
-                </span>
-              </div>
             </div>
             
-            {/* Copyright */}
-            <div className="text-center md:text-right">
-              <p className="text-gray-400 text-sm">
-                &copy; {currentYear} Islam Mahrous. {language.code === 'ar' ? "جميع الحقوق محفوظة." : "All rights reserved."}
-              </p>
-              <p className="text-gray-500 text-xs mt-1">
-                {language.code === 'ar' ? 'صُنع بإتقان' : 'Crafted with excellence'}
-              </p>
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-background/40 mb-4">
+                {language.code === 'ar' ? 'روابط سريعة' : 'Quick Links'}
+              </h4>
+              <ul className="space-y-2">
+                {quickLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link 
+                      to={link.path} 
+                      className="text-background/60 hover:text-accent text-sm transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Contact */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-background/40 mb-4">
+                {language.code === 'ar' ? 'تواصل' : 'Contact'}
+              </h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="tel:+966553741020" className="flex items-center gap-2 text-background/60 hover:text-accent text-sm transition-colors">
+                    <Phone size={14} />
+                    +966 55 374 1020
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:mahrous.islam@yahoo.com" className="flex items-center gap-2 text-background/60 hover:text-accent text-sm transition-colors">
+                    <Mail size={14} />
+                    mahrous.islam@yahoo.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-background/60 text-sm">
+                  <MapPin size={14} />
+                  {language.code === 'ar' ? 'الرياض، السعودية' : 'Riyadh, KSA'}
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          {/* Bottom bar */}
+          <div className="border-t border-background/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-background/40 text-xs">
+              &copy; {currentYear} Islam Mahrous. {language.code === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
+            </p>
+            <div className="flex items-center gap-4">
+              <a 
+                href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-background/40 hover:text-accent text-xs transition-colors"
+              >
+                {language.code === 'ar' ? 'تحميل السيرة الذاتية' : 'Download CV'}
+              </a>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 
