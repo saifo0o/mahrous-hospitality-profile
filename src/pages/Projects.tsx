@@ -2,378 +2,215 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BreadcrumbNav, { BreadcrumbItem } from '@/components/BreadcrumbNav';
-import BackToTopButton from '@/components/BackToTopButton';
 import { motion } from 'framer-motion';
-import { Building, Calendar, MapPin, BarChart, ArrowRight } from 'lucide-react';
+import { Building, Calendar, MapPin, BarChart, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
-import WhatsAppButton from '@/components/WhatsAppButton';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const { language, t, isRTL } = useLanguage();
-  
-  const breadcrumbItems: BreadcrumbItem[] = [
-    {
-      label: language.code === 'ar' ? 'المشاريع' : 'Projects',
-      active: true
-    }
-  ];
-  
+
   const projects = [
     {
       title: language.code === 'ar' ? "فنادق برايم - محفظة المجموعة" : "Prime Hotels - Group Portfolio",
       category: language.code === 'ar' ? "إدارة المجموعة" : "Group Management",
-      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "2025 - الحاضر" : "2025 - Present",
+      location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
+      period: "2025 - Present",
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-      rooms: 0,
       budget: language.code === 'ar' ? "متعدد المشاريع" : "Multi-Project",
-      description: language.code === 'ar'
-        ? "الإشراف على عمليات محفظة متعددة العلامات التجارية تضم أربعة عقارات حالياً مع خطة نمو لبلوغ 10,000 غرفة بحلول 2030."
-        : "Overseeing multi-brand portfolio operations across four properties with a growth strategy to reach 10,000 rooms by 2030.",
-      challenges: language.code === 'ar'
-        ? ["إدارة محفظة متعددة العلامات التجارية", "توحيد العمليات والمعايير", "التوسع السريع مع الحفاظ على الجودة"]
-        : ["Managing multi-brand portfolio", "Standardizing operations and standards", "Rapid expansion while maintaining quality"],
       results: language.code === 'ar'
-        ? ["إنشاء حوكمة تشغيلية موحدة", "6 فنادق إضافية مخطط افتتاحها بحلول 2026", "استراتيجية نمو لـ 10,000 غرفة بحلول 2030"]
-        : ["Established unified operational governance", "6 additional hotels planned for opening by 2026", "Growth strategy for 10,000 rooms by 2030"]
+        ? ["حوكمة تشغيلية موحدة", "6 فنادق إضافية بحلول 2026", "استراتيجية 10,000 غرفة"]
+        : ["Unified operational governance", "6 additional hotels by 2026", "10,000-room growth strategy"],
     },
     {
-      title: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "Crowne Plaza Alexandria Mirage",
-      category: language.code === 'ar' ? "تحويل العلامة التجارية" : "Brand Conversion",
-      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
-      period: language.code === 'ar' ? "2025" : "2025",
+      title: language.code === 'ar' ? "كراون بلازا الإسكندرية" : "Crowne Plaza Alexandria",
+      category: language.code === 'ar' ? "تحويل علامة" : "Brand Conversion",
+      location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
+      period: "2025",
       image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
-      rooms: 0,
       budget: language.code === 'ar' ? "تحويل كامل" : "Full Conversion",
-      description: language.code === 'ar'
-        ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا، تنفيذ معايير وأنظمة وثقافة خدمة آي إتش جي."
-        : "Leading full brand conversion from independent property into Crowne Plaza, implementing IHG standards, systems, and service culture.",
-      challenges: language.code === 'ar'
-        ? ["التحويل أثناء التشغيل", "إعادة تدريب جميع الموظفين على معايير آي إتش جي", "الامتثال لتفويضات الامتياز في وقت قياسي"]
-        : ["Conversion while fully operational", "Retraining all staff on IHG standards", "Franchise mandate compliance on tight timeline"],
       results: language.code === 'ar'
-        ? ["تحول تشغيلي ناجح", "امتثال 100% لمتطلبات آي إتش جي", "تحسين أداء الأصول بعد التحويل"]
-        : ["Successful operational transformation", "100% IHG compliance achieved", "Optimized asset performance post-conversion"]
+        ? ["تحول تشغيلي ناجح", "100% امتثال آي إتش جي", "تحسين أداء الأصول"]
+        : ["Successful transformation", "100% IHG compliance", "Optimized asset performance"],
     },
     {
       title: language.code === 'ar' ? "فندق شيراتون المنتزه" : "Sheraton Montazah Hotel",
       category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
-      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
-      period: language.code === 'ar' ? "2016 - 2023" : "2016 - 2023",
+      location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
+      period: "2016 - 2023",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp",
       rooms: 288,
-      budget: language.code === 'ar' ? "7.2 مليون دولار" : "$7.2M",
-      description: language.code === 'ar' 
-        ? "قيادة تجديد شامل لعقار يبلغ عمره 40 عامًا (288 غرفة)، وتحديث جميع الأنظمة الميكانيكية بما في ذلك الغلايات والمحولات والمولدات والمبردات وشبكة السلامة من الحرائق."
-        : "Led comprehensive renovation of 40-year-old property (288 rooms), modernizing all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network.",
-      challenges: language.code === 'ar' 
-        ? [
-          "إدارة التجديد الكامل مع الحفاظ على إشغال 72٪",
-          "تنسيق ترقيات الأنظمة الميكانيكية المعقدة",
-          "مواءمة طلبات المالك مع معايير علامة ماريوت التجارية"
-        ] 
-        : [
-          "Managing full renovation while maintaining 72% occupancy",
-          "Coordinating complex mechanical systems upgrades",
-          "Aligning owner demands with Marriott brand standards"
-        ],
+      budget: "$7.2M",
       results: language.code === 'ar'
-        ? [
-          "زيادة بنسبة 25٪ في إيرادات الغرفة المتاحة",
-          "تحسين بنسبة 30٪ في درجات رضا الضيوف",
-          "انخفاض بنسبة 15٪ في استهلاك الطاقة"
-        ]
-        : [
-          "25% increase in RevPAR",
-          "30% improvement in guest satisfaction scores",
-          "15% reduction in energy consumption"
-        ]
+        ? ["+25% عائد الغرفة", "+30% رضا الضيوف", "-15% استهلاك الطاقة"]
+        : ["+25% RevPAR", "+30% guest satisfaction", "-15% energy consumption"],
     },
     {
-      title: language.code === 'ar' ? "منتجع ذا في الفاخر سهل حشيش" : "The V Luxury Resort Sahl Hasheesh",
+      title: language.code === 'ar' ? "منتجع ذا في الفاخر" : "The V Luxury Resort",
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
-      location: language.code === 'ar' ? "الغردقة، مصر" : "Hurghada, Egypt",
-      period: language.code === 'ar' ? "2023" : "2023",
+      location: language.code === 'ar' ? "الغردقة" : "Hurghada, Egypt",
+      period: "2023",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg",
       rooms: 298,
-      budget: language.code === 'ar' ? "4.5 مليون دولار" : "$4.5M",
-      description: language.code === 'ar'
-        ? "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة، وتنفيذ استراتيجيات تسويقية مبتكرة حققت نسبة إشغال استثنائية في البداية."
-        : "Managed pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved exceptional initial occupancy.",
-      challenges: language.code === 'ar'
-        ? [
-          "الوفاء بجدول زمني صارم للافتتاح",
-          "تأسيس وجود للعلامة التجارية في سوق تنافسية",
-          "بناء وتدريب فريق جديد من الصفر"
-        ]
-        : [
-          "Meeting aggressive opening timeline",
-          "Establishing brand presence in competitive market",
-          "Building and training a new team from scratch"
-        ],
+      budget: "$4.5M",
       results: language.code === 'ar'
-        ? [
-          "90٪ نسبة الإشغال خلال 4 أشهر من الإطلاق",
-          "زيادة بنسبة 12٪ في درجات رضا الضيوف",
-          "تأسيس الفندق كرائد في السوق المحلية"
-        ]
-        : [
-          "90% occupancy within 4 months of launch",
-          "12% increase in guest satisfaction scores",
-          "Established as market leader in the region"
-        ]
+        ? ["90% إشغال في 4 أشهر", "+12% رضا الضيوف", "رائد السوق المحلية"]
+        : ["90% occupancy in 4 months", "+12% guest satisfaction", "Established as market leader"],
     },
     {
       title: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
-      category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
-      location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
-      period: language.code === 'ar' ? "2024" : "2024",
+      category: language.code === 'ar' ? "تجديد" : "Renovation",
+      location: language.code === 'ar' ? "بورسعيد" : "Port Said, Egypt",
+      period: "2024",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg",
       rooms: 168,
-      budget: language.code === 'ar' ? "3.5 مليون دولار" : "$3.5M",
-      description: language.code === 'ar'
-        ? "إدارة مشروع تجديد بقيمة 3.5 مليون دولار (168 غرفة)، مع تحقيق نمو كبير في مؤشرات الأداء الرئيسية في غضون 4 أشهر فقط."
-        : "Directed $3.5M refurbishment project (168 rooms), achieving significant growth in key performance indicators within just 4 months.",
-      challenges: language.code === 'ar'
-        ? [
-          "إدارة تجديد مجمع تجاري يضم 24 منفذ بيع إلى جانب الفندق",
-          "قيود ميزانية محدودة",
-          "جدول زمني مضغوط للإنجاز"
-        ]
-        : [
-          "Managing 24 outlet mall renovation alongside hotel",
-          "Tight budget constraints",
-          "Compressed timeline for completion"
-        ],
+      budget: "$3.5M",
       results: language.code === 'ar'
-        ? [
-          "نمو في الإشغال بنسبة 18٪",
-          "زيادة في إيرادات الأغذية والمشروبات بنسبة 20٪",
-          "تجاوز متوسط ​​العائد على الاستثمار النموذجي للتجديد في مصر بنسبة 10٪"
-        ]
-        : [
-          "18% occupancy growth",
-          "20% F&B revenue increase",
-          "Outperformed Egypt's typical renovation ROI by 10%"
-        ]
+        ? ["+18% إشغال", "+20% إيرادات F&B", "200+ موظف"]
+        : ["+18% occupancy", "+20% F&B revenue", "200+ staff managed"],
     },
     {
-      title: language.code === 'ar' ? "فندق فورنقاط باي شيراتون طريق الملك عبدالعزيز" : "Fourpoint by Sheraton King Abdulaziz Road",
+      title: language.code === 'ar' ? "فور بوينتس باي شيراتون" : "Four Points by Sheraton",
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
-      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "2024 - 2025" : "2024 - 2025",
+      location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
+      period: "2024 - 2025",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg",
       rooms: 172,
-      budget: language.code === 'ar' ? "5.2 مليون دولار" : "$5.2M",
-      description: language.code === 'ar'
-        ? "قيادة عمليات ما قبل الافتتاح لعقار مكون من 172 غرفة، وتنفيذ عمليات التخطيط الاستراتيجي التي ضمنت إطلاقًا في الوقت المناسب مع 90٪ من الجاهزية التشغيلية."
-        : "Led pre-opening operations for 172-room property, implementing strategic planning processes that ensured timely launch with 90% operational readiness.",
-      challenges: language.code === 'ar'
-        ? [
-          "التفاوض مع الموردين الدوليين خلال اضطرابات سلسلة التوريد",
-          "توظيف موظفين مؤهلين في سوق تنافسية",
-          "تلبية معايير ماريوت الدولية وفق جدول زمني متسارع"
-        ]
-        : [
-          "Negotiating with international vendors during supply chain disruptions",
-          "Recruiting qualified staff in competitive market",
-          "Meeting Marriott International standards on accelerated timeline"
-        ],
+      budget: "$5.2M",
       results: language.code === 'ar'
-        ? [
-          "تخفيض ميزانية ما قبل الافتتاح بنسبة 12٪",
-          "90٪ من الجاهزية التشغيلية عند الإطلاق",
-          "توظيف وتدريب أكثر من 150 موظفًا بنجاح"
-        ]
-        : [
-          "12% reduction in pre-opening budget",
-          "90% operational readiness at launch",
-          "150+ staff successfully recruited and trained"
-        ]
+        ? ["-12% ميزانية ما قبل الافتتاح", "90% جاهزية تشغيلية", "150+ موظف"]
+        : ["-12% pre-opening budget", "90% operational readiness", "150+ staff recruited"],
     },
     {
       title: language.code === 'ar' ? "منتجع شيراتون ميرامار" : "Sheraton Miramar Resort",
-      category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
-      location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
-      period: language.code === 'ar' ? "2011 - 2014" : "2011 - 2014",
+      category: language.code === 'ar' ? "تجديد" : "Renovation",
+      location: language.code === 'ar' ? "الجونة" : "El Gouna, Egypt",
+      period: "2011 - 2014",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg",
       rooms: 339,
-      budget: language.code === 'ar' ? "5 مليون دولار" : "$5M",
-      description: language.code === 'ar'
-        ? "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة، وتحسين رضا الضيوف من خلال إعادة تموضع استراتيجي."
-        : "Managed $5M refurbishment project for 339-room property, improving guest satisfaction through strategic repositioning.",
-      challenges: language.code === 'ar'
-        ? [
-          "إدارة التجديد خلال فترة عدم استقرار سياسي",
-          "التنسيق مع شركة تصميم دولية",
-          "الحفاظ على معايير الخدمة أثناء أعمال التجديد الشاملة"
-        ]
-        : [
-          "Managing renovation during political instability",
-          "Coordinating with international design firm",
-          "Maintaining service standards during extensive renovations"
-        ],
+      budget: "$5M",
       results: language.code === 'ar'
-        ? [
-          "تحسين بنسبة 12٪ في رضا الضيوف",
-          "زيادة بنسبة 15٪ في متوسط سعر الغرفة اليومي",
-          "زيادة بنسبة 8٪ في نسبة الإشغال خلال السنة الأولى بعد التجديد"
-        ]
-        : [
-          "12% improvement in guest satisfaction",
-          "15% increase in ADR",
-          "8% increase in occupancy within first year post-renovation"
-        ]
+        ? ["+12% رضا الضيوف", "+15% سعر الغرفة", "+8% إشغال"]
+        : ["+12% guest satisfaction", "+15% ADR", "+8% occupancy"],
     },
     {
-      title: language.code === 'ar' ? "فندق فور بوينتس باي شيراتون وشيراتون طرابلس" : "Four Points by Sheraton & Sheraton Tripoli",
+      title: language.code === 'ar' ? "فور بوينتس وشيراتون طرابلس" : "Four Points & Sheraton Tripoli",
       category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
-      location: language.code === 'ar' ? "طرابلس، ليبيا" : "Tripoli, Libya",
-      period: language.code === 'ar' ? "2009 - 2011" : "2009 - 2011",
+      location: language.code === 'ar' ? "طرابلس" : "Tripoli, Libya",
+      period: "2009 - 2011",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg",
       rooms: 718,
-      budget: language.code === 'ar' ? "8.5 مليون دولار" : "$8.5M",
-      description: language.code === 'ar'
-        ? "إدارة عمليات ما قبل الافتتاح، وضمان 95٪ من الجاهزية التشغيلية في ظروف سياسية صعبة."
-        : "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
-      challenges: language.code === 'ar'
-        ? [
-          "التعامل مع مشهد سياسي متقلب",
-          "إدارة عمليات ما قبل افتتاح مجمع فندقي كبير",
-          "توظيف وتدريب الموظفين في سوق ضيافة محدودة"
-        ]
-        : [
-          "Navigating volatile political landscape",
-          "Managing large-scale cluster pre-opening",
-          "Recruiting and training staff in limited hospitality market"
-        ],
+      budget: "$8.5M",
       results: language.code === 'ar'
-        ? [
-          "تحقيق 95٪ من الجاهزية التشغيلية",
-          "رضا ضيوف أعلى بنسبة 15٪ من متوسط المنطقة",
-          "نجاح في ترسيخ معايير علامة شيراتون التجارية في سوق جديدة"
-        ]
-        : [
-          "95% operational readiness achieved",
-          "15% higher guest satisfaction than regional average",
-          "Successfully established Sheraton brand standards in new market"
-        ]
+        ? ["95% جاهزية تشغيلية", "+15% رضا ضيوف", "معايير شيراتون في سوق جديدة"]
+        : ["95% operational readiness", "+15% guest satisfaction", "Sheraton standards in new market"],
     }
   ];
 
-  return (
-    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : ''}`}>
-      <Navbar />
-      
-      <main className="flex-grow pt-24">
-        {/* Breadcrumb */}
-        <div className="container mx-auto px-4 md:px-8 py-4">
-          <BreadcrumbNav items={breadcrumbItems} />
-        </div>
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 inline-block relative">
-                {t('signatureProjects')}
-                <span className={`absolute ${isRTL ? 'right-0' : 'left-0'} -bottom-2 w-1/2 h-1 bg-luxury-gold`}></span>
-              </h1>
-              <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
-                {language.code === 'ar' 
-                  ? "تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في عمليات الضيافة والتخطيط الاستراتيجي والإدارة المالية."
-                  : "Transformative renovations and successful pre-openings that demonstrate expertise in hospitality operations, strategic planning, and financial management."
-                }
-              </p>
-            </div>
+  const categoryColors: Record<string, string> = {
+    'Pre-Opening': 'bg-primary/10 text-primary',
+    'ما قبل الافتتاح': 'bg-primary/10 text-primary',
+    'Major Renovation': 'bg-accent/10 text-accent-foreground',
+    'تجديد رئيسي': 'bg-accent/10 text-accent-foreground',
+    'Renovation': 'bg-accent/10 text-accent-foreground',
+    'تجديد': 'bg-accent/10 text-accent-foreground',
+    'Brand Conversion': 'bg-green-500/10 text-green-700',
+    'تحويل علامة': 'bg-green-500/10 text-green-700',
+    'تحويل العلامة التجارية': 'bg-green-500/10 text-green-700',
+    'Group Management': 'bg-purple-500/10 text-purple-700',
+    'إدارة المجموعة': 'bg-purple-500/10 text-purple-700',
+  };
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.map((project, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100"
-                >
-                  <div className="relative h-64">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} bg-luxury-gold text-white text-sm font-medium py-1 px-3 ${isRTL ? 'rounded-br-lg' : 'rounded-bl-lg'}`}>
+  return (
+    <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
+      <Navbar />
+
+      <main className="flex-grow pt-28 pb-20">
+        {/* Header */}
+        <section className="container mx-auto px-4 md:px-8 mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
+              <Building size={14} />
+              {language.code === 'ar' ? '$70M+ في المشاريع' : '$70M+ in Projects'}
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
+              {language.code === 'ar' ? 'المشاريع المميزة' : 'Signature Projects'}
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              {language.code === 'ar'
+                ? 'تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في الضيافة.'
+                : 'Transformative renovations and successful pre-openings showcasing hospitality expertise.'}
+            </p>
+          </motion.div>
+        </section>
+
+        {/* Projects Grid */}
+        <section className="container mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="bg-card rounded-xl border border-border/50 overflow-hidden hover:shadow-lg transition-all duration-300 group"
+              >
+                {/* Image */}
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-medium ${categoryColors[project.category] || 'bg-muted text-muted-foreground'}`}>
                       {project.category}
-                    </div>
+                    </span>
                   </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-luxury-navy mb-2">{project.title}</h3>
-                    
-                    <div className={`flex flex-wrap gap-4 text-sm text-luxury-gray mb-4 ${isRTL ? 'justify-end' : ''}`}>
-                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <MapPin size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                        <span>{project.location}</span>
-                      </div>
-                      
-                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <Calendar size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                        <span>{project.period}</span>
-                      </div>
-                      
-                      {project.rooms > 0 && (
-                        <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                          <Building size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                          <span>{project.rooms} {t('rooms')}</span>
-                        </div>
-                      )}
-                      
-                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
-                        <BarChart size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                        <span>{language.code === 'ar' ? "الميزانية: " : "Budget: "}{project.budget}</span>
-                      </div>
-                    </div>
-                    
-                    <p className="text-luxury-gray mb-4 text-sm">{project.description}</p>
-                    
-                    <div className="mt-4 space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-luxury-navy mb-2">{language.code === 'ar' ? "التحديات الرئيسية:" : "Key Challenges:"}</h4>
-                        <ul className={`list-disc ${isRTL ? 'mr-5' : 'ml-5'} space-y-1`}>
-                          {project.challenges.map((challenge, i) => (
-                            <li key={i} className="text-sm text-luxury-gray">{challenge}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-md">
-                        <h4 className="font-semibold text-luxury-navy mb-2">{t('results')}</h4>
-                        <ul className={`list-disc ${isRTL ? 'mr-5' : 'ml-5'} space-y-1`}>
-                          {project.results.map((result, i) => (
-                            <li key={i} className="text-sm font-medium text-luxury-navy">{result}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                </div>
+
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
+
+                  <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1"><MapPin size={12} />{project.location}</span>
+                    <span className="flex items-center gap-1"><Calendar size={12} />{project.period}</span>
+                    {project.rooms && project.rooms > 0 && (
+                      <span className="flex items-center gap-1"><Building size={12} />{project.rooms} {language.code === 'ar' ? 'غرفة' : 'rooms'}</span>
+                    )}
+                    <span className="flex items-center gap-1"><BarChart size={12} />{project.budget}</span>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-            
-            <div className="text-center mt-16">
-              <Button className="bg-luxury-navy hover:bg-blue-900 inline-flex items-center gap-2">
+
+                  {/* Results */}
+                  <div className="space-y-1.5">
+                    {project.results.map((result, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-foreground">
+                        <CheckCircle2 size={14} className="text-accent-foreground flex-shrink-0" />
+                        {result}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-16">
+            <Link to="/career">
+              <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all">
+                {language.code === 'ar' ? 'شاهد المسيرة المهنية الكاملة' : 'View Full Career Journey'}
                 <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
-                <a href="/career">{t('viewFullCareerJourney')}</a>
               </Button>
-            </div>
+            </Link>
           </div>
         </section>
       </main>
-      
+
       <Footer />
-      <WhatsAppButton />
-      <BackToTopButton />
     </div>
   );
 };

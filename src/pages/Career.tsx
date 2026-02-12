@@ -1,543 +1,322 @@
+
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { 
-  CalendarRange, 
-  Building, 
-  MapPin, 
-  Award, 
-  Briefcase, 
-  TrendingUp, 
-  Users, 
-  BarChart,
-  ChevronDown,
-  ChevronUp
-} from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Building, Calendar, ChevronDown, Award } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import WhatsAppButton from '@/components/WhatsAppButton';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Career = () => {
-  const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const { language, t, isRTL } = useLanguage();
-
-  const toggleExperience = (index: number) => {
-    if (expandedExperience === index) {
-      setExpandedExperience(null);
-    } else {
-      setExpandedExperience(index);
-    }
-  };
 
   const experiences = [
     {
       position: language.code === 'ar' ? "مدير عمليات المجموعة" : "Group Operations Director",
       company: language.code === 'ar' ? "فنادق برايم" : "Prime Hotels",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "ديسمبر 2025 - الحاضر" : "December 2025 - Present",
+      period: language.code === 'ar' ? "2025 - الحاضر" : "2025 - Present",
+      current: true,
       description: language.code === 'ar'
-        ? "مسؤول عن عمليات الفنادق على مستوى المجموعة، يشرف على محفظة متعددة العلامات التجارية تضم أربعة عقارات حالياً مع ستة فنادق إضافية مخطط افتتاحها بحلول 2026."
-        : "Full responsibility for group-wide hotel operations overseeing a multi-brand portfolio of four properties, with six additional hotels scheduled to open by 2026.",
-      rooms: 0,
+        ? "مسؤول عن عمليات الفنادق على مستوى المجموعة، يشرف على محفظة متعددة العلامات التجارية."
+        : "Full responsibility for group-wide hotel operations overseeing a multi-brand portfolio of four properties.",
+      metrics: [
+        { label: language.code === 'ar' ? 'محفظة' : 'Portfolio', value: language.code === 'ar' ? 'متعدد العلامات' : 'Multi-Brand' },
+        { label: language.code === 'ar' ? 'الهدف' : 'Target', value: language.code === 'ar' ? '10,000 غرفة' : '10,000 Rooms' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "قيادة الحوكمة التشغيلية والأداء ومواءمة العلامة التجارية عبر المحفظة بالتعاون مع الملاك ومجلس الإدارة والمديرين العامين",
-          "تنفيذ استراتيجية نمو طويلة المدى لبلوغ 10,000 غرفة بحلول 2030 مبنية على عمليات منضبطة وأنظمة قابلة للتوسع",
-          "الإشراف على العقارات الفاخرة والمتوسطة والشقق الفندقية لضمان الاتساق والربحية والتوسع الناجح"
-        ]
-        : [
-          "Leading operational governance, performance, and brand alignment across the portfolio, working closely with ownership, board, and General Managers",
-          "Executing long-term growth strategy to reach 10,000 rooms by 2030, built on disciplined operations and scalable systems",
-          "Overseeing luxury, midscale, and hotel apartment brands ensuring consistency, profitability, and successful expansion"
-        ],
-      metrics: {
-        portfolio: language.code === 'ar' ? "متعدد العلامات" : "Multi-Brand",
-        target: language.code === 'ar' ? "10,000 غرفة بحلول 2030" : "10,000 Rooms by 2030",
-        properties: language.code === 'ar' ? "4+ عقارات" : "4+ Properties"
-      }
+        ? ["قيادة الحوكمة التشغيلية والأداء عبر المحفظة", "تنفيذ استراتيجية نمو لبلوغ 10,000 غرفة بحلول 2030"]
+        : ["Leading operational governance and performance across the portfolio", "Executing growth strategy to reach 10,000 rooms by 2030"],
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
       company: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "Crowne Plaza Alexandria Mirage",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
-      period: language.code === 'ar' ? "أغسطس 2025 - ديسمبر 2025" : "August 2025 - December 2025",
+      period: language.code === 'ar' ? "2025" : "2025",
       description: language.code === 'ar'
-        ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا، تنفيذ معايير آي إتش جي وأنظمتها وثقافة الخدمة عبر جميع الأقسام."
-        : "Leading the full brand conversion of an independent property into Crowne Plaza, implementing IHG standards, systems, and service culture across all departments.",
-      rooms: 0,
+        ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا."
+        : "Leading full brand conversion from independent property into Crowne Plaza.",
+      metrics: [
+        { label: language.code === 'ar' ? 'نوع' : 'Type', value: language.code === 'ar' ? 'تحويل علامة' : 'Brand Conversion' },
+        { label: language.code === 'ar' ? 'الامتثال' : 'Compliance', value: '100%' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "دفع التحول التشغيلي من خلال ترقية العمليات وإعادة تدريب الموظفين وتعزيز الجودة لتلبية متطلبات تدقيق العلامة التجارية آي إتش جي والسلامة وتجربة الضيوف",
-          "العمل كحلقة وصل رئيسية بين الملكية وآي إتش جي لضمان انتقال سلس والامتثال لتفويضات الامتياز وتحسين أداء الأصول",
-        ]
-        : [
-          "Driving operational transformation through upgraded processes, staff retraining, and quality enhancements to meet IHG brand audit, safety, and guest experience requirements",
-          "Serving as primary liaison between ownership and IHG, ensuring smooth transition, timely compliance with franchise mandates, and optimized asset performance",
-        ],
-      metrics: {
-        type: language.code === 'ar' ? "تحويل علامة تجارية" : "Brand Conversion",
-        brand: "IHG - Crowne Plaza",
-        compliance: language.code === 'ar' ? "100%" : "100%"
-      }
+        ? ["تحول تشغيلي ناجح ومتوافق مع متطلبات آي إتش جي", "حلقة وصل رئيسية بين الملكية وآي إتش جي"]
+        : ["Successful operational transformation meeting IHG requirements", "Primary liaison between ownership and IHG"],
     },
     {
-      position: language.code === 'ar' ? "ممثل المالك ومدير التطوير (ما قبل الافتتاح)" : "Owner's Representative & Development Lead (Pre-Opening)",
-      company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "FOURPOINT BY SHERATON KING ABDULAZIZ ROAD",
+      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner's Representative (Pre-Opening)",
+      company: language.code === 'ar' ? "فور بوينتس باي شيراتون" : "Four Points by Sheraton",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "أغسطس 2024 - يوليو 2025" : "August 2024-July 2025",
-      description: language.code === 'ar' 
-        ? "تمثيل مصالح المالك عبر جميع مراحل التطوير من التخطيط إلى التسليم."
-        : "Represented the owner's interests across all stages of development from planning to handover.",
+      period: language.code === 'ar' ? "2024 - 2025" : "2024 - 2025",
       rooms: 172,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg",
+      description: language.code === 'ar'
+        ? "تمثيل مصالح المالك عبر جميع مراحل التطوير من التخطيط إلى التسليم."
+        : "Represented the owner's interests across all stages from planning to handover.",
+      metrics: [
+        { label: language.code === 'ar' ? 'غرف' : 'Rooms', value: '172' },
+        { label: language.code === 'ar' ? 'التسليم' : 'Delivery', value: language.code === 'ar' ? 'في الوقت' : 'On Time' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "التنسيق مع المهندسين المعماريين والمهندسين والمقاولين وفريق الخدمات التقنية في ماريوت لضمان التوافق مع معايير العلامة التجارية والتشغيل",
-          "مراقبة المعالم المهمة للمشروع ومراجعة تحديثات البناء ومعالجة القضايا التقنية أو التصميمية بسرعة",
-          "مراجعة والموافقة على قرارات التصميم والشراء الرئيسية التي تؤثر على الوظائف التشغيلية",
-          "المشاركة في وضع الميزانية وموافقات الأثاث والتجهيزات والتخطيط لما قبل الافتتاح إلى جانب فرق عمليات الفندق",
-          "ضمان الانتهاء في الوقت المحدد والتسليم والاستعداد للعقار للافتتاح التدريجي والإطلاق الرسمي"
-        ]
-        : [
-          "Coordinated with architects, engineers, contractors, and Marriott's technical services team to ensure alignment with brand and operational standards",
-          "Monitored project milestones, reviewed construction updates, and addressed technical or design issues promptly",
-          "Reviewed and approved key design and procurement decisions impacting operational functionality",
-          "Participated in budgeting, FF&E approvals, and pre-opening planning alongside hotel operations teams",
-          "Ensured timely completion, handover, and readiness of the property for soft opening and official launch"
-        ],
-      metrics: {
-        rooms: language.code === 'ar' ? "172 غرفة" : "172 Rooms",
-        timeline: language.code === 'ar' ? "في الوقت المحدد" : "On Time",
-        alignment: language.code === 'ar' ? "معايير ماريوت" : "Marriott Standards"
-      }
+        ? ["التنسيق مع ماريوت لضمان التوافق مع معايير العلامة التجارية", "ضمان الانتهاء في الوقت المحدد والاستعداد للافتتاح"]
+        : ["Coordinated with Marriott to ensure brand standard alignment", "Ensured timely completion and readiness for launch"],
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "منتجع بورسعيد" : "PORTO SAID RESORT",
+      company: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
       location: language.code === 'ar' ? "بورسعيد، مصر" : "Port Said, Egypt",
-      period: language.code === 'ar' ? "فبراير 2024 - أغسطس 2024" : "February 2024-August 2024",
-      description: language.code === 'ar'
-        ? "قيادة مشروع تجديد شامل بقيمة 3.5 مليون دولار لعقار مكون من 168 غرفة و 24 متجر تجاري، مما أدى إلى نمو الإشغال بنسبة 18٪ وزيادة إيرادات الأطعمة والمشروبات بنسبة 20٪."
-        : "Spearheaded $3.5M comprehensive refurbishment project for 168-room property and 24 outlets mall, resulting in 18% occupancy growth and 20% F&B revenue increase.",
+      period: language.code === 'ar' ? "2024" : "2024",
       rooms: 168,
-      outlets: 24,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg",
+      description: language.code === 'ar'
+        ? "قيادة مشروع تجديد شامل بقيمة 3.5 مليون دولار."
+        : "Spearheaded $3.5M comprehensive refurbishment project.",
+      metrics: [
+        { label: language.code === 'ar' ? 'تجديد' : 'Renovation', value: '$3.5M' },
+        { label: language.code === 'ar' ? 'الإشغال' : 'Occupancy', value: '+18%' },
+        { label: language.code === 'ar' ? 'الإيرادات' : 'Revenue', value: '+20%' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "قيادة وتوجيه فريق متنوع من أكثر من 200 موظف، وتنفيذ برامج تدريبية مستهدفة أدت إلى تحسين الكفاءة التشغيلية بنسبة 15٪ ودرجات رضا الضيوف بنسبة 25٪",
-          "تطوير وتنفيذ مبادرات استراتيجية لخفض التكاليف عبر جميع الأقسام، مما أدى إلى تقليل المصروفات التشغيلية بنسبة 10٪ مع الحفاظ على التميز في الخدمة ورضا الضيوف"
-        ]
-        : [
-          "Led and mentored a diverse team of 200+ staff, implementing targeted training programs that improved operational efficiency by 15% and guest satisfaction scores by 25%",
-          "Developed and executed strategic cost-saving initiatives across all departments, reducing operational expenses by 10% while maintaining service excellence and guest satisfaction"
-        ],
-      metrics: {
-        refurbishment: language.code === 'ar' ? "3.5 مليون دولار" : "$3.5M",
-        occupancy: language.code === 'ar' ? "+18%" : "+18%",
-        revenue: language.code === 'ar' ? "+20%" : "+20%",
-        staff: language.code === 'ar' ? "200+" : "200+",
-        efficiency: language.code === 'ar' ? "+15%" : "+15%",
-        satisfaction: language.code === 'ar' ? "+25%" : "+25%"
-      }
+        ? ["تحسين الكفاءة التشغيلية بنسبة 15٪", "تحسين رضا الضيوف بنسبة 25٪"]
+        : ["Improved operational efficiency by 15%", "Enhanced guest satisfaction scores by 25%"],
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "منتجع ذا في الفاخر سهل حشيش" : "The V Luxury Resort Sahl Hasheesh",
+      company: language.code === 'ar' ? "منتجع ذا في الفاخر" : "The V Luxury Resort",
       location: language.code === 'ar' ? "الغردقة، مصر" : "Hurghada, Egypt",
-      period: language.code === 'ar' ? "أبريل 2023 - فبراير 2024" : "April 2023 - February 2024",
-      description: language.code === 'ar'
-        ? "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر يضم 298 غرفة، وتنفيذ استراتيجيات تسويقية مبتكرة حققت نسبة إشغال 90٪ في غضون 4 أشهر من الإطلاق، مما وضع معيارًا جديدًا للسوق."
-        : "Orchestrated pre-opening operations for 298-room luxury resort, implementing innovative marketing strategies that achieved 90% occupancy within 4 months of launch, setting a new market benchmark.",
+      period: language.code === 'ar' ? "2023 - 2024" : "2023 - 2024",
       rooms: 298,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg",
+      description: language.code === 'ar'
+        ? "إدارة عمليات ما قبل الافتتاح لمنتجع فاخر."
+        : "Orchestrated pre-opening operations for luxury resort.",
+      metrics: [
+        { label: language.code === 'ar' ? 'الإشغال' : 'Occupancy', value: '90%' },
+        { label: language.code === 'ar' ? 'الوقت' : 'Timeline', value: language.code === 'ar' ? '4 أشهر' : '4 months' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "تعزيز درجات رضا الضيوف بنسبة 12٪ من خلال تطوير وتنفيذ برامج تدريب خدمة مستهدفة ومبادرات تجربة ضيوف مخصصة",
-          "تنفيذ استراتيجيات تشغيلية قائمة على البيانات",
-          "ترسيخ العقار كرائد في السوق في المنطقة"
-        ]
-        : [
-          "Enhanced guest satisfaction scores by 12% through development and implementation of targeted service training programs and personalized guest experience initiatives",
-          "Implemented data-driven operational strategies",
-          "Established the property as a market leader in the region"
-        ],
-      metrics: {
-        occupancy: language.code === 'ar' ? "90%" : "90%",
-        timeToReachOccupancy: language.code === 'ar' ? "4 أشهر" : "4 months",
-        satisfaction: language.code === 'ar' ? "+12%" : "+12%"
-      }
+        ? ["تحقيق 90٪ إشغال في 4 أشهر", "تحسين رضا الضيوف بنسبة 12٪"]
+        : ["Achieved 90% occupancy within 4 months", "Enhanced guest satisfaction by 12%"],
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
       company: language.code === 'ar' ? "فندق شيراتون المنتزه" : "Sheraton Montazah Hotel",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
-      period: language.code === 'ar' ? "يناير 2021 - مارس 2023" : "January 2021 - March 2023",
-      previousRoles: [
-        { 
-          title: language.code === 'ar' ? "مدير الفندق المسؤول" : "Hotel Manager in Charge", 
-          period: language.code === 'ar' ? "يوليو 2015 - ديسمبر 2020" : "July 2015 - December 2020" 
-        },
-        { 
-          title: language.code === 'ar' ? "نائب المدير العام" : "Deputy General Manager", 
-          period: language.code === 'ar' ? "يونيو 2014 - يونيو 2015" : "June 2014 - June 2015" 
-        }
-      ],
-      description: language.code === 'ar'
-        ? "إدارة تجديد شامل مع تشغيل عقار يبلغ عمره 40 عامًا (288 غرفة)، بما في ذلك تجديد البنية التحتية بالكامل."
-        : "Directed comprehensive renovation with operation of 40-year-old property (288 rooms), including complete infrastructure overhaul.",
+      period: language.code === 'ar' ? "2014 - 2023" : "2014 - 2023",
       rooms: 288,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp",
-      achievements: language.code === 'ar'
-        ? [
-          "تحقيق زيادة بنسبة 25٪ في عائد الغرفة المتاحة وتحسين بنسبة 30٪ في درجات رضا الضيوف",
-          "تحديث جميع الأنظمة الميكانيكية بما في ذلك الغلايات والمحولات والمولدات والمبردات وشبكة السلامة من الحرائق، مما أدى إلى تقليل استهلاك الطاقة بنسبة 15٪ وتكاليف الصيانة بنسبة 20٪",
-          "التعاون مع الشركة المالكة وفريق التصميم في ماريوت لتطوير وتنفيذ مفاهيم غرف النموذج"
-        ]
-        : [
-          "Achieved 25% increase in RevPAR and 30% improvement in guest satisfaction scores",
-          "Modernized all mechanical systems including boilers, transformers, generators, chillers, and fire & life safety network, reducing energy consumption by 15% and maintenance costs by 20%",
-          "Collaborated with Owning Company and Marriott Design team to develop and implement model room concepts"
-        ],
-      metrics: {
-        revpar: language.code === 'ar' ? "+25%" : "+25%",
-        satisfaction: language.code === 'ar' ? "+30%" : "+30%",
-        energySavings: language.code === 'ar' ? "-15%" : "-15%",
-        maintenanceSavings: language.code === 'ar' ? "-20%" : "-20%"
-      }
-    },
-    {
-      position: language.code === 'ar' ? "المدير العام المسؤول عن التميز التشغيلي" : "General Manager in Charge of Operational Excellence",
-      company: language.code === 'ar' ? "مجلس المديرين العامين لماريوت مصر" : "Marriott Egypt General Managers Council",
-      location: language.code === 'ar' ? "مصر" : "Egypt",
-      period: language.code === 'ar' ? "2018 - 2022" : "2018 - 2022",
       description: language.code === 'ar'
-        ? "قيادة مبادرات التميز التشغيلي عبر 19 عقار (أكثر من 2200 غرفة)، وتنفيذ بروتوكولات خدمة موحدة."
-        : "Led operational excellence initiatives across 19 properties (2200+ rooms), implementing standardized service protocols.",
-      rooms: 2200,
+        ? "إدارة تجديد شامل لعقار يبلغ عمره 40 عامًا."
+        : "Directed comprehensive renovation of 40-year-old property.",
+      metrics: [
+        { label: 'RevPAR', value: '+25%' },
+        { label: language.code === 'ar' ? 'الرضا' : 'Satisfaction', value: '+30%' },
+        { label: language.code === 'ar' ? 'الطاقة' : 'Energy', value: '-15%' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "تحسين رضا الضيوف بنسبة 10٪ وزيادة إيرادات الأطعمة والمشروبات بنسبة 8٪",
-          "تنسيق المبادرات عبر العقارات المختلفة وتبادل أفضل الممارسات، مما أدى إلى زيادة متوسطة بنسبة 3٪ في عائد الغرفة المتاحة عبر جميع العقارات",
-          "تسهيل مراجعات الأداء الفصلية وجلسات التخطيط الاستراتيجي، مما يضمن التوافق مع معايير ماريوت الدولية عبر محفظة العقارات المتنوعة"
-        ]
-        : [
-          "Improved guest satisfaction by 10% and F&B revenue by 8%",
-          "Coordinated cross-property initiatives and best practice sharing, driving an average 3% increase in RevPAR across all properties",
-          "Facilitated quarterly performance reviews and strategic planning sessions, ensuring alignment with Marriott International standards across diverse property portfolio"
-        ],
-      metrics: {
-        satisfaction: language.code === 'ar' ? "+10%" : "+10%",
-        revenue: language.code === 'ar' ? "+8%" : "+8%",
-        revpar: language.code === 'ar' ? "+3%" : "+3%"
-      }
+        ? ["زيادة 25٪ في عائد الغرفة المتاحة", "تحديث جميع الأنظمة الميكانيكية"]
+        : ["25% increase in RevPAR", "Modernized all mechanical systems"],
     },
     {
-      position: language.code === 'ar' ? "نائب المدير العام المسؤول" : "Deputy General Manager in Charge",
+      position: language.code === 'ar' ? "نائب المدير العام" : "Deputy General Manager",
       company: language.code === 'ar' ? "منتجع شيراتون ميرامار" : "Sheraton Miramar Resort",
-      location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
-      period: language.code === 'ar' ? "يوليو 2011 - يونيو 2014" : "July 2011 - June 2014",
-      description: language.code === 'ar'
-        ? "إدارة مشروع تجديد بقيمة 5 مليون دولار لعقار يضم 339 غرفة، وتحسين رضا الضيوف بنسبة 12٪ وتحقيق نمو قوي بعد التجديد من خلال إعادة تموضع استراتيجي."
-        : "Managed $5M refurbishment project for 339-room property, improving guest satisfaction by 12% and driving strong post-renovation growth through strategic repositioning.",
+      location: language.code === 'ar' ? "الجونة، مصر" : "El Gouna, Egypt",
+      period: language.code === 'ar' ? "2011 - 2014" : "2011 - 2014",
       rooms: 339,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg",
+      description: language.code === 'ar'
+        ? "إدارة مشروع تجديد بقيمة 5 مليون دولار."
+        : "Managed $5M refurbishment project for 339-room property.",
+      metrics: [
+        { label: 'ADR', value: '+15%' },
+        { label: language.code === 'ar' ? 'الإشغال' : 'Occupancy', value: '+8%' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "تخفيض نفقات الرواتب بنسبة 7٪ مع الحفاظ على معايير الخدمة من خلال مبادرات الجدولة المبتكرة والتدريب المتبادل",
-          "تنفيذ استراتيجيات إدارة الإيرادات التي زادت متوسط سعر الغرفة اليومي بنسبة 15٪ والإشغال بنسبة 8٪ خلال السنة الأولى بعد التجديد"
-        ]
-        : [
-          "Reduced payroll expenses by 7% while maintaining service standards through innovative scheduling and cross-training initiatives",
-          "Implemented revenue management strategies that increased ADR by 15% and occupancy by 8% within first year post-renovation"
-        ],
-      metrics: {
-        payrollSavings: language.code === 'ar' ? "-7%" : "-7%",
-        adr: language.code === 'ar' ? "+15%" : "+15%",
-        occupancy: language.code === 'ar' ? "+8%" : "+8%"
-      }
+        ? ["تخفيض نفقات الرواتب بنسبة 7٪", "زيادة متوسط سعر الغرفة بنسبة 15٪"]
+        : ["Reduced payroll expenses by 7%", "Increased ADR by 15%"],
     },
     {
-      position: language.code === 'ar' ? "مساعد المدير التنفيذي المجمع (ما قبل الافتتاح)" : "Cluster Executive Assistant Manager (Pre-Opening)",
-      company: language.code === 'ar' ? "فور بوينتس باي شيراتون وشيراتون" : "Four Points by Sheraton & Sheraton",
+      position: language.code === 'ar' ? "مساعد المدير التنفيذي (ما قبل الافتتاح)" : "Cluster Executive Assistant Manager (Pre-Opening)",
+      company: language.code === 'ar' ? "فور بوينتس باي شيراتون وشيراتون" : "Four Points & Sheraton Tripoli",
       location: language.code === 'ar' ? "طرابلس، ليبيا" : "Tripoli, Libya",
-      period: language.code === 'ar' ? "ديسمبر 2009 - يونيو 2011" : "December 2009 - June 2011",
-      description: language.code === 'ar'
-        ? "إدارة عمليات ما قبل الافتتاح، وضمان 95٪ من الجاهزية التشغيلية في ظروف سياسية صعبة."
-        : "Managed pre-opening operations, ensuring 95% operational readiness in challenging political conditions.",
+      period: language.code === 'ar' ? "2009 - 2011" : "2009 - 2011",
       rooms: 718,
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg",
+      description: language.code === 'ar'
+        ? "إدارة عمليات ما قبل الافتتاح في ظروف سياسية صعبة."
+        : "Managed pre-opening operations in challenging political conditions.",
+      metrics: [
+        { label: language.code === 'ar' ? 'الجاهزية' : 'Readiness', value: '95%' },
+        { label: language.code === 'ar' ? 'غرف' : 'Rooms', value: '718' },
+      ],
       achievements: language.code === 'ar'
-        ? [
-          "قيادة تدريب الموظفين والإعداد التشغيلي، مما أدى إلى رضا الضيوف أعلى بنسبة 15٪",
-          "إنشاء أنظمة وإجراءات تشغيلية متوافقة مع معايير العلامة التجارية ستاروود"
-        ]
-        : [
-          "Led staff training and operational setup, resulting in 15% higher guest satisfaction",
-          "Established operational systems and procedures aligned with Starwood brand standards"
-        ],
-      metrics: {
-        readiness: language.code === 'ar' ? "95%" : "95%",
-        satisfaction: language.code === 'ar' ? "+15%" : "+15%"
-      }
+        ? ["تحقيق 95٪ جاهزية تشغيلية", "رضا ضيوف أعلى بنسبة 15٪ من المتوسط"]
+        : ["95% operational readiness achieved", "15% higher guest satisfaction than regional average"],
     },
     {
       position: language.code === 'ar' ? "مدير الابتكار التشغيلي" : "Director of Operational Innovation",
       company: language.code === 'ar' ? "منتجع شيراتون ميرامار" : "Sheraton Miramar Resort",
-      location: language.code === 'ar' ? "الجونة، الغردقة، مصر" : "El Gouna, Hurghada, Egypt",
-      period: language.code === 'ar' ? "يناير 2005 - نوفمبر 2009" : "January 2005 - November 2009",
-      previousRoles: [
-        { 
-          title: language.code === 'ar' ? "نائب مدير خدمات الضيوف والحزام الأخضر سيكس سيجما" : "Deputy Director of Guest Services & Six Sigma Green Belt", 
-          period: language.code === 'ar' ? "يونيو 2003 - يونيو 2004" : "June 2003 - June 2004" 
-        }
-      ],
+      location: language.code === 'ar' ? "الجونة، مصر" : "El Gouna, Egypt",
+      period: language.code === 'ar' ? "2005 - 2009" : "2005 - 2009",
       description: language.code === 'ar'
-        ? "قيادة مشاريع قسمية لزيادة رضا الضيوف، ورضا الموظفين، والإيرادات."
-        : "Led divisional projects to increase guest satisfaction, employee satisfaction, and revenue.",
+        ? "قيادة مشاريع لزيادة رضا الضيوف والإيرادات."
+        : "Led projects to increase guest satisfaction and revenue.",
       achievements: language.code === 'ar'
-        ? [
-          "تصدير 4 أفضل ممارسات إلى قسم أوروبا وأفريقيا والشرق الأوسط",
-          "تم اختياره كمدرب مدير الابتكار التشغيلي لـ 5 عقارات في مصر والمغرب",
-          "المساهمة في فريق الإدارة الذي حقق \"أفضل نمو هامش EBITDA\" في قسم أوروبا والشرق الأوسط وأفريقيا",
-          "تنفيذ منهجيات سيكس سيجما لتعزيز الكفاءة التشغيلية ورضا الضيوف",
-          "تم النقل من شيراتون سوما باي بسبب الأداء المتميز"
-        ]
-        : [
-          "Exported 4 Best Practices to Europe, Africa, and Middle East Division",
-          "Selected as Director of Operational Innovation Coach for 5 properties in Egypt and Morocco",
-          "Contributed to management team that achieved \"Best EBITDA Margin Growth\" in EMEA Division",
-          "Implemented Six Sigma methodologies to enhance operational efficiency and guest satisfaction",
-          "Transferred from Sheraton Soma Bay due to outstanding performance"
-        ],
-      metrics: {}
+        ? ["تصدير 4 أفضل ممارسات لقسم أوروبا والشرق الأوسط وأفريقيا", "المساهمة في أفضل نمو هامش EBITDA"]
+        : ["Exported 4 Best Practices to EMEA Division", "Contributed to Best EBITDA Margin Growth in EMEA"],
     },
     {
       position: language.code === 'ar' ? "التقدم المهني المبكر" : "Early Career Progression",
       period: language.code === 'ar' ? "1993 - 2004" : "1993 - 2004",
       description: language.code === 'ar'
-        ? "شغل أدوارًا تقدمية في سلاسل ضيافة دولية مختلفة في الإمارات العربية المتحدة ومصر، متقدمًا من موظف استقبال إلى مساعد مدير مكتب أمامي من خلال التميز في خدمة الضيوف والإدارة التشغيلية."
-        : "Held progressive roles within various international hospitality chains in UAE & Egypt, advancing from Receptionist to Assistant Director of Front Office through demonstrated excellence in guest service and operational management."
+        ? "تقدم من موظف استقبال إلى مساعد مدير مكتب أمامي عبر سلاسل ضيافة دولية في الإمارات ومصر."
+        : "Advanced from Receptionist to Assistant Director of Front Office across international chains in UAE & Egypt.",
     }
   ];
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { 
-        staggerChildren: 0.2 
-      } 
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
   return (
-    <div className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : ''}`}>
+    <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
-      
-      <main className="flex-grow pt-24">
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 md:px-8">
-            <motion.div 
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 inline-block relative">
-                {t('careerJourney')}
-                <span className={`absolute ${isRTL ? 'right-0' : 'left-0'} -bottom-2 w-1/2 h-1 bg-luxury-gold`}></span>
-              </h1>
-              <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
-                {language.code === 'ar'
-                  ? "أكثر من 30 عامًا من الخبرة القيادية التقدمية عبر العلامات التجارية والأسواق الدولية للضيافة، متخصصًا في عمليات ما قبل الافتتاح، والتجديدات، والتميز التشغيلي."
-                  : "Over 30 years of progressive leadership experience across international hospitality brands and markets, specializing in pre-opening operations, renovations, and operational excellence."
-                }
-              </p>
-            </motion.div>
 
-            <div className="relative">
-              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-luxury-gold"></div>
-              
-              <motion.div 
-                className="space-y-16"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {experiences.map((exp, index) => (
-                  <motion.div 
-                    key={index}
-                    variants={itemVariants}
-                    className={`flex flex-col ${index % 2 === 0 ? `md:flex-row ${isRTL ? 'md:flex-row-reverse' : ''}` : `md:flex-row-reverse ${isRTL ? 'md:flex-row' : ''}`}`}
+      <main className="flex-grow pt-28 pb-20">
+        {/* Header */}
+        <section className="container mx-auto px-4 md:px-8 mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
+              <Calendar size={14} />
+              {language.code === 'ar' ? '+30 عامًا من الخبرة' : '30+ Years of Experience'}
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
+              {language.code === 'ar' ? 'المسيرة المهنية' : 'Career Journey'}
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              {language.code === 'ar'
+                ? 'خبرة قيادية تقدمية عبر العلامات التجارية والأسواق الدولية للضيافة.'
+                : 'Progressive leadership across international hospitality brands and markets.'}
+            </p>
+          </motion.div>
+        </section>
+
+        {/* Timeline */}
+        <section className="container mx-auto px-4 md:px-8">
+          <div className="max-w-4xl mx-auto relative">
+            {/* Vertical line */}
+            <div className={`absolute ${isRTL ? 'right-6' : 'left-6'} md:${isRTL ? 'right-8' : 'left-8'} top-0 bottom-0 w-px bg-border`} />
+
+            <div className="space-y-8">
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className={`relative ${isRTL ? 'pr-16 md:pr-20' : 'pl-16 md:pl-20'}`}
+                >
+                  {/* Timeline dot */}
+                  <div className={`absolute ${isRTL ? 'right-4' : 'left-4'} md:${isRTL ? 'right-6' : 'left-6'} top-6 w-4 h-4 rounded-full border-2 ${exp.current ? 'bg-accent border-accent' : 'bg-card border-border'} z-10`} />
+
+                  <div
+                    className={`bg-card rounded-xl border border-border/50 overflow-hidden transition-all duration-300 hover:shadow-md ${expandedIndex === index ? 'shadow-md ring-1 ring-accent/20' : ''}`}
                   >
-                    <div className="md:w-1/2 flex justify-center items-center">
-                      <Card 
-                        className={cn(
-                          "bg-white border-t-4 border-luxury-gold max-w-md w-full transition-all duration-300",
-                          expandedExperience === index ? "shadow-xl" : "shadow-lg hover:shadow-xl"
-                        )}
-                      >
-                        <CardContent className="p-6">
-                          {/* Hotel Image */}
-                          {exp.image && (
-                            <div className="mb-4 overflow-hidden rounded-lg">
-                              <img 
-                                src={exp.image} 
-                                alt={exp.company} 
-                                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                              />
-                            </div>
-                          )}
-                          
-                          <h3 className="text-2xl font-bold text-luxury-navy mb-2">{exp.position}</h3>
-                          {exp.company && <h4 className="text-xl font-semibold mb-3">{exp.company}</h4>}
-                          
-                          <div className={`flex flex-wrap items-center text-luxury-gray mb-2 ${isRTL ? 'justify-end' : ''}`}>
-                            <MapPin size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
-                            <span className={isRTL ? 'ml-4' : 'mr-4'}>{exp.location}</span>
-                            {exp.rooms && (
-                              <>
-                                <Building size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
-                                <span>{exp.rooms} {t('rooms')}</span>
-                              </>
-                            )}
-                          </div>
-                          
-                          <div className={`flex items-center text-luxury-gray mb-4 ${isRTL ? 'justify-end' : ''}`}>
-                            <CalendarRange size={18} className={isRTL ? 'ml-2' : 'mr-2'} />
-                            <span>{exp.period}</span>
-                          </div>
-                          
-                          <p className="text-luxury-gray mb-4">{exp.description}</p>
-                          
-                          {/* Interactive Metrics Dashboard */}
-                          {exp.metrics && Object.entries(exp.metrics).length > 0 && (
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-4 mb-4">
-                              {Object.entries(exp.metrics).map(([key, value], i) => (
-                                <div 
-                                  key={i} 
-                                  className="bg-gray-50 p-3 rounded-lg text-center hover:bg-gray-100 transition-colors"
-                                >
-                                  <div className="text-luxury-navy font-bold text-lg">
-                                    {value}
-                                  </div>
-                                  <div className="text-xs text-luxury-gray capitalize">
-                                    {language.code === 'ar' ? (
-                                      key === 'occupancy' ? 'الإشغال' :
-                                      key === 'revenue' ? 'الإيرادات' :
-                                      key === 'satisfaction' ? 'رضا الضيوف' :
-                                      key === 'budget' ? 'الميزانية' :
-                                      key === 'readiness' ? 'الجاهزية' :
-                                      key === 'staffing' ? 'التوظيف' :
-                                      key === 'efficiency' ? 'الكفاءة' :
-                                      key === 'costs' ? 'التكاليف' :
-                                      key === 'revpar' ? 'إيرادات الغرفة' :
-                                      key === 'energySavings' ? 'توفير الطاقة' :
-                                      key === 'maintenanceSavings' ? 'توفير الصيانة' :
-                                      key === 'payrollSavings' ? 'توفير الرواتب' :
-                                      key === 'adr' ? 'متوسط سعر الغرفة' :
-                                      key === 'timeToReachOccupancy' ? 'وقت الوصول للإشغال' :
-                                      key
-                                    ) : key}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                          
-                          {/* Expandable achievements section */}
-                          {exp.achievements && exp.achievements.length > 0 && (
-                            <div className="mt-4">
-                              <button 
-                                onClick={() => toggleExperience(index)} 
-                                className={`flex items-center justify-between w-full text-luxury-navy font-semibold hover:text-luxury-gold transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
-                              >
-                                <span>{language.code === 'ar' ? 'الإنجازات الرئيسية' : 'Key Achievements'}</span>
-                                {expandedExperience === index ? (
-                                  <ChevronUp size={18} />
-                                ) : (
-                                  <ChevronDown size={18} />
-                                )}
-                              </button>
-                              
-                              {expandedExperience === index && (
-                                <motion.div
-                                  initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: "auto" }}
-                                  exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.3 }}
-                                  className="mt-3"
-                                >
-                                  <ul className={`${isRTL ? 'list-disc mr-5' : 'list-disc list-inside'} space-y-2`}>
-                                    {exp.achievements.map((achievement, i) => (
-                                      <motion.li 
-                                        key={i} 
-                                        className="text-sm text-luxury-gray"
-                                        initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: i * 0.1 }}
-                                      >
-                                        {achievement}
-                                      </motion.li>
-                                    ))}
-                                  </ul>
-                                </motion.div>
-                              )}
-                            </div>
-                          )}
-                        </CardContent>
-                      </Card>
-                    </div>
-                    
-                    <div className="hidden md:flex md:w-1/2 justify-center">
-                      <div className="relative">
-                        <motion.div 
-                          className="h-8 w-8 bg-luxury-gold rounded-full z-10 relative"
-                          whileHover={{ scale: 1.2 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => toggleExperience(index)}
-                        />
+                    {/* Image */}
+                    {exp.image && (
+                      <div className="h-48 overflow-hidden">
+                        <img src={exp.image} alt={exp.company} className="w-full h-full object-cover" />
                       </div>
+                    )}
+
+                    <div className="p-6">
+                      {/* Header */}
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div>
+                          <h3 className="text-lg font-semibold text-foreground">{exp.position}</h3>
+                          {exp.company && <p className="text-sm font-medium text-accent-foreground">{exp.company}</p>}
+                        </div>
+                        {exp.current && (
+                          <span className="px-2.5 py-1 rounded-full bg-accent/10 text-accent-foreground text-xs font-medium flex-shrink-0">
+                            {language.code === 'ar' ? 'حالياً' : 'Current'}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Meta */}
+                      <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-3">
+                        {exp.location && (
+                          <span className="flex items-center gap-1"><MapPin size={12} />{exp.location}</span>
+                        )}
+                        <span className="flex items-center gap-1"><Calendar size={12} />{exp.period}</span>
+                        {exp.rooms && (
+                          <span className="flex items-center gap-1"><Building size={12} />{exp.rooms} {language.code === 'ar' ? 'غرفة' : 'rooms'}</span>
+                        )}
+                      </div>
+
+                      <p className="text-sm text-muted-foreground mb-4">{exp.description}</p>
+
+                      {/* Metrics */}
+                      {exp.metrics && exp.metrics.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {exp.metrics.map((m, i) => (
+                            <div key={i} className="px-3 py-2 rounded-lg bg-muted/50 border border-border/50 text-center min-w-[80px]">
+                              <p className="text-sm font-bold text-foreground">{m.value}</p>
+                              <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{m.label}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Expandable */}
+                      {exp.achievements && exp.achievements.length > 0 && (
+                        <>
+                          <button
+                            onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                            className="flex items-center gap-1.5 text-xs font-medium text-accent-foreground hover:text-accent-foreground/80 transition-colors"
+                          >
+                            {language.code === 'ar' ? 'الإنجازات' : 'Key Achievements'}
+                            <ChevronDown size={14} className={`transition-transform ${expandedIndex === index ? 'rotate-180' : ''}`} />
+                          </button>
+                          <AnimatePresence>
+                            {expandedIndex === index && (
+                              <motion.ul
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="mt-3 space-y-2 overflow-hidden"
+                              >
+                                {exp.achievements.map((a, i) => (
+                                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                                    {a}
+                                  </li>
+                                ))}
+                              </motion.ul>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      )}
                     </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-            
-            <div className="text-center mt-16">
-              <motion.div 
-                className="inline-block px-6 py-3 bg-luxury-navy text-white rounded-lg font-medium"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Award className="inline-block mr-2" size={20} />
-                <span>{language.code === 'ar' 
-                  ? "شاهد المزيد من الإنجازات المهنية في " 
-                  : "View more career highlights in the "}
-                  <a href="/awards" className="text-luxury-gold hover:underline">
-                    {language.code === 'ar' ? "قسم الجوائز" : "Awards section"}
-                  </a>
-                </span>
-              </motion.div>
-            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-16">
+            <Link to="/awards">
+              <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all">
+                <Award size={16} />
+                {language.code === 'ar' ? 'شاهد الجوائز والتقدير' : 'View Awards & Recognition'}
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
-      
+
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 };
