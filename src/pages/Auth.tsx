@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { Lock } from 'lucide-react';
 
 const Auth = () => {
   const { user, signIn, signUp, loading } = useAuth();
@@ -21,158 +21,87 @@ const Auth = () => {
   const [fullName, setFullName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div>Loading...</div>
-      </div>
-    );
-  }
-
-  if (user) {
-    return <Navigate to="/" replace />;
-  }
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-background"><p className="text-muted-foreground">Loading...</p></div>;
+  if (user) return <Navigate to="/" replace />;
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await signIn(email, password);
-    setIsLoading(false);
+    try { await signIn(email, password); } finally { setIsLoading(false); }
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await signUp(email, password, fullName);
-    setIsLoading(false);
+    try { await signUp(email, password, fullName); } finally { setIsLoading(false); }
   };
 
   return (
-    <motion.div 
-      className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
-      <main className="flex-grow pt-20 pb-20">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="max-w-md mx-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-center">
-                  {language.code === 'ar' ? 'تسجيل الدخول' : 'Authentication'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Tabs defaultValue="signin" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="signin">
-                      {language.code === 'ar' ? 'تسجيل الدخول' : 'Sign In'}
-                    </TabsTrigger>
-                    <TabsTrigger value="signup">
-                      {language.code === 'ar' ? 'إنشاء حساب' : 'Sign Up'}
-                    </TabsTrigger>
-                  </TabsList>
-                  
-                  <TabsContent value="signin">
-                    <form onSubmit={handleSignIn} className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="signin-email">
-                          {language.code === 'ar' ? 'البريد الإلكتروني' : 'Email'}
-                        </Label>
-                        <Input
-                          id="signin-email"
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <Label htmlFor="signin-password">
-                          {language.code === 'ar' ? 'كلمة المرور' : 'Password'}
-                        </Label>
-                        <Input
-                          id="signin-password"
-                          type="password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          required
-                        />
-                      </div>
-                      
-                      <Button type="submit" className="w-full" disabled={isLoading}>
-                        {isLoading 
-                          ? (language.code === 'ar' ? 'جاري التحميل...' : 'Loading...') 
-                          : (language.code === 'ar' ? 'تسجيل الدخول' : 'Sign In')
-                        }
-                      </Button>
-                    </form>
-                  </TabsContent>
-                  
-                  <TabsContent value="signup">
-                    <form onSubmit={handleSignUp} className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="signup-name">
-                          {language.code === 'ar' ? 'الاسم الكامل' : 'Full Name'}
-                        </Label>
-                        <Input
-                          id="signup-name"
-                          type="text"
-                          value={fullName}
-                          onChange={(e) => setFullName(e.target.value)}
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <Label htmlFor="signup-email">
-                          {language.code === 'ar' ? 'البريد الإلكتروني' : 'Email'}
-                        </Label>
-                        <Input
-                          id="signup-email"
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <Label htmlFor="signup-password">
-                          {language.code === 'ar' ? 'كلمة المرور' : 'Password'}
-                        </Label>
-                        <Input
-                          id="signup-password"
-                          type="password"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          required
-                        />
-                      </div>
-                      
-                      <Button type="submit" className="w-full" disabled={isLoading}>
-                        {isLoading 
-                          ? (language.code === 'ar' ? 'جاري التحميل...' : 'Loading...') 
-                          : (language.code === 'ar' ? 'إنشاء حساب' : 'Sign Up')
-                        }
-                      </Button>
-                    </form>
-                  </TabsContent>
-                </Tabs>
-              </CardContent>
-            </Card>
+      <main className="flex-grow flex items-center justify-center py-20 px-4">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
+              <Lock className="h-6 w-6 text-accent-foreground" />
+            </div>
+            <h1 className="text-2xl font-bold font-playfair text-foreground">
+              {language.code === 'ar' ? 'تسجيل الدخول' : 'Authentication'}
+            </h1>
           </div>
-        </div>
+
+          <Card className="border border-border/50 shadow-sm rounded-xl">
+            <CardContent className="p-6">
+              <Tabs defaultValue="signin" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 mb-6 rounded-lg">
+                  <TabsTrigger value="signin" className="rounded-lg">{language.code === 'ar' ? 'دخول' : 'Sign In'}</TabsTrigger>
+                  <TabsTrigger value="signup" className="rounded-lg">{language.code === 'ar' ? 'حساب جديد' : 'Sign Up'}</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="signin">
+                  <form onSubmit={handleSignIn} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label>{language.code === 'ar' ? 'البريد الإلكتروني' : 'Email'}</Label>
+                      <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="rounded-xl h-11" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>{language.code === 'ar' ? 'كلمة المرور' : 'Password'}</Label>
+                      <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required className="rounded-xl h-11" />
+                    </div>
+                    <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl h-11 font-semibold" disabled={isLoading}>
+                      {isLoading ? '...' : (language.code === 'ar' ? 'تسجيل الدخول' : 'Sign In')}
+                    </Button>
+                  </form>
+                </TabsContent>
+
+                <TabsContent value="signup">
+                  <form onSubmit={handleSignUp} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label>{language.code === 'ar' ? 'الاسم' : 'Full Name'}</Label>
+                      <Input value={fullName} onChange={e => setFullName(e.target.value)} className="rounded-xl h-11" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>{language.code === 'ar' ? 'البريد الإلكتروني' : 'Email'}</Label>
+                      <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="rounded-xl h-11" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>{language.code === 'ar' ? 'كلمة المرور' : 'Password'}</Label>
+                      <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required className="rounded-xl h-11" />
+                    </div>
+                    <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl h-11 font-semibold" disabled={isLoading}>
+                      {isLoading ? '...' : (language.code === 'ar' ? 'إنشاء حساب' : 'Sign Up')}
+                    </Button>
+                  </form>
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
+        </motion.div>
       </main>
       <Footer />
-    </motion.div>
+    </div>
   );
 };
 
