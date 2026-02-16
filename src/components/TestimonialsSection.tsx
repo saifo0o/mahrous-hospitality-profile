@@ -8,8 +8,9 @@ import {
   CarouselPrevious,
   type CarouselApi
 } from "@/components/ui/carousel";
-import { TestimonialCard } from './TestimonialCard';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { Quote } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const testimonials = [
   {
@@ -18,17 +19,13 @@ const testimonials = [
     name: "Amr Hassan",
     title: "Regional Director",
     company: "Middle East Hotels Group",
-    relationship: "Former Supervisor",
-    avatar: "/placeholder.svg"
   },
   {
     id: 2,
-    content: "Working with Islam on the Fourpoint Sheraton pre-opening was a masterclass in hospitality management. His attention to detail and ability to train staff to exceptional service standards ensured our opening was seamless and guest reviews were outstanding from day one.",
+    content: "Working with Islam on the Four Points Sheraton pre-opening was a masterclass in hospitality management. His attention to detail and ability to train staff to exceptional service standards ensured our opening was seamless and guest reviews were outstanding from day one.",
     name: "Sarah Al-Fahad",
     title: "Operations Director",
     company: "Sheraton Hotels",
-    relationship: "Colleague",
-    avatar: "/placeholder.svg"
   },
   {
     id: 3,
@@ -36,8 +33,6 @@ const testimonials = [
     name: "Michael Chen",
     title: "CEO",
     company: "International Hospitality Investments",
-    relationship: "Former Employer",
-    avatar: "/placeholder.svg"
   }
 ];
 
@@ -46,163 +41,73 @@ const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-  
-  // Parallax effects
-  const headerY = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const carouselY = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const { language } = useLanguage();
 
   React.useEffect(() => {
     if (!api) return;
-    
-    const handleSelect = () => {
-      setCurrentTestimonial(api.selectedScrollSnap());
-    };
-    
+    const handleSelect = () => setCurrentTestimonial(api.selectedScrollSnap());
     api.on("select", handleSelect);
-    return () => {
-      api.off("select", handleSelect);
-    };
+    return () => { api.off("select", handleSelect); };
   }, [api]);
 
-  const headerVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const carouselVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        delay: 0.2,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const controlsVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: 0.4,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section id="testimonials" className="py-20 bg-white overflow-hidden" ref={ref}>
+    <section id="testimonials" className="py-24 bg-background overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div 
-          className="text-center mb-12"
-          variants={headerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          style={{ y: headerY, opacity }}
+          className="text-center mb-14"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-            className="section-heading inline-block"
-            whileHover={{
-              scale: 1.02,
-              transition: { duration: 0.2 }
-            }}
-          >
-            Industry Testimonials
-          </motion.h2>
-          <motion.p 
-            className="text-luxury-gray mt-4 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            Endorsements from industry colleagues and partners who have witnessed Islam's expertise and leadership firsthand.
-          </motion.p>
+          <p className="text-sm uppercase tracking-[0.2em] text-accent font-semibold mb-3">
+            {language.code === 'ar' ? 'ماذا يقولون' : 'Testimonials'}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-foreground">
+            {language.code === 'ar' ? 'شهادات من الصناعة' : 'Industry Testimonials'}
+          </h2>
         </motion.div>
 
         <motion.div 
           className="max-w-4xl mx-auto"
-          style={{ y: carouselY }}
-          variants={carouselVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Carousel
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-            className="w-full"
-            setApi={setApi}
-          >
+          <Carousel opts={{ align: "center", loop: true }} className="w-full" setApi={setApi}>
             <CarouselContent>
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id} className="px-4 md:px-8 py-4">
-                  <motion.div 
-                    className="h-full flex items-center justify-center"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.1,
-                      ease: "easeOut"
-                    }}
-                  >
-                    <TestimonialCard testimonial={testimonial} />
-                  </motion.div>
+                  <div className="bg-card rounded-2xl p-8 md:p-12 border border-border/50 shadow-sm text-center relative">
+                    <Quote className="w-10 h-10 text-accent/30 mx-auto mb-6" />
+                    <blockquote className="text-lg md:text-xl text-foreground leading-relaxed mb-8 font-light italic">
+                      "{testimonial.content}"
+                    </blockquote>
+                    <div>
+                      <div className="w-12 h-0.5 bg-accent mx-auto mb-4" />
+                      <p className="font-semibold text-foreground">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
+                    </div>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
             
-            <motion.div 
-              className="flex justify-center items-center mt-8"
-              variants={controlsVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                <CarouselPrevious className="position-static relative mr-2 hover-lift" />
-              </motion.div>
-              
-              <div className="flex space-x-2 mx-4">
+            <div className="flex justify-center items-center mt-8 gap-4">
+              <CarouselPrevious className="relative static" />
+              <div className="flex gap-2">
                 {testimonials.map((_, index) => (
-                  <motion.button
+                  <button
                     key={index}
-                    className={`h-2 rounded-full transition-all ${
-                      currentTestimonial === index ? "w-8 bg-luxury-gold" : "w-2 bg-gray-300"
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      currentTestimonial === index ? "w-8 bg-accent" : "w-2 bg-border"
                     }`}
                     onClick={() => api?.scrollTo(index)}
                     aria-label={`Go to testimonial ${index + 1}`}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
                   />
                 ))}
               </div>
-              
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                <CarouselNext className="position-static relative ml-2 hover-lift" />
-              </motion.div>
-            </motion.div>
+              <CarouselNext className="relative static" />
+            </div>
           </Carousel>
         </motion.div>
       </div>
