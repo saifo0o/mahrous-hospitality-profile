@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
 import { motion } from 'framer-motion';
 import { Briefcase, Award, GraduationCap, Globe, Download, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,6 +43,7 @@ const About = () => {
   ];
 
   return (
+    <PageTransition>
     <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
 
@@ -291,6 +293,7 @@ const About = () => {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 };
 

@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import PageTransition from '@/components/PageTransition';
 import { useLanguage } from '@/context/LanguageContext';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Tag, TrendingUp, Eye, Search } from 'lucide-react';
@@ -65,7 +66,8 @@ const Blog = () => {
   });
 
   return (
-    <>
+    <PageTransition>
+      <>
       <EnhancedSEOHead
         title={language.code === 'ar' ? 'المدونة' : 'Blog - Hotel Management Insights'}
         description={language.code === 'ar' ? 'رؤى يومية في إدارة الضيافة' : "Insights from 30+ years in luxury hospitality"}
@@ -162,6 +164,7 @@ const Blog = () => {
       </div>
       <Footer />
     </>
+    </PageTransition>
   );
 };
 

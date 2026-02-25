@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -55,6 +56,7 @@ const Contact = () => {
   ];
 
   return (
+    <PageTransition>
     <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
 
@@ -145,6 +147,7 @@ const Contact = () => {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 };
 

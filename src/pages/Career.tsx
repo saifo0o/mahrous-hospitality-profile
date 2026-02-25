@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Building, Calendar, ChevronDown, Award } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -178,6 +179,7 @@ const Career = () => {
   ];
 
   return (
+    <PageTransition>
     <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
 
@@ -204,7 +206,7 @@ const Career = () => {
         <section className="container mx-auto px-4 md:px-8">
           <div className="max-w-4xl mx-auto relative">
             {/* Vertical line */}
-            <div className={`absolute ${isRTL ? 'right-6' : 'left-6'} md:${isRTL ? 'right-8' : 'left-8'} top-0 bottom-0 w-px bg-border`} />
+            <div className={`absolute ${isRTL ? 'right-6' : 'left-6'} md:${isRTL ? 'right-8' : 'left-8'} top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent`} />
 
             <div className="space-y-8">
               {experiences.map((exp, index) => (
@@ -318,6 +320,7 @@ const Career = () => {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 };
 
