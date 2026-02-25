@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
+import PageTransition from '@/components/PageTransition';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Building, Calendar, MapPin, BarChart, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
@@ -10,22 +11,26 @@ import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const { language, t, isRTL } = useLanguage();
+  const [activeFilter, setActiveFilter] = useState('All');
 
   const projects = [
     {
       title: language.code === 'ar' ? "فنادق برايم - محفظة المجموعة" : "Prime Hotels - Group Portfolio",
-      category: language.code === 'ar' ? "إدارة المجموعة" : "Group Management",
+      category: "Group Management",
+      categoryAr: "إدارة المجموعة",
       location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
       period: "2025 - Present",
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
       budget: language.code === 'ar' ? "متعدد المشاريع" : "Multi-Project",
+      featured: true,
       results: language.code === 'ar'
         ? ["حوكمة تشغيلية موحدة", "6 فنادق إضافية بحلول 2026", "استراتيجية 10,000 غرفة"]
         : ["Unified operational governance", "6 additional hotels by 2026", "10,000-room growth strategy"],
     },
     {
       title: language.code === 'ar' ? "كراون بلازا الإسكندرية" : "Crowne Plaza Alexandria",
-      category: language.code === 'ar' ? "تحويل علامة" : "Brand Conversion",
+      category: "Brand Conversion",
+      categoryAr: "تحويل علامة",
       location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
       period: "2025",
       image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
@@ -36,7 +41,8 @@ const Projects = () => {
     },
     {
       title: language.code === 'ar' ? "فندق شيراتون المنتزه" : "Sheraton Montazah Hotel",
-      category: language.code === 'ar' ? "تجديد رئيسي" : "Major Renovation",
+      category: "Renovation",
+      categoryAr: "تجديد",
       location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
       period: "2016 - 2023",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp",
@@ -48,7 +54,8 @@ const Projects = () => {
     },
     {
       title: language.code === 'ar' ? "منتجع ذا في الفاخر" : "The V Luxury Resort",
-      category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
+      category: "Pre-Opening",
+      categoryAr: "ما قبل الافتتاح",
       location: language.code === 'ar' ? "الغردقة" : "Hurghada, Egypt",
       period: "2023",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg",
@@ -60,7 +67,8 @@ const Projects = () => {
     },
     {
       title: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
-      category: language.code === 'ar' ? "تجديد" : "Renovation",
+      category: "Renovation",
+      categoryAr: "تجديد",
       location: language.code === 'ar' ? "بورسعيد" : "Port Said, Egypt",
       period: "2024",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg",
@@ -72,7 +80,8 @@ const Projects = () => {
     },
     {
       title: language.code === 'ar' ? "فور بوينتس باي شيراتون" : "Four Points by Sheraton",
-      category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
+      category: "Pre-Opening",
+      categoryAr: "ما قبل الافتتاح",
       location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
       period: "2024 - 2025",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg",
@@ -84,7 +93,8 @@ const Projects = () => {
     },
     {
       title: language.code === 'ar' ? "منتجع شيراتون ميرامار" : "Sheraton Miramar Resort",
-      category: language.code === 'ar' ? "تجديد" : "Renovation",
+      category: "Renovation",
+      categoryAr: "تجديد",
       location: language.code === 'ar' ? "الجونة" : "El Gouna, Egypt",
       period: "2011 - 2014",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg",
@@ -96,7 +106,8 @@ const Projects = () => {
     },
     {
       title: language.code === 'ar' ? "فور بوينتس وشيراتون طرابلس" : "Four Points & Sheraton Tripoli",
-      category: language.code === 'ar' ? "ما قبل الافتتاح" : "Pre-Opening",
+      category: "Pre-Opening",
+      categoryAr: "ما قبل الافتتاح",
       location: language.code === 'ar' ? "طرابلس" : "Tripoli, Libya",
       period: "2009 - 2011",
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg",
@@ -108,110 +119,131 @@ const Projects = () => {
     }
   ];
 
+  const categories = ['All', 'Pre-Opening', 'Renovation', 'Brand Conversion', 'Group Management'];
+  
+  const filteredProjects = activeFilter === 'All' 
+    ? projects 
+    : projects.filter(p => p.category === activeFilter);
+
   const categoryColors: Record<string, string> = {
     'Pre-Opening': 'bg-primary/10 text-primary',
-    'ما قبل الافتتاح': 'bg-primary/10 text-primary',
-    'Major Renovation': 'bg-accent/10 text-accent-foreground',
-    'تجديد رئيسي': 'bg-accent/10 text-accent-foreground',
     'Renovation': 'bg-accent/10 text-accent-foreground',
-    'تجديد': 'bg-accent/10 text-accent-foreground',
     'Brand Conversion': 'bg-green-500/10 text-green-700',
-    'تحويل علامة': 'bg-green-500/10 text-green-700',
-    'تحويل العلامة التجارية': 'bg-green-500/10 text-green-700',
     'Group Management': 'bg-purple-500/10 text-purple-700',
-    'إدارة المجموعة': 'bg-purple-500/10 text-purple-700',
   };
 
   return (
-    <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
-      <Navbar />
+    <PageTransition>
+      <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
+        <Navbar />
 
-      <main className="flex-grow pt-28 pb-20">
-        {/* Header */}
-        <section className="container mx-auto px-4 md:px-8 mb-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
-              <Building size={14} />
-              {language.code === 'ar' ? '$70M+ في المشاريع' : '$70M+ in Projects'}
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
-              {language.code === 'ar' ? 'المشاريع المميزة' : 'Signature Projects'}
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              {language.code === 'ar'
-                ? 'تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في الضيافة.'
-                : 'Transformative renovations and successful pre-openings showcasing hospitality expertise.'}
-            </p>
-          </motion.div>
-        </section>
+        <main className="flex-grow pt-28 pb-20">
+          {/* Header */}
+          <section className="container mx-auto px-4 md:px-8 mb-10">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
+                <Building size={14} />
+                {language.code === 'ar' ? '$70M+ في المشاريع' : '$70M+ in Projects'}
+              </span>
+              <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
+                {language.code === 'ar' ? 'المشاريع المميزة' : 'Signature Projects'}
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                {language.code === 'ar'
+                  ? 'تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في الضيافة.'
+                  : 'Transformative renovations and successful pre-openings showcasing hospitality expertise.'}
+              </p>
+            </motion.div>
+          </section>
 
-        {/* Projects Grid */}
-        <section className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-card rounded-xl border border-border/50 overflow-hidden hover:shadow-lg transition-all duration-300 group"
-              >
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-medium ${categoryColors[project.category] || 'bg-muted text-muted-foreground'}`}>
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
+          {/* Filter Tabs */}
+          <section className="container mx-auto px-4 md:px-8 mb-10">
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveFilter(cat)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    activeFilter === cat
+                      ? 'bg-primary text-primary-foreground shadow-sm'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  }`}
+                >
+                  {language.code === 'ar' ? (cat === 'All' ? 'الكل' : cat === 'Pre-Opening' ? 'ما قبل الافتتاح' : cat === 'Renovation' ? 'تجديد' : cat === 'Brand Conversion' ? 'تحويل علامة' : 'إدارة المجموعة') : cat}
+                </button>
+              ))}
+            </div>
+          </section>
 
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
-
-                  <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
-                    <span className="flex items-center gap-1"><MapPin size={12} />{project.location}</span>
-                    <span className="flex items-center gap-1"><Calendar size={12} />{project.period}</span>
-                    {project.rooms && project.rooms > 0 && (
-                      <span className="flex items-center gap-1"><Building size={12} />{project.rooms} {language.code === 'ar' ? 'غرفة' : 'rooms'}</span>
-                    )}
-                    <span className="flex items-center gap-1"><BarChart size={12} />{project.budget}</span>
-                  </div>
-
-                  {/* Results */}
-                  <div className="space-y-1.5">
-                    {project.results.map((result, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm text-foreground">
-                        <CheckCircle2 size={14} className="text-accent-foreground flex-shrink-0" />
-                        {result}
+          {/* Projects Grid */}
+          <section className="container mx-auto px-4 md:px-8">
+            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <AnimatePresence mode="popLayout">
+                {filteredProjects.map((project, index) => (
+                  <motion.div
+                    key={project.title}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className={`bg-card rounded-xl border border-border/50 overflow-hidden hover:shadow-lg transition-all duration-300 group ${project.featured ? 'md:col-span-2' : ''}`}
+                  >
+                    {/* Image */}
+                    <div className={`relative overflow-hidden ${project.featured ? 'h-72' : 'h-56'}`}>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-medium ${categoryColors[project.category] || 'bg-muted text-muted-foreground'}`}>
+                          {language.code === 'ar' ? project.categoryAr : project.category}
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    </div>
 
-          {/* CTA */}
-          <div className="text-center mt-16">
-            <Link to="/career">
-              <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all">
-                {language.code === 'ar' ? 'شاهد المسيرة المهنية الكاملة' : 'View Full Career Journey'}
-                <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
-              </Button>
-            </Link>
-          </div>
-        </section>
-      </main>
+                    <div className="p-6">
+                      <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
 
-      <Footer />
-    </div>
+                      <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
+                        <span className="flex items-center gap-1"><MapPin size={12} />{project.location}</span>
+                        <span className="flex items-center gap-1"><Calendar size={12} />{project.period}</span>
+                        {project.rooms && project.rooms > 0 && (
+                          <span className="flex items-center gap-1"><Building size={12} />{project.rooms} {language.code === 'ar' ? 'غرفة' : 'rooms'}</span>
+                        )}
+                        <span className="flex items-center gap-1"><BarChart size={12} />{project.budget}</span>
+                      </div>
+
+                      <div className="space-y-1.5">
+                        {project.results.map((result, i) => (
+                          <div key={i} className="flex items-center gap-2 text-sm text-foreground">
+                            <CheckCircle2 size={14} className="text-accent-foreground flex-shrink-0" />
+                            {result}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+
+            <div className="text-center mt-16">
+              <Link to="/career">
+                <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all">
+                  {language.code === 'ar' ? 'شاهد المسيرة المهنية الكاملة' : 'View Full Career Journey'}
+                  <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
+                </Button>
+              </Link>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </PageTransition>
   );
 };
 

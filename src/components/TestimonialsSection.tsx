@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -9,7 +9,7 @@ import {
   type CarouselApi
 } from "@/components/ui/carousel";
 import { motion, useInView } from 'framer-motion';
-import { Quote } from 'lucide-react';
+import { Quote, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const testimonials = [
@@ -19,6 +19,9 @@ const testimonials = [
     name: "Amr Hassan",
     title: "Regional Director",
     company: "Middle East Hotels Group",
+    rating: 5,
+    initials: "AH",
+    color: "bg-primary",
   },
   {
     id: 2,
@@ -26,6 +29,9 @@ const testimonials = [
     name: "Sarah Al-Fahad",
     title: "Operations Director",
     company: "Sheraton Hotels",
+    rating: 5,
+    initials: "SA",
+    color: "bg-accent",
   },
   {
     id: 3,
@@ -33,6 +39,9 @@ const testimonials = [
     name: "Michael Chen",
     title: "CEO",
     company: "International Hospitality Investments",
+    rating: 5,
+    initials: "MC",
+    color: "bg-primary",
   }
 ];
 
@@ -50,8 +59,17 @@ const TestimonialsSection = () => {
     return () => { api.off("select", handleSelect); };
   }, [api]);
 
+  // Autoplay
+  React.useEffect(() => {
+    if (!api) return;
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [api]);
+
   return (
-    <section id="testimonials" className="py-24 bg-background overflow-hidden" ref={ref}>
+    <section id="testimonials" className="py-24 bg-muted/30 overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div 
           className="text-center mb-14"
@@ -78,14 +96,29 @@ const TestimonialsSection = () => {
               {testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id} className="px-4 md:px-8 py-4">
                   <div className="bg-card rounded-2xl p-8 md:p-12 border border-border/50 shadow-sm text-center relative">
-                    <Quote className="w-10 h-10 text-accent/30 mx-auto mb-6" />
+                    {/* Quote icon */}
+                    <Quote className="w-10 h-10 text-accent/20 mx-auto mb-6" />
+                    
+                    {/* Stars */}
+                    <div className="flex justify-center gap-1 mb-6">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star key={i} size={16} className="fill-accent text-accent" />
+                      ))}
+                    </div>
+
                     <blockquote className="text-lg md:text-xl text-foreground leading-relaxed mb-8 font-light italic">
                       "{testimonial.content}"
                     </blockquote>
-                    <div>
-                      <div className="w-12 h-0.5 bg-accent mx-auto mb-4" />
-                      <p className="font-semibold text-foreground">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
+                    
+                    {/* Author */}
+                    <div className="flex items-center justify-center gap-4">
+                      <div className={`w-12 h-12 rounded-full ${testimonial.color} flex items-center justify-center`}>
+                        <span className="text-sm font-bold text-primary-foreground">{testimonial.initials}</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold text-foreground">{testimonial.name}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
+                      </div>
                     </div>
                   </div>
                 </CarouselItem>

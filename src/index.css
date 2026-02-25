@@ -607,4 +607,48 @@
   .container-padding {
     @apply px-4 md:px-6 lg:px-8;
   }
+
+  /* Ken Burns hover effect for images */
+  .ken-burns {
+    overflow: hidden;
+  }
+  .ken-burns img {
+    transition: transform 6s ease;
+  }
+  .ken-burns:hover img {
+    transform: scale(1.08);
+  }
+
+  /* Button ripple effect */
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), hsla(var(--luxury-gold), 0.3) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-ripple:hover::after {
+    opacity: 1;
+  }
+
+  /* Skeleton shimmer loader */
+  .skeleton-shimmer {
+    @apply relative overflow-hidden bg-muted rounded-lg;
+  }
+  .skeleton-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, hsla(var(--background), 0.6), transparent);
+    animation: skeleton-sweep 1.5s ease-in-out infinite;
+  }
+  @keyframes skeleton-sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
 }

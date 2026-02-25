@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
 import BookingSystem from '@/components/BookingSystem';
 import { Calendar, Clock, Award, Target } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -18,6 +19,7 @@ const BookConsultation = () => {
   ];
 
   return (
+    <PageTransition>
     <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
       <Navbar />
 
@@ -69,6 +71,7 @@ const BookConsultation = () => {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 };
 

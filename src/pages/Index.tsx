@@ -11,9 +11,10 @@ import DynamicLoader from '@/components/DynamicLoader';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import EnhancedLoader from '@/components/EnhancedLoader';
 import BackToTopButton from '@/components/BackToTopButton';
+import BrandLogos from '@/components/BrandLogos';
+import PageTransition from '@/components/PageTransition';
 
 import { useLanguage } from '@/context/LanguageContext';
-import { motion } from 'framer-motion';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 import EnhancedSEOSchema from '@/components/EnhancedSEOSchema';
 
@@ -28,70 +29,62 @@ const Index = () => {
   const sectionFallback = <EnhancedLoader type="card" className="min-h-[200px]" />;
 
   return (
-    <motion.div 
-      ref={pageRef}
-      className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-    >
-      <EnhancedSEOHead 
-        title={language.code === 'ar' 
-          ? 'إسلام محروس | قائد الضيافة العالمية'
-          : 'Islam Mahrous | Global Hospitality Leader'
-        }
-        description={language.code === 'ar'
-          ? 'مدير عمليات المجموعة مع 30+ عامًا من الخبرة في عمليات ما قبل الافتتاح والتجديدات وإدارة الأرباح عبر ماريوت وآي إتش جي وأكور.'
-          : 'Group Operations Director with 30+ years leading pre-opening operations, renovations, and P&L management across Marriott, IHG & Accor in MENA.'
-        }
-        tags={['Islam Mahrous', 'hospitality leader', 'group operations director', 'hotel general manager', 'pre-opening expert', 'Marriott', 'IHG', 'Accor', 'Saudi Arabia', 'MENA', 'Prime Hotels']}
-        type="website"
-      />
-      
-      <EnhancedSEOSchema
-        type="person"
-        title="Islam Mahrous | Global Hospitality Leader"
-        description="Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening, renovations, and operational excellence across MENA."
-      />
-      
-      <ReadingProgress />
-      <Navbar />
-      
-      <main id="main" className="flex-grow">
-        {/* Hero — The wow moment */}
-        <HeroSection />
+    <PageTransition>
+      <div 
+        ref={pageRef}
+        className={`min-h-screen flex flex-col ${isRTL ? 'text-right' : 'text-left'}`}
+      >
+        <EnhancedSEOHead 
+          title={language.code === 'ar' 
+            ? 'إسلام محروس | قائد الضيافة العالمية'
+            : 'Islam Mahrous | Global Hospitality Leader'
+          }
+          description={language.code === 'ar'
+            ? 'مدير عمليات المجموعة مع 30+ عامًا من الخبرة في عمليات ما قبل الافتتاح والتجديدات وإدارة الأرباح عبر ماريوت وآي إتش جي وأكور.'
+            : 'Group Operations Director with 30+ years leading pre-opening operations, renovations, and P&L management across Marriott, IHG & Accor in MENA.'
+          }
+          tags={['Islam Mahrous', 'hospitality leader', 'group operations director', 'hotel general manager', 'pre-opening expert', 'Marriott', 'IHG', 'Accor', 'Saudi Arabia', 'MENA', 'Prime Hotels']}
+          type="website"
+        />
         
-        {/* Social proof stats bar */}
-        <StatsSection />
+        <EnhancedSEOSchema
+          type="person"
+          title="Islam Mahrous | Global Hospitality Leader"
+          description="Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening, renovations, and operational excellence across MENA."
+        />
         
-        {/* About snapshot */}
-        <ErrorBoundary>
-          <DynamicLoader componentPath="AboutSection" fallback={sectionFallback} />
-        </ErrorBoundary>
+        <ReadingProgress />
+        <Navbar />
         
-        {/* Experience highlights */}
-        <ErrorBoundary>
-          <DynamicLoader componentPath="ExperienceSection" fallback={sectionFallback} />
-        </ErrorBoundary>
+        <main id="main" className="flex-grow">
+          <HeroSection />
+          <BrandLogos />
+          <StatsSection />
+          
+          <ErrorBoundary>
+            <DynamicLoader componentPath="AboutSection" fallback={sectionFallback} />
+          </ErrorBoundary>
+          
+          <ErrorBoundary>
+            <DynamicLoader componentPath="ExperienceSection" fallback={sectionFallback} />
+          </ErrorBoundary>
+          
+          <ErrorBoundary>
+            <DynamicLoader componentPath="ProjectsSection" fallback={sectionFallback} />
+          </ErrorBoundary>
+          
+          <ErrorBoundary>
+            <DynamicLoader componentPath="TestimonialsSection" fallback={sectionFallback} />
+          </ErrorBoundary>
+          
+          <ContactSection />
+        </main>
         
-        {/* Featured projects */}
-        <ErrorBoundary>
-          <DynamicLoader componentPath="ProjectsSection" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
-        {/* Testimonials */}
-        <ErrorBoundary>
-          <DynamicLoader componentPath="TestimonialsSection" fallback={sectionFallback} />
-        </ErrorBoundary>
-        
-        {/* CTA + Contact */}
-        <ContactSection />
-      </main>
-      
-      <Footer />
-      <AIChatAssistant />
-      <BackToTopButton />
-    </motion.div>
+        <Footer />
+        <AIChatAssistant />
+        <BackToTopButton />
+      </div>
+    </PageTransition>
   );
 };
 
