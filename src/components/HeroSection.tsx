@@ -6,6 +6,20 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
+import marriottLogo from '@/assets/logos/marriott.png';
+import ihgLogo from '@/assets/logos/ihg.png';
+import accorLogo from '@/assets/logos/accor.png';
+import sheratonLogo from '@/assets/logos/sheraton.png';
+import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
+
+const brandLogos = [
+  { name: 'Marriott', logo: marriottLogo },
+  { name: 'IHG', logo: ihgLogo },
+  { name: 'Accor', logo: accorLogo },
+  { name: 'Sheraton', logo: sheratonLogo },
+  { name: 'Prime Hotels', logo: primeHotelsLogo },
+];
+
 const HeroSection = () => {
   const { language, isRTL, t } = useLanguage();
 
@@ -129,20 +143,20 @@ const HeroSection = () => {
 
             {/* Brand logos as text badges */}
             <motion.div variants={itemVariants}>
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mb-3 font-semibold">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mb-4 font-semibold">
                 {language.code === 'ar' ? 'خبرة مع' : 'Experience with'}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {brands.map((brand, i) =>
-                <motion.span
-                  key={brand}
-                  className="px-3.5 py-1.5 rounded-lg bg-muted/80 text-muted-foreground text-sm font-medium border border-border/50 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 cursor-default"
+              <div className="flex flex-wrap items-center gap-4">
+                {brandLogos.map((brand, i) =>
+                <motion.div
+                  key={brand.name}
+                  className="h-8 md:h-10 opacity-60 hover:opacity-100 transition-opacity duration-300"
                   initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 0.6, scale: 1 }}
+                  whileHover={{ opacity: 1, scale: 1.05 }}
                   transition={{ delay: 1 + i * 0.08 }}>
-
-                    {brand}
-                  </motion.span>
+                  <img src={brand.logo} alt={brand.name} className="h-full w-auto object-contain dark:brightness-150 dark:contrast-75" />
+                </motion.div>
                 )}
               </div>
             </motion.div>
@@ -177,11 +191,14 @@ const HeroSection = () => {
               </div>
 
               {/* Floating stat card */}
-              
-
-
-
-
+              <motion.div
+                className="absolute -bottom-6 -left-4 md:-left-10 bg-card/95 backdrop-blur-md rounded-xl shadow-xl border border-border/50 px-5 py-3.5"
+                initial={{ opacity: 0, x: -30, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 1.8, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
+                <p className="text-2xl font-bold font-playfair text-foreground">5,000+</p>
+                <p className="text-xs text-muted-foreground">{language.code === 'ar' ? 'موظف تم تدريبهم' : 'Staff Trained'}</p>
+              </motion.div>
 
 
 
