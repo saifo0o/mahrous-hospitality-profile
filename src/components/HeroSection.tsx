@@ -143,20 +143,20 @@ const HeroSection = () => {
 
             {/* Brand logos as text badges */}
             <motion.div variants={itemVariants}>
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mb-3 font-semibold">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mb-4 font-semibold">
                 {language.code === 'ar' ? 'خبرة مع' : 'Experience with'}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {brands.map((brand, i) =>
-                <motion.span
-                  key={brand}
-                  className="px-3.5 py-1.5 rounded-lg bg-muted/80 text-muted-foreground text-sm font-medium border border-border/50 hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 cursor-default"
+              <div className="flex flex-wrap items-center gap-4">
+                {brandLogos.map((brand, i) =>
+                <motion.div
+                  key={brand.name}
+                  className="h-8 md:h-10 opacity-60 hover:opacity-100 transition-opacity duration-300"
                   initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 0.6, scale: 1 }}
+                  whileHover={{ opacity: 1, scale: 1.05 }}
                   transition={{ delay: 1 + i * 0.08 }}>
-
-                    {brand}
-                  </motion.span>
+                  <img src={brand.logo} alt={brand.name} className="h-full w-auto object-contain dark:brightness-150 dark:contrast-75" />
+                </motion.div>
                 )}
               </div>
             </motion.div>
