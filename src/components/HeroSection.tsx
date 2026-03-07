@@ -6,6 +6,20 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
+import marriottLogo from '@/assets/logos/marriott.png';
+import ihgLogo from '@/assets/logos/ihg.png';
+import accorLogo from '@/assets/logos/accor.png';
+import sheratonLogo from '@/assets/logos/sheraton.png';
+import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
+
+const brandLogos = [
+  { name: 'Marriott', logo: marriottLogo },
+  { name: 'IHG', logo: ihgLogo },
+  { name: 'Accor', logo: accorLogo },
+  { name: 'Sheraton', logo: sheratonLogo },
+  { name: 'Prime Hotels', logo: primeHotelsLogo },
+];
+
 const HeroSection = () => {
   const { language, isRTL, t } = useLanguage();
 
