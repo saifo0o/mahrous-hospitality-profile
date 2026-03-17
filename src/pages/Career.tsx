@@ -236,9 +236,14 @@ const Career = () => {
                     <div className="p-6">
                       {/* Header */}
                       <div className="flex items-start justify-between gap-4 mb-3">
-                        <div>
-                          <h3 className="text-lg font-semibold text-foreground">{exp.position}</h3>
-                          {exp.company && <p className="text-sm font-medium text-accent-foreground">{exp.company}</p>}
+                        <div className="flex items-center gap-3">
+                          {exp.current && (
+                            <img src={primeHotelsLogo} alt="Prime Hotels" className="w-10 h-10 object-contain rounded-lg dark:invert" />
+                          )}
+                          <div>
+                            <h3 className="text-lg font-semibold text-foreground">{exp.position}</h3>
+                            {exp.company && <p className="text-sm font-medium text-accent-foreground">{exp.company}</p>}
+                          </div>
                         </div>
                         {exp.current && (
                           <span className="px-2.5 py-1 rounded-full bg-accent/10 text-accent-foreground text-xs font-medium flex-shrink-0">
