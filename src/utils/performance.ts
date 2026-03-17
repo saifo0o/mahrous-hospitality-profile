@@ -22,7 +22,7 @@ export const measurePerformance = (name: string, fn: () => void | Promise<void>)
 };
 
 export const reportWebVitals = (metric: any) => {
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.log(metric);
   }
   
