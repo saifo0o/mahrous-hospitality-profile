@@ -8,6 +8,7 @@ import { MapPin, Building, Calendar, ChevronDown, Award } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
 
 const Career = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
