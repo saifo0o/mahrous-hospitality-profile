@@ -6,10 +6,6 @@ import { useLanguage } from '@/context/LanguageContext';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight, Award, Globe, GraduationCap } from 'lucide-react';
 import profilePhoto from '@/assets/profile-new.jpeg';
-import { Link } from 'react-router-dom';
-import { useLanguage } from '@/context/LanguageContext';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Award, Globe, GraduationCap } from 'lucide-react';
 
 const AboutSection = () => {
   const { t, language, isRTL } = useLanguage();
