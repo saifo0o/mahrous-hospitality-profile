@@ -8,6 +8,7 @@ import { MapPin, Building, Calendar, ChevronDown, Award } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
 
 const Career = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -36,6 +37,7 @@ const Career = () => {
       company: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "Crowne Plaza Alexandria Mirage",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
       period: language.code === 'ar' ? "2025" : "2025",
+      image: "/images/crowne-plaza-alexandria.jpg",
       description: language.code === 'ar'
         ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا."
         : "Leading full brand conversion from independent property into Crowne Plaza.",
@@ -234,9 +236,14 @@ const Career = () => {
                     <div className="p-6">
                       {/* Header */}
                       <div className="flex items-start justify-between gap-4 mb-3">
-                        <div>
-                          <h3 className="text-lg font-semibold text-foreground">{exp.position}</h3>
-                          {exp.company && <p className="text-sm font-medium text-accent-foreground">{exp.company}</p>}
+                        <div className="flex items-center gap-3">
+                          {exp.current && (
+                            <img src={primeHotelsLogo} alt="Prime Hotels" className="w-10 h-10 object-contain rounded-lg dark:invert" />
+                          )}
+                          <div>
+                            <h3 className="text-lg font-semibold text-foreground">{exp.position}</h3>
+                            {exp.company && <p className="text-sm font-medium text-accent-foreground">{exp.company}</p>}
+                          </div>
                         </div>
                         {exp.current && (
                           <span className="px-2.5 py-1 rounded-full bg-accent/10 text-accent-foreground text-xs font-medium flex-shrink-0">

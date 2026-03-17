@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight, Award, Globe, GraduationCap } from 'lucide-react';
+import profilePhoto from '@/assets/profile-new.jpeg';
 
 const AboutSection = () => {
   const { t, language, isRTL } = useLanguage();
@@ -43,7 +44,7 @@ const AboutSection = () => {
                 transition={{ duration: 5, repeat: Infinity }}
               />
               <img
-                src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg"
+                src={profilePhoto}
                 alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous - Hospitality Executive'}
                 className="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto h-[520px] object-cover"
                 loading="lazy"
