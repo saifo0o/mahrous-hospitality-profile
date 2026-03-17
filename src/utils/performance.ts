@@ -8,13 +8,13 @@ export const measurePerformance = (name: string, fn: () => void | Promise<void>)
   if (result instanceof Promise) {
     return result.finally(() => {
       const end = performance.now();
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.DEV) {
         console.log(`${name} took ${end - start} milliseconds`);
       }
     });
   } else {
     const end = performance.now();
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.log(`${name} took ${end - start} milliseconds`);
     }
     return result;
@@ -22,7 +22,7 @@ export const measurePerformance = (name: string, fn: () => void | Promise<void>)
 };
 
 export const reportWebVitals = (metric: any) => {
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.log(metric);
   }
   
@@ -70,7 +70,7 @@ export const debounce = <T extends (...args: any[]) => any>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {
-  let timeout: NodeJS.Timeout;
+  let timeout: ReturnType<typeof setTimeout>;
   
   return (...args: Parameters<T>) => {
     clearTimeout(timeout);
