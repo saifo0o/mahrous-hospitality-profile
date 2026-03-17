@@ -8,13 +8,13 @@ export const measurePerformance = (name: string, fn: () => void | Promise<void>)
   if (result instanceof Promise) {
     return result.finally(() => {
       const end = performance.now();
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.DEV) {
         console.log(`${name} took ${end - start} milliseconds`);
       }
     });
   } else {
     const end = performance.now();
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.log(`${name} took ${end - start} milliseconds`);
     }
     return result;
