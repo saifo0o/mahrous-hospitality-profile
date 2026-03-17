@@ -36,6 +36,7 @@ const Career = () => {
       company: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "Crowne Plaza Alexandria Mirage",
       location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
       period: language.code === 'ar' ? "2025" : "2025",
+      image: "/images/crowne-plaza-alexandria.jpg",
       description: language.code === 'ar'
         ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا."
         : "Leading full brand conversion from independent property into Crowne Plaza.",

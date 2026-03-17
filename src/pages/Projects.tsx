@@ -33,7 +33,7 @@ const Projects = () => {
       categoryAr: "تحويل علامة",
       location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
       period: "2025",
-      image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
+      image: "/images/crowne-plaza-alexandria.jpg",
       budget: language.code === 'ar' ? "تحويل كامل" : "Full Conversion",
       results: language.code === 'ar'
         ? ["تحول تشغيلي ناجح", "100% امتثال آي إتش جي", "تحسين أداء الأصول"]
