@@ -3,12 +3,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
-import marriottLogo from '@/assets/logos/marriott.png';
-import ihgLogo from '@/assets/logos/ihg.png';
-import accorLogo from '@/assets/logos/accor.png';
-import sheratonLogo from '@/assets/logos/sheraton.png';
-import crownePlazaLogo from '@/assets/logos/crowne-plaza.png';
-import fourPointsLogo from '@/assets/logos/four-points.png';
+import marriottLogo from '@/assets/logos/marriott.svg';
+import ihgLogo from '@/assets/logos/ihg.svg';
+import accorLogo from '@/assets/logos/accor.svg';
+import sheratonLogo from '@/assets/logos/sheraton.svg';
+import crownePlazaLogo from '@/assets/logos/crowne-plaza.svg';
+import fourPointsLogo from '@/assets/logos/four-points-dl.png';
 import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
 
 const brands = [
@@ -54,7 +54,7 @@ const BrandLogos = () => {
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 dark:brightness-150 dark:contrast-75"
+                    className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 dark:invert dark:brightness-200"
                     loading="lazy"
                   />
                 </div>
