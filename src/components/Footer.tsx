@@ -6,6 +6,20 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
+import marriottLogo from '@/assets/logos/marriott.svg';
+import ihgLogo from '@/assets/logos/ihg.svg';
+import accorLogo from '@/assets/logos/accor.svg';
+import sheratonLogo from '@/assets/logos/sheraton.svg';
+import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
+
+const brandLogos = [
+  { name: 'Marriott', logo: marriottLogo },
+  { name: 'IHG', logo: ihgLogo },
+  { name: 'Accor', logo: accorLogo },
+  { name: 'Sheraton', logo: sheratonLogo },
+  { name: 'Prime Hotels', logo: primeHotelsLogo },
+];
+
 const Footer = () => {
   const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
@@ -26,7 +40,6 @@ const Footer = () => {
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px]" />
-          {/* Subtle grid */}
           <div className="absolute inset-0 opacity-[0.03]" style={{
             backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
             backgroundSize: '60px 60px'
@@ -67,6 +80,23 @@ const Footer = () => {
       {/* Footer */}
       <footer className="bg-foreground text-background py-14">
         <div className="container mx-auto px-4 md:px-8">
+          {/* Trusted By brand row */}
+          <div className="mb-10 pb-10 border-b border-background/10">
+            <p className="text-xs uppercase tracking-[0.2em] text-background/30 font-semibold text-center mb-5">
+              {language.code === 'ar' ? 'خبرة مع' : 'Trusted By'}
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+              {brandLogos.map((brand) => (
+                <img
+                  key={brand.name}
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="h-6 md:h-8 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 invert brightness-200"
+                />
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             {/* Brand */}
             <div>

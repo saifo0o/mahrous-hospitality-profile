@@ -77,6 +77,14 @@ const Index = () => {
             <DynamicLoader componentPath="TestimonialsSection" fallback={sectionFallback} />
           </ErrorBoundary>
           
+          <ErrorBoundary>
+            <DynamicLoader componentPath="AwardsSection" fallback={sectionFallback} />
+          </ErrorBoundary>
+          
+          <ErrorBoundary>
+            <DynamicLoader componentPath="BlogSection" fallback={sectionFallback} />
+          </ErrorBoundary>
+          
           <ContactSection />
         </main>
         

@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
+import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
+import ihgLogo from '@/assets/logos/ihg.svg';
+import sheratonLogo from '@/assets/logos/sheraton.svg';
+
 const ExperienceSection = () => {
   const { t, language, isRTL } = useLanguage();
   
@@ -20,6 +24,7 @@ const ExperienceSection = () => {
         : "Full responsibility for group-wide hotel operations overseeing a multi-brand portfolio with a growth strategy to reach 10,000 rooms by 2030.",
       highlight: language.code === 'ar' ? 'حالياً' : 'Current',
       current: true,
+      logo: primeHotelsLogo,
     },
     {
       position: language.code === 'ar' ? "المدير العام" : "General Manager",
@@ -30,6 +35,7 @@ const ExperienceSection = () => {
         ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا مع 100% امتثال آي إتش جي."
         : "Led full brand conversion from independent property into Crowne Plaza with 100% IHG compliance.",
       highlight: language.code === 'ar' ? 'تحويل العلامة' : 'Brand Conversion',
+      logo: ihgLogo,
     },
     {
       position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner's Rep (Pre-Opening)",
@@ -41,6 +47,7 @@ const ExperienceSection = () => {
         ? "أشرف على مشروع تطوير فندقي بقيمة $50M+، وظّف فريق ما قبل الافتتاح 150+ موظف."
         : "Oversaw $50M+ hotel development project. Recruited 150+ pre-opening team targeting $25M+ annual revenue.",
       highlight: language.code === 'ar' ? 'استشاري الملكية' : 'Ownership Advisory',
+      logo: sheratonLogo,
     }
   ];
 
@@ -91,7 +98,14 @@ const ExperienceSection = () => {
                 </div>
 
                 <h3 className="font-bold text-lg text-foreground mb-1 group-hover:text-accent-foreground transition-colors">{exp.position}</h3>
-                <p className="font-semibold text-sm text-accent-foreground mb-3">{exp.company}</p>
+                
+                {/* Company with logo */}
+                <div className="flex items-center gap-2 mb-3">
+                  {exp.logo && (
+                    <img src={exp.logo} alt={exp.company} className="h-5 w-auto object-contain dark:invert dark:brightness-200" />
+                  )}
+                  <p className="font-semibold text-sm text-accent-foreground">{exp.company}</p>
+                </div>
                 
                 <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
                   <span className="flex items-center gap-1"><MapPin size={11} />{exp.location}</span>

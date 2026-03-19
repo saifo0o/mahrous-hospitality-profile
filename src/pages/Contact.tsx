@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Linkedin, Send, Check } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
 import { useLanguage } from '@/context/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -29,23 +30,43 @@ const Contact = () => {
   const validateForm = () => {
     let valid = true;
     const errors = { name: '', email: '', subject: '', message: '' };
-    if (!formData.name.trim()) { errors.name = 'Required'; valid = false; }
-    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) { errors.email = 'Valid email required'; valid = false; }
-    if (!formData.subject.trim()) { errors.subject = 'Required'; valid = false; }
-    if (!formData.message.trim()) { errors.message = 'Required'; valid = false; }
+    if (!formData.name.trim() || formData.name.length > 100) { errors.name = 'Valid name required (max 100 chars)'; valid = false; }
+    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email) || formData.email.length > 255) { errors.email = 'Valid email required'; valid = false; }
+    if (!formData.subject.trim() || formData.subject.length > 200) { errors.subject = 'Subject required (max 200 chars)'; valid = false; }
+    if (!formData.message.trim() || formData.message.length > 2000) { errors.message = 'Message required (max 2000 chars)'; valid = false; }
     setFormErrors(errors);
     return valid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
     setIsSubmitting(true);
-    setTimeout(() => {
-      toast({ title: language.code === 'ar' ? "تم إرسال الرسالة" : "Message sent", description: language.code === 'ar' ? "شكراً لرسالتك." : "Thank you. I'll get back to you soon." });
+    
+    try {
+      const { error } = await supabase.from('contact_messages').insert({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+      });
+
+      if (error) throw error;
+
+      toast({ 
+        title: language.code === 'ar' ? "تم إرسال الرسالة" : "Message sent", 
+        description: language.code === 'ar' ? "شكراً لرسالتك." : "Thank you. I'll get back to you soon." 
+      });
       setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      toast({ 
+        title: language.code === 'ar' ? "خطأ" : "Error", 
+        description: language.code === 'ar' ? "فشل في إرسال الرسالة. حاول مرة أخرى." : "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
@@ -79,14 +100,14 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <Input name="name" value={formData.name} onChange={handleChange} placeholder={language.code === 'ar' ? 'الاسم' : 'Your name'} className={`rounded-xl h-12 ${formErrors.name ? 'border-destructive' : ''}`} />
+                    <Input name="name" value={formData.name} onChange={handleChange} placeholder={language.code === 'ar' ? 'الاسم' : 'Your name'} className={`rounded-xl h-12 ${formErrors.name ? 'border-destructive' : ''}`} maxLength={100} />
                   </div>
                   <div>
-                    <Input name="email" type="email" value={formData.email} onChange={handleChange} placeholder={language.code === 'ar' ? 'البريد الإلكتروني' : 'Email address'} className={`rounded-xl h-12 ${formErrors.email ? 'border-destructive' : ''}`} />
+                    <Input name="email" type="email" value={formData.email} onChange={handleChange} placeholder={language.code === 'ar' ? 'البريد الإلكتروني' : 'Email address'} className={`rounded-xl h-12 ${formErrors.email ? 'border-destructive' : ''}`} maxLength={255} />
                   </div>
                 </div>
-                <Input name="subject" value={formData.subject} onChange={handleChange} placeholder={language.code === 'ar' ? 'الموضوع' : 'Subject'} className={`rounded-xl h-12 ${formErrors.subject ? 'border-destructive' : ''}`} />
-                <Textarea name="message" value={formData.message} onChange={handleChange} placeholder={language.code === 'ar' ? 'رسالتك' : 'Your message'} rows={5} className={`rounded-xl ${formErrors.message ? 'border-destructive' : ''}`} />
+                <Input name="subject" value={formData.subject} onChange={handleChange} placeholder={language.code === 'ar' ? 'الموضوع' : 'Subject'} className={`rounded-xl h-12 ${formErrors.subject ? 'border-destructive' : ''}`} maxLength={200} />
+                <Textarea name="message" value={formData.message} onChange={handleChange} placeholder={language.code === 'ar' ? 'رسالتك' : 'Your message'} rows={5} className={`rounded-xl ${formErrors.message ? 'border-destructive' : ''}`} maxLength={2000} />
                 <Button type="submit" disabled={isSubmitting} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl h-12 font-semibold gap-2">
                   {isSubmitting ? <span className="animate-spin">⏳</span> : <Send size={16} />}
                   {isSubmitting ? (language.code === 'ar' ? 'جاري الإرسال...' : 'Sending...') : (language.code === 'ar' ? 'إرسال الرسالة' : 'Send Message')}
