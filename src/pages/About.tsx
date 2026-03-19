@@ -8,6 +8,7 @@ import { Briefcase, Award, GraduationCap, Globe, Download, ArrowRight } from 'lu
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
+import { Progress } from '@/components/ui/progress';
 
 const About = () => {
   const { language, t, isRTL } = useLanguage();
@@ -17,10 +18,34 @@ const About = () => {
     visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] } })
   };
 
-  const skills = [
-    'Revenue Growth', 'P&L Management', 'Pre-Opening Operations', 'Major Renovations',
-    'Brand Conversions', 'Team Leadership', 'Guest Experience', 'Strategic Planning',
-    'Six Sigma', 'Operational Excellence', 'Stakeholder Relations', 'Asset Management'
+  const skillCategories = [
+    {
+      category: language.code === 'ar' ? 'العمليات' : 'Operations',
+      skills: [
+        { name: language.code === 'ar' ? 'عمليات ما قبل الافتتاح' : 'Pre-Opening Operations', level: 98 },
+        { name: language.code === 'ar' ? 'التميز التشغيلي' : 'Operational Excellence', level: 95 },
+        { name: language.code === 'ar' ? 'التجديدات الكبرى' : 'Major Renovations', level: 92 },
+        { name: language.code === 'ar' ? 'تحويل العلامات التجارية' : 'Brand Conversions', level: 90 },
+      ]
+    },
+    {
+      category: language.code === 'ar' ? 'القيادة' : 'Leadership',
+      skills: [
+        { name: language.code === 'ar' ? 'قيادة الفرق' : 'Team Leadership', level: 97 },
+        { name: language.code === 'ar' ? 'التخطيط الاستراتيجي' : 'Strategic Planning', level: 93 },
+        { name: language.code === 'ar' ? 'علاقات أصحاب المصلحة' : 'Stakeholder Relations', level: 91 },
+        { name: language.code === 'ar' ? 'تجربة الضيوف' : 'Guest Experience', level: 96 },
+      ]
+    },
+    {
+      category: language.code === 'ar' ? 'المالية والتقنية' : 'Financial & Technical',
+      skills: [
+        { name: language.code === 'ar' ? 'نمو الإيرادات' : 'Revenue Growth', level: 94 },
+        { name: language.code === 'ar' ? 'إدارة الأرباح والخسائر' : 'P&L Management', level: 92 },
+        { name: language.code === 'ar' ? 'إدارة الأصول' : 'Asset Management', level: 88 },
+        { name: 'Six Sigma', level: 90 },
+      ]
+    }
   ];
 
   const philosophyItems = [
@@ -169,7 +194,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Skills */}
+        {/* Skills with Progress Bars */}
         <section className="py-20">
           <div className="container mx-auto px-4 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
@@ -178,18 +203,46 @@ const About = () => {
               </h2>
             </motion.div>
 
-            <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto mb-12">
-              {skills.map((skill, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+              {skillCategories.map((category, ci) => (
+                <motion.div
+                  key={ci}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.03 }}
-                  className="px-4 py-2 rounded-full bg-muted border border-border/50 text-sm font-medium text-foreground hover:bg-accent/10 hover:border-accent/30 transition-colors cursor-default"
+                  transition={{ delay: ci * 0.15 }}
+                  className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
                 >
-                  {skill}
-                </motion.span>
+                  <h3 className="font-semibold text-foreground mb-5 text-sm uppercase tracking-wider flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-accent" />
+                    {category.category}
+                  </h3>
+                  <div className="space-y-4">
+                    {category.skills.map((skill, si) => (
+                      <motion.div
+                        key={si}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: ci * 0.15 + si * 0.08 }}
+                      >
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-sm text-foreground font-medium">{skill.name}</span>
+                          <span className="text-xs text-muted-foreground font-semibold">{skill.level}%</span>
+                        </div>
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          whileInView={{ scaleX: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: ci * 0.15 + si * 0.08 + 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                          style={{ transformOrigin: isRTL ? 'right' : 'left' }}
+                        >
+                          <Progress value={skill.level} className="h-2" />
+                        </motion.div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
               ))}
             </div>
 

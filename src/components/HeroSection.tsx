@@ -19,6 +19,25 @@ const brandLogos = [
   { name: 'Prime Hotels', logo: primeHotelsLogo },
 ];
 
+const TypewriterText = ({ text, className }: { text: string; className?: string }) => {
+  const words = text.split(' ');
+  return (
+    <span className={className}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ delay: 0.8 + i * 0.12, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-block"
+        >
+          {word}{i < words.length - 1 ? '\u00A0' : ''}
+        </motion.span>
+      ))}
+    </span>
+  );
+};
+
 const HeroSection = () => {
   const { language, isRTL, t } = useLanguage();
 
@@ -39,6 +58,8 @@ const HeroSection = () => {
     hidden: { opacity: 0, scale: 0.92, x: 40 },
     visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 } }
   };
+
+  const tagline = language.code === 'ar' ? 'أبني الفنادق التي لا تُنسى' : 'I build hotels people never forget.';
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
@@ -90,11 +111,9 @@ const HeroSection = () => {
               <span className="gradient-text">{language.code === 'ar' ? 'محروس' : 'Mahrous'}</span>
             </motion.h1>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-3 max-w-lg">
-              {language.code === 'ar' ? 'أبني الفنادق التي لا تُنسى' : 'I build hotels people never forget.'}
-            </motion.p>
+            <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-3 max-w-lg">
+              <TypewriterText text={tagline} />
+            </p>
 
             <motion.p
               variants={itemVariants}

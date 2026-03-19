@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import PageTransition from '@/components/PageTransition';
 import { useLanguage } from '@/context/LanguageContext';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Tag, TrendingUp, Eye, Search } from 'lucide-react';
+import { Calendar, Tag, TrendingUp, Eye, Search, Clock } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { format } from 'date-fns';
 import BlogPostModal from '@/components/BlogPostModal';
@@ -28,6 +28,12 @@ interface BlogPost {
   views_count?: number;
   author_id?: string;
 }
+
+const getReadingTime = (content: string | null | undefined): number => {
+  if (!content) return 1;
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+};
 
 const Blog = () => {
   const { language } = useLanguage();
@@ -64,6 +70,9 @@ const Blog = () => {
     const matchesCategory = !selectedCategory || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  const featuredPost = filteredPosts[0];
+  const remainingPosts = filteredPosts.slice(1);
 
   return (
     <PageTransition>
@@ -122,41 +131,78 @@ const Blog = () => {
           ) : filteredPosts.length === 0 ? (
             <div className="text-center py-20 text-muted-foreground">{language.code === 'ar' ? 'لا توجد مقالات' : 'No articles found'}</div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPosts.map((post, index) => (
+            <>
+              {/* Featured Post */}
+              {featuredPost && (
                 <motion.div
-                  key={post.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.03 }}
-                  onClick={() => handlePostClick(post)}
-                  className="bg-card rounded-xl border border-border/50 overflow-hidden cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col"
+                  onClick={() => handlePostClick(featuredPost)}
+                  className="mb-10 bg-card rounded-2xl border border-border/50 overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 group"
                 >
-                  {post.image_url && (
-                    <div className="h-48 overflow-hidden">
-                      <img src={post.image_url} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    </div>
-                  )}
-                  <div className="p-5 flex flex-col flex-grow">
-                    <div className="flex gap-2 mb-3 flex-wrap">
-                      {post.category && <Badge variant="secondary" className="text-xs rounded-full">{post.category}</Badge>}
-                      {post.tags?.slice(0, 1).map(tag => (
-                        <Badge key={tag} variant="outline" className="text-xs rounded-full"><Tag className="w-3 h-3 mr-1" />{tag}</Badge>
-                      ))}
-                    </div>
-                    <h3 className="font-semibold text-foreground line-clamp-2 mb-2 group-hover:text-accent-foreground transition-colors">{post.title}</h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2 flex-grow">{post.excerpt}</p>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 mt-4 border-t border-border/50">
-                      <div className="flex items-center gap-3">
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{format(new Date(post.published_at || post.created_at), 'MMM dd, yyyy')}</span>
-                        {post.views_count && post.views_count > 0 && <span className="flex items-center gap-1"><Eye className="w-3 h-3" />{post.views_count}</span>}
+                  <div className="grid md:grid-cols-2 gap-0">
+                    {featuredPost.image_url && (
+                      <div className="h-64 md:h-full overflow-hidden">
+                        <img src={featuredPost.image_url} alt={featuredPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                       </div>
-                      <span className="text-accent-foreground font-medium">{language.code === 'ar' ? 'اقرأ ←' : 'Read →'}</span>
+                    )}
+                    <div className="p-8 flex flex-col justify-center">
+                      <Badge variant="secondary" className="w-fit mb-4 rounded-full text-xs">
+                        {language.code === 'ar' ? 'مقال مميز' : 'Featured'}
+                      </Badge>
+                      <div className="flex gap-2 mb-3 flex-wrap">
+                        {featuredPost.category && <Badge variant="outline" className="text-xs rounded-full">{featuredPost.category}</Badge>}
+                      </div>
+                      <h2 className="text-2xl md:text-3xl font-bold font-playfair text-foreground mb-3 group-hover:text-accent-foreground transition-colors line-clamp-2">{featuredPost.title}</h2>
+                      <p className="text-muted-foreground mb-4 line-clamp-3">{featuredPost.excerpt}</p>
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{format(new Date(featuredPost.published_at || featuredPost.created_at), 'MMM dd, yyyy')}</span>
+                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{getReadingTime(featuredPost.content)} min read</span>
+                        {featuredPost.views_count && featuredPost.views_count > 0 && <span className="flex items-center gap-1"><Eye className="w-3 h-3" />{featuredPost.views_count}</span>}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
+              )}
+
+              {/* Remaining Posts Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {remainingPosts.map((post, index) => (
+                  <motion.div
+                    key={post.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.03 }}
+                    onClick={() => handlePostClick(post)}
+                    className="bg-card rounded-xl border border-border/50 overflow-hidden cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col"
+                  >
+                    {post.image_url && (
+                      <div className="h-48 overflow-hidden">
+                        <img src={post.image_url} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
+                    <div className="p-5 flex flex-col flex-grow">
+                      <div className="flex gap-2 mb-3 flex-wrap">
+                        {post.category && <Badge variant="secondary" className="text-xs rounded-full">{post.category}</Badge>}
+                        {post.tags?.slice(0, 1).map(tag => (
+                          <Badge key={tag} variant="outline" className="text-xs rounded-full"><Tag className="w-3 h-3 mr-1" />{tag}</Badge>
+                        ))}
+                      </div>
+                      <h3 className="font-semibold text-foreground line-clamp-2 mb-2 group-hover:text-accent-foreground transition-colors">{post.title}</h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2 flex-grow">{post.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 mt-4 border-t border-border/50">
+                        <div className="flex items-center gap-3">
+                          <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{format(new Date(post.published_at || post.created_at), 'MMM dd, yyyy')}</span>
+                          <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{getReadingTime(post.content)} min</span>
+                          {post.views_count && post.views_count > 0 && <span className="flex items-center gap-1"><Eye className="w-3 h-3" />{post.views_count}</span>}
+                        </div>
+                        <span className="text-accent-foreground font-medium">{language.code === 'ar' ? 'اقرأ ←' : 'Read →'}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </>
           )}
         </div>
 
