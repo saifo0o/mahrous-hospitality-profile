@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail, CheckCircle } from 'lucide-react';
+import { Mail, CheckCircle, Sparkles } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
+import { supabase } from '@/integrations/supabase/client';
 
 const NewsletterSignup: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -20,17 +21,44 @@ const NewsletterSignup: React.FC = () => {
 
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubscribed(true);
-      setIsLoading(false);
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({ email, status: 'active' });
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: language.code === 'ar' ? "مشترك بالفعل" : "Already subscribed",
+            description: language.code === 'ar' 
+              ? "هذا البريد الإلكتروني مسجل بالفعل" 
+              : "This email is already subscribed",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        setIsSubscribed(true);
+        toast({
+          title: language.code === 'ar' ? "تم الاشتراك بنجاح!" : "Successfully subscribed!",
+          description: language.code === 'ar' 
+            ? "شكراً لاشتراكك في النشرة الإخبارية" 
+            : "Thank you for subscribing to our newsletter"
+        });
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
       toast({
-        title: language.code === 'ar' ? "تم الاشتراك بنجاح!" : "Successfully subscribed!",
+        title: language.code === 'ar' ? "حدث خطأ" : "Something went wrong",
         description: language.code === 'ar' 
-          ? "شكراً لاشتراكك في النشرة الإخبارية" 
-          : "Thank you for subscribing to our newsletter"
+          ? "يرجى المحاولة مرة أخرى لاحقاً" 
+          : "Please try again later",
+        variant: "destructive",
       });
-    }, 1000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubscribed) {
@@ -38,13 +66,13 @@ const NewsletterSignup: React.FC = () => {
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800"
+        className="text-center p-6 bg-accent/10 rounded-2xl border border-accent/20"
       >
-        <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
-        <h3 className="text-lg font-semibold text-green-800 dark:text-green-400 mb-2">
-          {language.code === 'ar' ? "تم الاشتراك!" : "Subscribed!"}
+        <CheckCircle className="h-10 w-10 text-accent mx-auto mb-3" />
+        <h3 className="text-lg font-semibold text-foreground mb-1">
+          {language.code === 'ar' ? "تم الاشتراك!" : "You're in!"}
         </h3>
-        <p className="text-green-700 dark:text-green-300">
+        <p className="text-muted-foreground text-sm">
           {language.code === 'ar' 
             ? "ستتلقى آخر الأخبار والرؤى من عالم الضيافة"
             : "You'll receive the latest hospitality insights and updates"
@@ -55,42 +83,54 @@ const NewsletterSignup: React.FC = () => {
   }
 
   return (
-    <div className="bg-luxury-navy text-white p-6 rounded-lg">
-      <div className="flex items-center mb-4">
-        <Mail className="h-6 w-6 text-luxury-gold mr-3" />
-        <h3 className="text-xl font-bold">
-          {language.code === 'ar' ? "النشرة الإخبارية" : "Newsletter"}
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary/80 p-6 md:p-8">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/5 rounded-full blur-xl" />
+      
+      <div className="relative z-10">
+        <div className="flex items-center gap-2 mb-3">
+          <Sparkles className="h-5 w-5 text-accent" />
+          <span className="text-xs uppercase tracking-[0.15em] text-primary-foreground/60 font-semibold">
+            {language.code === 'ar' ? 'النشرة الإخبارية' : 'Newsletter'}
+          </span>
+        </div>
+        
+        <h3 className="text-xl font-bold text-primary-foreground mb-2 font-playfair">
+          {language.code === 'ar' ? 'ابقَ على اطلاع' : 'Stay Informed'}
         </h3>
+        
+        <p className="text-primary-foreground/60 text-sm mb-5 leading-relaxed">
+          {language.code === 'ar'
+            ? 'احصل على آخر الرؤى والاتجاهات في صناعة الضيافة'
+            : 'Get the latest hospitality insights delivered to your inbox'
+          }
+        </p>
+        
+        <form onSubmit={handleSubmit} className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={language.code === 'ar' ? "بريدك الإلكتروني" : "Your email address"}
+            className="flex-1 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 rounded-xl h-11"
+            required
+          />
+          <Button 
+            type="submit" 
+            disabled={isLoading}
+            className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl h-11 px-5 font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            {isLoading ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-accent-foreground" />
+            ) : (
+              <>
+                <Mail className="h-4 w-4 mr-1.5" />
+                {language.code === 'ar' ? "اشترك" : "Subscribe"}
+              </>
+            )}
+          </Button>
+        </form>
       </div>
-      
-      <p className="text-gray-300 mb-4">
-        {language.code === 'ar'
-          ? "احصل على آخر الرؤى والاتجاهات في صناعة الضيافة"
-          : "Get the latest hospitality industry insights and trends"
-        }
-      </p>
-      
-      <form onSubmit={handleSubmit} className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-        <Input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={language.code === 'ar' ? "بريدك الإلكتروني" : "Your email address"}
-          className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-          required
-        />
-        <Button 
-          type="submit" 
-          disabled={isLoading}
-          className="bg-luxury-gold hover:bg-yellow-600 text-luxury-navy"
-        >
-          {isLoading ? (
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-luxury-navy"></div>
-          ) : (
-            language.code === 'ar' ? "اشترك" : "Subscribe"
-          )}
-        </Button>
-      </form>
     </div>
   );
 };
