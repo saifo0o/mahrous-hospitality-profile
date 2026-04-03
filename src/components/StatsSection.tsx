@@ -3,8 +3,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from '@/context/LanguageContext';
 
-const AnimatedNumber = ({ value, suffix = '', isInView }: { value: number; suffix?: string; isInView: boolean }) => {
+const AnimatedNumber = ({ value, suffix = '', isInView, onComplete }: { value: number; suffix?: string; isInView: boolean; onComplete?: () => void }) => {
   const [count, setCount] = useState(0);
+  const [done, setDone] = useState(false);
   
   useEffect(() => {
     if (!isInView) return;
@@ -15,7 +16,12 @@ const AnimatedNumber = ({ value, suffix = '', isInView }: { value: number; suffi
       const progress = Math.min((timestamp - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.floor(eased * value));
-      if (progress < 1) requestAnimationFrame(step);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        setDone(true);
+        onComplete?.();
+      }
     };
     requestAnimationFrame(step);
   }, [isInView, value]);
@@ -27,6 +33,7 @@ const StatsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const { language } = useLanguage();
+  const [completedStats, setCompletedStats] = useState<Set<number>>(new Set());
   
   const stats = [
     { value: 30, suffix: '+', label: language.code === 'ar' ? 'سنوات خبرة' : 'Years Experience', accent: true },
@@ -34,6 +41,10 @@ const StatsSection = () => {
     { value: 35, suffix: '%', label: language.code === 'ar' ? 'نمو الإيرادات' : 'Revenue Growth', accent: false },
     { value: 70, suffix: 'M+', prefix: '$', label: language.code === 'ar' ? 'ميزانيات مُدارة' : 'Budgets Managed', accent: true },
   ];
+
+  const handleComplete = (index: number) => {
+    setCompletedStats(prev => new Set(prev).add(index));
+  };
 
   return (
     <section ref={ref} className="relative py-20 bg-primary overflow-hidden">
@@ -53,9 +64,26 @@ const StatsSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
-              <p className={`text-4xl md:text-5xl lg:text-6xl font-bold font-playfair mb-2 ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}>
-                {stat.prefix || ''}<AnimatedNumber value={stat.value} suffix={stat.suffix} isInView={isInView} />
-              </p>
+              <div className="relative inline-block">
+                {/* Glow effect when complete */}
+                {completedStats.has(index) && (
+                  <motion.div
+                    className="absolute -inset-4 rounded-full bg-accent/20 blur-xl"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: [0, 0.6, 0], scale: [0.5, 1.2, 1.5] }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                  />
+                )}
+                <motion.p 
+                  className={`text-4xl md:text-5xl lg:text-6xl font-bold font-playfair mb-2 relative ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}
+                  animate={completedStats.has(index) ? { 
+                    textShadow: ['0 0 0px transparent', '0 0 20px hsl(var(--accent) / 0.5)', '0 0 0px transparent']
+                  } : {}}
+                  transition={{ duration: 1.5 }}
+                >
+                  {stat.prefix || ''}<AnimatedNumber value={stat.value} suffix={stat.suffix} isInView={isInView} onComplete={() => handleComplete(index)} />
+                </motion.p>
+              </div>
               <p className="text-sm text-primary-foreground/60 font-medium tracking-wide uppercase">
                 {stat.label}
               </p>

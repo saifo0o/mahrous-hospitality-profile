@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import NewsletterSignup from './NewsletterSignup';
 
 import marriottLogo from '@/assets/logos/marriott.svg';
 import ihgLogo from '@/assets/logos/ihg.svg';
@@ -97,7 +98,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             {/* Brand */}
             <div>
               <div className="flex items-center gap-2.5 mb-5">
@@ -166,6 +167,11 @@ const Footer = () => {
                   {language.code === 'ar' ? 'الرياض، السعودية' : 'Riyadh, KSA'}
                 </li>
               </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <NewsletterSignup />
             </div>
           </div>
           
