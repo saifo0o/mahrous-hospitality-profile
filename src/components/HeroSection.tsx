@@ -123,15 +123,15 @@ const HeroSection = () => {
               'From pre-opening to multi-million renovations — I lead hotels to operational excellence and sustainable growth across the MENA region.'}
             </motion.p>
 
-            <motion.div variants={itemVariants} className={`flex flex-wrap gap-4 mb-14 ${isRTL ? 'justify-end' : ''}`}>
-              <Link to="/book-consultation">
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-8 py-6 text-base shadow-gold-lg hover:shadow-gold-xl transition-all duration-500 gap-2 hover:-translate-y-0.5">
+            <motion.div variants={itemVariants} className={`flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-14 ${isRTL ? 'sm:justify-end' : ''}`}>
+              <Link to="/book-consultation" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base shadow-gold-lg hover:shadow-gold-xl transition-all duration-500 gap-2 hover:-translate-y-0.5">
                   <Calendar size={18} />
                   {language.code === 'ar' ? 'احجز استشارة' : 'Book a Consultation'}
                 </Button>
               </Link>
-              <Link to="/projects">
-                <Button variant="outline" className="border-border hover:border-accent text-foreground font-medium rounded-xl px-8 py-6 text-base gap-2 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-md">
+              <Link to="/projects" className="w-full sm:w-auto">
+                <Button variant="outline" className="w-full sm:w-auto border-border hover:border-accent text-foreground font-medium rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base gap-2 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-md">
                   {language.code === 'ar' ? 'استكشف أعمالي' : 'Explore My Work'}
                   <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
                 </Button>
