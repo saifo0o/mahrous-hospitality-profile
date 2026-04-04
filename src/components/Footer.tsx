@@ -52,7 +52,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-playfair mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-playfair mb-6 leading-tight">
               {language.code === 'ar' ? 'لنبنِ شيئًا استثنائيًا معًا' : "Let's Build Something\nExceptional"}
             </h2>
             <p className="text-primary-foreground/60 text-lg mb-10 max-w-xl mx-auto">
@@ -61,15 +61,15 @@ const Footer = () => {
                 : 'Ready to elevate your hotel operations? Book a free consultation today.'
               }
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/book-consultation">
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-8 py-6 text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 gap-2">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+              <Link to="/book-consultation" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 gap-2">
                   {language.code === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultation'}
                   <ArrowRight size={16} />
                 </Button>
               </Link>
-              <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-8 py-6 text-base transition-all duration-300 hover:-translate-y-0.5">
+              <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <Button variant="outline" className="w-full sm:w-auto border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:-translate-y-0.5">
                   {language.code === 'ar' ? 'راسلني على واتساب' : 'Message on WhatsApp'}
                 </Button>
               </a>
@@ -98,7 +98,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-12">
             {/* Brand */}
             <div>
               <div className="flex items-center gap-2.5 mb-5">

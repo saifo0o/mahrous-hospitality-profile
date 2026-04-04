@@ -165,7 +165,7 @@ const Navbar = () => {
           <AnimatePresence>
             {isOpen && (
               <motion.div 
-                className="md:hidden py-4 bg-background border-t border-border/50"
+                className="md:hidden py-4 bg-background/95 backdrop-blur-xl border-t border-border/50"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
@@ -181,7 +181,7 @@ const Navbar = () => {
                     >
                       <Link
                         to={item.path}
-                        className={`block py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+                        className={`block py-3.5 px-4 rounded-lg text-base font-medium transition-colors min-h-[44px] flex items-center ${
                           location.pathname === item.path 
                             ? 'bg-muted text-foreground' 
                             : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'

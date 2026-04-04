@@ -105,13 +105,13 @@ const HeroSection = () => {
 
             <motion.h1
               variants={itemVariants}
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-playfair text-foreground mb-4 leading-[1.05] tracking-tight">
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold font-playfair text-foreground mb-4 leading-[1.05] tracking-tight">
               {language.code === 'ar' ? 'إسلام' : 'Islam'}
               <br />
               <span className="gradient-text">{language.code === 'ar' ? 'محروس' : 'Mahrous'}</span>
             </motion.h1>
 
-            <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-3 max-w-lg">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-3 max-w-lg">
               <TypewriterText text={tagline} />
             </p>
 
@@ -123,22 +123,22 @@ const HeroSection = () => {
               'From pre-opening to multi-million renovations — I lead hotels to operational excellence and sustainable growth across the MENA region.'}
             </motion.p>
 
-            <motion.div variants={itemVariants} className={`flex flex-wrap gap-4 mb-14 ${isRTL ? 'justify-end' : ''}`}>
-              <Link to="/book-consultation">
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-8 py-6 text-base shadow-gold-lg hover:shadow-gold-xl transition-all duration-500 gap-2 hover:-translate-y-0.5">
+            <motion.div variants={itemVariants} className={`flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-14 ${isRTL ? 'sm:justify-end' : ''}`}>
+              <Link to="/book-consultation" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base shadow-gold-lg hover:shadow-gold-xl transition-all duration-500 gap-2 hover:-translate-y-0.5">
                   <Calendar size={18} />
                   {language.code === 'ar' ? 'احجز استشارة' : 'Book a Consultation'}
                 </Button>
               </Link>
-              <Link to="/projects">
-                <Button variant="outline" className="border-border hover:border-accent text-foreground font-medium rounded-xl px-8 py-6 text-base gap-2 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-md">
+              <Link to="/projects" className="w-full sm:w-auto">
+                <Button variant="outline" className="w-full sm:w-auto border-border hover:border-accent text-foreground font-medium rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base gap-2 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-md">
                   {language.code === 'ar' ? 'استكشف أعمالي' : 'Explore My Work'}
                   <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
                 </Button>
               </Link>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="hidden sm:block">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mb-4 font-semibold">
                 {language.code === 'ar' ? 'خبرة مع' : 'Experience with'}
               </p>
@@ -172,7 +172,7 @@ const HeroSection = () => {
 
               <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-br from-accent/30 via-primary/15 to-accent/20" />
               
-              <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-[420px] lg:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative w-56 h-64 sm:w-72 sm:h-80 md:w-80 md:h-96 lg:w-[420px] lg:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg"
                   alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
@@ -182,7 +182,7 @@ const HeroSection = () => {
               </div>
 
               <motion.div
-                className="absolute -bottom-6 -left-4 md:-left-10 bg-card/95 backdrop-blur-md rounded-xl shadow-xl border border-border/50 px-5 py-3.5"
+                className="absolute -bottom-4 left-0 sm:-bottom-6 sm:-left-4 md:-left-10 bg-card/95 backdrop-blur-md rounded-xl shadow-xl border border-border/50 px-3 py-2 sm:px-5 sm:py-3.5"
                 initial={{ opacity: 0, x: -30, y: 20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 1.8, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
@@ -191,7 +191,7 @@ const HeroSection = () => {
               </motion.div>
 
               <motion.div
-                className="absolute -top-3 -right-4 md:-right-10 bg-card/95 backdrop-blur-md rounded-xl shadow-xl border border-border/50 px-5 py-3"
+                className="absolute -top-2 right-0 sm:-top-3 sm:-right-4 md:-right-10 bg-card/95 backdrop-blur-md rounded-xl shadow-xl border border-border/50 px-3 py-2 sm:px-5 sm:py-3"
                 initial={{ opacity: 0, x: 30, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
@@ -199,7 +199,7 @@ const HeroSection = () => {
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 -right-4 md:-right-8 bg-accent text-accent-foreground rounded-xl shadow-xl px-4 py-2.5"
+                className="absolute top-1/2 right-0 sm:-right-4 md:-right-8 bg-accent text-accent-foreground rounded-xl shadow-xl px-3 py-2 sm:px-4 sm:py-2.5"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.6, duration: 0.5 }}>

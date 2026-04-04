@@ -42,7 +42,7 @@ const BrandLogos = () => {
           <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
           
-          <div className="flex animate-marquee gap-12 md:gap-16 items-center">
+          <div className="flex animate-marquee gap-6 sm:gap-12 md:gap-16 items-center">
             {[...brands, ...brands, ...brands].map((brand, i) => (
               <motion.div
                 key={`${brand.name}-${i}`}
@@ -50,7 +50,7 @@ const BrandLogos = () => {
                 whileHover={{ scale: 1.08, y: -4 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
-                <div className="w-28 h-20 md:w-36 md:h-24 rounded-xl bg-card/80 backdrop-blur-sm border border-border/40 flex items-center justify-center p-4 shadow-sm group-hover:shadow-lg group-hover:border-accent/30 transition-all duration-300">
+                <div className="w-20 h-14 sm:w-28 sm:h-20 md:w-36 md:h-24 rounded-xl bg-card/80 backdrop-blur-sm border border-border/40 flex items-center justify-center p-2.5 sm:p-4 shadow-sm group-hover:shadow-lg group-hover:border-accent/30 transition-all duration-300">
                   <img
                     src={brand.logo}
                     alt={brand.name}

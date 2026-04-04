@@ -39,7 +39,7 @@ const BackToTopButton: React.FC = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className={`fixed bottom-20 z-40 ${isRTL ? 'left-8' : 'right-8'}`}
+          className={`fixed bottom-24 sm:bottom-20 z-40 ${isRTL ? 'left-4 sm:left-8' : 'right-4 sm:right-8'}`} style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
         >
           <Button
             onClick={scrollToTop}
