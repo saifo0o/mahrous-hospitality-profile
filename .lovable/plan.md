@@ -1,85 +1,81 @@
 
 
-# Website Enhancement Plan
+# Mobile-First Enhancement Plan
 
-## Current State
+## Current Issues on Mobile
 
-The website is well-built with page transitions, brand logos marquee, bilingual support, testimonials with autoplay, career timeline, and project filtering. The homepage includes: Hero, BrandLogos, Stats, About, Experience, Projects, Testimonials, and Contact sections.
-
-## What's Missing & Can Be Enhanced
-
-### 1. Homepage Gaps
-- **No Awards section on homepage** — Awards page exists but homepage doesn't showcase any
-- **No Case Studies / Media section on homepage** — DynamicLoader has entries for `CaseStudiesSection`, `MediaSection`, `AwardsSection`, `BlogSection`, `SpeakingSection` but none are rendered on Index.tsx
-- **Contact form is not functional** — uses `setTimeout` mock instead of actually sending data (no database insert or email edge function)
-
-### 2. Inner Page Improvements
-- **About page skills** are flat text chips — no visual skill meters or progress indicators
-- **Blog page** has no featured/pinned article hero, no reading time estimates
-- **Awards page** doesn't pull from the `awards` database table — uses hardcoded data
-
-### 3. Functional Gaps
-- **Contact form doesn't persist** — form submission is faked with `setTimeout`, messages aren't saved to database
-- **Newsletter signup component exists** but isn't used anywhere
-- **No social share buttons** on blog posts or project pages
-
-### 4. Visual Polish
-- **Hero section** — no typewriter/word-reveal animation on the tagline (planned but not implemented)
-- **Stats section** — no completion glow effect after number animation finishes
-- **Experience cards** — no brand logos next to company names
-- **Footer** — no "Trusted by" brand row at the bottom
-
----
+1. **Hero section**: Text is `text-5xl` on all screens — too large for phones. Hero image and floating badges (`-right-10`, `-left-10`) overflow on small screens. CTA buttons don't stack well.
+2. **Navbar**: Mobile menu exists but no touch-friendly improvements — no swipe-to-close, tap targets are small (36px icons).
+3. **Brand logos marquee**: Cards are `w-28 h-20` minimum — still large, and the marquee animation may be janky on mobile. No `prefers-reduced-motion` respect.
+4. **Stats section**: 4 stats in a row — likely wraps awkwardly on mobile.
+5. **Contact section**: Grid doesn't collapse cleanly; contact items may overflow.
+6. **Footer**: 4-column grid too dense on small screens. Pre-footer CTA text is `text-3xl` minimum.
+7. **WhatsApp + BackToTop buttons**: Both `fixed bottom-6 right-6` / `bottom-20 right-8` — may overlap each other.
+8. **Touch targets**: Many links and buttons are smaller than 44px minimum recommended.
+9. **No mobile viewport meta optimizations**: Missing `viewport-fit=cover` for notched phones.
+10. **About section image**: Fixed `h-[520px]` — too tall on small phones, causes excess scrolling.
+11. **Heavy animations**: Multiple framer-motion animations run simultaneously on mobile, causing jank.
 
 ## Implementation Plan
 
-### A. Add Missing Homepage Sections
-- Add `AwardsSection` and `BlogSection` to `Index.tsx` between Testimonials and Contact
-- These already exist as components and are registered in `DynamicLoader`
+### A. Hero Section Mobile Optimization
+- Reduce heading to `text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl`
+- Reduce hero image from `w-72 h-80` to `w-56 h-64 sm:w-72 sm:h-80`
+- Clamp floating badge positions so they don't overflow: use `right-0` / `left-0` on mobile instead of negative offsets
+- Stack CTA buttons vertically on mobile: `flex-col sm:flex-row`
+- Hide brand logos row in hero on mobile (already shown in BrandLogos marquee below)
 
-### B. Make Contact Form Functional
-- Create a `contact_messages` database table (name, email, subject, message, created_at)
-- Update `Contact.tsx` to insert into the database on submit
-- Add RLS policy allowing anonymous inserts
+### B. Navbar Mobile UX
+- Increase mobile menu tap targets to min 44px height
+- Add `backdrop-blur` to mobile menu overlay
+- Add touch-friendly padding to mobile nav items
 
-### C. Hero Typewriter Effect
-- Add a word-by-word reveal animation to the hero tagline using framer-motion staggerChildren
+### C. Brand Logos Marquee
+- Reduce card size on mobile: `w-20 h-14 sm:w-28 sm:h-20`
+- Add `@media (prefers-reduced-motion: reduce)` to pause marquee animation
+- Reduce gap on mobile
 
-### D. Experience Cards — Brand Logos
-- Import brand logos (Marriott, IHG, Accor, Sheraton, Prime Hotels) into `ExperienceSection.tsx`
-- Show small logo next to each company name
+### D. Stats Section
+- Use `grid-cols-2` on mobile instead of letting it wrap randomly
+- Reduce number size on mobile
 
-### E. About Page — Skill Progress Bars
-- Replace flat skill chips with animated progress bars or radial indicators
-- Group skills by category (Operations, Leadership, Technical)
+### E. About Section
+- Change image height from `h-[520px]` to `h-[320px] sm:h-[420px] lg:h-[520px]`
 
-### F. Blog — Reading Time & Featured Article
-- Add estimated reading time (word count / 200) to blog cards
-- Style the first blog post as a larger featured hero card
+### F. Footer Mobile
+- Collapse 4-column grid to single column on mobile with accordion-style sections
+- Stack newsletter signup full-width on mobile
+- Reduce pre-footer CTA heading size
 
-### G. Awards Page — Database Integration
-- Fetch awards from the `awards` database table instead of hardcoded data
-- Fall back to hardcoded data if database is empty
+### G. Floating Buttons (WhatsApp + BackToTop)
+- Position BackToTop at `bottom-24` to avoid overlapping WhatsApp
+- Reduce button sizes slightly on mobile
+- Ensure minimum 44px touch targets
 
-### H. Footer Enhancement
-- Add a compact brand logos row above the footer columns
+### H. Global Mobile Polish
+- Add `viewport-fit=cover` to index.html meta viewport for safe area insets on notched phones
+- Add `env(safe-area-inset-bottom)` padding to fixed bottom elements
+- Reduce framer-motion animation complexity on mobile using `useReducedMotion`
+- Add CSS: `@media (prefers-reduced-motion: reduce)` to disable heavy animations
 
----
+### I. Touch & Accessibility
+- Ensure all interactive elements have min 44×44px touch targets
+- Add `-webkit-tap-highlight-color: transparent` for cleaner tap feedback
 
 ## Files to Modify
-
 ```text
-src/pages/Index.tsx              (add AwardsSection, BlogSection)
-src/components/HeroSection.tsx   (typewriter animation on tagline)
-src/components/ExperienceSection.tsx (brand logos next to companies)
-src/pages/About.tsx              (skill progress bars)
-src/pages/Blog.tsx               (reading time, featured article)
-src/pages/Awards.tsx             (fetch from database)
-src/pages/Contact.tsx            (save to database)
-src/components/Footer.tsx        (brand logos row)
+index.html                        (viewport-fit=cover)
+src/index.css                     (mobile typography, reduced motion, safe-area)
+src/components/HeroSection.tsx    (responsive text, image, badges, CTA stack)
+src/components/Navbar.tsx         (larger tap targets in mobile menu)
+src/components/BrandLogos.tsx     (smaller cards on mobile, reduced motion)
+src/components/StatsSection.tsx   (2-col grid on mobile)
+src/components/AboutSection.tsx   (responsive image height)
+src/components/Footer.tsx         (single column mobile, reduced CTA text)
+src/components/BackToTopButton.tsx (safe positioning, avoid WhatsApp overlap)
+src/components/WhatsAppButton.tsx  (safe-area padding)
+src/components/ContactSection.tsx  (mobile padding adjustments)
 ```
 
-Database migration: Create `contact_messages` table with public insert RLS policy.
-
-All changes use existing dependencies. No new packages needed.
+No new dependencies needed. All changes use existing Tailwind responsive prefixes and CSS.
 
