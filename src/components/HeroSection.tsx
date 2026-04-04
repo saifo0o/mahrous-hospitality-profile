@@ -172,7 +172,7 @@ const HeroSection = () => {
 
               <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-br from-accent/30 via-primary/15 to-accent/20" />
               
-              <div className="relative w-72 h-80 md:w-80 md:h-96 lg:w-[420px] lg:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative w-56 h-64 sm:w-72 sm:h-80 md:w-80 md:h-96 lg:w-[420px] lg:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg"
                   alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
