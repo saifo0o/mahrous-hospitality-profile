@@ -105,7 +105,7 @@ const HeroSection = () => {
 
             <motion.h1
               variants={itemVariants}
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-playfair text-foreground mb-4 leading-[1.05] tracking-tight">
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold font-playfair text-foreground mb-4 leading-[1.05] tracking-tight">
               {language.code === 'ar' ? 'إسلام' : 'Islam'}
               <br />
               <span className="gradient-text">{language.code === 'ar' ? 'محروس' : 'Mahrous'}</span>
