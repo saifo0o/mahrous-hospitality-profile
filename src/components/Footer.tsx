@@ -52,7 +52,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-playfair mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-playfair mb-6 leading-tight">
               {language.code === 'ar' ? 'لنبنِ شيئًا استثنائيًا معًا' : "Let's Build Something\nExceptional"}
             </h2>
             <p className="text-primary-foreground/60 text-lg mb-10 max-w-xl mx-auto">
