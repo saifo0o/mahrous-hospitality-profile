@@ -181,7 +181,7 @@ const Navbar = () => {
                     >
                       <Link
                         to={item.path}
-                        className={`block py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+                        className={`block py-3.5 px-4 rounded-lg text-base font-medium transition-colors min-h-[44px] flex items-center ${
                           location.pathname === item.path 
                             ? 'bg-muted text-foreground' 
                             : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
