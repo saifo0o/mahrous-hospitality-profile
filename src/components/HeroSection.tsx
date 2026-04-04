@@ -111,7 +111,7 @@ const HeroSection = () => {
               <span className="gradient-text">{language.code === 'ar' ? 'محروس' : 'Mahrous'}</span>
             </motion.h1>
 
-            <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-3 max-w-lg">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-3 max-w-lg">
               <TypewriterText text={tagline} />
             </p>
 
