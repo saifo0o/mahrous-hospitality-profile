@@ -61,15 +61,15 @@ const Footer = () => {
                 : 'Ready to elevate your hotel operations? Book a free consultation today.'
               }
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/book-consultation">
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-8 py-6 text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 gap-2">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+              <Link to="/book-consultation" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 gap-2">
                   {language.code === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultation'}
                   <ArrowRight size={16} />
                 </Button>
               </Link>
-              <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-8 py-6 text-base transition-all duration-300 hover:-translate-y-0.5">
+              <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <Button variant="outline" className="w-full sm:w-auto border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:-translate-y-0.5">
                   {language.code === 'ar' ? 'راسلني على واتساب' : 'Message on WhatsApp'}
                 </Button>
               </a>
