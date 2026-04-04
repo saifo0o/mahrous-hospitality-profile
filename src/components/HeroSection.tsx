@@ -191,7 +191,7 @@ const HeroSection = () => {
               </motion.div>
 
               <motion.div
-                className="absolute -top-3 -right-4 md:-right-10 bg-card/95 backdrop-blur-md rounded-xl shadow-xl border border-border/50 px-5 py-3"
+                className="absolute -top-2 right-0 sm:-top-3 sm:-right-4 md:-right-10 bg-card/95 backdrop-blur-md rounded-xl shadow-xl border border-border/50 px-3 py-2 sm:px-5 sm:py-3"
                 initial={{ opacity: 0, x: 30, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
