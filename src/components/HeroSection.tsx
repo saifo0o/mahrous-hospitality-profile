@@ -138,7 +138,7 @@ const HeroSection = () => {
               </Link>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="hidden sm:block">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/50 mb-4 font-semibold">
                 {language.code === 'ar' ? 'خبرة مع' : 'Experience with'}
               </p>
