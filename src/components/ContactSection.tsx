@@ -80,7 +80,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="bg-primary rounded-2xl p-10 md:p-14 text-primary-foreground relative overflow-hidden">
+            <div className="bg-primary rounded-2xl p-6 sm:p-10 md:p-14 text-primary-foreground relative overflow-hidden">
               <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
               <div className="absolute bottom-0 left-0 w-36 h-36 bg-accent/5 rounded-full blur-3xl" />
               <div className="relative z-10">

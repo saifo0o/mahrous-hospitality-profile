@@ -165,7 +165,7 @@ const Navbar = () => {
           <AnimatePresence>
             {isOpen && (
               <motion.div 
-                className="md:hidden py-4 bg-background border-t border-border/50"
+                className="md:hidden py-4 bg-background/95 backdrop-blur-xl border-t border-border/50"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}

@@ -74,8 +74,8 @@ const StatsSection = () => {
                     transition={{ duration: 1.2, ease: "easeOut" }}
                   />
                 )}
-                <motion.p 
-                  className={`text-4xl md:text-5xl lg:text-6xl font-bold font-playfair mb-2 relative ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}
+              <motion.p 
+                  className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-playfair mb-2 relative ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}
                   animate={completedStats.has(index) ? { 
                     textShadow: ['0 0 0px transparent', '0 0 20px hsl(var(--accent) / 0.5)', '0 0 0px transparent']
                   } : {}}

@@ -46,7 +46,7 @@ const AboutSection = () => {
               <img
                 src={profilePhoto}
                 alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous - Hospitality Executive'}
-                className="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto h-[520px] object-cover"
+                className="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto h-[320px] sm:h-[420px] lg:h-[520px] object-cover"
                 loading="lazy"
               />
               {/* Decorative accent */}

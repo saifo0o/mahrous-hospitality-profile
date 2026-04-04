@@ -199,7 +199,7 @@ const HeroSection = () => {
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 -right-4 md:-right-8 bg-accent text-accent-foreground rounded-xl shadow-xl px-4 py-2.5"
+                className="absolute top-1/2 right-0 sm:-right-4 md:-right-8 bg-accent text-accent-foreground rounded-xl shadow-xl px-3 py-2 sm:px-4 sm:py-2.5"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.6, duration: 0.5 }}>
