@@ -64,7 +64,7 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				luxury: {
-					gold: '#7A8FAD',
+					gold: '#8B1A3A',
 					navy: '#0F1E3D',
 					ivory: '#FFFFF0',
 					gray: '#8A898C',
@@ -156,10 +156,10 @@ export default {
 				},
 			'glow': {
 					'0%, 100%': {
-						boxShadow: '0 0 20px rgba(122, 143, 173, 0.3)',
+						boxShadow: '0 0 20px rgba(139, 26, 58, 0.3)',
 					},
 					'50%': {
-						boxShadow: '0 0 40px rgba(122, 143, 173, 0.6)',
+						boxShadow: '0 0 40px rgba(139, 26, 58, 0.6)',
 					},
 				},
 			'bounce-subtle': {
@@ -189,13 +189,13 @@ export default {
 				'marquee': 'marquee 25s linear infinite',
 			},
 			boxShadow: {
-				'gold-sm': '0 1px 2px 0 rgba(122, 143, 173, 0.05)',
-				'gold': '0 1px 3px 0 rgba(122, 143, 173, 0.1), 0 1px 2px 0 rgba(122, 143, 173, 0.06)',
-				'gold-md': '0 4px 6px -1px rgba(122, 143, 173, 0.1), 0 2px 4px -1px rgba(122, 143, 173, 0.06)',
-				'gold-lg': '0 10px 15px -3px rgba(122, 143, 173, 0.1), 0 4px 6px -2px rgba(122, 143, 173, 0.05)',
-				'gold-xl': '0 20px 25px -5px rgba(122, 143, 173, 0.1), 0 10px 10px -5px rgba(122, 143, 173, 0.04)',
-				'gold-2xl': '0 25px 50px -12px rgba(122, 143, 173, 0.25)',
-				'gold-inner': 'inset 0 2px 4px 0 rgba(122, 143, 173, 0.06)'
+				'gold-sm': '0 1px 2px 0 rgba(139, 26, 58, 0.05)',
+				'gold': '0 1px 3px 0 rgba(139, 26, 58, 0.1), 0 1px 2px 0 rgba(139, 26, 58, 0.06)',
+				'gold-md': '0 4px 6px -1px rgba(139, 26, 58, 0.1), 0 2px 4px -1px rgba(139, 26, 58, 0.06)',
+				'gold-lg': '0 10px 15px -3px rgba(139, 26, 58, 0.1), 0 4px 6px -2px rgba(139, 26, 58, 0.05)',
+				'gold-xl': '0 20px 25px -5px rgba(139, 26, 58, 0.1), 0 10px 10px -5px rgba(139, 26, 58, 0.04)',
+				'gold-2xl': '0 25px 50px -12px rgba(139, 26, 58, 0.25)',
+				'gold-inner': 'inset 0 2px 4px 0 rgba(139, 26, 58, 0.06)'
 			},
 			backdropBlur: {
 				xs: '2px',
