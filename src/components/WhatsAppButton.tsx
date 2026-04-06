@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
   
   return (
     <motion.div
-      className={`fixed z-50 bottom-4 sm:bottom-6 ${isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'}`} style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      className={`fixed z-50 bottom-4 sm:bottom-6 ${isRTL ? 'right-4 sm:right-6' : 'left-4 sm:left-auto sm:right-6'}`} style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ 

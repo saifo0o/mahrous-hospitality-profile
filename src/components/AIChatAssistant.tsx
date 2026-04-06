@@ -177,7 +177,7 @@ const AIChatAssistant = () => {
     <>
       {/* Chat Button */}
       <motion.div
-        className={`fixed z-50 ${isRTL ? 'left-6' : 'right-6'} ${isOpen ? 'bottom-[500px]' : 'bottom-24'}`}
+        className={`fixed z-50 ${isRTL ? 'left-6' : 'right-6'} ${isOpen ? 'bottom-[500px]' : 'bottom-20 sm:bottom-24'}`}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1.2 }}
