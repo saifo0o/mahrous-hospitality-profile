@@ -28,8 +28,8 @@
     --muted: 220 20% 97%;
     --muted-foreground: 220 15% 40%;
 
-    /* Luxury Gold Accent */
-    --accent: 45 93% 58%;
+    /* Refined Silver Accent */
+    --accent: 220 20% 65%;
     --accent-foreground: 220 20% 15%;
 
     --destructive: 0 70% 50%;
@@ -38,7 +38,7 @@
     /* Borders - Refined & Elegant */
     --border: 220 20% 88%;
     --input: 220 20% 88%;
-    --ring: 45 93% 58%;
+    --ring: 220 20% 65%;
 
     --radius: 0.5rem;
 
@@ -87,9 +87,9 @@
     --luxury-navy: 221 83% 20%;
     --luxury-navy-light: 221 83% 30%;
     --luxury-navy-dark: 221 83% 15%;
-    --luxury-gold: 45 93% 58%;
-    --luxury-gold-light: 45 93% 68%;
-    --luxury-gold-dark: 45 93% 48%;
+    --luxury-gold: 215 30% 60%;
+    --luxury-gold-light: 215 25% 72%;
+    --luxury-gold-dark: 215 35% 48%;
     --luxury-gray: 215 25% 45%;
     --luxury-light: 210 40% 98%;
     --luxury-dark: 222 84% 5%;
