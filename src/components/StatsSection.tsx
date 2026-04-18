@@ -47,25 +47,47 @@ const StatsSection = () => {
   };
 
   return (
-    <section ref={ref} className="relative py-20 bg-primary overflow-hidden">
+    <section ref={ref} className="relative py-20 md:py-28 bg-primary overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: 'radial-gradient(hsl(var(--accent)) 1px, transparent 1px)',
+          backgroundSize: '32px 32px'
+        }} />
       </div>
-      
+
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        {/* Section eyebrow */}
+        <motion.div
+          className="text-center mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-2 mb-3">
+            <span className="h-px w-8 bg-accent/60" />
+            <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold">
+              {language.code === 'ar' ? 'بالأرقام' : 'By the Numbers'}
+            </p>
+            <span className="h-px w-8 bg-accent/60" />
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-playfair font-semibold text-primary-foreground/95">
+            {language.code === 'ar' ? 'إنجازات تتحدث عن نفسها' : 'A Track Record That Speaks for Itself'}
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 md:gap-x-8 lg:gap-x-12 relative">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center"
+              className={`text-center relative ${index < stats.length - 1 ? 'lg:after:content-[""] lg:after:absolute lg:after:right-0 lg:after:top-1/2 lg:after:-translate-y-1/2 lg:after:h-16 lg:after:w-px lg:after:bg-primary-foreground/10' : ''}`}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="relative inline-block">
-                {/* Glow effect when complete */}
                 {completedStats.has(index) && (
                   <motion.div
                     className="absolute -inset-4 rounded-full bg-accent/20 blur-xl"
@@ -74,9 +96,9 @@ const StatsSection = () => {
                     transition={{ duration: 1.2, ease: "easeOut" }}
                   />
                 )}
-              <motion.p 
-                  className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-playfair mb-2 relative ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}
-                  animate={completedStats.has(index) ? { 
+                <motion.p
+                  className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-playfair mb-3 relative leading-none ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}
+                  animate={completedStats.has(index) ? {
                     textShadow: ['0 0 0px transparent', '0 0 20px hsl(var(--accent) / 0.5)', '0 0 0px transparent']
                   } : {}}
                   transition={{ duration: 1.5 }}
@@ -84,7 +106,13 @@ const StatsSection = () => {
                   {stat.prefix || ''}<AnimatedNumber value={stat.value} suffix={stat.suffix} isInView={isInView} onComplete={() => handleComplete(index)} />
                 </motion.p>
               </div>
-              <p className="text-sm text-primary-foreground/60 font-medium tracking-wide uppercase">
+              <motion.span
+                className="block mx-auto h-px w-8 bg-accent/50 mb-3"
+                initial={{ scaleX: 0 }}
+                animate={isInView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.12 }}
+              />
+              <p className="text-xs sm:text-sm text-primary-foreground/70 font-medium tracking-wider uppercase">
                 {stat.label}
               </p>
             </motion.div>

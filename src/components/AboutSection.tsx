@@ -43,14 +43,45 @@ const AboutSection = () => {
                 animate={{ opacity: [0.4, 0.7, 0.4] }}
                 transition={{ duration: 5, repeat: Infinity }}
               />
-              <img
-                src={profilePhoto}
-                alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous - Hospitality Executive'}
-                className="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto h-[320px] sm:h-[420px] lg:h-[520px] object-cover"
-                loading="lazy"
-              />
-              {/* Decorative accent */}
-              <div className="absolute -bottom-3 -right-3 w-24 h-24 border-2 border-accent/30 rounded-2xl" />
+              <div className="relative max-w-md mx-auto group">
+                <img
+                  src={profilePhoto}
+                  alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous - Hospitality Executive'}
+                  className="relative rounded-2xl shadow-2xl w-full h-[320px] sm:h-[420px] lg:h-[520px] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-primary/30 via-transparent to-transparent pointer-events-none" />
+
+                {/* Floating "Since" badge */}
+                <motion.div
+                  className="absolute top-4 left-4 bg-card/95 backdrop-blur-md rounded-xl shadow-lg border border-border/50 px-4 py-2.5"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                >
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                    {language.code === 'ar' ? 'منذ' : 'Since'}
+                  </p>
+                  <p className="text-lg font-bold font-playfair text-foreground leading-none">1994</p>
+                </motion.div>
+
+                {/* Floating signature card */}
+                <motion.div
+                  className="absolute -bottom-5 -right-3 sm:-right-5 bg-accent text-accent-foreground rounded-xl shadow-xl px-4 py-3 max-w-[180px]"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                >
+                  <p className="text-xs font-bold leading-snug">
+                    {language.code === 'ar' ? 'مدير عمليات المجموعة' : 'Group Operations Director'}
+                  </p>
+                  <p className="text-[10px] opacity-80 mt-0.5">Prime Hotels KSA</p>
+                </motion.div>
+
+                {/* Decorative accent frame */}
+                <div className="absolute -bottom-3 -left-3 w-24 h-24 border-2 border-accent/30 rounded-2xl -z-10" />
+              </div>
             </div>
           </motion.div>
           
