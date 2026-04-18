@@ -85,13 +85,20 @@ const Contact = () => {
       <main className="flex-grow pt-28 pb-20">
         <section className="container mx-auto px-4 md:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
+            <div className="inline-flex items-center gap-2 mb-5">
+              <span className="h-px w-8 bg-accent/60" />
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold">
+                {language.code === 'ar' ? 'تواصل معي' : "Let's Connect"}
+              </p>
+              <span className="h-px w-8 bg-accent/60" />
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-foreground mb-5 leading-[1.1]">
               {language.code === 'ar' ? 'تواصل معي' : 'Get in Touch'}
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               {language.code === 'ar'
-                ? 'مهتم بمناقشة فرص الضيافة أو استشارات؟ تواصل معي.'
-                : 'Interested in hospitality leadership opportunities or consulting? Let\'s connect.'}
+                ? 'مهتم بمناقشة فرص الضيافة أو الاستشارات؟ تواصل معي عبر السعودية أو مصر.'
+                : "Interested in hospitality leadership opportunities or consulting? Reach me in KSA or Egypt."}
             </p>
           </motion.div>
 
