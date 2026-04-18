@@ -8,7 +8,6 @@ import ihgLogo from '@/assets/logos/ihg.svg';
 import accorLogo from '@/assets/logos/accor.svg';
 import sheratonLogo from '@/assets/logos/sheraton.svg';
 import crownePlazaLogo from '@/assets/logos/crowne-plaza.svg';
-import fourPointsLogo from '@/assets/logos/four-points-dl.png';
 import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
 
 const brands = [
@@ -17,7 +16,6 @@ const brands = [
   { name: 'Accor Hotels', logo: accorLogo },
   { name: 'Sheraton Hotels & Resorts', logo: sheratonLogo },
   { name: 'Crowne Plaza', logo: crownePlazaLogo },
-  { name: 'Four Points by Sheraton', logo: fourPointsLogo },
   { name: 'Prime Hotels Group', logo: primeHotelsLogo },
 ];
 
