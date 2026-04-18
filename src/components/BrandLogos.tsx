@@ -23,36 +23,51 @@ const BrandLogos = () => {
   const { language } = useLanguage();
 
   return (
-    <section className="py-16 bg-muted/30 border-y border-border/30 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8">
-        <motion.p
-          className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground/50 font-semibold mb-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+    <section className="relative py-16 md:py-20 bg-gradient-to-b from-background via-muted/20 to-background border-y border-border/30 overflow-hidden">
+      {/* Subtle decorative grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.08)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.08)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)] pointer-events-none" />
+
+      <div className="container relative mx-auto px-4 md:px-8">
+        <motion.div
+          className="text-center mb-10 md:mb-14"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          {language.code === 'ar' ? 'خبرة مع أبرز العلامات التجارية العالمية' : 'Trusted by World-Class Hospitality Brands'}
-        </motion.p>
-        
+          <div className="inline-flex items-center gap-2 mb-4">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-accent/60" />
+            <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent/80 font-bold">
+              {language.code === 'ar' ? 'شراكات استراتيجية' : 'Strategic Partnerships'}
+            </p>
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-accent/60" />
+          </div>
+          <h3 className="text-lg md:text-2xl font-serif font-medium text-foreground/90 max-w-2xl mx-auto leading-snug">
+            {language.code === 'ar'
+              ? 'خبرة مع أبرز العلامات التجارية الفندقية العالمية'
+              : 'Trusted by World-Class Hospitality Brands'}
+          </h3>
+        </motion.div>
+
         {/* Infinite scroll marquee */}
         <div className="relative">
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
-          
-          <div className="flex animate-marquee gap-6 sm:gap-12 md:gap-16 items-center">
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+
+          <div className="flex animate-marquee gap-5 sm:gap-10 md:gap-14 items-center py-2">
             {[...brands, ...brands, ...brands].map((brand, i) => (
               <motion.div
                 key={`${brand.name}-${i}`}
                 className="flex-shrink-0 group"
-                whileHover={{ scale: 1.08, y: -4 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                whileHover={{ scale: 1.06, y: -4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <div className="w-20 h-14 sm:w-28 sm:h-20 md:w-36 md:h-24 rounded-xl bg-card/80 backdrop-blur-sm border border-border/40 flex items-center justify-center p-2.5 sm:p-4 shadow-sm group-hover:shadow-lg group-hover:border-accent/30 transition-all duration-300">
+                <div className="w-24 h-16 sm:w-32 sm:h-20 md:w-40 md:h-24 rounded-2xl bg-card/90 backdrop-blur-sm border border-border/40 flex items-center justify-center p-3 sm:p-4 md:p-5 shadow-sm group-hover:shadow-xl group-hover:border-accent/40 group-hover:bg-card transition-all duration-500">
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 dark:invert dark:brightness-200"
+                    className="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 grayscale group-hover:grayscale-0 transition-all duration-500"
                     loading="lazy"
                   />
                 </div>
