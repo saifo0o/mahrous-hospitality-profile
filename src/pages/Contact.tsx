@@ -71,7 +71,8 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: MapPin, label: language.code === 'ar' ? 'الموقع' : 'Location', value: language.code === 'ar' ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia' },
-    { icon: Phone, label: language.code === 'ar' ? 'الهاتف' : 'Phone', value: '+966 55 374 1020', href: 'tel:+966553741020' },
+    { icon: Phone, label: language.code === 'ar' ? 'الهاتف (السعودية)' : 'Phone (KSA)', value: '+966 55 374 1020', href: 'tel:+966553741020' },
+    { icon: Phone, label: language.code === 'ar' ? 'الهاتف (مصر)' : 'Phone (Egypt)', value: '+20 109 555 6779', href: 'tel:+201095556779' },
     { icon: Mail, label: language.code === 'ar' ? 'البريد' : 'Email', value: 'mahrous.islam@yahoo.com', href: 'mailto:mahrous.islam@yahoo.com' },
     { icon: Linkedin, label: 'LinkedIn', value: 'islam-mahrous', href: 'https://www.linkedin.com/in/islam-mahrous-' },
   ];
