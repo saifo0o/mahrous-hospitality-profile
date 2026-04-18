@@ -88,17 +88,21 @@ const Blog = () => {
         <div className="container mx-auto px-4 md:px-8">
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
-              <TrendingUp size={14} />
-              {language.code === 'ar' ? 'رؤى يومية' : 'Daily Insights'}
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
-              {language.code === 'ar' ? 'المدونة' : 'Blog'}
+            <div className="inline-flex items-center gap-2 mb-5">
+              <span className="h-px w-8 bg-accent/60" />
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold flex items-center gap-1.5">
+                <TrendingUp size={12} />
+                {language.code === 'ar' ? 'رؤى يومية' : 'Daily Insights'}
+              </p>
+              <span className="h-px w-8 bg-accent/60" />
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-foreground mb-5 leading-[1.1]">
+              {language.code === 'ar' ? 'المدونة' : 'The Blog'}
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               {language.code === 'ar'
-                ? 'نصائح عملية ورؤى من خبرة تمتد لأكثر من 30 عامًا.'
-                : "Practical tips and real-world insights from 30+ years in hospitality."}
+                ? 'نصائح عملية ورؤى من خبرة تمتد لأكثر من 30 عامًا في الضيافة العالمية.'
+                : "Practical tips and real-world insights from 30+ years in global hospitality."}
             </p>
           </motion.div>
 

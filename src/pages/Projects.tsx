@@ -141,17 +141,21 @@ const Projects = () => {
           {/* Header */}
           <section className="container mx-auto px-4 md:px-8 mb-10">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
-                <Building size={14} />
-                {language.code === 'ar' ? '$70M+ في المشاريع' : '$70M+ in Projects'}
-              </span>
-              <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
+              <div className="inline-flex items-center gap-2 mb-5">
+                <span className="h-px w-8 bg-accent/60" />
+                <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold flex items-center gap-1.5">
+                  <Building size={12} />
+                  {language.code === 'ar' ? '$70M+ في المشاريع' : '$70M+ in Projects Delivered'}
+                </p>
+                <span className="h-px w-8 bg-accent/60" />
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-foreground mb-5 leading-[1.1]">
                 {language.code === 'ar' ? 'المشاريع المميزة' : 'Signature Projects'}
               </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 {language.code === 'ar'
-                  ? 'تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في الضيافة.'
-                  : 'Transformative renovations and successful pre-openings showcasing hospitality expertise.'}
+                  ? 'تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في الضيافة عبر الشرق الأوسط وشمال أفريقيا.'
+                  : 'Transformative renovations and successful pre-openings showcasing hospitality expertise across MENA.'}
               </p>
             </motion.div>
           </section>
