@@ -189,17 +189,21 @@ const Career = () => {
         {/* Header */}
         <section className="container mx-auto px-4 md:px-8 mb-16">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
-              <Calendar size={14} />
-              {language.code === 'ar' ? '+30 عامًا من الخبرة' : '30+ Years of Experience'}
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground mb-4">
+            <div className="inline-flex items-center gap-2 mb-5">
+              <span className="h-px w-8 bg-accent/60" />
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold flex items-center gap-1.5">
+                <Calendar size={12} />
+                {language.code === 'ar' ? '+30 عامًا من الخبرة' : '30+ Years of Experience'}
+              </p>
+              <span className="h-px w-8 bg-accent/60" />
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-foreground mb-5 leading-[1.1]">
               {language.code === 'ar' ? 'المسيرة المهنية' : 'Career Journey'}
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
               {language.code === 'ar'
-                ? 'خبرة قيادية تقدمية عبر العلامات التجارية والأسواق الدولية للضيافة.'
-                : 'Progressive leadership across international hospitality brands and markets.'}
+                ? 'خبرة قيادية تقدمية عبر العلامات التجارية والأسواق الدولية للضيافة في مصر، السعودية، الإمارات، وليبيا.'
+                : 'Progressive leadership across international hospitality brands and markets — Egypt, KSA, UAE, and Libya.'}
             </p>
           </motion.div>
         </section>
