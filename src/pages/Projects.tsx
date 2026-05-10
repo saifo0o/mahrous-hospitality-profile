@@ -273,7 +273,10 @@ const Projects = () => {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
+                      <h3 className="text-lg font-semibold text-foreground mb-1">{project.title}</h3>
+                      <p className="text-xs text-accent-foreground font-medium mb-3">
+                        {project.role}{project.brand ? ` • ${project.brand}` : ''}
+                      </p>
 
                       <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
                         <span className="flex items-center gap-1"><MapPin size={12} />{project.location}</span>
