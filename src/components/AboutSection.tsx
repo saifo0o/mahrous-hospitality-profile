@@ -19,7 +19,7 @@ const AboutSection = () => {
     },
     {
       icon: <Globe className="h-5 w-5 text-accent" />,
-      label: language.code === 'ar' ? '4 لغات: عربي، إنجليزي، ألماني، روسي' : '4 Languages: AR, EN, DE, RU',
+      label: language.code === 'ar' ? '3 لغات: عربي، إنجليزي، ألماني' : '3 Languages: AR, EN, DE',
     },
     {
       icon: <GraduationCap className="h-5 w-5 text-accent" />,
