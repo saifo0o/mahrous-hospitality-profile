@@ -187,8 +187,9 @@ const Footer = () => {
               &copy; {currentYear} Islam Mahrous. {language.code === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
             </p>
             <a 
-              href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" 
-              target="_blank" 
+              href="/Islam_Mahrous_Resume.pdf"
+              download="Islam_Mahrous_Resume.pdf"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-background/30 hover:text-accent text-xs transition-colors"
             >
