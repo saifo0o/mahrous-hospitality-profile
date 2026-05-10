@@ -10,126 +10,190 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 
 const Projects = () => {
-  const { language, t, isRTL } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
+  const ar = language.code === 'ar';
 
   const projects = [
     {
-      title: language.code === 'ar' ? "فنادق برايم - محفظة المجموعة" : "Prime Hotels - Group Portfolio",
-      category: "Group Management",
-      categoryAr: "إدارة المجموعة",
-      location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
-      period: "2025 - Present",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-      budget: language.code === 'ar' ? "متعدد المشاريع" : "Multi-Project",
+      title: ar ? 'فنادق برايم - محفظة المجموعة' : 'Prime Hotels - Group Portfolio',
+      category: 'Group Management',
+      categoryAr: 'إدارة المجموعة',
+      role: ar ? 'مدير عمليات المجموعة' : 'Group Operations Director',
+      brand: 'Multi-Brand',
+      location: ar ? 'الرياض، السعودية' : 'Riyadh, KSA',
+      period: ar ? 'ديسمبر 2025 - الحاضر' : 'Dec 2025 - Present',
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+      budget: ar ? 'متعدد العقارات' : 'Multi-Property',
       featured: true,
-      results: language.code === 'ar'
-        ? ["حوكمة تشغيلية موحدة", "6 فنادق إضافية بحلول 2026", "استراتيجية 10,000 غرفة"]
-        : ["Unified operational governance", "6 additional hotels by 2026", "10,000-room growth strategy"],
+      results: ar
+        ? ['حوكمة تشغيلية موحدة', 'نمو نحو 10,000 غرفة بحلول 2030', 'مراجعة P&L شهرية ولوحات STR']
+        : ['Unified operational governance', 'Growth path to 10,000 rooms by 2030', 'Monthly P&L cadence + STR dashboards'],
     },
     {
-      title: language.code === 'ar' ? "كراون بلازا الإسكندرية" : "Crowne Plaza Alexandria",
-      category: "Brand Conversion",
-      categoryAr: "تحويل علامة",
-      location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
-      period: "2025",
-      image: "/images/crowne-plaza-alexandria.jpg",
-      budget: language.code === 'ar' ? "تحويل كامل" : "Full Conversion",
-      results: language.code === 'ar'
-        ? ["تحول تشغيلي ناجح", "100% امتثال آي إتش جي", "تحسين أداء الأصول"]
-        : ["Successful transformation", "100% IHG compliance", "Optimized asset performance"],
+      title: ar ? 'كراون بلازا ميراج (آي إتش جي)' : 'Crowne Plaza Mirage by IHG',
+      category: 'Brand Conversion',
+      categoryAr: 'تحويل علامة',
+      role: ar ? 'مستشار تحويل علامة مستقل' : 'Independent Brand Conversion Consultant',
+      brand: 'IHG',
+      location: ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt',
+      period: ar ? 'أغسطس - ديسمبر 2025' : 'Aug - Dec 2025',
+      image: '/images/crowne-plaza-alexandria.jpg',
+      rooms: 96,
+      budget: ar ? '4 أشهر' : '4 months',
+      results: ar
+        ? ['100٪ امتثال IHG من خط بداية صفر', 'نشر Opera Cloud + Concerto', 'جاهزية تدقيق العلامة دون اضطراب']
+        : ['100% IHG compliance from zero baseline', 'Deployed Opera Cloud + Concerto', 'Brand-audit ready, zero guest disruption'],
     },
     {
-      title: language.code === 'ar' ? "فندق شيراتون المنتزه" : "Sheraton Montazah Hotel",
-      category: "Renovation",
-      categoryAr: "تجديد",
-      location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
-      period: "2016 - 2023",
-      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp",
-      rooms: 288,
-      budget: "$7.2M",
-      results: language.code === 'ar'
-        ? ["+25% عائد الغرفة", "+30% رضا الضيوف", "-15% استهلاك الطاقة"]
-        : ["+25% RevPAR", "+30% guest satisfaction", "-15% energy consumption"],
-    },
-    {
-      title: language.code === 'ar' ? "منتجع ذا في الفاخر" : "The V Luxury Resort",
-      category: "Pre-Opening",
-      categoryAr: "ما قبل الافتتاح",
-      location: language.code === 'ar' ? "الغردقة" : "Hurghada, Egypt",
-      period: "2023",
-      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg",
-      rooms: 298,
-      budget: "$4.5M",
-      results: language.code === 'ar'
-        ? ["90% إشغال في 4 أشهر", "+12% رضا الضيوف", "رائد السوق المحلية"]
-        : ["90% occupancy in 4 months", "+12% guest satisfaction", "Established as market leader"],
-    },
-    {
-      title: language.code === 'ar' ? "منتجع بورسعيد" : "Porto Said Resort",
-      category: "Renovation",
-      categoryAr: "تجديد",
-      location: language.code === 'ar' ? "بورسعيد" : "Port Said, Egypt",
-      period: "2024",
-      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg",
-      rooms: 168,
-      budget: "$3.5M",
-      results: language.code === 'ar'
-        ? ["+18% إشغال", "+20% إيرادات F&B", "200+ موظف"]
-        : ["+18% occupancy", "+20% F&B revenue", "200+ staff managed"],
-    },
-    {
-      title: language.code === 'ar' ? "فور بوينتس باي شيراتون" : "Four Points by Sheraton",
-      category: "Pre-Opening",
-      categoryAr: "ما قبل الافتتاح",
-      location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
-      period: "2024 - 2025",
-      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg",
+      title: ar ? 'فور بوينتس باي شيراتون - الرياض' : 'Four Points by Sheraton, Riyadh',
+      category: 'Pre-Opening',
+      categoryAr: 'ما قبل الافتتاح',
+      role: ar ? "ممثل المالك (ما قبل الافتتاح)" : "Owner's Representative",
+      brand: 'Marriott',
+      location: ar ? 'الرياض، السعودية' : 'Riyadh, KSA',
+      period: ar ? 'أبريل 2023 - يوليو 2025' : 'Apr 2023 - Jul 2025',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg',
       rooms: 172,
-      budget: "$5.2M",
-      results: language.code === 'ar'
-        ? ["-12% ميزانية ما قبل الافتتاح", "90% جاهزية تشغيلية", "150+ موظف"]
-        : ["-12% pre-opening budget", "90% operational readiness", "150+ staff recruited"],
+      budget: '−12% budget',
+      results: ar
+        ? ['−12٪ ميزانية ما قبل الافتتاح', 'التسليم في الموعد ضمن رأس المال', '150+ موظف تم توظيفه']
+        : ['−12% pre-opening budget', 'On-schedule, within capital budget', '150+ pre-opening staff recruited'],
     },
     {
-      title: language.code === 'ar' ? "منتجع شيراتون ميرامار" : "Sheraton Miramar Resort",
-      category: "Renovation",
-      categoryAr: "تجديد",
-      location: language.code === 'ar' ? "الجونة" : "El Gouna, Egypt",
-      period: "2011 - 2014",
-      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg",
+      title: ar ? 'منتجع ذا في الفاخر - سهل حشيش' : 'The V Luxury Resort, Sahl Hasheesh',
+      category: 'Pre-Opening',
+      categoryAr: 'ما قبل الافتتاح',
+      role: ar ? 'مستشار ما قبل افتتاح مستقل' : 'Independent Pre-Opening Consultant',
+      brand: ar ? 'فاخر مستقل' : 'Independent Luxury',
+      location: ar ? 'الغردقة، مصر' : 'Hurghada, Egypt',
+      period: ar ? 'مايو 2023 - مارس 2024' : 'May 2023 - Mar 2024',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg',
+      rooms: 298,
+      budget: ar ? 'إطلاق فاخر' : 'Luxury Launch',
+      results: ar
+        ? ['90٪ إشغال خلال 4 أشهر', '+12٪ رضا الضيوف في الربع الافتتاحي', '300+ عضو فريق تم تدريبه']
+        : ['90% occupancy in 4 months', '+12% guest satisfaction (opening quarter)', '300+ pre-opening team trained'],
+    },
+    {
+      title: ar ? 'منتجع بورسعيد' : 'Porto Said Resort',
+      category: 'Turnaround',
+      categoryAr: 'تحويل المسار',
+      role: ar ? 'مستشار تحويل المسار والتجديد' : 'Independent Turnaround & Renovation Consultant',
+      brand: ar ? 'مستقل' : 'Independent',
+      location: ar ? 'بورسعيد، مصر' : 'Port Said, Egypt',
+      period: ar ? 'أبريل - أغسطس 2024' : 'Apr - Aug 2024',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg',
+      rooms: 168,
+      budget: '$3.5M',
+      results: ar
+        ? ['+18٪ إشغال • +20٪ F&B', 'GOP إيجابي خلال 4 أشهر', '+30٪ رضا الضيوف']
+        : ['+18% occupancy • +20% F&B', 'Positive GOP within 4 months', '+30% guest satisfaction'],
+    },
+    {
+      title: ar ? 'فندق شيراتون المنتزه' : 'Sheraton Montazah Hotel',
+      category: 'Renovation',
+      categoryAr: 'تجديد',
+      role: ar ? 'مدير عام (ولاية 9 سنوات)' : 'General Manager (9-year tenure)',
+      brand: 'Marriott',
+      location: ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt',
+      period: '2014 - 2023',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp',
+      rooms: 288,
+      budget: ar ? 'تجديد شامل' : 'Full Renovation',
+      results: ar
+        ? ['+25٪ RevPAR • +30٪ رضا', '−15٪ طاقة • −20٪ صيانة', 'تجاوز المنافسين عبر دورات سوق متعددة']
+        : ['+25% RevPAR • +30% satisfaction', '−15% energy • −20% maintenance', 'Outperformed comp set across cycles'],
+    },
+    {
+      title: ar ? 'محفظة ماريوت مصر' : 'Marriott Egypt Portfolio',
+      category: 'Portfolio Excellence',
+      categoryAr: 'تميز المحفظة',
+      role: ar ? 'مدير مسؤول عن التميز التشغيلي' : 'GM in Charge of Operational Excellence',
+      brand: 'Marriott',
+      location: ar ? 'منطقة مصر' : 'Egypt Region',
+      period: '2018 - 2022',
+      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+      rooms: 3000,
+      budget: ar ? '19 عقار' : '19 properties',
+      results: ar
+        ? ['+10٪ رضا الضيوف على مستوى المحفظة', '+8٪ إيرادات F&B', '+3٪ متوسط RevPAR (19 عقار)']
+        : ['+10% portfolio guest satisfaction', '+8% F&B revenue', '+3% avg RevPAR (19 properties)'],
+    },
+    {
+      title: ar ? 'منتجع شيراتون ميرامار - الجونة' : 'Sheraton Miramar Resort, El Gouna',
+      category: 'Renovation',
+      categoryAr: 'تجديد',
+      role: ar ? 'نائب المدير العام المسؤول' : 'Deputy GM in Charge',
+      brand: 'Marriott',
+      location: ar ? 'الجونة، مصر' : 'El Gouna, Egypt',
+      period: '2011 - 2014',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
       rooms: 339,
-      budget: "$5M",
-      results: language.code === 'ar'
-        ? ["+12% رضا الضيوف", "+15% سعر الغرفة", "+8% إشغال"]
-        : ["+12% guest satisfaction", "+15% ADR", "+8% occupancy"],
+      budget: '$5M',
+      results: ar
+        ? ['+15٪ ADR • +8٪ إشغال', '−7٪ نفقات الرواتب', '+12٪ رضا الضيوف']
+        : ['+15% ADR • +8% occupancy', '−7% payroll expenses', '+12% guest satisfaction'],
     },
     {
-      title: language.code === 'ar' ? "فور بوينتس وشيراتون طرابلس" : "Four Points & Sheraton Tripoli",
-      category: "Pre-Opening",
-      categoryAr: "ما قبل الافتتاح",
-      location: language.code === 'ar' ? "طرابلس" : "Tripoli, Libya",
-      period: "2009 - 2011",
-      image: "https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg",
+      title: ar ? 'فور بوينتس وشيراتون طرابلس' : 'Four Points & Sheraton Tripoli',
+      category: 'Pre-Opening',
+      categoryAr: 'ما قبل الافتتاح',
+      role: ar ? 'مساعد مدير تنفيذي عنقودي' : 'Cluster Executive Assistant Manager',
+      brand: 'Starwood',
+      location: ar ? 'طرابلس، ليبيا' : 'Tripoli, Libya',
+      period: ar ? 'ديسمبر 2009 - يونيو 2011' : 'Dec 2009 - Jun 2011',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
       rooms: 718,
-      budget: "$8.5M",
-      results: language.code === 'ar'
-        ? ["95% جاهزية تشغيلية", "+15% رضا ضيوف", "معايير شيراتون في سوق جديدة"]
-        : ["95% operational readiness", "+15% guest satisfaction", "Sheraton standards in new market"],
-    }
+      budget: ar ? 'مزدوج العلامة' : 'Dual-Brand Cluster',
+      results: ar
+        ? ['95٪ جاهزية تشغيلية', 'افتتاح في ظروف سياسية صعبة', 'معايير ستاروود الدولية']
+        : ['95% operational readiness', 'Delivered in challenging conditions', 'Starwood international standards'],
+    },
+    {
+      title: ar ? 'مهام فرق المهام لما قبل الافتتاح' : 'Task Force Pre-Opening Mandates',
+      category: 'Pre-Opening',
+      categoryAr: 'ما قبل الافتتاح',
+      role: ar ? 'متخصص EAM' : 'EAM Specialist',
+      brand: 'Marriott',
+      location: ar ? 'مكة المكرمة، السعودية / غامبيا' : 'Makkah, KSA / The Gambia',
+      period: '2008',
+      image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80',
+      rooms: 1504,
+      budget: ar ? '3 أشهر/كل مهمة' : '3 mo / mandate',
+      results: ar
+        ? ['لو ميريديان أبراج مكة (1,323 غرفة)', 'شيراتون غامبيا (181 غرفة)', 'خبرة EAM دولية متخصصة']
+        : ['Le Meridien Makkah Towers (1,323 rooms)', 'Sheraton Gambia (181 rooms)', 'International EAM specialist mandates'],
+    },
   ];
 
-  const categories = ['All', 'Pre-Opening', 'Renovation', 'Brand Conversion', 'Group Management'];
-  
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
+  const categories = ['All', 'Pre-Opening', 'Renovation', 'Brand Conversion', 'Turnaround', 'Group Management', 'Portfolio Excellence'];
+
+  const filteredProjects = activeFilter === 'All'
+    ? projects
     : projects.filter(p => p.category === activeFilter);
 
   const categoryColors: Record<string, string> = {
     'Pre-Opening': 'bg-primary/10 text-primary',
     'Renovation': 'bg-accent/10 text-accent-foreground',
-    'Brand Conversion': 'bg-green-500/10 text-green-700',
+    'Brand Conversion': 'bg-emerald-500/10 text-emerald-700',
+    'Turnaround': 'bg-rose-500/10 text-rose-700',
     'Group Management': 'bg-purple-500/10 text-purple-700',
+    'Portfolio Excellence': 'bg-amber-500/10 text-amber-700',
+  };
+
+  const categoryLabel = (cat: string) => {
+    if (!ar) return cat;
+    const map: Record<string, string> = {
+      'All': 'الكل',
+      'Pre-Opening': 'ما قبل الافتتاح',
+      'Renovation': 'تجديد',
+      'Brand Conversion': 'تحويل علامة',
+      'Turnaround': 'تحويل المسار',
+      'Group Management': 'إدارة المجموعة',
+      'Portfolio Excellence': 'تميز المحفظة',
+    };
+    return map[cat] || cat;
   };
 
   return (
@@ -173,7 +237,7 @@ const Projects = () => {
                       : 'bg-muted text-muted-foreground hover:bg-muted/80'
                   }`}
                 >
-                  {language.code === 'ar' ? (cat === 'All' ? 'الكل' : cat === 'Pre-Opening' ? 'ما قبل الافتتاح' : cat === 'Renovation' ? 'تجديد' : cat === 'Brand Conversion' ? 'تحويل علامة' : 'إدارة المجموعة') : cat}
+                  {categoryLabel(cat)}
                 </button>
               ))}
             </div>
@@ -209,7 +273,10 @@ const Projects = () => {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
+                      <h3 className="text-lg font-semibold text-foreground mb-1">{project.title}</h3>
+                      <p className="text-xs text-accent-foreground font-medium mb-3">
+                        {project.role}{project.brand ? ` • ${project.brand}` : ''}
+                      </p>
 
                       <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
                         <span className="flex items-center gap-1"><MapPin size={12} />{project.location}</span>
