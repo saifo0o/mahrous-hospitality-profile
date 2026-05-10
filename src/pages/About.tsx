@@ -92,7 +92,7 @@ const About = () => {
                 />
               </div>
               <div className="mt-6">
-                <a href="https://drive.google.com/file/d/1jyAbDkfP2rkgPH4148TMWLmF2uzhw0Jr/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
+                <a href="/Islam_Mahrous_Resume.pdf" download="Islam_Mahrous_Resume.pdf" target="_blank" rel="noopener noreferrer">
                   <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl font-semibold gap-2">
                     <Download size={16} />
                     {language.code === 'ar' ? 'تحميل السيرة الذاتية' : 'Download CV'}
