@@ -237,7 +237,7 @@ const Projects = () => {
                       : 'bg-muted text-muted-foreground hover:bg-muted/80'
                   }`}
                 >
-                  {language.code === 'ar' ? (cat === 'All' ? 'الكل' : cat === 'Pre-Opening' ? 'ما قبل الافتتاح' : cat === 'Renovation' ? 'تجديد' : cat === 'Brand Conversion' ? 'تحويل علامة' : 'إدارة المجموعة') : cat}
+                  {categoryLabel(cat)}
                 </button>
               ))}
             </div>
