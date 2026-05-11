@@ -36,26 +36,28 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ isOpen, onClose, post }) 
 
   if (!post) return null;
 
+  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
   const shareUrl = `${window.location.origin}/blog/${post.slug}`;
+  const ogShareUrl = `${SUPABASE_URL}/functions/v1/og-blog/${post.slug}`;
   const readingTime = Math.max(1, Math.ceil((post.content?.split(/\s+/).length || 0) / 200));
 
   const socialLinks = [
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+      url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(ogShareUrl)}`,
       color: 'hover:bg-[#0A66C2] hover:text-white',
     },
     {
       name: 'Twitter',
       icon: Twitter,
-      url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(shareUrl)}`,
+      url: `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(ogShareUrl)}`,
       color: 'hover:bg-[#1DA1F2] hover:text-white',
     },
     {
       name: 'Facebook',
       icon: Facebook,
-      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(ogShareUrl)}`,
       color: 'hover:bg-[#1877F2] hover:text-white',
     },
   ];

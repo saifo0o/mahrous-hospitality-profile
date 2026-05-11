@@ -1,13 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import PageTransition from '@/components/PageTransition';
 import { useLanguage } from '@/context/LanguageContext';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Tag, TrendingUp, Eye, Search, Clock } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { format } from 'date-fns';
-import BlogPostModal from '@/components/BlogPostModal';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Input } from '@/components/ui/input';
@@ -37,8 +37,7 @@ const getReadingTime = (content: string | null | undefined): number => {
 
 const Blog = () => {
   const { language } = useLanguage();
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -58,10 +57,8 @@ const Blog = () => {
     }
   };
 
-  const handlePostClick = async (post: BlogPost) => {
-    setSelectedPost(post);
-    setIsModalOpen(true);
-    await supabase.from('blog_posts').update({ views_count: (post.views_count || 0) + 1 }).eq('id', post.id);
+  const handlePostClick = (post: BlogPost) => {
+    navigate(`/blog/${post.slug}`);
   };
 
   const categories = Array.from(new Set(posts.map(p => p.category).filter(Boolean)));
@@ -209,8 +206,6 @@ const Blog = () => {
             </>
           )}
         </div>
-
-        <BlogPostModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} post={selectedPost} />
       </div>
       <Footer />
     </>

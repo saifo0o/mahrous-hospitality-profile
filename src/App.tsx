@@ -10,6 +10,7 @@ import About from './pages/About';
 import Career from './pages/Career';
 import Projects from './pages/Projects';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import Awards from './pages/Awards';
 import Contact from './pages/Contact';
 import BookConsultation from './pages/BookConsultation';
@@ -51,6 +52,7 @@ const AnimatedRoutes = () => {
         <Route path="/career" element={<Career />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/awards" element={<Awards />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/book-consultation" element={<BookConsultation />} />
