@@ -158,7 +158,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'مكة المكرمة، السعودية / غامبيا' : 'Makkah, KSA / The Gambia',
       period: '2008',
-      image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/makkah-clock-tower.jpg',
       rooms: 1504,
       budget: ar ? '3 أشهر/كل مهمة' : '3 mo / mandate',
       results: ar
