@@ -113,7 +113,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'منطقة مصر' : 'Egypt Region',
       period: '2018 - 2022',
-      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/cairo-marriott.jpg',
       rooms: 3000,
       budget: ar ? '19 عقار' : '19 properties',
       results: ar
