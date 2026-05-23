@@ -103,8 +103,8 @@ const AboutSection = () => {
             </h2>
             <p className="text-muted-foreground mb-4 leading-relaxed text-lg">
               {language.code === 'ar' 
-                ? 'مدير عمليات المجموعة في فنادق برايم بالسعودية، مع أكثر من 30 عامًا من القيادة في الضيافة.'
-                : 'Group Operations Director at Prime Hotels in Saudi Arabia, with over 30 years of hospitality leadership.'
+                ? 'قائد ضيافة متعدد العلامات بأكثر من 30 عامًا من الخبرة، شغلت مؤخرًا منصب مدير عمليات المجموعة في فنادق برايم بالسعودية (حتى مايو 2026).'
+                : 'Multi-brand hospitality executive with 30+ years of experience, most recently Group Operations Director at Prime Hotels in Saudi Arabia (through May 2026).'
               }
             </p>
             <p className="text-muted-foreground mb-10 leading-relaxed">
