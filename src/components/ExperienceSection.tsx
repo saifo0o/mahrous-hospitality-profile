@@ -18,12 +18,12 @@ const ExperienceSection = () => {
       position: language.code === 'ar' ? "مدير عمليات المجموعة" : "Group Operations Director",
       company: language.code === 'ar' ? "مجموعة فنادق برايم" : "Prime Hotels Group",
       location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, Saudi Arabia",
-      period: language.code === 'ar' ? "ديسمبر 2025 - الحاضر" : "Dec 2025 - Present",
+      period: language.code === 'ar' ? "ديسمبر 2025 - مايو 2026" : "Dec 2025 - May 2026",
       description: language.code === 'ar'
-        ? "مسؤولية كاملة عن الأرباح والخسائر والحوكمة التشغيلية لمحفظة سعودية متعددة العلامات، مع خطة توسعة إلى 10,000 غرفة بحلول 2030."
-        : "Full P&L and operational governance across a multi-brand Saudi portfolio, with an expansion roadmap to 10,000 rooms by 2030.",
-      highlight: language.code === 'ar' ? 'حالياً' : 'Current',
-      current: true,
+        ? "قُدت الحوكمة التشغيلية والأرباح والخسائر عبر محفظة سعودية متعددة العلامات، مع وضع خارطة طريق للتوسع إلى 10,000 غرفة بحلول 2030."
+        : "Led P&L and operational governance across a multi-brand Saudi portfolio, setting the roadmap toward 10,000 rooms by 2030.",
+      highlight: language.code === 'ar' ? 'إنجاز حديث' : 'Recently Completed',
+      current: false,
       logo: primeHotelsLogo,
     },
     {
