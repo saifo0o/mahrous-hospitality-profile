@@ -23,7 +23,7 @@ const Projects = () => {
       brand: 'Multi-Brand',
       location: ar ? 'الرياض، السعودية' : 'Riyadh, KSA',
       period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/riyadh-skyline.jpg',
       budget: ar ? 'متعدد العقارات' : 'Multi-Property',
       featured: true,
       results: ar
