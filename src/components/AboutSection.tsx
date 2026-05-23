@@ -76,7 +76,7 @@ const AboutSection = () => {
                   <p className="text-xs font-bold leading-snug">
                     {language.code === 'ar' ? 'مدير عمليات المجموعة' : 'Group Operations Director'}
                   </p>
-                  <p className="text-[10px] opacity-80 mt-0.5">Prime Hotels KSA</p>
+                  <p className="text-[10px] opacity-80 mt-0.5">{language.code === 'ar' ? 'سابقًا – Prime Hotels KSA' : 'Recently – Prime Hotels KSA'}</p>
                 </motion.div>
 
                 {/* Decorative accent frame */}
