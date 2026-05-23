@@ -22,7 +22,7 @@ const Projects = () => {
       role: ar ? 'مدير عمليات المجموعة' : 'Group Operations Director',
       brand: 'Multi-Brand',
       location: ar ? 'الرياض، السعودية' : 'Riyadh, KSA',
-      period: ar ? 'ديسمبر 2025 - الحاضر' : 'Dec 2025 - Present',
+      period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
       image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
       budget: ar ? 'متعدد العقارات' : 'Multi-Property',
       featured: true,
