@@ -23,7 +23,7 @@ const Projects = () => {
       brand: 'Multi-Brand',
       location: ar ? 'الرياض، السعودية' : 'Riyadh, KSA',
       period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/riyadh-skyline.jpg',
       budget: ar ? 'متعدد العقارات' : 'Multi-Property',
       featured: true,
       results: ar
@@ -113,7 +113,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'منطقة مصر' : 'Egypt Region',
       period: '2018 - 2022',
-      image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/cairo-marriott.jpg',
       rooms: 3000,
       budget: ar ? '19 عقار' : '19 properties',
       results: ar
@@ -158,7 +158,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'مكة المكرمة، السعودية / غامبيا' : 'Makkah, KSA / The Gambia',
       period: '2008',
-      image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/makkah-clock-tower.jpg',
       rooms: 1504,
       budget: ar ? '3 أشهر/كل مهمة' : '3 mo / mandate',
       results: ar
