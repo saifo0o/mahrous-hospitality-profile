@@ -40,8 +40,8 @@ const Index = () => {
             : 'Islam Mahrous | Global Hospitality Leader'
           }
           description={language.code === 'ar'
-            ? 'مدير عمليات المجموعة مع 30+ عامًا من الخبرة في عمليات ما قبل الافتتاح والتجديدات وإدارة الأرباح عبر ماريوت وآي إتش جي وأكور.'
-            : 'Group Operations Director with 30+ years leading pre-opening operations, renovations, and P&L management across Marriott, IHG & Accor in MENA.'
+            ? 'قائد ضيافة بـ30+ عامًا من الخبرة عبر ماريوت وآي إتش جي وأكور — مدير عمليات المجموعة لفنادق برايم (ديسمبر 2025 - مايو 2026).'
+            : 'Hospitality leader with 30+ years across Marriott, IHG & Accor — most recently Group Operations Director at Prime Hotels (Dec 2025 – May 2026).'
           }
           tags={['Islam Mahrous', 'hospitality leader', 'group operations director', 'hotel general manager', 'pre-opening expert', 'Marriott', 'IHG', 'Accor', 'Saudi Arabia', 'MENA', 'Prime Hotels']}
           type="website"
@@ -50,7 +50,7 @@ const Index = () => {
         <EnhancedSEOSchema
           type="person"
           title="Islam Mahrous | Global Hospitality Leader"
-          description="Group Operations Director at Prime Hotels with 30+ years of experience in pre-opening, renovations, and operational excellence across MENA."
+          description="Multi-brand hospitality executive with 30+ years of experience in pre-opening, renovations, and operational excellence across MENA. Most recently Group Operations Director at Prime Hotels (through May 2026)."
         />
         
         <ReadingProgress />
