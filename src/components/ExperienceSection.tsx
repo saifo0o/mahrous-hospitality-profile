@@ -16,37 +16,38 @@ const ExperienceSection = () => {
   const experiences = [
     {
       position: language.code === 'ar' ? "مدير عمليات المجموعة" : "Group Operations Director",
-      company: language.code === 'ar' ? "فنادق برايم" : "Prime Hotels",
-      location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
-      period: language.code === 'ar' ? "2025 - الحاضر" : "2025 - Present",
+      company: language.code === 'ar' ? "مجموعة فنادق برايم" : "Prime Hotels Group",
+      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, Saudi Arabia",
+      period: language.code === 'ar' ? "ديسمبر 2025 - الحاضر" : "Dec 2025 - Present",
       description: language.code === 'ar'
-        ? "مسؤول عن عمليات الفنادق على مستوى المجموعة، يشرف على محفظة متعددة العلامات التجارية مع خطة نمو لبلوغ 10,000 غرفة."
-        : "Full responsibility for group-wide hotel operations overseeing a multi-brand portfolio with a growth strategy to reach 10,000 rooms by 2030.",
+        ? "مسؤولية كاملة عن الأرباح والخسائر والحوكمة التشغيلية لمحفظة سعودية متعددة العلامات، مع خطة توسعة إلى 10,000 غرفة بحلول 2030."
+        : "Full P&L and operational governance across a multi-brand Saudi portfolio, with an expansion roadmap to 10,000 rooms by 2030.",
       highlight: language.code === 'ar' ? 'حالياً' : 'Current',
       current: true,
       logo: primeHotelsLogo,
     },
     {
-      position: language.code === 'ar' ? "المدير العام" : "General Manager",
-      company: language.code === 'ar' ? "كراون بلازا الإسكندرية ميراج" : "Crowne Plaza Alexandria",
-      location: language.code === 'ar' ? "الإسكندرية" : "Alexandria, Egypt",
-      period: "2025",
-      description: language.code === 'ar'
-        ? "قيادة التحويل الكامل للعلامة التجارية من عقار مستقل إلى كراون بلازا مع 100% امتثال آي إتش جي."
-        : "Led full brand conversion from independent property into Crowne Plaza with 100% IHG compliance.",
-      highlight: language.code === 'ar' ? 'تحويل العلامة' : 'Brand Conversion',
-      logo: ihgLogo,
-    },
-    {
-      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner's Rep (Pre-Opening)",
-      company: language.code === 'ar' ? "فور بوينتس باي شيراتون" : "Four Points by Sheraton",
-      location: language.code === 'ar' ? "الرياض" : "Riyadh, KSA",
-      period: "2024 - 2025",
+      position: language.code === 'ar' ? "ممثل المالك (ما قبل الافتتاح)" : "Owner's Representative (Pre-Opening)",
+      company: language.code === 'ar' ? "فور بوينتس باي شيراتون - طريق الملك عبدالعزيز" : "Four Points by Sheraton, KAR",
+      location: language.code === 'ar' ? "الرياض، المملكة العربية السعودية" : "Riyadh, Saudi Arabia",
+      period: language.code === 'ar' ? "أبريل 2023 - يوليو 2025" : "Apr 2023 - Jul 2025",
       rooms: 172,
       description: language.code === 'ar'
-        ? "أشرف على مشروع تطوير فندقي بقيمة $50M+، وظّف فريق ما قبل الافتتاح 150+ موظف."
-        : "Oversaw $50M+ hotel development project. Recruited 150+ pre-opening team targeting $25M+ annual revenue.",
+        ? "إدارة دورة التطوير وما قبل الافتتاح كاملةً لمشروع ماريوت جديد بـ172 غرفة، مع تخفيض الميزانية بنسبة 12٪ وتوظيف 150+ موظفاً."
+        : "Led full development and pre-opening cycle for a 172-room Marriott new-build — −12% budget reduction and 150+ pre-opening hires.",
       highlight: language.code === 'ar' ? 'استشاري الملكية' : 'Ownership Advisory',
+      logo: sheratonLogo,
+    },
+    {
+      position: language.code === 'ar' ? "المدير العام" : "General Manager",
+      company: language.code === 'ar' ? "شيراتون المنتزه - ماريوت" : "Sheraton Montazah, Marriott",
+      location: language.code === 'ar' ? "الإسكندرية، مصر" : "Alexandria, Egypt",
+      period: language.code === 'ar' ? "يونيو 2014 - مارس 2023" : "Jun 2014 - Mar 2023",
+      rooms: 288,
+      description: language.code === 'ar'
+        ? "9 سنوات بمسؤولية كاملة عن الأرباح والخسائر: +25٪ RevPAR، +30٪ رضا الضيوف، −15٪ طاقة، −20٪ صيانة، مع أكبر تجديد في تاريخ الفندق."
+        : "9-year P&L tenure: +25% RevPAR, +30% guest satisfaction, −15% energy, −20% maintenance, culminating in the property's largest-ever renovation.",
+      highlight: language.code === 'ar' ? 'تميز المحفظة' : 'Portfolio Excellence',
       logo: sheratonLogo,
     }
   ];
