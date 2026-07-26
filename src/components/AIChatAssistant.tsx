@@ -181,7 +181,8 @@ const AIChatAssistant = () => {
     <>
       {/* Chat Button */}
       <motion.div
-        className={`fixed z-50 ${isRTL ? 'left-6' : 'right-6'} ${isOpen ? 'bottom-[500px]' : 'bottom-24'}`}
+        className={`fixed z-50 ${isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'} ${isOpen ? 'bottom-[500px]' : 'bottom-20 sm:bottom-24'}`}
+        style={{ paddingBottom: isOpen ? undefined : 'env(safe-area-inset-bottom, 0px)' }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1.2 }}
@@ -226,7 +227,8 @@ const AIChatAssistant = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className={`fixed z-40 ${isRTL ? 'left-6' : 'right-6'} bottom-24 w-96 max-w-[calc(100vw-3rem)]`}
+            className={`fixed z-40 ${isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'} bottom-20 sm:bottom-24 w-96 max-w-[calc(100vw-3rem)]`}
+            style={{ marginBottom: 'env(safe-area-inset-bottom, 0px)' }}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
