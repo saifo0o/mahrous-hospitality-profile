@@ -79,7 +79,7 @@ const Footer = () => {
                 </Button>
               </Link>
               <a href={socialLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <Button variant="outline" className="w-full sm:w-auto border-border/80 text-foreground hover:bg-muted/30 rounded-sm px-8 py-6 text-sm transition-all duration-300 bg-transparent font-semibold">
+                <Button variant="outline" className="w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:border-primary-foreground/60 rounded-sm px-8 py-6 text-sm transition-all duration-300 bg-transparent font-semibold">
                   <span>{ar ? 'تواصل عبر واتساب' : 'Message on WhatsApp'}</span>
                 </Button>
               </a>

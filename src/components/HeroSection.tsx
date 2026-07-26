@@ -7,13 +7,17 @@ import EnhancedButton from './EnhancedButton';
 import { FloatingDecoration, GradientMesh } from './EnhancedVisualEffects';
 
 const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?: number; className?: string }) => {
-  const letters = Array.from(text);
-  
+  // Split on words, not characters: Arabic is a cursive script whose glyphs
+  // change shape based on neighboring letters, so wrapping each character in
+  // its own span breaks that shaping (and mid-word line-wrapping) — a word is
+  // the smallest unit that's safe to isolate in its own inline box.
+  const words = text.split(' ');
+
   const container = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.03, delayChildren: delay }
+      transition: { staggerChildren: 0.05, delayChildren: delay }
     }
   };
 
@@ -37,15 +41,13 @@ const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?
       initial="hidden"
       animate="visible"
     >
-      {letters.map((char, index) => (
-        <motion.span
-          key={index}
-          variants={child}
-          className="inline-block"
-          style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
-        >
-          {char}
-        </motion.span>
+      {words.map((word, index) => (
+        <React.Fragment key={index}>
+          <motion.span variants={child} className="inline-block">
+            {word}
+          </motion.span>
+          {index < words.length - 1 && ' '}
+        </React.Fragment>
       ))}
     </motion.span>
   );
