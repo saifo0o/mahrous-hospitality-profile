@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
+import { MedallionSeal } from '@/components/ui/AwardMedallion';
 
 const AwardsSection = () => {
   const { t, language } = useLanguage();
@@ -107,8 +108,8 @@ const AwardsSection = () => {
               className="group relative bg-primary-foreground/[0.03] p-8 rounded-sm border border-primary-foreground/15 hover:border-accent/50 transition-colors duration-500 flex flex-col items-center text-center"
             >
               {/* Icon */}
-              <div className="relative z-10 mb-6 p-4 bg-accent/15 rounded-full">
-                {award.icon}
+              <div className="relative z-10 mb-6 flex justify-center">
+                <MedallionSeal type={index === 0 ? 'marriott' : index === 1 ? 'starwood' : 'general'} className="w-20 h-20" />
               </div>
 
               {/* Content */}

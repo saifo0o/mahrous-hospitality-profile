@@ -16,6 +16,8 @@ import {
   TrendingDown, Smile, Heart, ExternalLink, Phone, Mail, Linkedin, Award,
   Sparkles,
 } from 'lucide-react';
+import KaizenDiagram from '@/components/KaizenDiagram';
+import { SystemsBuilderBanner, FieldOperatorBanner, MentorCoachBanner } from '@/components/ui/service-banners';
 
 export default function Consulting() {
   const { language, isRTL } = useLanguage();
@@ -28,9 +30,24 @@ export default function Consulting() {
 
   // ── Executive archetypes ─────────────────────────────────
   const archetypes = [
-    { icon: Layers, title: ar ? 'باني منظومات العمل' : 'Systems Builder', desc: ar ? 'منهجي، يعتمد الهيكلة العميقة والبيانات' : 'Methodical — grounded in deep structure and data' },
-    { icon: Zap, title: ar ? 'المشغّل الميداني' : 'Field Operator', desc: ar ? 'يركّز على التنفيذ ويحمي الأصول بمرونة' : 'Execution-focused, protecting assets with agility' },
-    { icon: GraduationCap, title: ar ? 'المرشد والموجّه' : 'Mentor & Coach', desc: ar ? 'يبني القدرات ويوجّه القيادات للنجاح' : 'Builds capability and guides leaders to succeed' },
+    { 
+      icon: Layers, 
+      title: ar ? 'باني منظومات العمل' : 'Systems Builder', 
+      desc: ar ? 'منهجي، يعتمد الهيكلة العميقة والبيانات' : 'Methodical — grounded in deep structure and data',
+      banner: <SystemsBuilderBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
+    },
+    { 
+      icon: Zap, 
+      title: ar ? 'المشغّل الميداني' : 'Field Operator', 
+      desc: ar ? 'يركّز على التنفيذ ويحمي الأصول بمرونة' : 'Execution-focused, protecting assets with agility',
+      banner: <FieldOperatorBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
+    },
+    { 
+      icon: GraduationCap, 
+      title: ar ? 'المرشد والموجّه' : 'Mentor & Coach', 
+      desc: ar ? 'يبني القدرات ويوجّه القيادات للنجاح' : 'Builds capability and guides leaders to succeed',
+      banner: <MentorCoachBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
+    },
   ];
 
   // ── Vision / Mission / Purpose ────────────────────────────
@@ -296,7 +313,7 @@ export default function Consulting() {
                   </p>
                 </motion.div>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {archetypes.map((item, i) => (
                     <motion.div
                       key={i}
@@ -304,14 +321,17 @@ export default function Consulting() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1, duration: 0.5 }}
-                      className="flex items-start gap-4 p-5 rounded-sm bg-card border border-border hover:border-accent/40 transition-colors duration-300"
+                      className="p-5 rounded-sm bg-card border border-border hover:border-accent/40 transition-colors duration-300 flex flex-col justify-between"
                     >
-                      <div className="w-10 h-10 rounded-sm bg-accent/8 flex items-center justify-center flex-shrink-0">
-                        <item.icon size={18} className="text-accent" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground text-sm">{item.title}</h3>
-                        <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.desc}</p>
+                      {item.banner}
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-sm bg-accent/8 flex items-center justify-center flex-shrink-0">
+                          <item.icon size={18} className="text-accent" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground text-base">{item.title}</h3>
+                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 leading-relaxed font-light">{item.desc}</p>
+                        </div>
                       </div>
                     </motion.div>
                   ))}
@@ -502,28 +522,8 @@ export default function Consulting() {
                 </div>
               </motion.div>
 
-              {/* Kaizen model */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-card border border-border rounded-sm p-8 max-w-4xl mx-auto text-center"
-              >
-                <h3 className="font-semibold text-foreground text-base mb-3">{ar ? 'نموذج كايزن' : 'Kaizen Model'}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto mb-6">
-                  {ar
-                    ? 'نموذج تشغيلي رشيق يحوّل التحسين إلى ثقافة يومية راسخة، يستهدف نمو الإيرادات، خفض التكاليف، رضا العملاء، ورضا الموظفين.'
-                    : 'A lean operating model turning improvement into daily culture — targeting revenue growth, cost reduction, guest satisfaction and employee engagement.'}
-                </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {kaizenChips.map((chip, i) => (
-                    <span key={i} className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-sm bg-muted/40 border border-border/40 text-xs font-semibold text-foreground/90">
-                      <chip.icon size={13} className="text-accent" />
-                      {chip.label}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
+              {/* Interactive Kaizen Diagram */}
+              <KaizenDiagram />
             </div>
           </section>
 

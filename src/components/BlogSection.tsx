@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import BlogPostModal from './BlogPostModal';
+import { BlogCover } from '@/components/ui/blog-covers';
 
 interface BlogPost {
   id: string;
@@ -125,20 +126,17 @@ const BlogSection = () => {
               onClick={() => handlePostClick(featuredPost)}
             >
               <div className="grid md:grid-cols-2 gap-0">
-                {featuredPost.image_url && (
-                  <div className="h-64 md:h-full overflow-hidden relative">
-                    <img
-                      src={featuredPost.image_url}
-                      alt={featuredPost.title}
-                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/10" />
-                    <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground font-semibold rounded-sm">
-                      {language.code === 'ar' ? 'مقال مميز' : 'Featured'}
-                    </Badge>
-                  </div>
-                )}
+                <div className="h-64 md:h-full overflow-hidden relative">
+                  <BlogCover
+                    title={featuredPost.title}
+                    category={featuredPost.category || undefined}
+                    imageUrl={featuredPost.image_url}
+                    className="w-full h-full"
+                  />
+                  <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground font-semibold rounded-sm z-20 shadow">
+                    {language.code === 'ar' ? 'مقال مميز' : 'Featured'}
+                  </Badge>
+                </div>
                 <div className="p-8 md:p-10 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4 flex-wrap">
                     {featuredPost.category && (
@@ -189,17 +187,14 @@ const BlogSection = () => {
                   onClick={() => handlePostClick(post)}
                 >
                   <CardHeader className="relative pb-0 flex-shrink-0">
-                    {post.image_url && (
-                      <div className="w-full h-48 mb-4 rounded-lg overflow-hidden relative">
-                        <img
-                          src={post.image_url}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                    )}
+                    <div className="w-full h-48 mb-4 rounded-sm overflow-hidden relative">
+                      <BlogCover
+                        title={post.title}
+                        category={post.category || undefined}
+                        imageUrl={post.image_url}
+                        className="w-full h-full"
+                      />
+                    </div>
                     <div className="flex items-center gap-2 mb-3 flex-wrap">
                       {post.category && (
                         <Badge variant="secondary" className="text-xs font-semibold rounded-sm">
