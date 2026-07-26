@@ -70,8 +70,8 @@ export const contactInfo: ContactItem[] = [
     labelEn: 'Location',
     labelAr: 'الموقع',
     value: '',
-    regionEn: 'Cairo, Egypt',
-    regionAr: 'القاهرة، مصر',
+    regionEn: 'Alexandria, Egypt',
+    regionAr: 'الإسكندرية، مصر',
   },
   {
     labelEn: 'Phone (Egypt)',
@@ -80,14 +80,6 @@ export const contactInfo: ContactItem[] = [
     href: 'tel:+201095556779',
     regionEn: 'EG',
     regionAr: 'مصر',
-  },
-  {
-    labelEn: 'Phone (KSA)',
-    labelAr: 'الهاتف (السعودية)',
-    value: '+966 55 374 1020',
-    href: 'tel:+966553741020',
-    regionEn: 'KSA',
-    regionAr: 'السعودية',
   },
   {
     labelEn: 'Email',
