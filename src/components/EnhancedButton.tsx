@@ -23,7 +23,7 @@ const EnhancedButton: React.FC<EnhancedButtonProps> = ({
   
   const variantClasses = {
     default: "bg-primary hover:bg-primary/90 text-primary-foreground",
-    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
+    outline: "border-2 border-primary text-foreground hover:bg-primary hover:text-primary-foreground",
     ghost: "hover:bg-accent hover:text-accent-foreground",
     luxury: "bg-accent text-accent-foreground font-semibold shadow-gold-sm hover:shadow-gold-md hover:bg-accent/90",
     glow: "bg-primary text-primary-foreground shadow-lg hover:shadow-accent/30"
@@ -41,6 +41,14 @@ const EnhancedButton: React.FC<EnhancedButtonProps> = ({
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
       <Button
+        // Ghost has no base background of its own (unlike the shadcn default
+        // variant, which is solid bg-primary) — that's what every variant
+        // here needs to start from, since "outline"/"ghost" assume a
+        // transparent base and only variantClasses above add a background.
+        // Without forcing this, those two variants silently inherited
+        // shadcn's solid dark bg-primary, which combined with dark text
+        // rendered as invisible ink-on-ink buttons.
+        variant="ghost"
         className={cn(
           baseClasses,
           variantClasses[variant],
