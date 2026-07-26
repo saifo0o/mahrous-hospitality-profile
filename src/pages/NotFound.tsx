@@ -1,48 +1,75 @@
-
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Home, ArrowLeft } from 'lucide-react';
+import { Home, Briefcase, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
+import PageTransition from '@/components/PageTransition';
 
-const NotFound = () => {
+export default function NotFound() {
   const location = useLocation();
+  const { language, isRTL } = useLanguage();
 
   useEffect(() => {
-    console.error('404 Error:', location.pathname);
+    console.error('404 Error at path:', location.pathname);
   }, [location.pathname]);
 
+  const ar = language.code === 'ar';
+
+  const quickLinks = [
+    { icon: Home, label: ar ? 'الرئيسية' : 'Home', path: '/' },
+    { icon: Briefcase, label: ar ? 'المشاريع' : 'Projects', path: '/projects' },
+    { icon: Mail, label: ar ? 'اتصل بي' : 'Contact', path: '/contact' },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Navbar />
+    <PageTransition>
+      <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : 'text-left'}`}>
+        <Navbar />
 
-      <main className="flex-grow flex items-center justify-center py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center px-4"
-        >
-          <h1 className="text-8xl font-bold font-playfair text-foreground mb-2">404</h1>
-          <div className="w-16 h-1 bg-accent mx-auto mb-6 rounded-full" />
-          <p className="text-xl text-muted-foreground mb-2">Page not found</p>
-          <p className="text-muted-foreground/70 max-w-md mx-auto mb-8 text-sm">
-            The page you're looking for doesn't exist or has been moved.
-          </p>
-          <Link to="/">
-            <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl px-8 py-6 font-semibold gap-2">
-              <Home size={16} />
-              Return to Home
-            </Button>
-          </Link>
-        </motion.div>
-      </main>
+        <main id="main" className="flex-grow flex items-center justify-center py-24 px-4 relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full max-w-lg mx-auto text-center bg-card border border-border p-8 sm:p-12 rounded-sm relative z-10"
+          >
+            <span className="font-playfair text-2xl text-accent tracking-wider">IM</span>
+            <h1 className="text-6xl sm:text-7xl md:text-8xl font-light font-playfair text-foreground mt-4 mb-2">404</h1>
+            <div className="w-12 h-px bg-accent mx-auto mb-6" />
+            
+            <h2 className="text-xl sm:text-2xl font-playfair font-normal text-foreground mb-3">
+              {ar ? 'الصفحة غير موجودة' : 'Page not found'}
+            </h2>
+            <p className="text-muted-foreground max-w-md mx-auto mb-8 text-sm sm:text-base leading-relaxed">
+              {ar 
+                ? 'عذرًا، الصفحة التي تبحث عنها لم تعد موجودة أو ربما تم نقلها إلى عنوان آخر.' 
+                : "The page you're looking for doesn't exist or has been moved."}
+            </p>
 
-      <Footer />
-    </div>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {quickLinks.map((link) => (
+                <Link key={link.path} to={link.path}>
+                  <Button
+                    variant={link.path === '/' ? 'default' : 'outline'}
+                    className={`rounded-sm px-5 py-4 text-sm font-semibold gap-2 transition-colors duration-300 ${
+                      link.path === '/'
+                        ? 'bg-accent hover:bg-accent/90 text-accent-foreground'
+                        : 'border-border hover:border-accent'
+                    }`}
+                  >
+                    <link.icon size={15} />
+                    {link.label}
+                  </Button>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        </main>
+
+        <Footer />
+      </div>
+    </PageTransition>
   );
-};
-
-export default NotFound;
+}

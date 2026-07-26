@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building, Calendar, MapPin, BarChart, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Building, Calendar, MapPin, BarChart, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -41,6 +42,7 @@ const Projects = () => {
       image: '/images/crowne-plaza-alexandria.jpg',
       rooms: 96,
       budget: ar ? '4 أشهر' : '4 months',
+      caseStudySlug: 'crowne-plaza-mirage-conversion',
       results: ar
         ? ['100٪ امتثال IHG من خط بداية صفر', 'نشر Opera Cloud + Concerto', 'جاهزية تدقيق العلامة دون اضطراب']
         : ['100% IHG compliance from zero baseline', 'Deployed Opera Cloud + Concerto', 'Brand-audit ready, zero guest disruption'],
@@ -53,7 +55,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'الرياض، السعودية' : 'Riyadh, KSA',
       period: ar ? 'أبريل 2023 - يوليو 2025' : 'Apr 2023 - Jul 2025',
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/caption_kgnuht.jpg',
       rooms: 172,
       budget: '−12% budget',
       results: ar
@@ -68,9 +70,10 @@ const Projects = () => {
       brand: ar ? 'فاخر مستقل' : 'Independent Luxury',
       location: ar ? 'الغردقة، مصر' : 'Hurghada, Egypt',
       period: ar ? 'مايو 2023 - مارس 2024' : 'May 2023 - Mar 2024',
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/photo-hurghada-18_krbjex.jpg',
       rooms: 298,
       budget: ar ? 'إطلاق فاخر' : 'Luxury Launch',
+      caseStudySlug: 'v-luxury-resort-pre-opening',
       results: ar
         ? ['90٪ إشغال خلال 4 أشهر', '+12٪ رضا الضيوف في الربع الافتتاحي', '300+ عضو فريق تم تدريبه']
         : ['90% occupancy in 4 months', '+12% guest satisfaction (opening quarter)', '300+ pre-opening team trained'],
@@ -83,7 +86,7 @@ const Projects = () => {
       brand: ar ? 'مستقل' : 'Independent',
       location: ar ? 'بورسعيد، مصر' : 'Port Said, Egypt',
       period: ar ? 'أبريل - أغسطس 2024' : 'Apr - Aug 2024',
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/377246827_sqf4sq.jpg',
       rooms: 168,
       budget: '$3.5M',
       results: ar
@@ -98,9 +101,10 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt',
       period: '2014 - 2023',
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/2025-05-31_nclbzr.webp',
       rooms: 288,
       budget: ar ? 'تجديد شامل' : 'Full Renovation',
+      caseStudySlug: 'sheraton-montazah-renovation',
       results: ar
         ? ['+25٪ RevPAR • +30٪ رضا', '−15٪ طاقة • −20٪ صيانة', 'تجاوز المنافسين عبر دورات سوق متعددة']
         : ['+25% RevPAR • +30% satisfaction', '−15% energy • −20% maintenance', 'Outperformed comp set across cycles'],
@@ -128,7 +132,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'الجونة، مصر' : 'El Gouna, Egypt',
       period: '2011 - 2014',
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
       rooms: 339,
       budget: '$5M',
       results: ar
@@ -143,7 +147,7 @@ const Projects = () => {
       brand: 'Starwood',
       location: ar ? 'طرابلس، ليبيا' : 'Tripoli, Libya',
       period: ar ? 'ديسمبر 2009 - يونيو 2011' : 'Dec 2009 - Jun 2011',
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
       rooms: 718,
       budget: ar ? 'مزدوج العلامة' : 'Dual-Brand Cluster',
       results: ar
@@ -169,17 +173,20 @@ const Projects = () => {
 
   const categories = ['All', 'Pre-Opening', 'Renovation', 'Brand Conversion', 'Turnaround', 'Group Management', 'Portfolio Excellence'];
 
+  const featuredProject = projects.find(p => p.caseStudySlug === 'sheraton-montazah-renovation') || projects[5];
+  const secondaryProjects = projects.filter(p => p.caseStudySlug !== 'sheraton-montazah-renovation');
+
   const filteredProjects = activeFilter === 'All'
-    ? projects
-    : projects.filter(p => p.category === activeFilter);
+    ? secondaryProjects
+    : secondaryProjects.filter(p => p.category === activeFilter);
 
   const categoryColors: Record<string, string> = {
-    'Pre-Opening': 'bg-primary/10 text-primary',
-    'Renovation': 'bg-accent/10 text-accent-foreground',
-    'Brand Conversion': 'bg-emerald-500/10 text-emerald-700',
-    'Turnaround': 'bg-rose-500/10 text-rose-700',
-    'Group Management': 'bg-purple-500/10 text-purple-700',
-    'Portfolio Excellence': 'bg-amber-500/10 text-amber-700',
+    'Pre-Opening': 'bg-luxury-gold/15 text-luxury-gold border border-luxury-gold/20',
+    'Renovation': 'bg-luxury-emerald/15 text-luxury-emerald border border-luxury-emerald/20',
+    'Brand Conversion': 'bg-luxury-emerald/10 text-luxury-emerald border border-luxury-emerald/25',
+    'Turnaround': 'bg-red-500/10 text-red-500 border border-red-500/20',
+    'Group Management': 'bg-luxury-gold/10 text-luxury-gold border border-luxury-gold/20',
+    'Portfolio Excellence': 'bg-luxury-charcoal/10 text-luxury-charcoal border border-luxury-charcoal/20 dark:bg-muted/50 dark:text-muted-foreground',
   };
 
   const categoryLabel = (cat: string) => {
@@ -196,114 +203,308 @@ const Projects = () => {
     return map[cat] || cat;
   };
 
+  const billboardStats = [
+    { value: '+25%', label: ar ? 'نمو RevPAR' : 'RevPAR Growth' },
+    { value: '288', label: ar ? 'غرفة فاخرة' : 'Luxury Rooms' },
+    { value: ar ? '9 سنوات' : '9 Years', label: ar ? 'ولاية المدير العام' : 'GM Tenure' },
+  ];
+
+  const billboardResults = ar
+    ? [
+        '+25٪ في عائد الغرفة المتاحة (RevPAR) • +30٪ زيادة في رضا الضيوف',
+        '−15٪ استهلاك طاقة أقل • −20٪ تكاليف صيانة وتطوير',
+        'تجاوز أداء مجموعة المنافسين الإقليمية عبر دورات سوق متعددة',
+      ]
+    : [
+        '+25% RevPAR growth • +30% guest satisfaction rating',
+        '−15% energy consumption • −20% maintenance overhead',
+        'Outperformed regional competitor set across multiple market cycles',
+      ];
+
   return (
     <PageTransition>
-      <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
+      <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
         <Navbar />
 
         <main className="flex-grow pt-28 pb-20">
-          {/* Header */}
-          <section className="container mx-auto px-4 md:px-8 mb-10">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 mb-5">
-                <span className="h-px w-8 bg-accent/60" />
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold flex items-center gap-1.5">
-                  <Building size={12} />
-                  {language.code === 'ar' ? '$70M+ في المشاريع' : '$70M+ in Projects Delivered'}
-                </p>
-                <span className="h-px w-8 bg-accent/60" />
+          <div className="container mx-auto px-4 md:px-8 mb-8">
+            <BreadcrumbNav items={[{ label: language.code === 'ar' ? 'المشاريع' : 'Projects', active: true }]} />
+          </div>
+
+          {/* Page Header */}
+          <section className="container mx-auto px-4 md:px-8 mb-16">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
+              <div className="section-eyebrow">
+                <Building size={12} />
+                {language.code === 'ar' ? 'أكثر من ٧٠ مليون دولار ميزانيات مشاريع مدارة' : 'Over $70M in projects delivered'}
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-foreground mb-5 leading-[1.1]">
-                {language.code === 'ar' ? 'المشاريع المميزة' : 'Signature Projects'}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-5 leading-[1.1]">
+                {language.code === 'ar' ? 'مشاريع وإنجازات الضيافة' : 'Signature Projects'}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed font-light font-sans">
                 {language.code === 'ar'
-                  ? 'تجديدات تحويلية وافتتاحات ناجحة تُظهر خبرتي في الضيافة عبر الشرق الأوسط وشمال أفريقيا.'
-                  : 'Transformative renovations and successful pre-openings showcasing hospitality expertise across MENA.'}
+                  ? 'سلسلة من المشروعات الفندقية الكبرى التي أشرفت على افتتاحها وتطويرها وإعادة تجديدها لصالح جهات مالكة وعلامات تجارية عالمية.'
+                  : 'Transformative renovations, brand integrations, and pre-openings deployed across the MENA region.'}
               </p>
             </motion.div>
           </section>
 
-          {/* Filter Tabs */}
-          <section className="container mx-auto px-4 md:px-8 mb-10">
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveFilter(cat)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeFilter === cat
-                      ? 'bg-primary text-primary-foreground shadow-sm'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                  }`}
-                >
-                  {categoryLabel(cat)}
-                </button>
-              ))}
+          {/* Featured Project Billboard */}
+          <section className="container mx-auto px-4 md:px-8 mb-20">
+            <div className="mb-6 flex items-center gap-2.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-accent animate-pulse" />
+              <h2 className="text-xs uppercase tracking-[0.2em] text-foreground font-bold font-sans">
+                {ar ? 'المشروع الرئيسي المميز' : 'FEATURED FLAGSHIP KEY PROJECT'}
+              </h2>
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-card rounded-sm border border-accent/20 overflow-hidden transition-colors duration-500 group"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+
+                {/* Image panel */}
+                <div className="relative lg:col-span-7 xl:col-span-8 overflow-hidden min-h-[350px] md:min-h-[500px]">
+                  <img
+                    src={featuredProject.image}
+                    alt={featuredProject.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/90 via-black/30 to-transparent pointer-events-none" />
+
+                  {/* Category overlay */}
+                  <div className="absolute top-6 start-6 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-sm bg-accent text-accent-foreground text-xs font-bold uppercase tracking-wider">
+                      {ar ? 'إعادة هيكلة وتطوير شامل' : 'Asset Leadership'}
+                    </span>
+                  </div>
+
+                  {/* Mobile header details */}
+                  <div className="absolute bottom-6 start-6 end-6 text-white block lg:hidden">
+                    <p className="text-[10px] uppercase tracking-widest text-accent font-semibold mb-1">
+                      {featuredProject.brand} • {featuredProject.period}
+                    </p>
+                    <h3 className="text-3xl font-playfair font-normal leading-tight">
+                      {featuredProject.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Right details panel */}
+                <div className="lg:col-span-5 xl:col-span-4 p-8 lg:p-10 flex flex-col justify-between bg-card border-t lg:border-t-0 lg:border-s border-border/40 relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.015] to-transparent pointer-events-none" />
+                  
+                  <div className="relative z-10">
+                    <div className="hidden lg:flex items-center gap-3 mb-4">
+                      <span className={`inline-block px-3 py-1.5 rounded-sm text-[10px] font-bold uppercase tracking-wider ${categoryColors[featuredProject.category]}`}>
+                        {ar ? featuredProject.categoryAr : featuredProject.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground">•</span>
+                      <span className="text-xs text-muted-foreground flex items-center gap-1.5 font-semibold">
+                        <MapPin size={13} className="text-accent" />
+                        {featuredProject.location}
+                      </span>
+                    </div>
+
+                    <h3 className="hidden lg:block text-3xl font-playfair font-normal text-foreground mb-3 leading-tight">
+                      {featuredProject.title}
+                    </h3>
+                    
+                    <p className="text-sm text-accent font-bold mb-6 font-sans">
+                      {featuredProject.role}
+                    </p>
+
+                    {/* Stats Dashboard */}
+                    <div className="grid grid-cols-3 gap-2 border-y border-border/50 py-5 mb-6">
+                      {billboardStats.map((stat, i) => (
+                        <div key={i} className={`text-center ${i === 1 ? 'border-x border-border/50 px-2' : ''}`}>
+                          <div className="text-2xl font-bold font-playfair text-accent">{stat.value}</div>
+                          <div className="text-[9px] uppercase tracking-widest text-muted-foreground mt-1 font-semibold">
+                            {stat.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Key Results list */}
+                    <div className="space-y-4 mb-8">
+                      <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">
+                        {ar ? 'أبرز الإنجازات والنتائج المحققة' : 'KEY AUDIT OUTCOMES'}
+                      </h4>
+                      <ul className="space-y-3">
+                        {billboardResults.map((result, i) => (
+                          <li key={i} className="flex items-start gap-3.5 text-sm text-foreground/90 leading-relaxed font-sans">
+                            <ShieldCheck size={16} className="text-luxury-emerald mt-0.5 flex-shrink-0" />
+                            <span>{result}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Case Study Link */}
+                  {featuredProject.caseStudySlug && (
+                    <div className="pt-6 border-t border-border/40 relative z-10 flex">
+                      <Link
+                        to={`/projects/${featuredProject.caseStudySlug}`}
+                        className="w-full inline-flex items-center justify-between text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent border border-border hover:border-accent/40 rounded-sm px-5 py-4 bg-transparent transition-colors duration-300"
+                      >
+                        <span>{ar ? 'اقرأ دراسة الحالة الكاملة' : 'Read Case Study Details'}</span>
+                        <ArrowRight size={14} className={isRTL ? 'rotate-180' : ''} />
+                      </Link>
+                    </div>
+                  )}
+
+                </div>
+
+              </div>
+            </motion.div>
+          </section>
+
+          {/* Filter Categories Segment */}
+          <section className="container mx-auto px-4 md:px-8 mb-12">
+            <div className="flex flex-col gap-4">
+              <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-bold">
+                {ar ? 'تصفية المشاريع حسب التصنيف' : 'FILTER PORTFOLIO'}
+              </p>
+              <div className="flex flex-wrap gap-2.5 pb-4 border-b border-border/40">
+                {categories.map((cat) => {
+                  const isActive = activeFilter === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveFilter(cat)}
+                      className={`px-4 py-2.5 rounded-sm text-xs font-bold tracking-wider uppercase transition-colors duration-300 border ${
+                        isActive
+                          ? 'bg-accent text-accent-foreground border-accent'
+                          : 'bg-card text-muted-foreground hover:text-foreground border-border/50 hover:border-accent/30'
+                      }`}
+                    >
+                      {categoryLabel(cat)}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </section>
 
-          {/* Projects Grid */}
+          {/* Projects Portfolio Grid */}
           <section className="container mx-auto px-4 md:px-8">
-            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div 
+              layout 
+              className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            >
               <AnimatePresence mode="popLayout">
-                {filteredProjects.map((project, index) => (
-                  <motion.div
-                    key={project.title}
+                {filteredProjects.length === 0 ? (
+                  <motion.div 
                     layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className={`bg-card rounded-xl border border-border/50 overflow-hidden hover:shadow-lg transition-all duration-300 group ${project.featured ? 'md:col-span-2' : ''}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="col-span-full py-16 text-center bg-card border border-border/40 rounded-sm"
                   >
-                    {/* Image */}
-                    <div className={`relative overflow-hidden ${project.featured ? 'h-72' : 'h-56'}`}>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-medium ${categoryColors[project.category] || 'bg-muted text-muted-foreground'}`}>
-                          {language.code === 'ar' ? project.categoryAr : project.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-lg font-semibold text-foreground mb-1">{project.title}</h3>
-                      <p className="text-xs text-accent-foreground font-medium mb-3">
-                        {project.role}{project.brand ? ` • ${project.brand}` : ''}
-                      </p>
-
-                      <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
-                        <span className="flex items-center gap-1"><MapPin size={12} />{project.location}</span>
-                        <span className="flex items-center gap-1"><Calendar size={12} />{project.period}</span>
-                        {project.rooms && project.rooms > 0 && (
-                          <span className="flex items-center gap-1"><Building size={12} />{project.rooms} {language.code === 'ar' ? 'غرفة' : 'rooms'}</span>
-                        )}
-                        <span className="flex items-center gap-1"><BarChart size={12} />{project.budget}</span>
-                      </div>
-
-                      <div className="space-y-1.5">
-                        {project.results.map((result, i) => (
-                          <div key={i} className="flex items-center gap-2 text-sm text-foreground">
-                            <CheckCircle2 size={14} className="text-accent-foreground flex-shrink-0" />
-                            {result}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <p className="text-muted-foreground">{ar ? 'لا توجد مشاريع مضافة في هذا القسم حالياً.' : 'No projects found in this category.'}</p>
                   </motion.div>
-                ))}
+                ) : (
+                  filteredProjects.map((project) => {
+                    const isWideCard = project.rooms && project.rooms > 500;
+                    return (
+                      <motion.div
+                        layout
+                        key={project.title}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className={`bg-card rounded-sm border border-border/40 overflow-hidden hover:border-accent/40 transition-colors duration-500 flex flex-col ${
+                          isWideCard ? 'md:col-span-2 md:flex-row' : ''
+                        }`}
+                      >
+                        {/* Image component */}
+                        <div className={`relative overflow-hidden ${
+                          isWideCard ? 'md:w-1/2 aspect-[16/10] md:aspect-auto' : 'aspect-[16/10]'
+                        }`}>
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+
+                          {/* Category chip */}
+                          <div className="absolute top-4 start-4">
+                            <span className={`inline-block px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-wider ${categoryColors[project.category]}`}>
+                              {ar ? project.categoryAr : project.category}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Text component */}
+                        <div className={`p-6 md:p-8 flex flex-col justify-between flex-1 ${
+                          isWideCard ? 'md:w-1/2' : 'flex-grow'
+                        }`}>
+                          <div>
+                            <h3 className="text-xl font-semibold text-foreground mb-1 leading-snug">
+                              {project.title}
+                            </h3>
+                            <p className="text-xs text-accent font-bold mb-4 font-sans">
+                              {project.role}{project.brand ? ` • ${project.brand}` : ''}
+                            </p>
+
+                            <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground mb-6 pb-4 border-b border-border/30 font-sans">
+                              <span className="flex items-center gap-1.5">
+                                <MapPin size={13} className="text-accent" />
+                                {project.location}
+                              </span>
+                              <span className="flex items-center gap-1.5">
+                                <Calendar size={13} className="text-accent" />
+                                {project.period}
+                              </span>
+                              {project.rooms && project.rooms > 0 && (
+                                <span className="flex items-center gap-1.5">
+                                  <Building size={13} className="text-accent" />
+                                  {project.rooms} {ar ? 'غرفة' : 'Keys'}
+                                </span>
+                              )}
+                            </div>
+
+                            <div className="space-y-3 font-sans">
+                              {project.results.map((result, i) => (
+                                <div key={i} className="flex items-start gap-3.5 text-xs sm:text-sm text-foreground/95 leading-relaxed">
+                                  <ShieldCheck size={15} className="text-luxury-emerald mt-0.5 flex-shrink-0" />
+                                  <span>{result}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {project.caseStudySlug && (
+                            <div className="mt-8 pt-4 border-t border-border/30 flex font-sans">
+                              <Link
+                                to={`/projects/${project.caseStudySlug}`}
+                                className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors group/link"
+                              >
+                                <span>{ar ? 'اقرأ دراسة الحالة' : 'Read Case Study'}</span>
+                                <ArrowRight size={14} className={`transition-transform duration-300 group-hover/link:translate-x-0.5 ${isRTL ? 'rotate-180 group-hover/link:-translate-x-0.5' : ''}`} />
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    );
+                  })
+                )}
               </AnimatePresence>
             </motion.div>
 
-            <div className="text-center mt-16">
+            <div className="text-center mt-16 font-sans">
               <Link to="/career">
-                <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all">
+                <Button variant="outline" className="rounded-sm px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-colors">
                   {language.code === 'ar' ? 'شاهد المسيرة المهنية الكاملة' : 'View Full Career Journey'}
                   <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
                 </Button>
@@ -319,3 +520,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

@@ -105,7 +105,7 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
   return (
     <div className={`relative max-w-4xl mx-auto ${className}`}>
       {/* Main Testimonial Display */}
-      <div className="relative min-h-[400px] bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+      <div className="relative min-h-[400px] bg-card border border-border rounded-sm overflow-hidden">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
@@ -122,24 +122,24 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
           >
             {/* Quote Icon */}
             <div className="flex justify-center mb-6">
-              <div className="bg-luxury-gold/10 p-4 rounded-full">
-                <Quote className="w-8 h-8 text-luxury-gold" />
+              <div className="bg-accent/10 p-4 rounded-full">
+                <Quote className="w-8 h-8 text-accent" />
               </div>
             </div>
 
             {/* Badges */}
             <div className="flex justify-center gap-2 mb-6">
               {currentTestimonial.featured && (
-                <Badge variant="default" className="bg-luxury-gold text-luxury-navy">
+                <Badge variant="default" className="bg-accent text-accent-foreground rounded-sm">
                   {language.code === 'ar' ? 'مميز' : 'Featured'}
                 </Badge>
               )}
               {showCategory && (
-                <Badge variant="outline">
+                <Badge variant="outline" className="rounded-sm">
                   {currentTestimonial.category}
                 </Badge>
               )}
-              <Badge variant="secondary">
+              <Badge variant="secondary" className="rounded-sm">
                 {currentTestimonial.type === 'video' 
                   ? (language.code === 'ar' ? 'فيديو' : 'Video')
                   : (language.code === 'ar' ? 'نص' : 'Text')
@@ -158,7 +158,7 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
 
             {/* Content */}
             <div className="text-center mb-8">
-              <blockquote className="text-lg md:text-xl text-gray-700 dark:text-gray-300 italic leading-relaxed">
+              <blockquote className="text-lg md:text-xl text-foreground italic leading-relaxed">
                 "{currentTestimonial.content}"
               </blockquote>
             </div>
@@ -167,22 +167,22 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
             <div className="flex items-center justify-center gap-4">
               <Avatar className="w-16 h-16">
                 <AvatarImage src={currentTestimonial.avatar} />
-                <AvatarFallback className="bg-luxury-gold text-luxury-navy font-semibold">
+                <AvatarFallback className="bg-accent text-accent-foreground font-semibold">
                   {currentTestimonial.name.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
-              
+
               <div className={`${isRTL ? 'text-right' : 'text-left'}`}>
-                <h4 className="font-semibold text-luxury-navy dark:text-white">
+                <h4 className="font-semibold text-foreground">
                   {currentTestimonial.name}
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-muted-foreground">
                   {currentTestimonial.title}
                 </p>
-                <p className="text-sm text-luxury-gold font-medium">
+                <p className="text-sm text-accent font-medium">
                   {currentTestimonial.company}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-muted-foreground/80 mt-1">
                   {currentTestimonial.date}
                 </p>
               </div>
@@ -210,18 +210,18 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
           variant="ghost"
           size="sm"
           onClick={prevTestimonial}
-          className={`absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md ${
+          className={`absolute top-1/2 -translate-y-1/2 z-10 bg-card/90 hover:bg-card border border-border rounded-sm ${
             isRTL ? 'right-4' : 'left-4'
           }`}
         >
           <ChevronLeft className={`w-5 h-5 ${isRTL ? 'rotate-180' : ''}`} />
         </Button>
-        
+
         <Button
           variant="ghost"
           size="sm"
           onClick={nextTestimonial}
-          className={`absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md ${
+          className={`absolute top-1/2 -translate-y-1/2 z-10 bg-card/90 hover:bg-card border border-border rounded-sm ${
             isRTL ? 'left-4' : 'right-4'
           }`}
         >
@@ -234,7 +234,7 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
             variant="ghost"
             size="sm"
             onClick={() => setIsPlaying(!isPlaying)}
-            className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white"
+            className="absolute top-4 right-4 z-10 bg-card/90 hover:bg-card border border-border rounded-sm"
           >
             {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           </Button>
@@ -247,10 +247,10 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
           <button
             key={testimonial.id}
             onClick={() => goToTestimonial(index)}
-            className={`flex-shrink-0 p-3 rounded-lg border-2 transition-all duration-300 ${
+            className={`flex-shrink-0 p-3 rounded-sm border transition-colors duration-300 ${
               index === currentIndex
-                ? 'border-luxury-gold bg-luxury-gold/10'
-                : 'border-gray-200 hover:border-gray-300 bg-white'
+                ? 'border-accent bg-accent/10'
+                : 'border-border hover:border-accent/40 bg-card'
             }`}
           >
             <div className="flex items-center gap-3 min-w-[200px]">
@@ -261,10 +261,10 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
                 </AvatarFallback>
               </Avatar>
               <div className="text-left">
-                <p className="text-sm font-medium text-gray-900 truncate">
+                <p className="text-sm font-medium text-foreground truncate">
                   {testimonial.name}
                 </p>
-                <p className="text-xs text-gray-600 truncate">
+                <p className="text-xs text-muted-foreground truncate">
                   {testimonial.company}
                 </p>
               </div>
@@ -275,9 +275,9 @@ const EnhancedTestimonialsCarousel: React.FC<EnhancedTestimonialsCarouselProps> 
 
       {/* Progress Indicator */}
       {isPlaying && (
-        <div className="mt-4 w-full bg-gray-200 rounded-full h-1">
+        <div className="mt-4 w-full bg-muted rounded-full h-1">
           <motion.div
-            className="bg-luxury-gold h-1 rounded-full"
+            className="bg-accent h-1 rounded-full"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: interval / 1000, ease: "linear" }}

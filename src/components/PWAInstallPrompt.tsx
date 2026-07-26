@@ -13,7 +13,7 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ onInstall, onDismis
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
 
   useEffect(() => {
     // Check if it's iOS
@@ -80,23 +80,23 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ onInstall, onDismis
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 100 }}
-        className="fixed bottom-4 left-4 right-4 z-50 max-w-sm mx-auto"
+        className={`fixed bottom-4 ${isRTL ? 'left-4' : 'right-4'} z-50 max-w-sm mx-auto`}
       >
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4">
+        <div className="bg-background/95 backdrop-blur-md rounded-2xl shadow-xl border border-border/80 p-4">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0">
-              <Smartphone className="h-6 w-6 text-primary" />
+              <Smartphone className="h-6 w-6 text-accent-foreground" />
             </div>
             
             <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+              <h3 className="text-sm font-semibold text-foreground mb-1">
                 {language.code === 'ar' 
                   ? 'تثبيت التطبيق' 
                   : 'Install App'
                 }
               </h3>
               
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
+              <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
                 {isIOS ? (
                   language.code === 'ar'
                     ? 'اضغط على زر المشاركة ثم "إضافة إلى الشاشة الرئيسية" للحصول على أفضل تجربة.'
@@ -113,9 +113,9 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ onInstall, onDismis
                   <Button
                     size="sm"
                     onClick={handleInstall}
-                    className="text-xs h-7"
+                    className="text-xs h-7 rounded-lg"
                   >
-                    <Download className="h-3 w-3 mr-1" />
+                    <Download className={`h-3 w-3 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                     {language.code === 'ar' ? 'تثبيت' : 'Install'}
                   </Button>
                 )}
@@ -124,7 +124,7 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ onInstall, onDismis
                   size="sm"
                   variant="outline"
                   onClick={handleDismiss}
-                  className="text-xs h-7"
+                  className="text-xs h-7 rounded-lg"
                 >
                   {language.code === 'ar' ? 'إغلاق' : 'Dismiss'}
                 </Button>
@@ -135,9 +135,9 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ onInstall, onDismis
               variant="ghost"
               size="sm"
               onClick={handleDismiss}
-              className="flex-shrink-0 h-6 w-6 p-0"
+              className="flex-shrink-0 h-6 w-6 p-0 hover:bg-muted"
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4 text-muted-foreground" />
             </Button>
           </div>
         </div>

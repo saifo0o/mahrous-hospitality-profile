@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Mail, Phone, Linkedin, MapPin, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -7,70 +6,81 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import NewsletterSignup from './NewsletterSignup';
 
-import marriottLogo from '@/assets/logos/marriott.svg';
-import ihgLogo from '@/assets/logos/ihg.svg';
-import accorLogo from '@/assets/logos/accor.svg';
-import sheratonLogo from '@/assets/logos/sheraton.svg';
-import primeHotelsLogo from '@/assets/logos/prime-hotels.png';
-
-const brandLogos = [
-  { name: 'Marriott', logo: marriottLogo },
-  { name: 'IHG', logo: ihgLogo },
-  { name: 'Accor', logo: accorLogo },
-  { name: 'Sheraton', logo: sheratonLogo },
-  { name: 'Prime Hotels', logo: primeHotelsLogo },
-];
+// Import brand constants single source of truth
+import { 
+  brandLogos, 
+  footerLinks, 
+  contactInfo, 
+  socialLinks, 
+  signatureQuote 
+} from '@/lib/brandConstants';
 
 const Footer = () => {
-  const { t, language } = useLanguage();
+  const { language, isRTL } = useLanguage();
+  const ar = language.code === 'ar';
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { label: language.code === 'ar' ? 'من أنا' : 'About', path: '/about' },
-    { label: language.code === 'ar' ? 'المشاريع' : 'Projects', path: '/projects' },
-    { label: language.code === 'ar' ? 'المسيرة' : 'Career', path: '/career' },
-    { label: language.code === 'ar' ? 'المدونة' : 'Blog', path: '/blog' },
-    { label: language.code === 'ar' ? 'الجوائز' : 'Awards', path: '/awards' },
-    { label: language.code === 'ar' ? 'تواصل' : 'Contact', path: '/contact' },
-  ];
+  // Helper to map labels to Lucide icons
+  const getContactIcon = (labelEn: string) => {
+    const label = labelEn.toLowerCase();
+    if (label.includes('phone')) return <Phone size={16} />;
+    if (label.includes('email') || label.includes('mail')) return <Mail size={16} />;
+    if (label.includes('location')) return <MapPin size={16} />;
+    if (label.includes('linkedin')) return <Linkedin size={16} />;
+    return null;
+  };
 
   return (
     <>
       {/* Pre-footer CTA */}
-      <section className="relative py-24 bg-primary text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px]" />
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-            backgroundSize: '60px 60px'
-          }} />
+      <section 
+        className="relative py-24 md:py-32 bg-[#14171A] text-white overflow-hidden border-b border-accent/20"
+        aria-label={ar ? 'دعوة للاتصال والعمل' : 'Call to Action'}
+      >
+        {/* Premium Mesh Gradient Backdrop */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-[#14171A]" />
+          <div className="absolute top-[-30%] start-[-10%] w-[600px] h-[600px] bg-accent/[0.06] rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-30%] end-[-10%] w-[600px] h-[600px] bg-luxury-emerald/[0.04] rounded-full blur-[140px]" />
+          {/* Elegant structural grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(181,80,43,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(181,80,43,0.012)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         </div>
+
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-playfair mb-6 leading-tight">
-              {language.code === 'ar' ? 'لنبنِ شيئًا استثنائيًا معًا' : "Let's Build Something\nExceptional"}
+            <div className="section-eyebrow justify-center">05 &mdash; {ar ? 'تواصل' : 'Get in touch'}</div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-playfair mb-6 leading-tight tracking-tight max-w-4xl mx-auto">
+              {ar ? (
+                <>
+                  لنبنِ رؤية تشغيلية <span className="text-accent italic font-playfair">استثنائية معاً</span>
+                </>
+              ) : (
+                <>
+                  Let's forge exceptional <span className="text-accent italic font-playfair">hospitality standards</span>
+                </>
+              )}
             </h2>
-            <p className="text-primary-foreground/60 text-lg mb-10 max-w-xl mx-auto">
-              {language.code === 'ar' 
-                ? 'مستعد للارتقاء بعمليات فندقك؟ احجز استشارة مجانية اليوم.'
-                : 'Ready to elevate your hotel operations? Book a free consultation today.'
+            <p className="text-muted-foreground text-base sm:text-lg mb-12 max-w-2xl mx-auto leading-relaxed font-sans font-light">
+              {ar
+                ? 'هل تبحث عن استشارات لإدارة الأصول الفندقية، عمليات الافتتاح، أو برامج إعادة التجديد الشاملة؟ دعنا نناقش أهدافك.'
+                : 'Ready to optimize asset yield or drive pre-opening excellence? Arrange a strategy briefing today.'
               }
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
               <Link to="/book-consultation" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 gap-2">
-                  {language.code === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultation'}
-                  <ArrowRight size={16} />
+                <Button className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-sm px-8 py-6 text-sm shadow-gold-sm hover:shadow-gold-md transition-all duration-300 gap-2 group">
+                  <span>{ar ? 'احجز استشارة قيادية' : 'Book executive consultation'}</span>
+                  <ArrowRight size={16} className={`transition-transform duration-300 ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
                 </Button>
               </Link>
-              <a href="https://wa.me/966553741020" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <Button variant="outline" className="w-full sm:w-auto border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:-translate-y-0.5">
-                  {language.code === 'ar' ? 'راسلني على واتساب' : 'Message on WhatsApp'}
+              <a href={socialLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <Button variant="outline" className="w-full sm:w-auto border-border/80 text-foreground hover:bg-muted/30 rounded-sm px-8 py-6 text-sm transition-all duration-300 bg-transparent font-semibold">
+                  <span>{ar ? 'تواصل عبر واتساب' : 'Message on WhatsApp'}</span>
                 </Button>
               </a>
             </div>
@@ -79,121 +89,164 @@ const Footer = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-14">
+      <footer 
+        className="bg-[#101315] text-white py-16 relative z-10 border-t border-border/30"
+        role="contentinfo" 
+        aria-label={ar ? 'تذييل الصفحة' : 'Site Footer'}
+      >
         <div className="container mx-auto px-4 md:px-8">
-          {/* Trusted By brand row */}
-          <div className="mb-10 pb-10 border-b border-background/10">
-            <p className="text-xs uppercase tracking-[0.2em] text-background/30 font-semibold text-center mb-5">
-              {language.code === 'ar' ? 'خبرة مع' : 'Trusted By'}
+          
+          {/* Brand partnership logos grid */}
+          <div className="mb-16 pb-12 border-b border-border/20">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground/80 font-bold text-center mb-8">
+              {ar ? 'قيادة عمليات تشغيلية وتكليفات استشارية لصالح علامات تجارية عالمية' : 'OPERATIONAL & ADVISORY PORTFOLIO INCLUDES'}
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-14">
               {brandLogos.map((brand) => (
-                <img
-                  key={brand.name}
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="h-6 md:h-8 w-auto object-contain opacity-40 hover:opacity-70 transition-opacity duration-300 invert brightness-200"
-                />
+                <div key={brand.name} className="relative group">
+                  <img
+                    src={brand.logo}
+                    alt={`${brand.name} Logo`}
+                    className="h-8 md:h-10 w-auto object-contain opacity-35 hover:opacity-90 transition-all duration-300 filter invert brightness-200 grayscale group-hover:grayscale-0 hover:scale-105"
+                  />
+                </div>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-12">
-            {/* Brand */}
-            <div>
-              <div className="flex items-center gap-2.5 mb-5">
-                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                  <span className="text-accent-foreground font-bold text-lg font-playfair">IM</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
+            
+            {/* Brand column */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-accent flex items-center justify-center">
+                  <span className="font-playfair text-accent-foreground text-sm">IM</span>
                 </div>
-                <span className="text-lg font-semibold font-playfair">Islam Mahrous</span>
+                <span className="w-px h-5 bg-border/40" />
+                <span className="text-lg font-playfair tracking-wide text-white">Islam Mahrous</span>
               </div>
-              <p className="text-background/50 text-sm leading-relaxed mb-5">
-                {language.code === 'ar' 
-                  ? 'قائد ضيافة عالمي مع 30+ عامًا من الخبرة في التميز التشغيلي.'
-                  : 'Global hospitality leader with 30+ years of operational excellence.'
+              
+              <p className="text-muted-foreground text-xs leading-relaxed font-sans font-light">
+                {ar 
+                  ? 'رائد تشغيل فندقي عالمي في منطقة الشرق الأوسط وشمال أفريقيا، متخصص في قيادة الأصول الفاخرة، إعادة الهيكلة، وبرامج التميز التشغيلي.'
+                  : 'Strategic hospitality specialist directing operations audits, pre-opening task forces, and high-yield asset transformations.'
                 }
               </p>
-              <a 
-                href="https://www.linkedin.com/in/islam-mahrous-" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-background/50 hover:text-accent transition-colors"
-              >
-                <Linkedin size={16} />
-                LinkedIn
-                <ArrowUpRight size={12} />
-              </a>
+              
+              <div className="flex items-center gap-2">
+                <a 
+                  href={socialLinks.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors duration-300 group"
+                  aria-label="Visit Islam Mahrous's LinkedIn Profile"
+                >
+                  <Linkedin size={15} className="transition-transform duration-300 group-hover:scale-110" />
+                  <span className="border-b border-transparent group-hover:border-accent">LinkedIn Profile</span>
+                  <ArrowUpRight size={12} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </div>
+              
+              <div className="pt-6 border-t border-border/20">
+                <p className="text-[11px] text-muted-foreground/80 italic font-playfair leading-relaxed">
+                  {ar ? signatureQuote.ar : signatureQuote.en}
+                </p>
+              </div>
             </div>
             
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-background/30 mb-5">
-                {language.code === 'ar' ? 'روابط سريعة' : 'Quick Links'}
+            {/* Quick Links Column */}
+            <div className="space-y-6">
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {ar ? 'أقسام الموقع' : 'DIRECTORY'}
               </h4>
-              <ul className="space-y-3">
-                {quickLinks.map((link) => (
-                  <li key={link.path}>
-                    <Link 
-                      to={link.path} 
-                      className="text-background/50 hover:text-accent text-sm transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <nav aria-label={ar ? 'روابط التنقل في التذييل' : 'Footer navigation links'}>
+                <ul className="space-y-3">
+                  {footerLinks.map((link) => (
+                    <li key={link.path}>
+                      <Link 
+                        to={link.path} 
+                        className="text-muted-foreground hover:text-accent text-xs font-bold uppercase tracking-wider transition-all duration-300 transform hover:translate-x-1 rtl:hover:-translate-x-1 inline-block"
+                      >
+                        {ar ? link.labelAr : link.labelEn}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
             
-            {/* Contact */}
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-background/30 mb-5">
-                {language.code === 'ar' ? 'تواصل' : 'Contact'}
+            {/* Contact Column */}
+            <div className="space-y-6">
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                {ar ? 'معلومات التواصل' : 'CONTACT OFFICE'}
               </h4>
-              <ul className="space-y-3">
-                <li>
-                  <a href="tel:+966553741020" className="flex items-center gap-2.5 text-background/50 hover:text-accent text-sm transition-colors">
-                    <Phone size={14} />
-                    <span>+966 55 374 1020 <span className="text-background/30 text-[10px] uppercase tracking-wider">KSA</span></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+201095556779" className="flex items-center gap-2.5 text-background/50 hover:text-accent text-sm transition-colors">
-                    <Phone size={14} />
-                    <span>+20 109 555 6779 <span className="text-background/30 text-[10px] uppercase tracking-wider">EG</span></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="mailto:mahrous.islam@yahoo.com" className="flex items-center gap-2.5 text-background/50 hover:text-accent text-sm transition-colors">
-                    <Mail size={14} />
-                    mahrous.islam@yahoo.com
-                  </a>
-                </li>
-                <li className="flex items-center gap-2.5 text-background/50 text-sm">
-                  <MapPin size={14} />
-                  {language.code === 'ar' ? 'الرياض، السعودية' : 'Riyadh, KSA'}
-                </li>
+              <ul className="space-y-4" aria-label={ar ? 'معلومات التواصل' : 'Contact information list'}>
+                {contactInfo.map((contact, idx) => {
+                  const isLocation = !contact.href && (contact.regionEn || contact.value);
+                  const label = ar ? contact.labelAr : contact.labelEn;
+                  const displayValue = contact.value || (ar ? contact.regionAr : contact.regionEn);
+                  const icon = getContactIcon(contact.labelEn);
+                  
+                  if (isLocation) {
+                    return (
+                      <li key={idx} className="flex items-start gap-3 text-muted-foreground text-xs leading-normal">
+                        <span className="text-accent shrink-0 mt-0.5" aria-hidden="true">
+                          {icon}
+                        </span>
+                        <div>
+                          <span className="sr-only">{label}: </span>
+                          <span>{displayValue}</span>
+                        </div>
+                      </li>
+                    );
+                  }
+                  
+                  return (
+                    <li key={idx}>
+                      <a 
+                        href={contact.href} 
+                        className="flex items-center gap-3 text-muted-foreground hover:text-accent text-xs transition-colors duration-300 group"
+                        aria-label={`${label}: ${displayValue}`}
+                        {...(contact.href?.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        <span className="text-accent shrink-0 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+                          {icon}
+                        </span>
+                        <div className="flex flex-wrap items-baseline gap-1.5 font-bold">
+                          <span>{displayValue}</span>
+                          {(contact.regionEn || contact.regionAr) && (
+                            <span className="text-[9px] text-muted-foreground/40 uppercase tracking-widest font-bold">
+                              ({ar ? contact.regionAr : contact.regionEn})
+                            </span>
+                          )}
+                        </div>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
-            {/* Newsletter */}
-            <div>
+            {/* Newsletter Column */}
+            <div className="space-y-6">
               <NewsletterSignup />
             </div>
           </div>
           
-          {/* Bottom bar */}
-          <div className="border-t border-background/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-background/30 text-xs">
-              &copy; {currentYear} Islam Mahrous. {language.code === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
+          {/* Bottom Copyright bar */}
+          <div className="border-t border-border/20 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-muted-foreground/60 text-xs text-center sm:text-start">
+              &copy; {currentYear} Islam Mahrous. {ar ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
             </p>
             <a 
               href="/Islam_Mahrous_Resume.pdf"
               download="Islam_Mahrous_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/30 hover:text-accent text-xs transition-colors"
+              className="text-muted-foreground/60 hover:text-accent text-xs transition-colors duration-300 relative py-1 border-b border-transparent hover:border-accent/40"
+              aria-label={ar ? 'تحميل السيرة الذاتية بصيغة PDF' : 'Download CV in PDF format'}
             >
-              {language.code === 'ar' ? 'تحميل السيرة الذاتية' : 'Download CV'}
+              {ar ? 'تحميل السيرة الذاتية' : 'Download Executive CV'}
             </a>
           </div>
         </div>

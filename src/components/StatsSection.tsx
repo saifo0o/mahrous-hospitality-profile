@@ -1,11 +1,10 @@
-
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useAnimation } from "framer-motion";
 import { useLanguage } from '@/context/LanguageContext';
+import { Award, BarChart3, ShieldAlert, BadgeDollarSign } from 'lucide-react';
 
 const AnimatedNumber = ({ value, suffix = '', isInView, onComplete }: { value: number; suffix?: string; isInView: boolean; onComplete?: () => void }) => {
   const [count, setCount] = useState(0);
-  const [done, setDone] = useState(false);
   
   useEffect(() => {
     if (!isInView) return;
@@ -14,12 +13,11 @@ const AnimatedNumber = ({ value, suffix = '', isInView, onComplete }: { value: n
     const step = (timestamp: number) => {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
+      const eased = 1 - Math.pow(1 - progress, 4); // Quartic ease out
       setCount(Math.floor(eased * value));
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
-        setDone(true);
         onComplete?.();
       }
     };
@@ -29,98 +27,135 @@ const AnimatedNumber = ({ value, suffix = '', isInView, onComplete }: { value: n
   return <>{count.toLocaleString()}{suffix}</>;
 };
 
-const StatsSection = () => {
+export default function StatsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-  const { language } = useLanguage();
-  const [completedStats, setCompletedStats] = useState<Set<number>>(new Set());
+  const isInView = useInView(ref, { once: true, amount: 0.25 });
+  const { language, isRTL } = useLanguage();
+  const ar = language.code === 'ar';
   
   const stats = [
-    { value: 30, suffix: '+', label: language.code === 'ar' ? 'سنوات خبرة' : 'Years Experience', accent: true },
-    { value: 5000, suffix: '+', label: language.code === 'ar' ? 'موظف مُدرّب' : 'Staff Trained', accent: false },
-    { value: 35, suffix: '%', label: language.code === 'ar' ? 'نمو الإيرادات' : 'Revenue Growth', accent: false },
-    { value: 70, suffix: 'M+', prefix: '$', label: language.code === 'ar' ? 'ميزانيات مُدارة' : 'Budgets Managed', accent: true },
+    { 
+      value: 30, 
+      suffix: '+', 
+      label: ar ? 'سنوات خبرة قيادية' : 'Years Leadership', 
+      icon: <Award className="w-5 h-5 text-accent" />,
+      desc: ar ? 'في كبرى سلاسل الفنادق العالمية' : 'Across premium global chains',
+      accent: true 
+    },
+    { 
+      value: 5000, 
+      suffix: '+', 
+      label: ar ? 'موظف فندقي مُدرّب' : 'Hoteliers Trained', 
+      icon: <BarChart3 className="w-5 h-5 text-accent" />,
+      desc: ar ? 'برامج تدريب معتمدة وبناء مواهب' : 'Accredited talent curriculums',
+      accent: false 
+    },
+    { 
+      value: 35, 
+      suffix: '%', 
+      label: ar ? 'زيادة RevPAR' : 'RevPAR Increase', 
+      icon: <ShieldAlert className="w-5 h-5 text-accent" />,
+      desc: ar ? 'متوسط زيادة العائدات المحققة' : 'Average operational growth',
+      accent: false 
+    },
+    { 
+      value: 70, 
+      suffix: 'M+', 
+      prefix: '$', 
+      label: ar ? 'ميزانيات تجديد مدارة' : 'Renovation Budgets', 
+      icon: <BadgeDollarSign className="w-5 h-5 text-accent" />,
+      desc: ar ? 'توجيه كفاءة رأس المال والمشاريع' : 'Capital efficiency & audits',
+      accent: true 
+    },
   ];
 
-  const handleComplete = (index: number) => {
-    setCompletedStats(prev => new Set(prev).add(index));
-  };
-
   return (
-    <section ref={ref} className="relative py-20 md:py-28 bg-primary overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: 'radial-gradient(hsl(var(--accent)) 1px, transparent 1px)',
-          backgroundSize: '32px 32px'
-        }} />
-      </div>
+    <section
+      ref={ref}
+      className="relative py-24 md:py-32 bg-primary text-primary-foreground overflow-hidden"
+      aria-label={ar ? 'إحصاءات الأداء والنتائج' : 'Key Performance Statistics'}
+    >
+      {/* Visual background textures and lighting */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary-foreground)/0.03)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary-foreground)/0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-accent/[0.05] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-luxury-emerald/[0.04] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        {/* Section eyebrow */}
-        <motion.div
-          className="text-center mb-12 md:mb-16"
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-2 mb-3">
+        {/* Section Header */}
+        <div className="text-center mb-20 max-w-2xl mx-auto">
+          <motion.div
+            className="inline-flex items-center gap-3 mb-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+          >
             <span className="h-px w-8 bg-accent/60" />
             <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold">
-              {language.code === 'ar' ? 'بالأرقام' : 'By the Numbers'}
+              {ar ? 'النتائج التشغيلية' : 'OPERATIONAL PERFORMANCE'}
             </p>
             <span className="h-px w-8 bg-accent/60" />
-          </div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-playfair font-semibold text-primary-foreground/95">
-            {language.code === 'ar' ? 'إنجازات تتحدث عن نفسها' : 'A Track Record That Speaks for Itself'}
-          </h2>
-        </motion.div>
+          </motion.div>
+          <motion.h2
+            className="text-3xl md:text-4xl lg:text-5xl font-playfair font-normal text-primary-foreground leading-tight"
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            {ar ? 'أرقام تعكس التميز والانضباط' : 'Auditable Impact & Quantitative Excellence'}
+          </motion.h2>
+        </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 md:gap-x-8 lg:gap-x-12 relative">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className={`text-center relative ${index < stats.length - 1 ? 'lg:after:content-[""] lg:after:absolute lg:after:right-0 lg:after:top-1/2 lg:after:-translate-y-1/2 lg:after:h-16 lg:after:w-px lg:after:bg-primary-foreground/10' : ''}`}
+              className="relative p-8 rounded-sm bg-primary-foreground/[0.02] border border-primary-foreground/[0.1] hover:border-accent/30 transition-colors duration-500 flex flex-col justify-between group overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              role="figure"
+              aria-label={`${stat.label}: ${stat.prefix || ''}${stat.value}${stat.suffix}`}
             >
-              <div className="relative inline-block">
-                {completedStats.has(index) && (
-                  <motion.div
-                    className="absolute -inset-4 rounded-full bg-accent/20 blur-xl"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: [0, 0.6, 0], scale: [0.5, 1.2, 1.5] }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
-                  />
-                )}
-                <motion.p
-                  className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-playfair mb-3 relative leading-none ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}
-                  animate={completedStats.has(index) ? {
-                    textShadow: ['0 0 0px transparent', '0 0 20px hsl(var(--accent) / 0.5)', '0 0 0px transparent']
-                  } : {}}
-                  transition={{ duration: 1.5 }}
-                >
-                  {stat.prefix || ''}<AnimatedNumber value={stat.value} suffix={stat.suffix} isInView={isInView} onComplete={() => handleComplete(index)} />
-                </motion.p>
+              {/* Top Row: Icon and subtle line */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="p-3 rounded-sm bg-primary-foreground/[0.04] group-hover:bg-accent/10 transition-colors">
+                  {stat.icon}
+                </div>
+                <span className="text-[10px] font-mono text-primary-foreground/25 group-hover:text-accent/40 transition-colors">0{index + 1}</span>
               </div>
-              <motion.span
-                className="block mx-auto h-px w-8 bg-accent/50 mb-3"
-                initial={{ scaleX: 0 }}
-                animate={isInView ? { scaleX: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.12 }}
+
+              {/* Number and Animation */}
+              <div className="mb-4">
+                <span className={`text-4xl sm:text-5xl md:text-6xl font-light font-playfair tracking-tight leading-none ${stat.accent ? 'text-accent' : 'text-primary-foreground'}`}>
+                  {stat.prefix || ''}
+                  <AnimatedNumber
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    isInView={isInView}
+                  />
+                </span>
+              </div>
+
+              {/* Text metadata */}
+              <div className="relative z-10">
+                <h3 className="text-sm font-semibold tracking-wider text-primary-foreground uppercase mb-1">
+                  {stat.label}
+                </h3>
+                <p className="text-xs text-primary-foreground/55 leading-relaxed font-sans">
+                  {stat.desc}
+                </p>
+              </div>
+
+              {/* Fine micro-animation bottom accent bar */}
+              <motion.div 
+                className="absolute bottom-0 inset-x-0 h-[2px] bg-accent/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                style={{ originX: isRTL ? 1 : 0 }}
               />
-              <p className="text-xs sm:text-sm text-primary-foreground/70 font-medium tracking-wider uppercase">
-                {stat.label}
-              </p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default StatsSection;
+}

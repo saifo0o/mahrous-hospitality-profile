@@ -25,8 +25,8 @@ const EnhancedButton: React.FC<EnhancedButtonProps> = ({
     default: "bg-primary hover:bg-primary/90 text-primary-foreground",
     outline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
     ghost: "hover:bg-accent hover:text-accent-foreground",
-    luxury: "bg-gradient-to-r from-luxury-gold to-yellow-600 text-luxury-navy font-semibold shadow-lg hover:shadow-xl hover:from-yellow-600 hover:to-luxury-gold",
-    glow: "bg-primary text-primary-foreground shadow-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-105"
+    luxury: "bg-accent text-accent-foreground font-semibold shadow-gold-sm hover:shadow-gold-md hover:bg-accent/90",
+    glow: "bg-primary text-primary-foreground shadow-lg hover:shadow-accent/30"
   };
 
   const sizeClasses = {
@@ -37,7 +37,6 @@ const EnhancedButton: React.FC<EnhancedButtonProps> = ({
 
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
@@ -65,13 +64,6 @@ const EnhancedButton: React.FC<EnhancedButtonProps> = ({
           )}
           {children}
         </motion.div>
-        
-        {/* Ripple effect */}
-        <motion.div
-          className="absolute inset-0 bg-white/20 rounded-full scale-0"
-          whileTap={{ scale: 4, opacity: [0.3, 0] }}
-          transition={{ duration: 0.3 }}
-        />
       </Button>
     </motion.div>
   );

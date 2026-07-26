@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 
 interface EnhancedCardProps {
@@ -21,13 +21,35 @@ const EnhancedCard: React.FC<EnhancedCardProps> = ({
   iconColor = 'text-accent',
   delay = 0
 }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-150, 150], [6, -6]);
+  const rotateY = useTransform(x, [-150, 150], [-6, 6]);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!hover) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left - rect.width / 2;
+    const mouseY = event.clientY - rect.top - rect.height / 2;
+    x.set(mouseX);
+    y.set(mouseY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      whileHover={hover ? { y: -8, scale: 1.02 } : {}}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={hover ? { rotateX, rotateY, transformStyle: "preserve-3d" } : {}}
       className={`
         relative bg-card rounded-2xl overflow-hidden
         border border-border/50
@@ -38,7 +60,7 @@ const EnhancedCard: React.FC<EnhancedCardProps> = ({
       `}
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       
       {/* Icon Badge */}
       {Icon && (

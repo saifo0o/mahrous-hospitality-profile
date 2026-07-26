@@ -151,7 +151,7 @@ const ContentCarousel: React.FC<ContentCarouselProps> = ({
                   >
                     <Button
                       onClick={items[currentIndex].cta!.action}
-                      className="bg-luxury-gold hover:bg-luxury-gold/90 text-luxury-navy font-semibold"
+                      className="bg-accent hover:bg-accent/90 text-foreground font-semibold"
                     >
                       {items[currentIndex].cta!.text}
                     </Button>
@@ -199,7 +199,7 @@ const ContentCarousel: React.FC<ContentCarouselProps> = ({
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex 
-                  ? 'bg-luxury-gold scale-125' 
+                  ? 'bg-accent scale-125' 
                   : 'bg-white/50 hover:bg-white/70'
               }`}
             />
@@ -223,7 +223,7 @@ const ContentCarousel: React.FC<ContentCarouselProps> = ({
       {isPlaying && (
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/30">
           <motion.div
-            className="h-full bg-luxury-gold"
+            className="h-full bg-accent"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: interval / 1000, ease: "linear" }}

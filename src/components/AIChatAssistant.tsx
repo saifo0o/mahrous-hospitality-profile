@@ -11,7 +11,7 @@ interface Message {
 }
 
 const AIChatAssistant = () => {
-  const { isRTL } = useLanguage();
+  const { isRTL, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -42,7 +42,9 @@ const AIChatAssistant = () => {
       setMessages([
         {
           role: 'assistant',
-          content: "👋 Hello! I'm Islam's AI assistant. I can help answer your questions about hotel management, operations, guest service, and hospitality best practices. What would you like to know?"
+          content: language.code === 'ar'
+            ? '👋 مرحباً! أنا المساعد الذكي لإسلام. يمكنني الإجابة على أسئلتك حول إدارة الفنادق والعمليات وخدمة الضيوف وأفضل ممارسات الضيافة. ما الذي تود معرفته؟'
+            : "👋 Hello! I'm Islam's AI assistant. I can help answer your questions about hotel management, operations, guest service, and hospitality best practices. What would you like to know?"
         }
       ]);
     }
@@ -146,7 +148,9 @@ const AIChatAssistant = () => {
         ...prev.slice(0, -1),
         {
           role: 'assistant',
-          content: "I apologize, but I'm having trouble connecting right now. Please try again in a moment."
+          content: language.code === 'ar'
+            ? 'أعتذر، ولكنني أواجه مشكلة في الاتصال حالياً. يرجى المحاولة مرة أخرى بعد قليل.'
+            : "I apologize, but I'm having trouble connecting right now. Please try again in a moment."
         }
       ]);
     }
@@ -185,7 +189,7 @@ const AIChatAssistant = () => {
         <Button
           onClick={handleToggle}
           className="relative h-14 w-14 rounded-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all duration-300"
-          aria-label="AI Chat Assistant"
+          aria-label={language.code === 'ar' ? 'المساعد الذكي للدردشة' : 'AI Chat Assistant'}
         >
           <AnimatePresence mode="wait">
             {isOpen ? (
@@ -228,7 +232,7 @@ const AIChatAssistant = () => {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-background/95 backdrop-blur-xl border border-border rounded-sm shadow-lg overflow-hidden">
               {/* Header */}
               <div className="bg-gradient-to-r from-primary to-primary/80 px-6 py-4 text-primary-foreground">
                 <div className="flex items-center gap-3">
@@ -243,8 +247,8 @@ const AIChatAssistant = () => {
                     </motion.div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">AI Assistant</h3>
-                    <p className="text-xs text-primary-foreground/80">Hospitality Management Expert</p>
+                    <h3 className="font-semibold text-lg">{language.code === 'ar' ? 'المساعد الذكي' : 'AI Assistant'}</h3>
+                    <p className="text-xs text-primary-foreground/80">{language.code === 'ar' ? 'خبير إدارة الضيافة' : 'Hospitality Management Expert'}</p>
                   </div>
                 </div>
               </div>
@@ -260,7 +264,7 @@ const AIChatAssistant = () => {
                     className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                      className={`max-w-[80%] rounded-sm px-4 py-2 ${
                         message.role === 'user'
                           ? 'bg-primary text-primary-foreground'
                           : 'bg-muted text-foreground'
@@ -276,7 +280,7 @@ const AIChatAssistant = () => {
                     animate={{ opacity: 1 }}
                     className="flex justify-start"
                   >
-                    <div className="bg-muted rounded-2xl px-4 py-2">
+                    <div className="bg-muted rounded-sm px-4 py-2">
                       <div className="flex gap-1">
                         <motion.div
                           className="h-2 w-2 bg-foreground/40 rounded-full"
@@ -309,14 +313,14 @@ const AIChatAssistant = () => {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Ask about hotel management..."
-                    className="flex-1 bg-muted border border-border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder={language.code === 'ar' ? 'اسأل عن إدارة الفنادق...' : 'Ask about hotel management...'}
+                    className={`flex-1 bg-muted border border-border rounded-sm px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary ${isRTL ? 'text-right' : 'text-left'}`}
                     disabled={isLoading}
                   />
                   <Button
                     onClick={handleSend}
                     disabled={!input.trim() || isLoading}
-                    className="rounded-xl"
+                    className="rounded-sm"
                     size="icon"
                   >
                     <Send className="h-4 w-4" />

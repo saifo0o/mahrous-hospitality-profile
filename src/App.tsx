@@ -9,6 +9,7 @@ import Index from './pages/Index';
 import About from './pages/About';
 import Career from './pages/Career';
 import Projects from './pages/Projects';
+import ProjectCaseStudy from './pages/ProjectCaseStudy';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Awards from './pages/Awards';
@@ -21,7 +22,9 @@ import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
 import WhatsAppButton from './components/WhatsAppButton';
 import TrackingScripts from './components/TrackingScripts';
+import SkipToContent from './components/SkipToContent';
 import { trackPageView, trackLanguageChange } from './utils/analytics';
+import CustomCursor from './components/CustomCursor';
 
 const queryClient = new QueryClient();
 
@@ -51,6 +54,7 @@ const AnimatedRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/career" element={<Career />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/awards" element={<Awards />} />
@@ -69,7 +73,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <AuthProvider>
+          <CustomCursor />
           <BrowserRouter>
+            <SkipToContent />
             <TrackingScripts />
             <AnimatedRoutes />
             <PageTracker />

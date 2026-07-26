@@ -37,6 +37,22 @@ export default {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))'
+				},
+				info: {
+					DEFAULT: 'hsl(var(--info))',
+					foreground: 'hsl(var(--info-foreground))'
+				},
+				surface: {
+					DEFAULT: 'hsl(var(--muted) / 0.3)',
+					foreground: 'hsl(var(--foreground))'
+				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
@@ -64,24 +80,42 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				luxury: {
-					gold: '#D4AF37',
-					navy: '#0F1E3D',
-					ivory: '#FFFFF0',
-					gray: '#8A898C',
-					burgundy: '#800020',
-					emerald: '#046307',
-					taupe: '#483C32'
+					parchment: '#F5F2EA',
+					alabaster: '#FFFFFF',
+					gold: '#B5502B',
+					charcoal: '#14171A',
+					emerald: '#1E3630',
+					// Back-compat alias: legacy code referenced luxury-navy as the "dark structural" color.
+					navy: '#14171A',
+					gray: '#6B655C'
 				}
 			},
 			fontFamily: {
-				sans: ['Montserrat', 'sans-serif'],
-				montserrat: ['Montserrat', 'sans-serif'],
-				playfair: ['Playfair Display', 'serif'],
+				sans: ['Inter', '-apple-system', 'sans-serif'],
+				montserrat: ['Inter', '-apple-system', 'sans-serif'],
+				playfair: ['Fraunces', 'Georgia', 'serif'],
+				amiri: ['Amiri', 'Traditional Arabic', 'serif'],
+				cairo: ['Cairo', 'system-ui', 'sans-serif'],
+			},
+			fontSize: {
+				hero: ['4.1875rem', { lineHeight: '1.1' }],   // S6 · 67px
+				's4': ['2.5625rem', { lineHeight: '1.15' }],   // S4 · 41px
+				's3': ['2.0625rem', { lineHeight: '1.2' }],    // S3 · 33px
+				's2': ['1.625rem', { lineHeight: '1.3' }],     // S2 · 26px
+				'caption': ['0.8125rem', { lineHeight: '1.4', letterSpacing: '0.03em' }], // S-1 · 13px
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			spacing: {
+				// Fibonacci step scale — golden-ratio-aligned brand spacing tokens.
+				'brand-xs': '8px',
+				'brand-sm': '13px',
+				'brand-md': '21px',
+				'brand-lg': '34px',
+				'brand-xl': '55px',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -130,36 +164,12 @@ export default {
 						opacity: '1'
 					}
 				},
-				'pulse-gold': {
-					'0%, 100%': {
-						opacity: '1',
-					},
-					'50%': {
-						opacity: '0.7',
-					},
-				},
-				'shimmer': {
-					'0%': {
-						transform: 'translateX(-100%)',
-					},
-					'100%': {
-						transform: 'translateX(100%)',
-					},
-				},
 				'float': {
 					'0%, 100%': {
 						transform: 'translateY(0px)',
 					},
 					'50%': {
 						transform: 'translateY(-20px)',
-					},
-				},
-				'glow': {
-					'0%, 100%': {
-						boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
-					},
-					'50%': {
-						boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)',
 					},
 				},
 			'bounce-subtle': {
@@ -181,21 +191,18 @@ export default {
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out',
 				'scale-in': 'scale-in 0.5s ease-out',
-				'pulse-gold': 'pulse-gold 2s infinite',
-				'shimmer': 'shimmer 2s infinite',
 				'float': 'float 3s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite',
 				'bounce-subtle': 'bounce-subtle 1s ease-in-out infinite',
 				'marquee': 'marquee 25s linear infinite',
 			},
 			boxShadow: {
-				'gold-sm': '0 1px 2px 0 rgba(212, 175, 55, 0.05)',
-				'gold': '0 1px 3px 0 rgba(212, 175, 55, 0.1), 0 1px 2px 0 rgba(212, 175, 55, 0.06)',
-				'gold-md': '0 4px 6px -1px rgba(212, 175, 55, 0.1), 0 2px 4px -1px rgba(212, 175, 55, 0.06)',
-				'gold-lg': '0 10px 15px -3px rgba(212, 175, 55, 0.1), 0 4px 6px -2px rgba(212, 175, 55, 0.05)',
-				'gold-xl': '0 20px 25px -5px rgba(212, 175, 55, 0.1), 0 10px 10px -5px rgba(212, 175, 55, 0.04)',
-				'gold-2xl': '0 25px 50px -12px rgba(212, 175, 55, 0.25)',
-				'gold-inner': 'inset 0 2px 4px 0 rgba(212, 175, 55, 0.06)'
+				'gold-sm': '0 1px 2px 0 rgba(181, 80, 43, 0.1)',
+				'gold': '0 1px 3px 0 rgba(181, 80, 43, 0.14), 0 1px 2px 0 rgba(181, 80, 43, 0.1)',
+				'gold-md': '0 4px 10px -2px rgba(181, 80, 43, 0.18)',
+				'gold-lg': '0 8px 20px -4px rgba(181, 80, 43, 0.2)',
+				'gold-xl': '0 12px 28px -6px rgba(181, 80, 43, 0.22)',
+				'gold-2xl': '0 20px 40px -10px rgba(181, 80, 43, 0.24)',
+				'gold-inner': 'inset 0 2px 4px 0 rgba(181, 80, 43, 0.1)'
 			},
 			backdropBlur: {
 				xs: '2px',

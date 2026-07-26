@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Building, Calendar, ChevronDown, Award, Briefcase, Users } from 'lucide-react';
+import { MapPin, Building, Calendar, ChevronDown, ChevronLeft, ChevronRight, Award, Briefcase, Users, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -26,8 +27,10 @@ type Experience = {
 const Career = () => {
   const [expandedExec, setExpandedExec] = useState<number | null>(null);
   const [expandedCons, setExpandedCons] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<'executive' | 'consulting'>('executive');
   const { language, isRTL } = useLanguage();
   const ar = language.code === 'ar';
+  const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
   // EXECUTIVE LEADERSHIP (full-time roles per resume)
   const executive: Experience[] = [
@@ -36,6 +39,7 @@ const Career = () => {
       company: ar ? 'مجموعة فنادق برايم' : 'Prime Hotels Group',
       location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
       period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
+      current: true,
 
       description: ar
         ? 'مسؤولية كاملة عن الأرباح والخسائر والحوكمة التشغيلية لمحفظة سعودية متعددة العلامات (فاخر، متوسط، شقق فندقية)، مع التقرير المباشر إلى الملكية والمجلس.'
@@ -64,7 +68,7 @@ const Career = () => {
       location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
       period: ar ? 'أبريل 2023 - يوليو 2025' : 'Apr 2023 - Jul 2025',
       rooms: 172,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/caption_kgnuht.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/caption_kgnuht.jpg',
       description: ar
         ? 'إدارة دورة التطوير وما قبل الافتتاح كاملةً نيابةً عن الملكية لمشروع ماريوت جديد بـ172 غرفة، مع الالتزام بمعايير العلامة وميزانية رأس المال.'
         : 'Managed full development and pre-opening cycle on behalf of ownership for a 172-room Marriott new-build, with brand compliance, timeline adherence and capital budget discipline.',
@@ -91,7 +95,7 @@ const Career = () => {
       location: ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt',
       period: ar ? 'يونيو 2014 - مارس 2023' : 'Jun 2014 - Mar 2023',
       rooms: 288,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/2025-05-31_nclbzr.webp',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/2025-05-31_nclbzr.webp',
       description: ar
         ? 'مدير عام (2021-2023)، مدير الفندق المسؤول (2015-2020)، نائب المدير العام (2014-2015). 9 سنوات بمسؤولية كاملة عن الأرباح والخسائر، ختمت بأكبر تجديد في تاريخ الفندق الممتد لـ40 عاماً.'
         : 'General Manager (2021-2023), Hotel Manager in Charge (2015-2020), Deputy GM (2014-2015). 9-year tenure with full P&L accountability, culminating in the most comprehensive renovation in the property\'s 40-year history.',
@@ -144,7 +148,7 @@ const Career = () => {
       location: ar ? 'الجونة، الغردقة، مصر' : 'El Gouna, Hurghada, Egypt',
       period: ar ? 'يوليو 2011 - يونيو 2014' : 'Jul 2011 - Jun 2014',
       rooms: 339,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
       description: ar
         ? 'تنفيذ تجديد متدرج بقيمة 5 مليون دولار مع استمرارية تشغيلية كاملة وإعادة تموضع استراتيجية.'
         : 'Delivered a $5M phased refurbishment with full operational continuity and strategic repositioning.',
@@ -171,7 +175,7 @@ const Career = () => {
       location: ar ? 'طرابلس، ليبيا' : 'Tripoli, Libya',
       period: ar ? 'ديسمبر 2009 - يونيو 2011' : 'Dec 2009 - Jun 2011',
       rooms: 718,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
       description: ar
         ? 'افتتاح عنقودي مزدوج العلامة بـ718 غرفة في شمال أفريقيا تحت ظروف سياسية صعبة، مع إرساء أنظمة وفقاً لمعايير ستاروود الدولية.'
         : '718-room dual-brand cluster pre-opening in North Africa under challenging political conditions, with systems established to Starwood international brand standards.',
@@ -261,7 +265,7 @@ const Career = () => {
       location: ar ? 'بورسعيد، مصر' : 'Port Said, Egypt',
       period: ar ? 'أبريل - أغسطس 2024' : 'Apr - Aug 2024',
       rooms: 168,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/377246827_sqf4sq.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/377246827_sqf4sq.jpg',
       description: ar
         ? 'تكليف من الملكية لتقديم استشارة تحويل المسار والتجديد لعقار 168 غرفة ومول تجزئة بـ24 منفذاً.'
         : 'Engaged by ownership to deliver turnaround and renovation consultancy for a 168-room property and 24-outlet retail mall.',
@@ -291,7 +295,7 @@ const Career = () => {
       location: ar ? 'الغردقة، مصر' : 'Hurghada, Egypt',
       period: ar ? 'مايو 2023 - مارس 2024' : 'May 2023 - Mar 2024',
       rooms: 298,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/v1749613983/photo-hurghada-18_krbjex.jpg',
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/photo-hurghada-18_krbjex.jpg',
       description: ar
         ? 'استشارة شاملة لما قبل الافتتاح لمنتجع فاخر بـ298 غرفة، مع توفير استشارات شاملة في استراتيجية التوظيف، تنفيذ PMS، نشر معايير العلامة، وتخطيط الإطلاق التجاري.'
         : 'Full pre-opening consultancy for a 298-room luxury resort: end-to-end advisory across staffing strategy, PMS implementation, brand standards deployment, and commercial launch planning.',
@@ -317,97 +321,140 @@ const Career = () => {
   ];
 
   const renderTimeline = (items: Experience[], expanded: number | null, setExpanded: (i: number | null) => void, keyPrefix: string) => (
-    <div className="max-w-4xl mx-auto relative">
-      <div className={`absolute ${isRTL ? 'right-6 md:right-8' : 'left-6 md:left-8'} top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent`} />
+    <div className="relative">
+      <div className={`absolute ${isRTL ? 'right-6 md:right-8' : 'left-6 md:left-8'} top-0 bottom-0 w-px bg-gradient-to-b from-accent/80 via-border to-transparent`} />
 
-      <div className="space-y-8">
-        {items.map((exp, index) => (
-          <motion.div
-            key={`${keyPrefix}-${index}`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
-            className={`relative ${isRTL ? 'pr-16 md:pr-20' : 'pl-16 md:pl-20'}`}
-          >
-            <div className={`absolute ${isRTL ? 'right-4 md:right-6' : 'left-4 md:left-6'} top-6 w-4 h-4 rounded-full border-2 ${exp.current ? 'bg-accent border-accent' : 'bg-card border-border'} z-10`} />
+      <div className="space-y-10">
+        {items.map((exp, index) => {
+          const isItemExpanded = expanded === index;
+          return (
+            <motion.div
+              key={`${keyPrefix}-${index}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative ${isRTL ? 'pr-14 md:pr-20' : 'pl-14 md:pl-20'}`}
+            >
+              {/* Timeline Bullet Node with Glow */}
+              <div className={`absolute ${isRTL ? 'right-3 md:right-5' : 'left-3 md:left-5'} top-6 w-6 h-6 rounded-full border-2 bg-card flex items-center justify-center z-10 transition-all ${
+                exp.current 
+                  ? 'border-accent shadow-[0_0_12px_rgba(181,80,43,0.5)] scale-110' 
+                  : 'border-border'
+              }`}>
+                {exp.current && <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />}
+              </div>
 
-            <div className={`bg-card rounded-xl border border-border/50 overflow-hidden transition-all duration-300 hover:shadow-md ${expanded === index ? 'shadow-md ring-1 ring-accent/20' : ''}`}>
-              {exp.image && (
-                <div className="h-48 overflow-hidden">
-                  <img src={exp.image} alt={exp.company} className="w-full h-full object-cover" loading="lazy" />
-                </div>
-              )}
+              {/* Editorial Frame Container */}
+              <div className={`bg-card rounded-sm border border-border overflow-hidden transition-colors duration-500 hover:border-accent/35 ${
+                exp.current ? 'border-s-4 border-s-accent' : ''
+              } ${isItemExpanded ? 'border-accent/40' : ''}`}>
 
-              <div className="p-6">
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <div className="flex items-center gap-3">
-                    {exp.current && (
-                      <img src={primeHotelsLogo} alt="Prime Hotels" className="w-10 h-10 object-contain rounded-lg" />
-                    )}
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground">{exp.position}</h3>
-                      {exp.company && <p className="text-sm font-medium text-accent-foreground">{exp.company}</p>}
-                    </div>
+                {exp.image && (
+                  <div className="h-56 overflow-hidden relative group">
+                    <img
+                      src={exp.image}
+                      alt={exp.company || exp.position}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                   </div>
-                  {exp.current && (
-                    <span className="px-2.5 py-1 rounded-full bg-accent/10 text-accent-foreground text-xs font-medium flex-shrink-0">
-                      {ar ? 'حالياً' : 'Current'}
+                )}
+
+                <div className="p-6 md:p-8">
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-4 pb-4 border-b border-border/30">
+                    <div className="flex items-center gap-3">
+                      {exp.current && (
+                        <div className="p-1 rounded-sm border border-border/30 bg-muted/30">
+                          <img src={primeHotelsLogo} alt="Prime Hotels" className="w-10 h-10 object-contain rounded-sm" />
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors">{exp.position}</h3>
+                        {exp.company && <p className="text-sm font-semibold text-accent mt-0.5">{exp.company}</p>}
+                      </div>
+                    </div>
+                    {exp.current && (
+                      <span className="px-3.5 py-1.5 rounded-sm bg-accent/15 text-accent-foreground text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
+                        {ar ? 'حالياً' : 'Current'}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Metadata line */}
+                  <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mb-4">
+                    {exp.location && (
+                      <span className="flex items-center gap-1.5">
+                        <MapPin size={13} className="text-accent" />
+                        {exp.location}
+                      </span>
+                    )}
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={13} className="text-accent" />
+                      {exp.period}
                     </span>
+                    {exp.rooms && (
+                      <span className="flex items-center gap-1.5">
+                        <Building size={13} className="text-accent" />
+                        {exp.rooms} {ar ? 'غرفة' : 'Keys'}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-light">{exp.description}</p>
+
+                  {/* Detailed Dashboard Metrics */}
+                  {exp.metrics && exp.metrics.length > 0 && (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                      {exp.metrics.map((m, i) => (
+                        <div key={i} className="p-3.5 rounded-sm bg-muted/40 border border-border/20 text-center">
+                          <p className="text-base font-bold font-playfair text-foreground">{m.value}</p>
+                          <p className="text-[9px] text-muted-foreground uppercase tracking-widest font-semibold mt-0.5">{m.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Accordion achievements */}
+                  {exp.achievements && exp.achievements.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-border/30">
+                      <button
+                        onClick={() => setExpanded(isItemExpanded ? null : index)}
+                        aria-expanded={isItemExpanded}
+                        className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors py-1 focus:outline-none"
+                      >
+                        <span>{ar ? 'إنجازات تشغيلية رئيسية' : 'Key Achievements'}</span>
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isItemExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      <AnimatePresence initial={false}>
+                        {isItemExpanded && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <ul className="mt-4 space-y-3 ps-1">
+                              {exp.achievements.map((a, i) => (
+                                <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                                  <ShieldCheck size={15} className="text-luxury-emerald shrink-0 mt-0.5" />
+                                  <span>{a}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   )}
                 </div>
-
-                <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-3">
-                  {exp.location && <span className="flex items-center gap-1"><MapPin size={12} />{exp.location}</span>}
-                  <span className="flex items-center gap-1"><Calendar size={12} />{exp.period}</span>
-                  {exp.rooms && <span className="flex items-center gap-1"><Building size={12} />{exp.rooms} {ar ? 'غرفة' : 'rooms'}</span>}
-                </div>
-
-                <p className="text-sm text-muted-foreground mb-4">{exp.description}</p>
-
-                {exp.metrics && exp.metrics.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {exp.metrics.map((m, i) => (
-                      <div key={i} className="px-3 py-2 rounded-lg bg-muted/50 border border-border/50 text-center min-w-[80px]">
-                        <p className="text-sm font-bold text-foreground">{m.value}</p>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{m.label}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {exp.achievements && exp.achievements.length > 0 && (
-                  <>
-                    <button
-                      onClick={() => setExpanded(expanded === index ? null : index)}
-                      className="flex items-center gap-1.5 text-xs font-medium text-accent-foreground hover:text-accent-foreground/80 transition-colors"
-                    >
-                      {ar ? 'الإنجازات الرئيسية' : 'Key Achievements'}
-                      <ChevronDown size={14} className={`transition-transform ${expanded === index ? 'rotate-180' : ''}`} />
-                    </button>
-                    <AnimatePresence>
-                      {expanded === index && (
-                        <motion.ul
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="mt-3 space-y-2 overflow-hidden"
-                        >
-                          {exp.achievements.map((a, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                              <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
-                              {a}
-                            </li>
-                          ))}
-                        </motion.ul>
-                      )}
-                    </AnimatePresence>
-                  </>
-                )}
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
@@ -418,21 +465,21 @@ const Career = () => {
         <Navbar />
 
         <main className="flex-grow pt-28 pb-20">
+          <div className="container mx-auto px-4 md:px-8 mb-6">
+            <BreadcrumbNav items={[{ label: ar ? 'المسيرة' : 'Career', active: true }]} />
+          </div>
+
           {/* Header */}
-          <section className="container mx-auto px-4 md:px-8 mb-16">
+          <section className="container mx-auto px-4 md:px-8 mb-12">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 mb-5">
-                <span className="h-px w-8 bg-accent/60" />
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold flex items-center gap-1.5">
-                  <Calendar size={12} />
-                  {ar ? '+30 عامًا • 6 دول • 7 علامات دولية' : '30+ Years • 6 Countries • 7 International Brands'}
-                </p>
-                <span className="h-px w-8 bg-accent/60" />
+              <div className="section-eyebrow">
+                <Calendar size={12} />
+                {ar ? '+30 عامًا • 6 دول • 7 علامات دولية' : '30+ Years • 6 Countries • 7 International Brands'}
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-foreground mb-5 leading-[1.1]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-5 leading-[1.1]">
                 {ar ? 'المسيرة المهنية' : 'Career Journey'}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                 {ar
                   ? 'مدير ضيافة دولي عبر دول الخليج وشمال أفريقيا والشام و EMEA. خبرة تشغيلية ممتدة مع ماريوت، آي إتش جي، ستاروود، أكور، وعلامات الفخامة المستقلة.'
                   : 'International hospitality executive across the GCC, North Africa, the Levant and broader EMEA — with Marriott International, IHG, Starwood, Accor and independent luxury brands.'}
@@ -440,69 +487,174 @@ const Career = () => {
             </motion.div>
           </section>
 
-          {/* Executive Leadership */}
-          <section className="container mx-auto px-4 md:px-8 mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-4xl mx-auto mb-10"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <Briefcase size={20} className="text-accent" />
-                <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold">
-                  {ar ? 'الفصل الأول' : 'Chapter One'}
-                </p>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold font-playfair text-foreground">
-                {ar ? 'القيادة التنفيذية' : 'Executive Leadership'}
-              </h2>
-              <p className="text-sm text-muted-foreground mt-2">
-                {ar
-                  ? 'أدوار تنفيذية بدوام كامل عبر علامات الضيافة الدولية الرائدة.'
-                  : 'Full-time executive mandates across leading international hospitality brands.'}
-              </p>
-            </motion.div>
-            {renderTimeline(executive, expandedExec, setExpandedExec, 'exec')}
-          </section>
+          {/* Main Grid Container */}
+          <section className="container mx-auto px-4 md:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr] gap-10 lg:gap-16 items-start">
+              
+              {/* Left Sidebar - Sticky on desktop */}
+              <aside className="lg:sticky lg:top-28 space-y-8">
+                
+                {/* Career Metrics Card */}
+                <div className="relative overflow-hidden rounded-sm border border-border bg-card p-6">
+                  <h2 className="text-xs uppercase tracking-[0.2em] text-accent font-bold mb-6 flex items-center gap-2 border-b border-border pb-3">
+                    <Award size={14} />
+                    {ar ? 'ملخص الأداء التشغيلي' : 'Operational Metrics'}
+                  </h2>
 
-          {/* Independent Consulting */}
-          <section className="bg-muted/30 border-y border-border/50 py-20 mb-16">
-            <div className="container mx-auto px-4 md:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="max-w-4xl mx-auto mb-10"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <Users size={20} className="text-accent" />
-                  <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold">
-                    {ar ? 'الفصل الثاني' : 'Chapter Two'}
-                  </p>
+                  <div className="space-y-6">
+                    {/* Metric 1 */}
+                    <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-normal font-playfair text-accent">30+</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          {ar ? 'عاماً من الخبرة' : 'Years of Experience'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {ar ? 'عبر 6 دول و 7 علامات تجارية عالمية' : 'Across 6 countries & 7 global brands'}
+                      </p>
+                    </div>
+
+                    {/* Metric 2 */}
+                    <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-normal font-playfair text-accent">19+</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          {ar ? 'فندقاً ومنشأة' : 'Properties Managed'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {ar ? 'من المنتجعات الفاخرة إلى فنادق المدن الكبرى' : 'From luxury resorts to major city hotels'}
+                      </p>
+                    </div>
+
+                    {/* Metric 3 */}
+                    <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-normal font-playfair text-accent">3,000+</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          {ar ? 'غرفة وجناح' : 'Rooms & Keys'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {ar ? 'تحت إشراف مباشر للتميز التشغيلي والخدمي' : 'Under direct operational excellence portfolio'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold font-playfair text-foreground">
-                  {ar ? 'الاستشارات المستقلة والتوصيات' : 'Independent Consulting & Advisory'}
-                </h2>
-                <p className="text-sm text-muted-foreground mt-2">
-                  {ar
-                    ? 'مهام جانب الملكية عبر تحويل العلامة، تحويل المسار، وما قبل الافتتاح الفاخر.'
-                    : 'Owner-side mandates across brand conversion, turnaround, and luxury pre-opening.'}
-                </p>
-              </motion.div>
-              {renderTimeline(consulting, expandedCons, setExpandedCons, 'cons')}
+
+                {/* Category Toggle */}
+                <div className="space-y-3">
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-bold px-1">
+                    {ar ? 'أقسام المسيرة المهنية' : 'CAREER CHAPTERS'}
+                  </p>
+                  <div className="flex flex-row lg:flex-col gap-2.5 p-2 bg-muted/40 border border-border rounded-sm">
+                    <button
+                      onClick={() => setActiveCategory('executive')}
+                      aria-pressed={activeCategory === 'executive'}
+                      className={`relative flex-1 lg:flex-none lg:w-full text-center lg:text-start px-4 py-3.5 rounded-sm text-xs font-bold tracking-wider transition-colors duration-300 flex items-center justify-center lg:justify-between ${
+                        activeCategory === 'executive'
+                          ? 'bg-card text-accent border border-accent/25'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/20'
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        <Briefcase size={14} className={activeCategory === 'executive' ? 'text-accent' : 'text-muted-foreground'} />
+                        <span>{ar ? 'القيادة التنفيذية' : 'Executive Leadership'}</span>
+                      </span>
+                      <ChevronIcon
+                        size={14}
+                        className={`hidden lg:block ${activeCategory === 'executive' ? 'text-accent' : 'text-muted-foreground/30'}`}
+                      />
+                    </button>
+
+                    <button
+                      onClick={() => setActiveCategory('consulting')}
+                      aria-pressed={activeCategory === 'consulting'}
+                      className={`relative flex-1 lg:flex-none lg:w-full text-center lg:text-start px-4 py-3.5 rounded-sm text-xs font-bold tracking-wider transition-colors duration-300 flex items-center justify-center lg:justify-between ${
+                        activeCategory === 'consulting'
+                          ? 'bg-card text-accent border border-accent/25'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/20'
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        <Users size={14} className={activeCategory === 'consulting' ? 'text-accent' : 'text-muted-foreground'} />
+                        <span>{ar ? 'الاستشارات والحلول' : 'Consulting & Advisory'}</span>
+                      </span>
+                      <ChevronIcon
+                        size={14}
+                        className={`hidden lg:block ${activeCategory === 'consulting' ? 'text-accent' : 'text-muted-foreground/30'}`}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+              </aside>
+
+              {/* Right Pane */}
+              <div className="min-h-[500px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeCategory}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="space-y-8"
+                  >
+                    {activeCategory === 'executive' ? (
+                      <div>
+                        <div className="mb-8 border-b border-border/40 pb-4">
+                          <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-1">
+                            {ar ? 'الفصل الأول' : 'Chapter One'}
+                          </p>
+                          <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground flex items-center gap-3">
+                            <Briefcase className="text-accent" size={20} />
+                            {ar ? 'القيادة التنفيذية' : 'Executive Leadership'}
+                          </h2>
+                          <p className="text-sm text-muted-foreground mt-2">
+                            {ar
+                              ? 'أدوار تنفيذية بدوام كامل عبر علامات الضيافة الدولية الرائدة.'
+                              : 'Full-time executive mandates across leading international hospitality brands.'}
+                          </p>
+                        </div>
+                        {renderTimeline(executive, expandedExec, setExpandedExec, 'exec')}
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="mb-8 border-b border-border/40 pb-4">
+                          <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-1">
+                            {ar ? 'الفصل الثاني' : 'Chapter Two'}
+                          </p>
+                          <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground flex items-center gap-3">
+                            <Users className="text-accent" size={20} />
+                            {ar ? 'الاستشارات المستقلة والتوجيه' : 'Independent Consulting & Advisory'}
+                          </h2>
+                          <p className="text-sm text-muted-foreground mt-2">
+                            {ar
+                              ? 'مهام جانب الملكية عبر تحويل العلامة، تحويل المسار، وما قبل الافتتاح الفاخر.'
+                              : 'Owner-side mandates across brand conversion, turnaround, and luxury pre-opening.'}
+                          </p>
+                        </div>
+                        {renderTimeline(consulting, expandedCons, setExpandedCons, 'cons')}
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* CTA - aligned inside Right Pane bottom */}
+                <div className="text-center mt-16 pt-8 border-t border-border/40">
+                  <Link to="/awards">
+                    <Button variant="outline" className="rounded-sm px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-colors">
+                      <Award size={16} />
+                      {ar ? 'شاهد الجوائز والتقدير' : 'View Awards & Recognition'}
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
             </div>
           </section>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Link to="/awards">
-              <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all">
-                <Award size={16} />
-                {ar ? 'شاهد الجوائز والتقدير' : 'View Awards & Recognition'}
-              </Button>
-            </Link>
-          </div>
         </main>
 
         <Footer />
