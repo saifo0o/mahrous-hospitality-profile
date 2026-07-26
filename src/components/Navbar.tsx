@@ -79,7 +79,7 @@ const Navbar = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="container mx-auto px-4 md:px-8">
-          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? 'h-16' : 'h-22'}`}>
+          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? 'h-16' : 'h-24'}`}>
             {/* Logo Monogram */}
             <Link 
               to="/" 
