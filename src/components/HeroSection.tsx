@@ -23,7 +23,10 @@ const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      transition: { type: 'spring', damping: 25, stiffness: 200 }
+      // Spring physics overshoot past the target, which briefly drives the
+      // blur() filter negative (invalid) and spams console warnings on
+      // every settle frame — a tween has no overshoot, so it can't do that.
+      transition: { type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.4 }
     }
   };
 
