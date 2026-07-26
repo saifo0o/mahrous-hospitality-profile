@@ -270,7 +270,7 @@ export default function HeroSection() {
               </div>
               <div className="px-3 py-4 text-center flex flex-col items-center justify-center gap-1">
                 <MapPin size={12} className="text-accent" />
-                <p className="text-[9px] text-muted-foreground font-semibold uppercase tracking-wider">{ar ? 'القاهرة، مصر' : 'Cairo, Egypt'}</p>
+                <p className="text-[9px] text-muted-foreground font-semibold uppercase tracking-wider">{ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt'}</p>
               </div>
             </motion.div>
           </div>
