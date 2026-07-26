@@ -13,6 +13,7 @@ import EnhancedLoader from '@/components/EnhancedLoader';
 import BackToTopButton from '@/components/BackToTopButton';
 import BrandLogos from '@/components/BrandLogos';
 import PageTransition from '@/components/PageTransition';
+import ConsultingTeaserBanner from '@/components/ConsultingTeaserBanner';
 
 import { useLanguage } from '@/context/LanguageContext';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
@@ -68,6 +69,8 @@ const Index = () => {
           <ErrorBoundary>
             <DynamicLoader componentPath="ExperienceSection" fallback={sectionFallback} />
           </ErrorBoundary>
+
+          <ConsultingTeaserBanner />
 
           <ErrorBoundary>
             <DynamicLoader componentPath="MethodologySection" fallback={sectionFallback} />
