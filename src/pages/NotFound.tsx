@@ -7,6 +7,7 @@ import { Home, Briefcase, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import PageTransition from '@/components/PageTransition';
+import signatureLogo from '@/assets/logos/im-signature-gold.png';
 
 export default function NotFound() {
   const location = useLocation();
@@ -35,7 +36,7 @@ export default function NotFound() {
             animate={{ opacity: 1, y: 0 }}
             className="w-full max-w-lg mx-auto text-center bg-card border border-border p-8 sm:p-12 rounded-sm relative z-10"
           >
-            <span className="font-playfair text-2xl text-accent tracking-wider">IM</span>
+            <img src={signatureLogo} alt="" aria-hidden="true" className="h-8 w-auto object-contain mx-auto" />
             <h1 className="text-6xl sm:text-7xl md:text-8xl font-light font-playfair text-foreground mt-4 mb-2">404</h1>
             <div className="w-12 h-px bg-accent mx-auto mb-6" />
             

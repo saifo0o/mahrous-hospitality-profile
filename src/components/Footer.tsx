@@ -12,8 +12,9 @@ import {
   footerLinks, 
   contactInfo, 
   socialLinks, 
-  signatureQuote 
+  signatureQuote
 } from '@/lib/brandConstants';
+import signatureLogo from '@/assets/logos/im-signature-gold.png';
 
 const Footer = () => {
   const { language, isRTL } = useLanguage();
@@ -119,8 +120,8 @@ const Footer = () => {
             {/* Brand column */}
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-accent flex items-center justify-center">
-                  <span className="font-playfair text-accent-foreground text-sm">IM</span>
+                <div className="h-8 flex items-center justify-center">
+                  <img src={signatureLogo} alt="" aria-hidden="true" className="h-8 w-auto object-contain" />
                 </div>
                 <span className="w-px h-5 bg-border/40" />
                 <span className="text-lg font-playfair tracking-wide text-white">Islam Mahrous</span>

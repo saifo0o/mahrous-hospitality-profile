@@ -15,6 +15,7 @@ import LanguageSelector from './LanguageSelector';
 import HiddenAdminLogin from './HiddenAdminLogin';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navigationItems } from '@/lib/brandConstants';
+import signatureLogo from '@/assets/logos/im-signature-gold.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,10 +88,8 @@ const Navbar = () => {
               onClick={handleLogoClick}
               aria-label={language.code === 'ar' ? 'الرئيسية - إسلام محروس' : 'Home - Islam Mahrous'}
             >
-              <div className="w-9 h-9 bg-foreground flex items-center justify-center group-hover:bg-accent transition-colors duration-300">
-                <span className="font-playfair text-background text-sm">
-                  IM
-                </span>
+              <div className="h-9 flex items-center justify-center">
+                <img src={signatureLogo} alt="" aria-hidden="true" className="h-9 w-auto object-contain" />
               </div>
               <span className="w-px h-5 bg-border/60" />
               <span className="font-playfair tracking-wide text-foreground group-hover:text-accent transition-colors duration-300 text-base md:text-lg">

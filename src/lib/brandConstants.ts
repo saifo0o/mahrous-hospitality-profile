@@ -44,6 +44,7 @@ export interface NavItem {
 export const navigationItems: NavItem[] = [
   { labelEn: 'About', labelAr: 'من أنا', path: '/about' },
   { labelEn: 'Projects', labelAr: 'المشاريع', path: '/projects' },
+  { labelEn: 'Consulting', labelAr: 'الاستشارات', path: '/consulting' },
   { labelEn: 'Career', labelAr: 'المسيرة', path: '/career' },
   { labelEn: 'Blog', labelAr: 'المدونة', path: '/blog' },
   { labelEn: 'Contact', labelAr: 'تواصل', path: '/contact' },
@@ -84,8 +85,8 @@ export const contactInfo: ContactItem[] = [
   {
     labelEn: 'Email',
     labelAr: 'البريد',
-    value: 'mahrous.islam@yahoo.com',
-    href: 'mailto:mahrous.islam@yahoo.com',
+    value: 'contact@islam-mahrous.com',
+    href: 'mailto:contact@islam-mahrous.com',
   },
   {
     labelEn: 'LinkedIn',
@@ -100,7 +101,7 @@ export const contactInfo: ContactItem[] = [
 export const socialLinks = {
   linkedin: 'https://www.linkedin.com/in/islam-mahrous-',
   whatsapp: 'https://wa.me/201095556779',
-  email: 'mailto:mahrous.islam@yahoo.com',
+  email: 'mailto:contact@islam-mahrous.com',
 } as const;
 
 // ── Shared Content ──────────────────────────────────────────
