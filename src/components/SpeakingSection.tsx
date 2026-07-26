@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mic, Calendar, Users, MapPin, ExternalLink, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -154,25 +154,27 @@ const SpeakingSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-luxury-navy text-white">
-      <div className="container mx-auto px-4 md:px-8">
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
+    <section className="py-20 md:py-28 bg-primary text-white relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="flex items-center justify-center mb-4">
-            <Mic className="h-8 w-8 text-luxury-gold mr-3" />
-            <h2 className="text-3xl md:text-4xl font-bold">
-              {language.code === 'ar' ? "المحاضرات والخطابات" : "Speaking Engagements"}
-            </h2>
-          </div>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+          <span className="inline-flex items-center gap-3 mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-accent/80">
+            <span className="inline-block w-[22px] h-px bg-accent" />
+            {language.code === 'ar' ? "المحاضرات العامة والفعاليات" : "Keynotes & Public Speaking"}
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-playfair text-white">
+            {language.code === 'ar' ? "المحاضرات والخطابات" : "Speaking Engagements"}
+          </h2>
+          <div className="w-16 h-px bg-accent mx-auto mt-6 mb-6" />
+          <p className="text-luxury-parchment/80 mt-4 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {language.code === 'ar'
-              ? "شارك خبرتي وأفكاري في المؤتمرات والفعاليات الرائدة في صناعة الضيافة"
-              : "Sharing expertise and insights at leading hospitality industry conferences and events"
+              ? "مشاركة الرؤى الاستراتيجية والخبرات العملية في المؤتمرات والفعاليات القيادية بقطاع الضيافة."
+              : "Sharing strategic insights and operational expertise at premier hospitality industry conferences and leadership events."
             }
           </p>
         </motion.div>
@@ -180,12 +182,12 @@ const SpeakingSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Available Topics */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-luxury-gold">
+            <h3 className="text-2xl md:text-3xl font-normal font-playfair mb-6 text-accent">
               {language.code === 'ar' ? "المواضيع المتاحة" : "Available Topics"}
             </h3>
             
@@ -193,71 +195,76 @@ const SpeakingSection: React.FC = () => {
               {speakingTopics.map((topic, index) => (
                 <motion.div
                   key={topic.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
-                  <Card className="bg-white/10 border-white/20 text-white hover:bg-white/15 transition-all cursor-pointer">
+                  <Card 
+                    className="bg-white/5 border border-white/10 hover:border-accent/40 text-white hover:bg-white/10 transition-colors duration-300 cursor-pointer overflow-hidden group"
+                    onClick={() => setExpandedTopic(expandedTopic === topic.id ? null : topic.id)}
+                  >
                     <CardContent className="p-6">
-                      <div 
-                        className="flex items-center justify-between mb-3"
-                        onClick={() => setExpandedTopic(expandedTopic === topic.id ? null : topic.id)}
-                      >
-                        <h4 className="text-lg font-bold text-luxury-gold">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-lg font-semibold text-accent transition-colors group-hover:text-accent/90">
                           {topic.title}
                         </h4>
                         <ChevronRight 
-                          className={`h-5 w-5 transition-transform ${
-                            expandedTopic === topic.id ? 'rotate-90' : ''
+                          className={`h-5 w-5 text-white/50 transition-transform duration-300 ${
+                            expandedTopic === topic.id ? 'rotate-90' : isRTL ? 'rotate-180' : ''
                           }`} 
                         />
                       </div>
                       
-                      <p className="text-gray-300 mb-4 leading-relaxed">
+                      <p className="text-luxury-parchment/70 mb-4 leading-relaxed text-sm md:text-base">
                         {topic.description}
                       </p>
                       
-                      <div className="flex flex-wrap gap-4 text-sm mb-4">
+                      <div className="flex flex-wrap gap-4 text-xs md:text-sm text-luxury-parchment/60 mb-2">
                         <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-2 text-luxury-gold" />
-                          {topic.duration}
+                          <Calendar className="h-4 w-4 me-2 text-accent" />
+                          <span>{topic.duration}</span>
                         </div>
                         <div className="flex items-center">
-                          <Users className="h-4 w-4 mr-2 text-luxury-gold" />
-                          {topic.audience}
+                          <Users className="h-4 w-4 me-2 text-accent" />
+                          <span>{topic.audience}</span>
                         </div>
                       </div>
 
-                      {expandedTopic === topic.id && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="border-t border-white/20 pt-4 mt-4"
-                        >
-                          <h5 className="font-semibold mb-2 text-luxury-gold">
-                            {language.code === 'ar' ? "النقاط الرئيسية:" : "Key Points:"}
-                          </h5>
-                          <ul className="space-y-1 text-sm text-gray-300">
-                            {topic.keyPoints.map((point, idx) => (
-                              <li key={idx} className="flex items-start">
-                                <span className="text-luxury-gold mr-2">•</span>
-                                {point}
-                              </li>
-                            ))}
-                          </ul>
-                          <Button 
-                            className="mt-4 bg-luxury-gold hover:bg-yellow-600 text-luxury-navy"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleBookSpeaking(topic.id);
-                            }}
+                      <AnimatePresence>
+                        {expandedTopic === topic.id && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
                           >
-                            {language.code === 'ar' ? "احجز هذا الموضوع" : "Book This Topic"}
-                          </Button>
-                        </motion.div>
-                      )}
+                            <div className="border-t border-white/10 pt-4 mt-4">
+                              <h5 className="font-semibold mb-2 text-accent text-sm">
+                                {language.code === 'ar' ? "النقاط الرئيسية:" : "Key Points:"}
+                              </h5>
+                              <ul className="space-y-2 text-sm text-luxury-parchment/70">
+                                {topic.keyPoints.map((point, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <span className="text-accent me-2.5 select-none">•</span>
+                                    <span>{point}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                              <Button 
+                                className="mt-5 bg-accent text-accent-foreground hover:bg-accent/90 rounded-sm transition-colors duration-300 font-medium"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleBookSpeaking(topic.id);
+                                }}
+                              >
+                                {language.code === 'ar' ? "احجز هذا الموضوع" : "Book This Topic"}
+                              </Button>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -267,12 +274,12 @@ const SpeakingSection: React.FC = () => {
 
           {/* Past Engagements */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-luxury-gold">
+            <h3 className="text-2xl md:text-3xl font-normal font-playfair mb-6 text-accent">
               {language.code === 'ar' ? "المحاضرات السابقة" : "Past Engagements"}
             </h3>
             
@@ -280,66 +287,71 @@ const SpeakingSection: React.FC = () => {
               {pastEngagements.map((engagement, index) => (
                 <motion.div
                   key={engagement.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
-                  <Card className="bg-white/5 border-white/10 text-white hover:bg-white/10 transition-colors cursor-pointer">
+                  <Card 
+                    className="bg-white/5 border border-white/10 hover:border-accent/40 text-white hover:bg-white/10 transition-colors duration-300 cursor-pointer overflow-hidden group"
+                    onClick={() => setExpandedEngagement(expandedEngagement === engagement.id ? null : engagement.id)}
+                  >
                     <CardContent className="p-6">
-                      <div 
-                        className="flex items-center justify-between mb-2"
-                        onClick={() => setExpandedEngagement(expandedEngagement === engagement.id ? null : engagement.id)}
-                      >
-                        <h4 className="text-lg font-bold">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="text-lg font-semibold text-white transition-colors group-hover:text-accent">
                           {engagement.event}
                         </h4>
                         <ChevronRight 
-                          className={`h-5 w-5 transition-transform ${
-                            expandedEngagement === engagement.id ? 'rotate-90' : ''
+                          className={`h-5 w-5 text-white/50 transition-transform duration-300 ${
+                            expandedEngagement === engagement.id ? 'rotate-90' : isRTL ? 'rotate-180' : ''
                           }`} 
                         />
                       </div>
                       
-                      <p className="text-luxury-gold mb-3">
+                      <p className="text-accent mb-3 text-sm font-medium">
                         {engagement.topic}
                       </p>
                       
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-300">
+                      <div className="flex flex-wrap gap-4 text-xs md:text-sm text-luxury-parchment/60 mb-2">
                         <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          {engagement.date}
+                          <Calendar className="h-4 w-4 me-2 text-accent" />
+                          <span>{engagement.date}</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          {engagement.location}
+                          <MapPin className="h-4 w-4 me-2 text-accent" />
+                          <span>{engagement.location}</span>
                         </div>
                         <div className="flex items-center">
-                          <Users className="h-4 w-4 mr-1" />
-                          {engagement.attendees} {language.code === 'ar' ? "حضور" : "attendees"}
+                          <Users className="h-4 w-4 me-2 text-accent" />
+                          <span>{engagement.attendees} {language.code === 'ar' ? "حضور" : "attendees"}</span>
                         </div>
                       </div>
 
-                      {expandedEngagement === engagement.id && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="border-t border-white/20 pt-4 mt-4"
-                        >
-                          <h5 className="font-semibold mb-2 text-luxury-gold">
-                            {language.code === 'ar' ? "أبرز النقاط:" : "Highlights:"}
-                          </h5>
-                          <ul className="space-y-1 text-sm text-gray-300">
-                            {engagement.highlights.map((highlight, idx) => (
-                              <li key={idx} className="flex items-start">
-                                <span className="text-luxury-gold mr-2">•</span>
-                                {highlight}
-                              </li>
-                            ))}
-                          </ul>
-                        </motion.div>
-                      )}
+                      <AnimatePresence>
+                        {expandedEngagement === engagement.id && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <div className="border-t border-white/10 pt-4 mt-4">
+                              <h5 className="font-semibold mb-2 text-accent text-sm">
+                                {language.code === 'ar' ? "أبرز النقاط:" : "Highlights:"}
+                              </h5>
+                              <ul className="space-y-2 text-sm text-luxury-parchment/70">
+                                {engagement.highlights.map((highlight, idx) => (
+                                  <li key={idx} className="flex items-start">
+                                    <span className="text-accent me-2.5 select-none">•</span>
+                                    <span>{highlight}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -351,24 +363,24 @@ const SpeakingSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Card className="bg-luxury-gold text-luxury-navy">
-                <CardContent className="p-6 text-center">
-                  <h4 className="text-lg font-bold mb-3">
+              <Card className="bg-white/5 border border-accent/20 text-white overflow-hidden relative">
+                <CardContent className="p-8 text-center relative z-10">
+                  <h4 className="text-xl md:text-2xl font-normal font-playfair mb-3 text-accent">
                     {language.code === 'ar' ? "احجز محاضرة" : "Book a Speaking Engagement"}
                   </h4>
-                  <p className="mb-4">
+                  <p className="mb-6 text-luxury-parchment/70 max-w-md mx-auto text-sm md:text-base leading-relaxed">
                     {language.code === 'ar'
-                      ? "مهتم بدعوة إسلام للحديث في فعاليتك؟"
-                      : "Interested in having Islam speak at your event?"
+                      ? "هل ترغب في استضافة إسلام للتحدث في مؤتمرك أو فعاليتك القادمة؟ دعنا نخطط لمحاضرة استثنائية."
+                      : "Interested in having Islam speak at your upcoming conference or corporate event? Let's curate an exceptional presentation."
                     }
                   </p>
                   <Button 
-                    className="bg-luxury-navy hover:bg-blue-900 text-white"
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-sm transition-colors duration-300 font-medium"
                     onClick={() => handleBookSpeaking()}
                   >
-                    <ExternalLink className="h-4 w-4 mr-2" />
+                    <ExternalLink className="h-4 w-4 me-2" />
                     {language.code === 'ar' ? "تواصل معنا" : "Get in Touch"}
                   </Button>
                 </CardContent>

@@ -1,353 +1,416 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { motion } from 'framer-motion';
-import { Briefcase, Award, GraduationCap, Globe, Download, ArrowRight } from 'lucide-react';
+import { Briefcase, Award, GraduationCap, Globe, Download, ArrowRight, ShieldCheck, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 
-const About = () => {
+export default function About() {
   const { language, t, isRTL } = useLanguage();
+  const ar = language.code === 'ar';
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] } })
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] } })
   };
 
   const skillCategories = [
     {
-      category: language.code === 'ar' ? 'العمليات' : 'Operations',
+      category: ar ? 'العمليات الفندقية' : 'Hotel Operations',
       skills: [
-        { name: language.code === 'ar' ? 'عمليات ما قبل الافتتاح' : 'Pre-Opening Operations', level: 98 },
-        { name: language.code === 'ar' ? 'التميز التشغيلي' : 'Operational Excellence', level: 95 },
-        { name: language.code === 'ar' ? 'التجديدات الكبرى' : 'Major Renovations', level: 92 },
-        { name: language.code === 'ar' ? 'تحويل العلامات التجارية' : 'Brand Conversions', level: 90 },
+        { name: ar ? 'عمليات ما قبل الافتتاح' : 'Pre-Opening Operations', level: 98 },
+        { name: ar ? 'التميز التشغيلي والحوكمة' : 'Operational Governance', level: 95 },
+        { name: ar ? 'التجديدات الكبرى وإعادة الهيكلة' : 'Major Renovations & CAPEX', level: 92 },
+        { name: ar ? 'تحويل وتأهيل العلامات التجارية' : 'Brand Conversions & Audits', level: 90 },
       ]
     },
     {
-      category: language.code === 'ar' ? 'القيادة' : 'Leadership',
+      category: ar ? 'القيادة التنفيذية' : 'Executive Leadership',
       skills: [
-        { name: language.code === 'ar' ? 'قيادة الفرق' : 'Team Leadership', level: 97 },
-        { name: language.code === 'ar' ? 'التخطيط الاستراتيجي' : 'Strategic Planning', level: 93 },
-        { name: language.code === 'ar' ? 'علاقات أصحاب المصلحة' : 'Stakeholder Relations', level: 91 },
-        { name: language.code === 'ar' ? 'تجربة الضيوف' : 'Guest Experience', level: 96 },
+        { name: ar ? 'إدارة فرق العمل الكبرى' : 'Multi-Property Leadership', level: 97 },
+        { name: ar ? 'التخطيط الاستراتيجي وعلاقات الملاك' : 'Strategic Stakeholder Relations', level: 93 },
+        { name: ar ? 'تطوير تجربة ورضا الضيوف' : 'Guest Experience Architecture', level: 96 },
+        { name: ar ? 'إدارة الأصول وتحسين العوائد' : 'Asset Management & STR Yield', level: 91 },
       ]
     },
     {
-      category: language.code === 'ar' ? 'المالية والتقنية' : 'Financial & Technical',
+      category: ar ? 'إدارة الجودة والمالية' : 'Quality & Finance',
       skills: [
-        { name: language.code === 'ar' ? 'نمو الإيرادات' : 'Revenue Growth', level: 94 },
-        { name: language.code === 'ar' ? 'إدارة الأرباح والخسائر' : 'P&L Management', level: 92 },
-        { name: language.code === 'ar' ? 'إدارة الأصول' : 'Asset Management', level: 88 },
-        { name: 'Six Sigma', level: 90 },
+        { name: ar ? 'نمو الإيرادات وتحسين الربحية' : 'Revenue & GOP Growth', level: 94 },
+        { name: ar ? 'إدارة الأرباح والخسائر والمصروفات' : 'P&L / Flow-through Audits', level: 92 },
+        { name: ar ? 'منهجية الحزام الأسود Six Sigma' : 'Six Sigma Black Belt System', level: 90 },
+        { name: ar ? 'تطوير أساليب التحسين كايزن' : 'Kaizen Continuous Improvement', level: 93 },
       ]
     }
   ];
 
   const philosophyItems = [
     {
-      title: language.code === 'ar' ? 'التميز التشغيلي' : 'Operational Excellence',
-      desc: language.code === 'ar' ? 'تبسيط العمليات لأقصى كفاءة مع أعلى معايير الجودة.' : 'Streamlining processes to maximize efficiency while maintaining the highest quality standards.'
+      title: ar ? 'التميز التشغيلي' : 'Operational Excellence',
+      desc: ar ? 'تبسيط وتبويب العمليات لتحقيق أقصى كفاءة مع ضمان ثبات الجودة العالية.' : 'Streamlining core workflows to unlock high profit yield while locking in pristine quality standards.'
     },
     {
-      title: language.code === 'ar' ? 'تجربة الضيوف' : 'Guest Experience',
-      desc: language.code === 'ar' ? 'خلق تجارب مميزة تتجاوز التوقعات وتعزز ولاء الضيوف.' : 'Creating memorable experiences that exceed expectations and foster long-term loyalty.'
+      title: ar ? 'تجربة الضيوف' : 'Guest Centricity',
+      desc: ar ? 'ابتكار تجارب ضيافة مخصصة تتجاوز التوقعات وتخلق ولاءً دائمًا للعلامة.' : 'Designing bespoke service moments that exceed expectations, building long-term asset value.'
     },
     {
-      title: language.code === 'ar' ? 'تطوير المواهب' : 'Talent Development',
-      desc: language.code === 'ar' ? 'إرشاد وتمكين الفريق للوصول لكامل إمكاناتهم.' : 'Mentoring and empowering team members to reach their full potential.'
+      title: ar ? 'تطوير وتمكين المواهب' : 'Talent Mentorship',
+      desc: ar ? 'تدريب وإرشاد وتفويض فرق العمل لبناء صف قيادي قادر على التقييم والتطوير.' : 'Coaching and empowering operational champions to take full ownership of departmental performance.'
     },
     {
-      title: language.code === 'ar' ? 'الابتكار والاستدامة' : 'Innovation & Sustainability',
-      desc: language.code === 'ar' ? 'تبني التقنيات الجديدة والممارسات المستدامة.' : 'Embracing new technologies and sustainable practices for operational efficiency.'
+      title: ar ? 'كايزن والتحسين المستمر' : 'Continuous Improvement',
+      desc: ar ? 'تبني الأفكار الإبداعية والتقنيات الحديثة لتعزيز الكفاءة واستدامة الأرباح.' : 'Adopting modern systems (e.g. Opera Cloud, CRM) and Kaizen loops for constant growth.'
     }
   ];
 
   return (
     <PageTransition>
-    <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
-      <Navbar />
+      <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
+        <Navbar />
 
-      <main className="flex-grow pt-28 pb-20">
-        {/* Hero */}
-        <section className="container mx-auto px-4 md:px-8 mb-20">
-          <div className={`grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start ${isRTL ? 'direction-rtl' : ''}`}>
-            {/* Image */}
-            <motion.div
-              className="lg:col-span-2"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="relative">
-                <div className="absolute -inset-3 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/10 blur-sm" />
-                <img
-                  alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous'}
-                  className="relative w-full rounded-2xl shadow-xl object-cover aspect-[3/4]"
-                  src="/lovable-uploads/2a742c4a-aaea-4c0f-ad38-ea2891228c62.jpg"
-                />
-              </div>
-              <div className="mt-6">
-                <a href="/Islam_Mahrous_Resume.pdf" download="Islam_Mahrous_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-xl font-semibold gap-2">
-                    <Download size={16} />
-                    {language.code === 'ar' ? 'تحميل السيرة الذاتية' : 'Download CV'}
-                  </Button>
-                </a>
-              </div>
-            </motion.div>
+        <main className="flex-grow pt-28 pb-20">
+          <div className="container mx-auto px-4 md:px-8 mb-8">
+            <BreadcrumbNav items={[{ label: ar ? 'من أنا' : 'About', active: true }]} />
+          </div>
 
-            {/* Content */}
-            <div className="lg:col-span-3 space-y-8">
-              <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium text-accent-foreground mb-4">
-                  <span className="w-2 h-2 rounded-full bg-accent" />
-                  {language.code === 'ar' ? 'أكثر من 30 عامًا في الضيافة' : '30+ Years in Hospitality'}
-                </span>
-                <h1 className="text-4xl md:text-5xl font-bold font-playfair text-foreground leading-tight">
-                  {language.code === 'ar' ? 'من أنا' : 'About Me'}
-                </h1>
+          {/* Premium Editorial Hero Spread */}
+          <section className="container mx-auto px-4 md:px-8 mb-24">
+            <div className={`grid grid-cols-1 lg:grid-cols-[1.2fr_1.8fr] gap-16 items-start ${isRTL ? 'direction-rtl' : ''}`}>
+              
+              {/* Photo & CV Download */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="relative max-w-sm mx-auto w-full"
+              >
+                <div className="signature-frame">
+                  <div className="relative overflow-hidden aspect-[3/4]">
+                    <img
+                      alt={ar ? 'إسلام محروس' : 'Islam Mahrous'}
+                      className="w-full h-full object-cover"
+                      src="/lovable-uploads/2a742c4a-aaea-4c0f-ad38-ea2891228c62.jpg"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <a href="/Islam_Mahrous_Resume.pdf" download="Islam_Mahrous_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-sm font-bold py-6 gap-2 transition-colors duration-300">
+                      <Download size={18} />
+                      {ar ? 'تحميل السيرة الذاتية بصيغة PDF' : 'Download CV Resume'}
+                    </Button>
+                  </a>
+                </div>
               </motion.div>
 
-              <motion.p initial="hidden" animate="visible" custom={1} variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed">
-                {language.code === 'ar'
-                  ? 'كمدير تنفيذي متميز في مجال الضيافة مع أكثر من 30 عامًا من الخبرة القيادية، تخصصت في عمليات ما قبل الافتتاح، والتجديدات واسعة النطاق، والتميز التشغيلي عبر الأسواق الدولية.'
-                  : 'As an accomplished Hospitality Executive with over 30 years of progressive leadership experience, I have specialized in pre-opening operations, large-scale renovations, and operational excellence across international markets.'
-                }
-              </motion.p>
+              {/* Biography Details */}
+              <div className="space-y-8 flex flex-col justify-center">
+                <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
+                  <div className="section-eyebrow">
+                    {ar ? 'مدير عمليات فندقية محترف بـ ٣٠+ عامًا من الخبرة' : '30+ Years Professional Operations Record'}
+                  </div>
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground leading-tight">
+                    {ar ? 'مسيرة مهنية مبنية على التميز' : 'Leading with Precision & Passion'}
+                  </h1>
+                </motion.div>
 
-              <motion.p initial="hidden" animate="visible" custom={2} variants={fadeUp} className="text-muted-foreground leading-relaxed">
-                {language.code === 'ar'
-                  ? 'تمتد خبرتي الدولية عبر مصر والمملكة العربية السعودية وليبيا والإمارات العربية المتحدة، مما يمنحني منظورًا فريدًا حول اتجاهات الضيافة الإقليمية والفروق الثقافية.'
-                  : 'My international experience spans Egypt, Saudi Arabia, Libya, and the UAE, giving me a unique perspective on regional hospitality trends and cultural nuances that impact guest experiences.'
-                }
-              </motion.p>
+                <motion.p initial="hidden" animate="visible" custom={1} variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed font-light">
+                  {ar
+                    ? 'كمدير تنفيذي متميز في قطاع الفنادق والضيافة، تخصصت طوال مسيرتي المهنية في إدارة عمليات الافتتاح الكبرى، والتجديدات الشاملة للأصول، ورفع معدلات الكفاءة التشغيلية والربحية للمحفظة الفندقية.'
+                    : 'As an accomplished Hospitality Executive, I drive operational excellence, capital renovation governance, and pre-opening readiness across multi-property hotel portfolios.'
+                  }
+                </motion.p>
 
-              {/* Info Grid */}
-              <motion.div initial="hidden" animate="visible" custom={3} variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <motion.p initial="hidden" animate="visible" custom={2} variants={fadeUp} className="text-muted-foreground leading-relaxed font-sans">
+                  {ar
+                    ? 'تمتد خبرتي القيادية عبر مصر والمملكة العربية السعودية وليبيا والإمارات، مما يمنحني إدراكاً عميقاً لمتطلبات وتطلعات النزلاء، وثقافة سوق العمل الخليجي والعربي، وإمكانيات مواءمة المعايير العالمية مع متطلبات السوق المحلي.'
+                    : 'My leadership spans Egypt, Saudi Arabia, Libya, and the UAE. Having worked with Marriott, IHG, and Accor, I combine deep regional compliance knowledge (including KSA Saudization frameworks) with international hospitality systems.'
+                  }
+                </motion.p>
+
+                {/* Asymmetric Info Grid */}
+                <motion.div initial="hidden" animate="visible" custom={3} variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4">
+                  {[
+                    { icon: Briefcase, title: ar ? 'الخبرة القيادية' : 'Industry Experience', desc: ar ? '+٣٠ عامًا مع ماريوت، آي إتش جي، أكور' : '30+ years across Marriott, IHG, Accor' },
+                    { icon: Award, title: ar ? 'التميز والأدوات' : 'Operational Core', desc: ar ? 'الافتتاح، التجديدات، Six Sigma' : 'Pre-opening, CAPEX, Six Sigma' },
+                    { icon: GraduationCap, title: ar ? 'المؤهلات العلمية' : 'Higher Education', desc: ar ? 'ماجستير إدارة أعمال، دبلوم معهد جليون' : 'MBA, Glion Swiss Diploma' },
+                    { icon: Globe, title: ar ? 'اللغات المتقنة' : 'Language Mastery', desc: ar ? 'العربية (الأم)، الإنجليزية (طليق)، الألمانية' : 'Arabic (Native), English (Fluent), German' }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-4 p-5 rounded-sm bg-card border border-border hover:border-accent/40 transition-colors duration-300">
+                      <div className="w-10 h-10 rounded-sm bg-accent/8 flex items-center justify-center flex-shrink-0">
+                        <item.icon size={18} className="text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-sm">{item.title}</h3>
+                        <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Quick Metrics Banner */}
+          <section className="bg-primary text-primary-foreground py-14 mb-24 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+            <div className="container mx-auto px-4 md:px-8 relative z-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { icon: Briefcase, title: language.code === 'ar' ? 'الخبرة' : 'Experience', desc: language.code === 'ar' ? '+30 عامًا مع ماريوت، آي إتش جي، أكور' : '30+ years with Marriott, IHG, Accor' },
-                  { icon: Award, title: language.code === 'ar' ? 'التخصص' : 'Expertise', desc: language.code === 'ar' ? 'ما قبل الافتتاح، التجديدات، التميز التشغيلي' : 'Pre-opening, Renovations, Operational Excellence' },
-                  { icon: GraduationCap, title: language.code === 'ar' ? 'التعليم' : 'Education', desc: language.code === 'ar' ? 'ماجستير إدارة الأعمال، دبلوم جليون' : 'MBA, Glion Institute Diploma' },
-                  { icon: Globe, title: language.code === 'ar' ? 'اللغات' : 'Languages', desc: language.code === 'ar' ? 'العربية، الإنجليزية، الألمانية' : 'Arabic, English, German' }
+                  { value: '30+', label: ar ? 'سنوات خبرة قيادية' : 'Years Experience' },
+                  { value: '5,000+', label: ar ? 'موظف تم تدريبهم' : 'Hoteliers Coached' },
+                  { value: '4', label: ar ? 'دول عربية وخليجية' : 'Regional Countries' },
+                  { value: '3', label: ar ? 'لغات متحدثة' : 'Fluent Languages' },
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08, duration: 0.6 }}
+                  >
+                    <p className="text-3xl md:text-4xl font-bold font-playfair text-accent">{stat.value}</p>
+                    <p className="text-[10px] text-primary-foreground/70 uppercase tracking-widest mt-2 font-semibold">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Leadership Philosophy Spread */}
+          <section className="py-24 bg-muted/20 border-y border-border/40 mb-24 relative">
+            <div className="container mx-auto px-4 md:px-8">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16 max-w-xl mx-auto">
+                <div className="section-eyebrow">{ar ? 'رؤيتنا المهنية' : 'Philosophy'}</div>
+                <h2 className="section-heading inline-block">
+                  {ar ? 'روافد الفلسفة القيادية' : 'Leadership Philosophy'}
+                </h2>
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                {philosophyItems.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.6 }}
+                    className="bg-card rounded-sm p-6 border border-border hover:border-accent/40 transition-colors duration-300"
+                  >
+                    <div className="w-1.5 h-10 bg-accent mb-5" />
+                    <h3 className="font-semibold text-foreground text-base mb-3">{item.title}</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Immersive Quote Block */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-sm p-8 md:p-14 text-center border border-border relative overflow-hidden"
+              >
+                <blockquote className="text-xl md:text-2xl italic font-light max-w-3xl mx-auto text-foreground leading-relaxed">
+                  {ar
+                    ? '"إن التميز في إدارة الفنادق لا يتحقق بمجرد تقديم الخدمة اليومية؛ بل برسم مسار استراتيجي متكامل وتدريب العاملين على تبني هذه الرؤية والالتزام بتفاصيلها."'
+                    : '"Excellence in hospitality is not just about daily service; it is about building standard systems, training the champions to own them, and measuring progress Kaizen-style."'
+                  }
+                </blockquote>
+                <p className="mt-6 text-accent font-semibold tracking-wider text-sm uppercase font-playfair">— Islam Mahrous</p>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Competency Level Sliders */}
+          <section className="py-20 mb-24">
+            <div className="container mx-auto px-4 md:px-8">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16 max-w-xl mx-auto">
+                <div className="section-eyebrow">{ar ? 'المهارات والكفاءات' : 'Competencies'}</div>
+                <h2 className="section-heading inline-block">
+                  {ar ? 'القدرات الإدارية والتشغيلية' : 'Core Capabilities'}
+                </h2>
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+                {skillCategories.map((category, ci) => (
+                  <motion.div
+                    key={ci}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: ci * 0.15, duration: 0.6 }}
+                    className="bg-card rounded-sm p-6 sm:p-8 border border-border"
+                  >
+                    <h3 className="font-semibold text-foreground mb-6 text-sm uppercase tracking-wider flex items-center gap-2 border-b border-border pb-4">
+                      <div className="w-2.5 h-2.5 bg-accent" />
+                      {category.category}
+                    </h3>
+                    <div className="space-y-6">
+                      {category.skills.map((skill, si) => (
+                        <div key={si}>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs sm:text-sm text-foreground font-semibold">{skill.name}</span>
+                            <span className="text-xs text-accent font-bold">{skill.level}%</span>
+                          </div>
+                          <div className="h-1.5 bg-muted overflow-hidden">
+                            <motion.div
+                              className="h-full bg-accent"
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${skill.level}%` }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.3 + si * 0.08, duration: 1, ease: 'easeOut' }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Technologies / Systems */}
+              <div className="flex flex-wrap justify-center items-center gap-3 bg-muted/30 border border-border rounded-sm p-5 max-w-3xl mx-auto">
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold me-3">
+                  {ar ? 'الأنظمة والبرمجيات المعتمدة' : 'SYSTEMS CRITICAL INVENTORY'}:
+                </span>
+                {['Opera PMS', 'Opera Cloud', 'Fidelio', 'Concerto IHG', 'MARSHA Marriott', 'MS Project', 'Six Sigma Minitab'].map((tech, i) => (
+                  <span key={i} className="px-3.5 py-2 rounded-sm bg-card border border-border text-xs font-semibold text-foreground/95">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Education & Credentials Editorial Spread */}
+          <section className="bg-muted/20 border-y border-border/40 py-24">
+            <div className="container mx-auto px-4 md:px-8">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16 max-w-xl mx-auto">
+                <div className="section-eyebrow">{ar ? 'الأكاديميات والاعتمادات' : 'Education'}</div>
+                <h2 className="section-heading inline-block">
+                  {ar ? 'المؤهلات العلمية والمهنية' : 'Education & Certifications'}
+                </h2>
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                {/* Academic Qualifications */}
+                <motion.div 
+                  initial={{ opacity: 0, x: isRTL ? 30 : -30 }} 
+                  whileInView={{ opacity: 1, x: 0 }} 
+                  viewport={{ once: true }} 
+                  className="bg-card rounded-sm p-8 border border-border flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="font-bold text-foreground mb-6 text-base flex items-center gap-2.5 border-b border-border/40 pb-4">
+                      <GraduationCap size={20} className="text-accent" />
+                      <span>{ar ? 'المسار الأكاديمي' : 'Academic Credentials'}</span>
+                    </h3>
+                    <div className="space-y-6">
+                      {[
+                        { 
+                          degree: ar ? 'ماجستير إدارة الأعمال (MBA)' : 'MBA', 
+                          school: ar ? 'الأكاديمية العربية للعلوم والتكنولوجيا (معدل ٣.٥٦)' : 'Arab Academy for Science & Technology (GPA: 3.56)',
+                          year: '2012' 
+                        },
+                        { 
+                          degree: ar ? 'دبلوم إدارة شعبة الغرف' : 'Rooms Division Diploma', 
+                          school: ar ? 'معهد غليون للتعليم العالي، سويسرا' : 'Glion Institute of Higher Education, Switzerland',
+                          year: '1998' 
+                        },
+                        { 
+                          degree: ar ? 'بكالوريوس إدارة الفنادق' : "Bachelor's in Hotel Management", 
+                          school: ar ? 'كلية السياحة والفنادق، جامعة الإسكندرية' : 'Faculty of Tourism & Hotels, Alexandria University',
+                          year: '1994' 
+                        }
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-start gap-4">
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <p className="font-bold text-foreground text-sm">{item.degree}</p>
+                              <span className="text-[10px] font-mono text-muted-foreground">({item.year})</span>
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-1">{item.school}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Professional Certifications */}
+                <motion.div 
+                  initial={{ opacity: 0, x: isRTL ? -30 : 30 }} 
+                  whileInView={{ opacity: 1, x: 0 }} 
+                  viewport={{ once: true }} 
+                  className="bg-card rounded-sm p-8 border border-border flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="font-bold text-foreground mb-6 text-base flex items-center gap-2.5 border-b border-border/40 pb-4">
+                      <Award size={20} className="text-accent" />
+                      <span>{ar ? 'الاعتمادات والتراخيص المهنية' : 'Certifications & Accreditation'}</span>
+                    </h3>
+                    <div className="space-y-4">
+                      {[
+                        ar ? 'شهادة الحزام الأسود سيكس سيجما (Six Sigma Black Belt)' : 'Six Sigma Black Belt Certified',
+                        ar ? 'شهادة CTC المعتمدة للتدريب الحرفي المهني فندقياً' : 'CTC Craft Training Certificate (Marriott)',
+                        ar ? 'شهادة إدارة العائد المتقدم وتسعير الأصول الفندقية' : 'Advanced Yield & Revenue Management (Marriott)',
+                        ar ? 'مدير ومدرب معتمد للتطوير والابتكار التشغيلي' : 'Operational Innovation Director & Coach',
+                        ar ? 'تدريب الذكاء العاطفي وإعداد قيادات الأصول الفندقية' : 'Emotional Intelligence for Executive Leaders'
+                      ].map((cert, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                          <p className="text-xs sm:text-sm font-semibold text-foreground/90 leading-relaxed">{cert}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Language Chips */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                className="flex flex-wrap justify-center gap-8 mt-16 pt-8 border-t border-border"
+              >
+                {[
+                  { lang: ar ? 'العربية' : 'Arabic', level: ar ? 'اللغة الأم' : 'Native Fluency' },
+                  { lang: ar ? 'الإنجليزية' : 'English', level: ar ? 'طليق (لغة العمل المهني)' : 'Professional Fluency' },
+                  { lang: ar ? 'الألمانية' : 'German', level: ar ? 'مستوى متوسط' : 'Conversational' }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 border border-border/50">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <item.icon size={18} className="text-accent-foreground" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground text-sm">{item.title}</h3>
-                      <p className="text-xs text-muted-foreground">{item.desc}</p>
-                    </div>
+                  <div key={i} className="text-center bg-card border border-border rounded-sm px-6 py-4 min-w-[140px]">
+                    <p className="font-bold text-foreground text-sm">{item.lang}</p>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">{item.level}</p>
                   </div>
                 ))}
               </motion.div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Leadership Philosophy */}
-        <section className="bg-muted/30 border-y border-border/50 py-20">
-          <div className="container mx-auto px-4 md:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold font-playfair text-foreground mb-4">
-                {language.code === 'ar' ? 'فلسفة القيادة' : 'Leadership Philosophy'}
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              {philosophyItems.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-card rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="w-1 h-8 bg-accent rounded-full mb-4" />
-                  <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
-                </motion.div>
-              ))}
+          {/* Next Chapter CTA */}
+          <section className="py-20">
+            <div className="container mx-auto px-4 md:px-8 text-center">
+              <Link to="/career">
+                <Button variant="outline" className="rounded-sm px-8 py-6 text-base font-semibold gap-2 border-border hover:border-accent transition-colors duration-300 bg-transparent">
+                  {ar ? 'استكشف المسار المهني الكامل' : 'Explore My Full Career Timeline'}
+                  <ArrowRight size={18} className={isRTL ? 'rotate-180' : ''} />
+                </Button>
+              </Link>
             </div>
+          </section>
+        </main>
 
-            {/* Quote */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-primary text-primary-foreground rounded-2xl p-8 md:p-12 text-center"
-            >
-              <blockquote className="text-xl md:text-2xl italic font-light max-w-3xl mx-auto">
-                {language.code === 'ar'
-                  ? '"التميز في الضيافة ليس مجرد خدمة؛ إنه استراتيجية ورؤية وذكاء عاطفي."'
-                  : '"Excellence in hospitality is not just service; it\'s strategy, vision, and emotional intelligence."'
-                }
-              </blockquote>
-              <p className="mt-4 text-accent font-medium">— Islam Mahrous</p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Skills with Progress Bars */}
-        <section className="py-20">
-          <div className="container mx-auto px-4 md:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold font-playfair text-foreground mb-4">
-                {language.code === 'ar' ? 'المهارات الرئيسية' : 'Core Skills'}
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
-              {skillCategories.map((category, ci) => (
-                <motion.div
-                  key={ci}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: ci * 0.15 }}
-                  className="bg-card rounded-xl p-6 border border-border/50 shadow-sm"
-                >
-                  <h3 className="font-semibold text-foreground mb-5 text-sm uppercase tracking-wider flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-accent" />
-                    {category.category}
-                  </h3>
-                  <div className="space-y-4">
-                    {category.skills.map((skill, si) => (
-                      <motion.div
-                        key={si}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: ci * 0.15 + si * 0.08 }}
-                      >
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-sm text-foreground font-medium">{skill.name}</span>
-                          <span className="text-xs text-muted-foreground font-semibold">{skill.level}%</span>
-                        </div>
-                        <motion.div
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: ci * 0.15 + si * 0.08 + 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                          style={{ transformOrigin: isRTL ? 'right' : 'left' }}
-                        >
-                          <Progress value={skill.level} className="h-2" />
-                        </motion.div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-3">
-              <span className="text-xs uppercase tracking-widest text-muted-foreground/60 font-medium self-center mr-3">
-                {language.code === 'ar' ? 'أنظمة' : 'Systems'}:
-              </span>
-              {['Opera', 'Fidelio', 'HIS', 'MS Office'].map((tech, i) => (
-                <span key={i} className="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-medium">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Education */}
-        <section className="bg-muted/30 border-y border-border/50 py-20">
-          <div className="container mx-auto px-4 md:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold font-playfair text-foreground mb-4">
-                {language.code === 'ar' ? 'التعليم والشهادات' : 'Education & Certifications'}
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {/* Academic */}
-              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-card rounded-xl p-6 border border-border/50 shadow-sm">
-                <h3 className="font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <GraduationCap size={18} className="text-accent-foreground" />
-                  {language.code === 'ar' ? 'المؤهلات الأكاديمية' : 'Academic Qualifications'}
-                </h3>
-                <div className="space-y-5">
-                  {[
-                    { degree: language.code === 'ar' ? 'ماجستير إدارة الأعمال' : 'MBA', school: language.code === 'ar' ? 'الأكاديمية العربية للعلوم والتكنولوجيا (3.56)' : 'Arab Academy for Science & Technology (GPA: 3.56)' },
-                    { degree: language.code === 'ar' ? 'بكالوريوس' : "Bachelor's Degree", school: language.code === 'ar' ? 'كلية السياحة والفنادق، الإسكندرية' : 'Faculty of Tourism & Hotels, Alexandria' },
-                    { degree: language.code === 'ar' ? 'دبلوم قسم الغرف' : 'Rooms Division Diploma', school: language.code === 'ar' ? 'معهد جليون، سويسرا' : 'Glion Institute, Switzerland' }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0" />
-                      <div>
-                        <p className="font-medium text-foreground text-sm">{item.degree}</p>
-                        <p className="text-xs text-muted-foreground">{item.school}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Certifications */}
-              <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-card rounded-xl p-6 border border-border/50 shadow-sm">
-                <h3 className="font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <Award size={18} className="text-accent-foreground" />
-                  {language.code === 'ar' ? 'الشهادات المهنية' : 'Professional Certifications'}
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    language.code === 'ar' ? 'شهادة الحزام الأسود سيكس سيجما' : 'Six Sigma Black Belt',
-                    language.code === 'ar' ? 'مدير ومدرب الابتكار التشغيلي' : 'Operational Innovation Director & Coach',
-                    language.code === 'ar' ? 'شهادة تدريب الحرف CTC' : 'CTC Craft Training Certificate',
-                    language.code === 'ar' ? 'شهادة إدارة العائد' : 'Yield Management Certification',
-                    language.code === 'ar' ? 'تدريب القيادة للذكاء العاطفي' : 'Emotional Intelligence Leadership'
-                  ].map((cert, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
-                      <p className="text-sm text-foreground">{cert}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Languages */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex justify-center gap-8 mt-12">
-              {[
-                { lang: language.code === 'ar' ? 'العربية' : 'Arabic', level: language.code === 'ar' ? 'اللغة الأم' : 'Native' },
-                { lang: language.code === 'ar' ? 'الإنجليزية' : 'English', level: language.code === 'ar' ? 'طليق' : 'Fluent' },
-                { lang: language.code === 'ar' ? 'الألمانية' : 'German', level: language.code === 'ar' ? 'متوسط' : 'Intermediate' }
-              ].map((item, i) => (
-                <div key={i} className="text-center">
-                  <p className="font-semibold text-foreground">{item.lang}</p>
-                  <p className="text-xs text-muted-foreground">{item.level}</p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 md:px-8 text-center">
-            <Link to="/career">
-              <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all">
-                {language.code === 'ar' ? 'استكشف مسيرتي المهنية' : 'Explore My Career Journey'}
-                <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
-              </Button>
-            </Link>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     </PageTransition>
   );
-};
-
-export default About;
+}

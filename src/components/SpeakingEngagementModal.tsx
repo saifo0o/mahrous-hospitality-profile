@@ -19,7 +19,7 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
   onClose,
   selectedTopic
 }) => {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -71,17 +71,17 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent dir={isRTL ? 'rtl' : 'ltr'} className="max-w-2xl max-h-[90vh] overflow-y-auto font-sans">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-luxury-navy">
+          <DialogTitle className="text-xl font-normal font-playfair text-foreground border-b border-border pb-3">
             {language.code === 'ar' ? "طلب محاضرة" : "Speaking Engagement Request"}
           </DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6 mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1.5 text-foreground/90">
                 {language.code === 'ar' ? "الاسم الكامل" : "Full Name"} *
               </label>
               <Input
@@ -90,10 +90,11 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
                 onChange={handleChange}
                 required
                 placeholder={language.code === 'ar' ? "اسمك الكامل" : "Your full name"}
+                className="rounded-lg border-input"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1.5 text-foreground/90">
                 {language.code === 'ar' ? "البريد الإلكتروني" : "Email Address"} *
               </label>
               <Input
@@ -102,14 +103,15 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder={language.code === 'ar' ? "your@email.com" : "your@email.com"}
+                placeholder="your@email.com"
+                className="rounded-lg border-input"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1.5 text-foreground/90">
                 {language.code === 'ar' ? "المؤسسة" : "Organization"} *
               </label>
               <Input
@@ -118,10 +120,11 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
                 onChange={handleChange}
                 required
                 placeholder={language.code === 'ar' ? "اسم المؤسسة" : "Organization name"}
+                className="rounded-lg border-input"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1.5 text-foreground/90">
                 {language.code === 'ar' ? "اسم الفعالية" : "Event Name"} *
               </label>
               <Input
@@ -130,15 +133,16 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
                 onChange={handleChange}
                 required
                 placeholder={language.code === 'ar' ? "اسم المؤتمر أو الفعالية" : "Conference or event name"}
+                className="rounded-lg border-input"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">
-                <Calendar className="inline h-4 w-4 mr-1" />
-                {language.code === 'ar' ? "تاريخ الفعالية" : "Event Date"} *
+              <label className="flex items-center gap-1.5 text-sm font-medium mb-1.5 text-foreground/90">
+                <Calendar className="h-4 w-4 text-accent" />
+                <span>{language.code === 'ar' ? "تاريخ الفعالية" : "Event Date"} *</span>
               </label>
               <Input
                 name="eventDate"
@@ -146,32 +150,34 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
                 value={formData.eventDate}
                 onChange={handleChange}
                 required
+                className="rounded-lg border-input"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">
-                <Users className="inline h-4 w-4 mr-1" />
-                {language.code === 'ar' ? "عدد الحضور المتوقع" : "Expected Attendees"}
+              <label className="flex items-center gap-1.5 text-sm font-medium mb-1.5 text-foreground/90">
+                <Users className="h-4 w-4 text-accent" />
+                <span>{language.code === 'ar' ? "عدد الحضور المتوقع" : "Expected Attendees"}</span>
               </label>
               <Input
                 name="expectedAttendees"
                 value={formData.expectedAttendees}
                 onChange={handleChange}
                 placeholder={language.code === 'ar' ? "مثال: 200-300" : "e.g., 200-300"}
+                className="rounded-lg border-input"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1.5 text-foreground/90">
                 {language.code === 'ar' ? "الموضوع المفضل" : "Preferred Topic"}
               </label>
               <select
                 name="topic"
                 value={formData.topic}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full h-10 px-3 py-2 border border-input bg-background rounded-lg text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200"
               >
                 <option value="">
                   {language.code === 'ar' ? "اختر موضوعاً" : "Select a topic"}
@@ -191,15 +197,15 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">
-                <Clock className="inline h-4 w-4 mr-1" />
-                {language.code === 'ar' ? "المدة المطلوبة" : "Requested Duration"}
+              <label className="flex items-center gap-1.5 text-sm font-medium mb-1.5 text-foreground/90">
+                <Clock className="h-4 w-4 text-accent" />
+                <span>{language.code === 'ar' ? "المدة المطلوبة" : "Requested Duration"}</span>
               </label>
               <select
                 name="duration"
                 value={formData.duration}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full h-10 px-3 py-2 border border-input bg-background rounded-lg text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200"
               >
                 <option value="">
                   {language.code === 'ar' ? "اختر المدة" : "Select duration"}
@@ -213,7 +219,7 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-medium mb-1.5 text-foreground/90">
               {language.code === 'ar' ? "تفاصيل إضافية" : "Additional Details"}
             </label>
             <Textarea
@@ -225,22 +231,23 @@ const SpeakingEngagementModal: React.FC<SpeakingEngagementModalProps> = ({
                 ? "أخبرنا المزيد عن فعاليتك وما تتوقعه من المحاضرة..." 
                 : "Tell us more about your event and what you expect from the session..."
               }
+              className="rounded-lg border-input"
             />
           </div>
 
           <Button 
             type="submit" 
             disabled={isSubmitting}
-            className="w-full bg-luxury-navy hover:bg-blue-900"
+            className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-medium rounded-lg h-11"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-accent-foreground me-2"></div>
                 {language.code === 'ar' ? "جاري الإرسال..." : "Sending..."}
               </div>
             ) : (
               <>
-                <Send className="h-4 w-4 mr-2" />
+                <Send className="h-4 w-4 me-2" />
                 {language.code === 'ar' ? "إرسال الطلب" : "Send Request"}
               </>
             )}

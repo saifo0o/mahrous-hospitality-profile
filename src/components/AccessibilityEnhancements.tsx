@@ -93,7 +93,7 @@ const AccessibilityEnhancements: React.FC = () => {
           onClick={() => handleFontSizeChange('small')}
           className={fontSize === 'small' ? 'bg-accent' : ''}
         >
-          <Type className="h-4 w-4 mr-2" />
+          <Type className="h-4 w-4 me-2" />
           {language.code === 'ar' ? 'خط صغير' : 'Small Text'}
         </DropdownMenuItem>
         
@@ -101,7 +101,7 @@ const AccessibilityEnhancements: React.FC = () => {
           onClick={() => handleFontSizeChange('normal')}
           className={fontSize === 'normal' ? 'bg-accent' : ''}
         >
-          <Type className="h-4 w-4 mr-2" />
+          <Type className="h-4 w-4 me-2" />
           {language.code === 'ar' ? 'خط عادي' : 'Normal Text'}
         </DropdownMenuItem>
         
@@ -109,7 +109,7 @@ const AccessibilityEnhancements: React.FC = () => {
           onClick={() => handleFontSizeChange('large')}
           className={fontSize === 'large' ? 'bg-accent' : ''}
         >
-          <Type className="h-4 w-4 mr-2" />
+          <Type className="h-4 w-4 me-2" />
           {language.code === 'ar' ? 'خط كبير' : 'Large Text'}
         </DropdownMenuItem>
 
@@ -118,9 +118,9 @@ const AccessibilityEnhancements: React.FC = () => {
         {/* High Contrast Toggle */}
         <DropdownMenuItem onClick={toggleHighContrast}>
           {highContrast ? (
-            <EyeOff className="h-4 w-4 mr-2" />
+            <EyeOff className="h-4 w-4 me-2" />
           ) : (
-            <Eye className="h-4 w-4 mr-2" />
+            <Eye className="h-4 w-4 me-2" />
           )}
           {language.code === 'ar' 
             ? (highContrast ? 'إيقاف التباين العالي' : 'تفعيل التباين العالي')
@@ -130,7 +130,7 @@ const AccessibilityEnhancements: React.FC = () => {
 
         {/* Reduced Motion Toggle */}
         <DropdownMenuItem onClick={toggleReducedMotion}>
-          <div className="h-4 w-4 mr-2 flex items-center justify-center">
+          <div className="h-4 w-4 me-2 flex items-center justify-center">
             <div className={`w-2 h-2 rounded-full bg-current ${reducedMotion ? '' : 'animate-pulse'}`} />
           </div>
           {language.code === 'ar' 
@@ -143,7 +143,7 @@ const AccessibilityEnhancements: React.FC = () => {
 
         {/* Screen Reader */}
         <DropdownMenuItem onClick={readAloud}>
-          <Volume2 className="h-4 w-4 mr-2" />
+          <Volume2 className="h-4 w-4 me-2" />
           {language.code === 'ar' ? 'قراءة الصفحة' : 'Read Page Aloud'}
         </DropdownMenuItem>
       </DropdownMenuContent>

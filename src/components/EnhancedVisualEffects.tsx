@@ -89,7 +89,7 @@ export const FloatingDecoration: React.FC<{
       className={`
         absolute ${positionClasses[position]} ${sizeClasses[size]}
         float-animation opacity-30 pointer-events-none
-        bg-gradient-to-br from-luxury-gold/20 to-luxury-navy/20
+        bg-gradient-to-br from-accent/20 to-primary/20
         rounded-full blur-sm
       `}
       style={{ animationDelay: `${delay}s` }}
@@ -121,9 +121,9 @@ export const LuxuryButton: React.FC<{
   const baseClasses = "btn-luxury transition-all duration-300 ease-out";
   
   const variantClasses = {
-    primary: "bg-gradient-to-r from-luxury-gold to-luxury-gold-light text-white",
-    secondary: "bg-gradient-to-r from-luxury-navy to-luxury-navy-light text-white",
-    outline: "border-2 border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white"
+    primary: "bg-gradient-to-r from-accent to-gold text-white",
+    secondary: "bg-gradient-to-r from-primary to-charcoal text-white",
+    outline: "border-2 border-accent text-accent hover:bg-accent hover:text-white"
   };
 
   const sizeClasses = {

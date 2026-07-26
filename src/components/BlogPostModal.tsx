@@ -99,7 +99,7 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ isOpen, onClose, post }) 
                 )}
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="sm" onClick={handleBookmark} className="h-8 w-8 p-0">
+                <Button variant="ghost" size="sm" onClick={handleBookmark} className="h-8 w-8 p-0" aria-label="Bookmark this article">
                   <Bookmark className="h-4 w-4" />
                 </Button>
               </div>
@@ -131,7 +131,7 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ isOpen, onClose, post }) 
 
             {/* Featured Image */}
             {post.image_url && (
-              <div className="w-full rounded-xl overflow-hidden">
+              <div className="w-full rounded-sm overflow-hidden border border-border">
                 <img
                   src={post.image_url}
                   alt={post.title}
@@ -181,7 +181,7 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ isOpen, onClose, post }) 
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center justify-center w-9 h-9 rounded-lg border border-border text-muted-foreground transition-all duration-200 ${social.color}`}
+                    className={`inline-flex items-center justify-center w-9 h-9 rounded-sm border border-border text-muted-foreground transition-colors duration-200 ${social.color}`}
                     aria-label={`Share on ${social.name}`}
                   >
                     <social.icon className="h-4 w-4" />
@@ -189,7 +189,7 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ isOpen, onClose, post }) 
                 ))}
                 <button
                   onClick={handleCopyLink}
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-border text-muted-foreground hover:bg-muted transition-all duration-200"
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-sm border border-border text-muted-foreground hover:bg-muted transition-colors duration-200"
                   aria-label="Copy link"
                 >
                   <Link2 className="h-4 w-4" />
@@ -213,7 +213,7 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ isOpen, onClose, post }) 
             )}
 
             {/* Call to Action */}
-            <div className="mt-8 p-6 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl border-2 border-primary/20">
+            <div className="mt-8 p-6 bg-primary/5 rounded-sm border border-primary/20">
               <div className="text-center">
                 <h3 className="text-lg font-semibold mb-2">
                   {language.code === 'ar' ? 'تريد المزيد من الرؤى؟' : 'Want more insights on hotel management?'}

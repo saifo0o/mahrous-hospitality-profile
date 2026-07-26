@@ -62,7 +62,7 @@ const CaseStudiesSection = () => {
   ];
 
   return (
-    <section id="case-studies" className="py-20 bg-gray-50">
+    <section id="case-studies" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
           className="text-center mb-12"
@@ -72,7 +72,7 @@ const CaseStudiesSection = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="section-heading inline-block">{t('caseStudies')}</h2>
-          <p className="text-luxury-gray mt-4 max-w-2xl mx-auto">
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             {language.code === 'ar' 
               ? "تحليلات مفصلة لمشاريع الضيافة التحويلية التي توضح نهجي الاستراتيجي في مواجهة تحديات إدارة الفنادق والنتائج القابلة للقياس."
               : "Detailed analyses of transformational hospitality projects that showcase my strategic approach to hotel management challenges and measurable results."
@@ -89,7 +89,7 @@ const CaseStudiesSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <Card className="overflow-hidden border-0 shadow-lg">
+              <Card className="overflow-hidden rounded-sm border border-border/40 shadow-none">
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className={`h-72 md:h-auto ${index % 2 === 1 ? 'md:order-2' : ''}`}>
                     <img
@@ -105,33 +105,33 @@ const CaseStudiesSection = () => {
                     />
                   </div>
                   
-                  <CardContent className="p-8 flex flex-col justify-between bg-white">
+                  <CardContent className="p-8 flex flex-col justify-between bg-card">
                     <div>
                       <div className="mb-4">
-                        <span className="inline-block px-3 py-1 text-xs font-medium bg-luxury-gold/10 text-luxury-gold rounded-full">
+                        <span className="inline-block px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-sm">
                           {study.category}
                         </span>
                       </div>
                       
-                      <h3 className="text-2xl font-bold text-luxury-navy mb-2">{study.title}</h3>
+                      <h3 className="font-normal font-playfair text-2xl text-foreground mb-2">{study.title}</h3>
                       
                       <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-luxury-navy mb-1">
+                        <h4 className="text-sm font-semibold text-foreground mb-1">
                           {language.code === 'ar' ? "التحدي:" : "Challenge:"}
                         </h4>
-                        <p className="text-sm text-luxury-gray mb-2">{study.challenge}</p>
+                        <p className="text-sm text-muted-foreground mb-2">{study.challenge}</p>
                         
-                        <h4 className="text-sm font-semibold text-luxury-navy mb-1">
+                        <h4 className="text-sm font-semibold text-foreground mb-1">
                           {language.code === 'ar' ? "الحل:" : "Solution:"}
                         </h4>
-                        <p className="text-sm text-luxury-gray mb-2">{study.solution}</p>
+                        <p className="text-sm text-muted-foreground mb-2">{study.solution}</p>
                       </div>
                       
                       <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-luxury-navy mb-1">
+                        <h4 className="text-sm font-semibold text-foreground mb-1">
                           {language.code === 'ar' ? "النتائج الرئيسية:" : "Key Results:"}
                         </h4>
-                        <ul className="text-xs text-luxury-gray list-disc list-inside">
+                        <ul className="text-xs text-muted-foreground list-disc list-inside">
                           {study.results.map((result, i) => (
                             <li key={i} className="mb-1">{result}</li>
                           ))}
@@ -139,9 +139,9 @@ const CaseStudiesSection = () => {
                       </div>
                     </div>
                     
-                    <div className="mt-4 border-t border-gray-100 pt-4 italic text-sm text-luxury-gray">
+                    <div className="mt-4 border-t border-border/50 pt-4 italic text-sm text-muted-foreground">
                       "{study.testimonial.quote}"
-                      <div className="mt-2 text-xs font-medium text-luxury-navy">
+                      <div className="mt-2 text-xs font-medium text-foreground">
                         — {study.testimonial.author}, {study.testimonial.position}
                       </div>
                     </div>
@@ -153,10 +153,16 @@ const CaseStudiesSection = () => {
         </div>
         
         <div className="text-center mt-12">
-          <Button asChild className="bg-luxury-navy hover:bg-blue-900 group">
+          <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-sm group">
             <Link to="/projects" className="inline-flex items-center">
               {t('viewMoreCaseStudies')}
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight 
+                className={`ms-2 h-4 w-4 transition-transform duration-200 ${
+                  language.code === 'ar' 
+                    ? 'rotate-180 group-hover:-translate-x-1' 
+                    : 'group-hover:translate-x-1'
+                }`} 
+              />
             </Link>
           </Button>
         </div>

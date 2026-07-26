@@ -1,139 +1,195 @@
-
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Award, Globe, GraduationCap } from 'lucide-react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Award, Globe, GraduationCap, Building2, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import profilePhoto from '@/assets/profile-new.jpeg';
 
-const AboutSection = () => {
+export default function AboutSection() {
   const { t, language, isRTL } = useLanguage();
+  const ar = language.code === 'ar';
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.25 });
+  const [activeTab, setActiveTab] = useState<'executive' | 'vision' | 'quality'>('executive');
 
   const highlights = [
     {
       icon: <Award className="h-5 w-5 text-accent" />,
-      label: language.code === 'ar' ? 'جوائز تميز متعددة' : 'Multiple Excellence Awards',
+      label: ar ? 'جوائز تميز متعددة' : 'Multiple Excellence Awards',
     },
     {
       icon: <Globe className="h-5 w-5 text-accent" />,
-      label: language.code === 'ar' ? '3 لغات: عربي، إنجليزي، ألماني' : '3 Languages: AR, EN, DE',
+      label: ar ? 'يتحدث 3 لغات: العربية، الإنجليزية، الألمانية' : 'Bilingual Mastery: AR, EN, DE',
     },
     {
       icon: <GraduationCap className="h-5 w-5 text-accent" />,
-      label: language.code === 'ar' ? 'ماجستير إدارة أعمال + معهد غليون' : 'MBA + Glion Institute Diploma',
+      label: ar ? 'ماجستير إدارة أعمال + معهد غليون السويسري' : 'MBA & Glion Swiss Diploma',
     },
   ];
 
+  const chapters = {
+    executive: {
+      title: ar ? 'القائد التنفيذي' : 'The Executive Leader',
+      text1: ar 
+        ? 'قائد ضيافة متعدد العلامات بأكثر من 30 عامًا من الخبرة عبر الشرق الأوسط، شغلت مؤخرًا منصب مدير عمليات المجموعة في فنادق برايم بالسعودية.'
+        : 'Accomplished Hospitality Executive with over 30 years of progressive leadership, specializing in pre-openings, capital renovations, and operational governance across international markets.',
+      text2: ar
+        ? 'سجل حافل بالنجاح في تحقيق عوائد استثنائية وإدارة ميزانيات كبرى للتجديدات وإعادة الهيكلة وتدريب الكفاءات الفندقية.'
+        : 'Proven track record of driving capital efficiency, RevPAR growth, and brand compliance for global leaders including Marriott, IHG, and Accor.',
+    },
+    vision: {
+      title: ar ? 'الرؤية الاستراتيجية' : 'The Strategic Visionary',
+      text1: ar
+        ? 'المساهمة بنشاط في قيادة وتطوير أصول الضيافة بما يتوافق مع رؤية السعودية 2030 لتطوير قطاع السياحة.'
+        : 'Steering hospitality assets toward absolute market leadership, designing operational blueprints that align with KSA Vision 2030 tourism goals.',
+      text2: ar
+        ? 'تطوير خطط للتوسع في عدد الغرف الفندقية ورفع جودة الخدمات السياحية وجذب الاستثمارات العالمية.'
+        : 'Developing comprehensive multi-property roadmaps to expand keys, optimize guest asset yield, and introduce international luxury standards.',
+    },
+    quality: {
+      title: ar ? 'الحزام الأسود Six Sigma' : 'The Quality Architect',
+      text1: ar
+        ? 'تطبيق منهجية Six Sigma للحزام الأسود لتوحيد وتبسيط الإجراءات التشغيلية وضمان ثبات جودة الخدمة.'
+        : 'Applying Six Sigma Black Belt methodology to standardize standard operating procedures, eliminate operational waste, and lock in consistent service quality.',
+      text2: ar
+        ? 'تنفيذ تحسينات مستمرة تعتمد على الأرقام والبيانات الدقيقة لرفع الكفاءة التشغيلية والربحية.'
+        : 'Leveraging data-driven Kaizen frameworks to secure major turnarounds in profitability, employee retention, and guest loyalty.',
+    }
+  };
+
   return (
-    <section id="about" className="py-24 md:py-32" ref={ref}>
+    <section id="about" className="py-24 md:py-32 overflow-hidden bg-background" ref={ref}>
       <div className="container mx-auto px-4 md:px-8">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center ${isRTL ? 'direction-rtl' : ''}`}>
-          {/* Image */}
+        <div className={`grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24 items-center ${isRTL ? 'direction-rtl' : ''}`}>
+          
+          {/* Overlapping Editorial Image Column */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: isRTL ? 40 : -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="relative">
-              <motion.div 
-                className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/10 blur-xl"
-                animate={{ opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 5, repeat: Infinity }}
-              />
-              <div className="relative max-w-md mx-auto group">
-                <img
-                  src={profilePhoto}
-                  alt={language.code === 'ar' ? 'إسلام محروس' : 'Islam Mahrous - Hospitality Executive'}
-                  className="relative rounded-2xl shadow-2xl w-full h-[320px] sm:h-[420px] lg:h-[520px] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                  loading="lazy"
-                />
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-primary/30 via-transparent to-transparent pointer-events-none" />
-
-                {/* Floating "Since" badge */}
-                <motion.div
-                  className="absolute top-4 left-4 bg-card/95 backdrop-blur-md rounded-xl shadow-lg border border-border/50 px-4 py-2.5"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.6, duration: 0.6 }}
-                >
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
-                    {language.code === 'ar' ? 'منذ' : 'Since'}
-                  </p>
-                  <p className="text-lg font-bold font-playfair text-foreground leading-none">1994</p>
-                </motion.div>
-
-                {/* Floating signature card */}
-                <motion.div
-                  className="absolute -bottom-5 -right-3 sm:-right-5 bg-accent text-accent-foreground rounded-xl shadow-xl px-4 py-3 max-w-[180px]"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                >
-                  <p className="text-xs font-bold leading-snug">
-                    {language.code === 'ar' ? 'مدير عمليات المجموعة' : 'Group Operations Director'}
-                  </p>
-                  <p className="text-[10px] opacity-80 mt-0.5">{language.code === 'ar' ? 'سابقًا – Prime Hotels KSA' : 'Recently – Prime Hotels KSA'}</p>
-                </motion.div>
-
-                {/* Decorative accent frame */}
-                <div className="absolute -bottom-3 -left-3 w-24 h-24 border-2 border-accent/30 rounded-2xl -z-10" />
+            <div className="relative max-w-md mx-auto">
+              {/* Main Image Container — Ink signature frame */}
+              <div className="signature-frame">
+                <div className="relative overflow-hidden aspect-[3/4] bg-card">
+                  <img
+                    src={profilePhoto}
+                    alt={ar ? 'إسلام محروس' : 'Islam Mahrous - Hospitality Executive'}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  {/* Visual mesh gradient over the image */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent pointer-events-none" />
+                </div>
               </div>
+
+              {/* Grounded credential strip — replaces floating glass badges */}
+              <motion.div
+                className="mt-0 grid grid-cols-[auto_1fr] border border-t-0 border-border bg-card divide-x rtl:divide-x-reverse divide-border"
+                initial={{ opacity: 0, y: 12 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                <div className="px-5 py-4 flex flex-col items-center justify-center text-center">
+                  <span className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                    {ar ? 'منذ' : 'Since'}
+                  </span>
+                  <span className="text-xl font-bold font-playfair text-accent leading-none mt-0.5">1994</span>
+                </div>
+                <div className="px-5 py-4 flex flex-col justify-center">
+                  <p className="text-xs font-bold leading-snug text-foreground">
+                    {ar ? 'قائد ومستشار ضيافة عالمي' : 'Global Hospitality Executive'}
+                  </p>
+                  <p className="text-[9px] text-muted-foreground mt-1 uppercase tracking-wider font-semibold">
+                    {ar ? 'مصر والشرق الأوسط' : 'Egypt & MENA Region'}
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
           
-          {/* Content */}
+          {/* Narrative Content Column */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: isRTL ? -40 : 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className={isRTL ? 'text-right' : ''}
+            className={isRTL ? 'text-right' : 'text-left'}
           >
-            <p className="text-sm uppercase tracking-[0.2em] text-accent font-semibold mb-3">
-              {language.code === 'ar' ? 'من أنا' : 'About Me'}
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-foreground mb-6 leading-tight">
-              {language.code === 'ar' 
-                ? 'قيادة التميز في الضيافة العالمية'
-                : 'Leading Excellence in Global Hospitality'
+            <div className="section-eyebrow">
+              02 &mdash; {ar ? 'نبذة شخصية' : 'Biography'}
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-playfair text-foreground mb-8 leading-tight">
+              {ar 
+                ? 'قيادة مبنية على المعرفة والخبرة والأرقام'
+                : 'Decades of High-Performance Leadership'
               }
             </h2>
-            <p className="text-muted-foreground mb-4 leading-relaxed text-lg">
-              {language.code === 'ar' 
-                ? 'قائد ضيافة متعدد العلامات بأكثر من 30 عامًا من الخبرة، شغلت مؤخرًا منصب مدير عمليات المجموعة في فنادق برايم بالسعودية (حتى مايو 2026).'
-                : 'Multi-brand hospitality executive with 30+ years of experience, most recently Group Operations Director at Prime Hotels in Saudi Arabia (through May 2026).'
-              }
-            </p>
-            <p className="text-muted-foreground mb-10 leading-relaxed">
-              {language.code === 'ar'
-                ? 'سجل حافل عبر ماريوت وآي إتش جي وأكور، مع جوائز مرموقة للابتكار والتميز في الخدمة.'
-                : 'Proven track record across Marriott, IHG, and Accor, with prestigious awards for innovation and service excellence.'
-              }
-            </p>
 
-            {/* Highlight chips */}
-            <div className="flex flex-col gap-4 mb-10">
+            {/* Chapter Selection Tab Control */}
+            <div className="flex border-b border-border/50 mb-8 gap-6 md:gap-8 overflow-x-auto scrollbar-none">
+              {(Object.keys(chapters) as Array<keyof typeof chapters>).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className={`pb-4 text-sm font-semibold tracking-wider uppercase transition-all duration-300 relative ${
+                    activeTab === key 
+                      ? 'text-accent' 
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {chapters[key].title}
+                  {activeTab === key && (
+                    <motion.div 
+                      className="absolute bottom-0 inset-x-0 h-[2px] bg-accent"
+                      layoutId="about-tabs"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Chapter Texts with Animation */}
+            <div className="min-h-[140px] mb-8">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <p className="text-muted-foreground mb-4 leading-relaxed text-lg font-light">
+                    {chapters[activeTab].text1}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed font-sans">
+                    {chapters[activeTab].text2}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Static Highlight Chips */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10 pt-6 border-t border-border/40">
               {highlights.map((h, i) => (
                 <motion.div 
                   key={i} 
-                  className="flex items-center gap-4"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1 }}
+                  className="flex flex-col gap-2.5"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + i * 0.1 }}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-sm bg-accent/8 flex items-center justify-center">
                     {h.icon}
                   </div>
-                  <span className="text-sm font-medium text-foreground">{h.label}</span>
+                  <span className="text-xs font-semibold text-foreground leading-relaxed">{h.label}</span>
                 </motion.div>
               ))}
             </div>
             
             <Link to="/about">
-              <Button variant="outline" className="rounded-xl border-border hover:border-accent text-foreground gap-2 font-medium px-6 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+              <Button variant="outline" className="rounded-sm border-border hover:border-accent text-foreground gap-2 font-medium px-8 py-6 transition-colors duration-300 bg-transparent">
                 {t('learnMoreAboutMe')}
                 <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
               </Button>
@@ -143,6 +199,4 @@ const AboutSection = () => {
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}

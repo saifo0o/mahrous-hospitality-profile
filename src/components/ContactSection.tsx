@@ -1,99 +1,120 @@
-
 import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { contactInfo, signatureQuote } from '@/lib/brandConstants';
 
-const ContactSection = () => {
+export default function ContactSection() {
   const { t, language, isRTL } = useLanguage();
   
-  const contactItems = [
-    { icon: MapPin, label: language.code === 'ar' ? 'الموقع' : 'Location', value: language.code === 'ar' ? 'الرياض، السعودية' : 'Riyadh, KSA' },
-    { icon: Phone, label: language.code === 'ar' ? 'الهاتف (السعودية)' : 'Phone (KSA)', value: '+966 55 374 1020', href: 'tel:+966553741020' },
-    { icon: Phone, label: language.code === 'ar' ? 'الهاتف (مصر)' : 'Phone (Egypt)', value: '+20 109 555 6779', href: 'tel:+201095556779' },
-    { icon: Mail, label: language.code === 'ar' ? 'البريد' : 'Email', value: 'mahrous.islam@yahoo.com', href: 'mailto:mahrous.islam@yahoo.com' },
-    { icon: Linkedin, label: 'LinkedIn', value: 'islam-mahrous', href: 'https://www.linkedin.com/in/islam-mahrous-' },
-  ];
+  const getIcon = (labelEn: string) => {
+    if (labelEn.includes('Location')) return MapPin;
+    if (labelEn.includes('Phone')) return Phone;
+    if (labelEn.includes('Email')) return Mail;
+    return Linkedin;
+  };
+
+  const getDisplayValue = (item: typeof contactInfo[0]) => {
+    if (item.value) return item.value;
+    return language.code === 'ar' ? (item.regionAr || '') : (item.regionEn || '');
+  };
 
   return (
-    <section id="contact" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4 md:px-8">
+    <section id="contact" className="py-20 md:py-28 bg-muted/30 relative overflow-hidden">
+      {/* Decorative background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.04)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.04)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${isRTL ? 'direction-rtl' : ''}`}>
-          {/* Left — Content */}
+          
+          {/* Left Column — Content & List */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: isRTL ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className={isRTL ? 'text-right' : 'text-left'}
           >
-            <p className="text-sm uppercase tracking-[0.2em] text-accent font-semibold mb-3">
-              {language.code === 'ar' ? 'تواصل' : 'Contact'}
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-foreground mb-6">
+            <div className="section-eyebrow">
+              09 &mdash; {language.code === 'ar' ? 'تواصل' : 'Contact'}
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-playfair text-foreground mb-6 leading-tight">
               {t('getInTouch')}
             </h2>
-            <p className="text-muted-foreground text-lg mb-10 max-w-lg leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg mb-10 max-w-lg leading-relaxed">
               {language.code === 'ar'
-                ? 'مهتم بفرص الضيافة أو الاستشارات؟ تواصل معي اليوم.'
-                : "Interested in hospitality leadership or consulting? Let's connect."
+                ? 'مهتم بفرص الضيافة أو الاستشارات القيادية؟ تواصل معي اليوم لبحث سبل التعاون.'
+                : "Interested in hospitality leadership or consulting? Let's connect to discuss how we can work together."
               }
             </p>
 
-            <div className="space-y-5 mb-10">
-              {contactItems.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="flex items-center gap-4"
-                >
-                  <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <item.icon size={18} className="text-accent-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
-                    {item.href ? (
-                      <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="text-foreground hover:text-accent-foreground transition-colors font-medium">
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-foreground font-medium">{item.value}</p>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+            <div className="space-y-6 mb-10">
+              {contactInfo.map((item, i) => {
+                const IconComponent = getIcon(item.labelEn);
+                const displayValue = getDisplayValue(item);
+                const itemLabel = language.code === 'ar' ? item.labelAr : item.labelEn;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05, duration: 0.4 }}
+                    className="flex items-center gap-4"
+                  >
+                    <div className="w-10 h-10 rounded-sm bg-accent/10 flex items-center justify-center flex-shrink-0 border border-accent/15">
+                      <IconComponent size={16} className="text-accent-foreground" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-medium">{itemLabel}</p>
+                      {item.href ? (
+                        <a 
+                          href={item.href} 
+                          target={item.href.startsWith('http') ? '_blank' : undefined} 
+                          rel="noopener noreferrer" 
+                          className="text-foreground hover:text-accent-foreground font-medium transition-colors text-sm sm:text-base"
+                        >
+                          {displayValue}
+                        </a>
+                      ) : (
+                        <p className="text-foreground font-medium text-sm sm:text-base">{displayValue}</p>
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
             <Link to="/contact">
-              <Button variant="outline" className="rounded-xl px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-all duration-300 hover:-translate-y-0.5">
+              <Button variant="outline" className="rounded-sm px-6 py-5 text-sm font-semibold gap-2 border-border hover:border-accent transition-colors duration-300">
                 {language.code === 'ar' ? 'صفحة التواصل الكاملة' : 'Full Contact Page'}
-                <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
+                <ArrowRight size={14} className={isRTL ? 'rotate-180' : ''} />
               </Button>
             </Link>
           </motion.div>
 
-          {/* Right — Quote card */}
+          {/* Right Column — Premium Quote Card */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: isRTL ? -30 : 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="bg-primary rounded-2xl p-6 sm:p-10 md:p-14 text-primary-foreground relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-36 h-36 bg-accent/5 rounded-full blur-3xl" />
+            <div className="bg-primary rounded-sm p-8 sm:p-12 md:p-14 text-primary-foreground relative overflow-hidden border border-primary-foreground/10">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+
               <div className="relative z-10">
-                <blockquote className="text-xl md:text-2xl italic font-light leading-relaxed mb-6">
-                  {language.code === 'ar'
-                    ? '"التميز في الضيافة ليس مجرد خدمة؛ إنه استراتيجية ورؤية وذكاء عاطفي."'
-                    : '"Excellence in hospitality is not just service; it\'s strategy, vision, and emotional intelligence."'
-                  }
+                <blockquote className="text-lg sm:text-xl md:text-2xl font-light font-sans leading-relaxed mb-8 text-primary-foreground/90 italic">
+                  {language.code === 'ar' ? signatureQuote.ar : signatureQuote.en}
                 </blockquote>
-                <div className="w-12 h-0.5 bg-accent mb-4" />
-                <p className="text-accent font-semibold">Islam Mahrous</p>
-                <p className="text-primary-foreground/60 text-sm">{language.code === 'ar' ? 'مدير عمليات المجموعة' : 'Group Operations Director'}</p>
+                <div className="w-10 h-px bg-accent mb-4" />
+                <p className="text-accent font-semibold tracking-wider text-sm sm:text-base">Islam Mahrous</p>
+                <p className="text-primary-foreground/60 text-xs mt-0.5 font-medium">
+                  {language.code === 'ar' ? 'مدير عمليات المجموعة' : 'Group Operations Director'}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -101,6 +122,4 @@ const ContactSection = () => {
       </div>
     </section>
   );
-};
-
-export default ContactSection;
+}

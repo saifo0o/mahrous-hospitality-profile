@@ -69,7 +69,7 @@ const TestimonialsSection = () => {
   }, [api]);
 
   return (
-    <section id="testimonials" className="py-24 bg-muted/30 overflow-hidden" ref={ref}>
+    <section id="testimonials" className="py-20 md:py-28 bg-muted/30 overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div 
           className="text-center mb-14"
@@ -77,10 +77,10 @@ const TestimonialsSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-accent font-semibold mb-3">
-            {language.code === 'ar' ? 'ماذا يقولون' : 'Testimonials'}
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-foreground">
+          <div className="section-eyebrow justify-center">
+            06 &mdash; {language.code === 'ar' ? 'ماذا يقولون' : 'Testimonials'}
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-playfair text-foreground">
             {language.code === 'ar' ? 'شهادات من الصناعة' : 'Industry Testimonials'}
           </h2>
         </motion.div>
@@ -95,7 +95,7 @@ const TestimonialsSection = () => {
             <CarouselContent>
               {testimonials.map((testimonial) => (
                 <CarouselItem key={testimonial.id} className="px-4 md:px-8 py-4">
-                  <div className="bg-card rounded-2xl p-8 md:p-12 border border-border/50 shadow-sm text-center relative">
+                  <div className="bg-card rounded-sm p-8 md:p-12 border border-border/50 text-center relative">
                     {/* Quote icon */}
                     <Quote className="w-10 h-10 text-accent/20 mx-auto mb-6" />
                     

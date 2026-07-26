@@ -180,12 +180,12 @@ const BookingSystem = () => {
       </div>
 
       <div className="space-y-2">
-        <Label className="flex items-center gap-2">
+        <Label htmlFor="serviceType" className="flex items-center gap-2">
           <Calendar className="h-4 w-4" />
           Service Package *
         </Label>
         <Select required value={formData.serviceType} onValueChange={(value) => setFormData({ ...formData, serviceType: value })}>
-          <SelectTrigger>
+          <SelectTrigger id="serviceType">
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
           <SelectContent>
@@ -218,12 +218,12 @@ const BookingSystem = () => {
         </div>
 
         <div className="space-y-2">
-          <Label className="flex items-center gap-2">
+          <Label htmlFor="preferredTime" className="flex items-center gap-2">
             <Clock className="h-4 w-4" />
             Preferred Time *
           </Label>
           <Select required value={formData.preferredTime} onValueChange={(value) => setFormData({ ...formData, preferredTime: value })}>
-            <SelectTrigger>
+            <SelectTrigger id="preferredTime">
               <SelectValue placeholder="Select time" />
             </SelectTrigger>
             <SelectContent>

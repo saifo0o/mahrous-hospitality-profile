@@ -72,7 +72,7 @@ const BlogSection = () => {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground">
             {language.code === 'ar' ? 'جاري التحميل...' : 'Loading...'}
@@ -89,7 +89,7 @@ const BlogSection = () => {
   const [featuredPost, ...otherPosts] = posts;
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/30">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -98,10 +98,10 @@ const BlogSection = () => {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-accent font-semibold mb-3">
-            {language.code === 'ar' ? 'رؤى يومية' : 'Daily Insights'}
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair mb-4">
+          <div className="section-eyebrow justify-center">
+            08 &mdash; {language.code === 'ar' ? 'رؤى يومية' : 'Daily Insights'}
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-playfair mb-4">
             {language.code === 'ar' ? 'رؤى إدارة الضيافة' : 'Hotel Management Insights'}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -120,8 +120,8 @@ const BlogSection = () => {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <Card 
-              className="cursor-pointer hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 overflow-hidden group border-2 hover:border-accent/30"
+            <Card
+              className="cursor-pointer transition-colors duration-500 overflow-hidden group border hover:border-accent/40"
               onClick={() => handlePostClick(featuredPost)}
             >
               <div className="grid md:grid-cols-2 gap-0">
@@ -130,10 +130,11 @@ const BlogSection = () => {
                     <img
                       src={featuredPost.image_url}
                       alt={featuredPost.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/10" />
-                    <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground font-semibold">
+                    <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground font-semibold rounded-sm">
                       {language.code === 'ar' ? 'مقال مميز' : 'Featured'}
                     </Badge>
                   </div>
@@ -141,7 +142,7 @@ const BlogSection = () => {
                 <div className="p-8 md:p-10 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4 flex-wrap">
                     {featuredPost.category && (
-                      <Badge variant="secondary" className="text-xs font-semibold">{featuredPost.category}</Badge>
+                      <Badge variant="secondary" className="text-xs font-semibold rounded-sm">{featuredPost.category}</Badge>
                     )}
                     <div className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Clock className="w-3 h-3" />
@@ -183,8 +184,8 @@ const BlogSection = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card 
-                  className="cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden group bg-gradient-to-br from-background to-muted/20 border-2 hover:border-primary/30 h-full flex flex-col"
+                <Card
+                  className="cursor-pointer transition-colors duration-300 overflow-hidden group bg-gradient-to-br from-background to-muted/20 border hover:border-accent/40 h-full flex flex-col"
                   onClick={() => handlePostClick(post)}
                 >
                   <CardHeader className="relative pb-0 flex-shrink-0">
@@ -193,14 +194,15 @@ const BlogSection = () => {
                         <img
                           src={post.image_url}
                           alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                     )}
                     <div className="flex items-center gap-2 mb-3 flex-wrap">
                       {post.category && (
-                        <Badge variant="secondary" className="text-xs font-semibold">
+                        <Badge variant="secondary" className="text-xs font-semibold rounded-sm">
                           {post.category}
                         </Badge>
                       )}
@@ -249,7 +251,7 @@ const BlogSection = () => {
           className="text-center mt-10"
         >
           <Link to="/blog">
-            <Button variant="outline" className="rounded-xl gap-2 px-8 py-5 text-base font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+            <Button variant="outline" className="rounded-sm gap-2 px-8 py-5 text-base font-semibold hover:bg-primary hover:text-primary-foreground transition-colors duration-300">
               {language.code === 'ar' ? 'عرض جميع المقالات' : 'View All Articles'}
               <ArrowRight size={16} />
             </Button>

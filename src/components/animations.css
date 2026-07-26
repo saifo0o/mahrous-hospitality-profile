@@ -66,9 +66,9 @@
 
 /* Enhanced micro-interaction keyframes */
 @keyframes buttonGlow {
-  0% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
-  50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.4); }
-  100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
+  0% { box-shadow: 0 0 5px rgba(181, 80, 43, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(181, 80, 43, 0.6), 0 0 30px rgba(181, 80, 43, 0.4); }
+  100% { box-shadow: 0 0 5px rgba(181, 80, 43, 0.3); }
 }
 
 @keyframes shimmer {
@@ -244,7 +244,7 @@
 }
 
 .btn-hover-glow:hover {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 20px rgba(181, 80, 43, 0.4);
   transform: translateY(-2px);
 }
 
@@ -402,8 +402,8 @@ html[dir="rtl"] .animate-fade-in-right {
 }
 
 @keyframes pulseGlow {
-  from { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
-  to { box-shadow: 0 0 15px rgba(212, 175, 55, 0.6); }
+  from { box-shadow: 0 0 5px rgba(181, 80, 43, 0.2); }
+  to { box-shadow: 0 0 15px rgba(181, 80, 43, 0.6); }
 }
 
 /* Enhanced interaction states */

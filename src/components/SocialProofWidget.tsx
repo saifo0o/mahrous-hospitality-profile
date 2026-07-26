@@ -97,7 +97,7 @@ const SocialProofWidget: React.FC = () => {
   }, [testimonials.length]);
 
   return (
-    <div className="bg-gradient-to-br from-luxury-navy to-blue-900 text-white py-16">
+    <div className="bg-primary text-primary-foreground py-16">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Live Stats */}
@@ -107,7 +107,7 @@ const SocialProofWidget: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold mb-8 text-luxury-gold">
+            <h3 className="text-2xl font-bold mb-8 text-accent">
               {language.code === 'ar' ? "إحصائيات الإنجاز" : "Achievement Metrics"}
             </h3>
             
@@ -119,19 +119,19 @@ const SocialProofWidget: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20"
+                  className="p-6 border-t border-primary-foreground/20"
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <div className="text-luxury-gold">
+                    <div className="text-accent">
                       {stat.icon}
                     </div>
                     {stat.trend && (
-                      <span className="text-green-400 text-sm font-medium">
+                      <span className="text-accent text-sm font-medium">
                         {stat.trend}
                       </span>
                     )}
                   </div>
-                  
+
                   <motion.div
                     initial={{ scale: 0.5, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -141,8 +141,8 @@ const SocialProofWidget: React.FC = () => {
                   >
                     {stat.value}
                   </motion.div>
-                  
-                  <p className="text-gray-300 text-sm">
+
+                  <p className="text-primary-foreground/70 text-sm">
                     {stat.label}
                   </p>
                 </motion.div>

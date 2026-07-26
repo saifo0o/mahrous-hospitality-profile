@@ -34,15 +34,15 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
   }} transition={{
     duration: 0.5
   }} className="w-full">
-      <Card className="glass-card p-8 relative overflow-hidden border-0">
+      <Card className="bg-card border border-border p-8 relative overflow-hidden rounded-sm shadow-sm">
         {/* Decorative quote icon */}
         <div className={`absolute top-6 ${isRTL ? 'left-6' : 'right-6'} opacity-10`}>
-          <QuoteIcon size={60} className="text-luxury-gold" />
+          <QuoteIcon size={60} className="text-accent" />
         </div>
         
         {/* Testimonial content */}
         <div className="mb-8">
-          <p className={`text-lg italic leading-relaxed text-luxury-navy ${isRTL ? 'text-right' : 'text-left'}`}>
+          <p className={`text-lg italic leading-relaxed text-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
             "{testimonial.content}"
           </p>
         </div>
@@ -51,14 +51,14 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
         <div className={`flex items-center ${isRTL ? 'justify-end' : ''}`}>
           
           <div className={isRTL ? 'text-right' : ''}>
-            <h4 className="font-bold text-luxury-navy">{testimonial.name}</h4>
-            <p className="text-sm text-luxury-gray">{testimonial.title}, {testimonial.company}</p>
-            <p className="text-xs text-luxury-gold font-medium mt-1">{testimonial.relationship}</p>
+            <h4 className="font-bold text-foreground">{testimonial.name}</h4>
+            <p className="text-sm text-muted-foreground">{testimonial.title}, {testimonial.company}</p>
+            <p className="text-xs text-accent font-medium mt-1">{testimonial.relationship}</p>
           </div>
         </div>
         
         {/* Decorative corner accent */}
-        <div className={`absolute bottom-0 ${isRTL ? 'left-0' : 'right-0'} w-24 h-24 ${isRTL ? 'bg-gradient-to-br' : 'bg-gradient-to-bl'} from-luxury-gold/10 to-transparent`} />
+        <div className={`absolute bottom-0 ${isRTL ? 'left-0' : 'right-0'} w-24 h-24 ${isRTL ? 'bg-gradient-to-br' : 'bg-gradient-to-bl'} from-accent/10 to-transparent`} />
       </Card>
     </motion.div>;
 };

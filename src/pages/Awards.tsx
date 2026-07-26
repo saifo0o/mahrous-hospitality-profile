@@ -1,16 +1,25 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { motion } from 'framer-motion';
-import { Trophy, Award, Star, Calendar, Medal } from 'lucide-react';
+import { Trophy, Award as AwardIcon, Star, Calendar, Medal } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 
-const Awards = () => {
+interface AwardItem {
+  id?: string;
+  title: string;
+  description: string;
+  year: number;
+  organization: string;
+  published?: boolean;
+}
+
+export default function Awards() {
   const { language, isRTL } = useLanguage();
-  const [dbAwards, setDbAwards] = useState<any[]>([]);
+  const [dbAwards, setDbAwards] = useState<AwardItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +31,7 @@ const Awards = () => {
           .eq('published', true)
           .order('year', { ascending: false });
         if (!error && data && data.length > 0) {
-          setDbAwards(data);
+          setDbAwards(data as AwardItem[]);
         }
       } catch (e) {
         console.error('Error fetching awards:', e);
@@ -42,7 +51,7 @@ const Awards = () => {
     },
     {
       title: language.code === 'ar' ? "جائزة الأفضل ستار فويس" : "Best-in-Class Star Voice",
-      description: language.code === 'ar' ? "للعام الثاني" : "2nd Consecutive Year",
+      description: language.code === 'ar' ? "للعام الثاني على التوالي" : "2nd Consecutive Year",
       year: 2017,
       organization: language.code === 'ar' ? "ماريوت إنترناشيونال" : "Marriott International",
     },
@@ -64,7 +73,7 @@ const Awards = () => {
   const majorAwards = dbAwards.length > 0 ? dbAwards.slice(0, 3) : fallbackMajorAwards;
   const achievements = dbAwards.length > 3 ? dbAwards.slice(3) : (dbAwards.length > 0 ? [] : fallbackAchievements);
 
-  const iconMap = [Trophy, Star, Award];
+  const iconMap = [Trophy, Star, AwardIcon];
 
   const tierStyles = 'from-accent/20 via-accent/5 to-transparent border-accent/30';
 
@@ -73,23 +82,23 @@ const Awards = () => {
       <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`}>
         <Navbar />
 
-        <main className="flex-grow pt-28 pb-20">
+        <main id="main" className="flex-grow pt-28 pb-20">
+          <div className="container mx-auto px-4 md:px-8 mb-6">
+            <BreadcrumbNav items={[{ label: language.code === 'ar' ? 'الجوائز' : 'Awards', active: true }]} />
+          </div>
+
           <section className="container mx-auto px-4 md:px-8 mb-16">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 mb-5">
-                <span className="h-px w-8 bg-accent/60" />
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-accent font-bold flex items-center gap-1.5">
-                  <Trophy size={12} />
-                  {language.code === 'ar' ? 'إنجازات مميزة' : 'Distinguished Achievements'}
-                </p>
-                <span className="h-px w-8 bg-accent/60" />
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
+              <div className="section-eyebrow">
+                <Trophy size={12} />
+                {language.code === 'ar' ? 'إنجازات مميزة' : 'Distinguished Achievements'}
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-foreground mb-5 leading-[1.1]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-5 leading-[1.1]">
                 {language.code === 'ar' ? 'الجوائز والتقدير' : 'Awards & Recognition'}
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                 {language.code === 'ar'
-                  ? 'تقدير للتميز في قيادة الضيافة والابتكار والخدمة على مدار ثلاثة عقود.'
+                  ? 'تقدير للتميز في قيادة الضيافة والابتكار والخدمة على مدار ثلاثة عقود من العطاء.'
                   : 'Recognized for excellence in hospitality leadership, innovation, and service over three decades.'}
               </p>
             </motion.div>
@@ -103,28 +112,26 @@ const Awards = () => {
                 return (
                   <motion.div
                     key={award.title + i}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className={`relative bg-gradient-to-b ${tierStyles} rounded-2xl border p-8 text-center group hover:shadow-lg transition-all duration-500`}
+                    transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className={`relative bg-gradient-to-b ${tierStyles} rounded-sm border p-8 text-center group hover:border-accent/50 transition-colors duration-500`}
                   >
-                    <div className="absolute inset-0 rounded-2xl bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <motion.div 
-                      className="relative w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500"
+                    <motion.div
+                      className="relative w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6"
                       whileHover={{ rotate: [0, -5, 5, 0] }}
                     >
                       <Icon size={32} className="text-accent" />
-                      <div className="absolute inset-0 rounded-full border-2 border-accent/20 animate-pulse" />
+                      <div className="absolute inset-0 rounded-full border-2 border-accent/20 pointer-events-none" />
                     </motion.div>
-                    
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent-foreground text-xs font-bold mb-4">
+
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-accent/10 text-accent-foreground text-xs font-bold mb-4">
                       <Calendar size={10} />
                       {award.year}
                     </div>
                     
-                    <h3 className="text-lg font-bold text-foreground mb-2 font-playfair">{award.title}</h3>
+                    <h3 className="text-lg font-normal text-foreground mb-2 font-playfair">{award.title}</h3>
                     <p className="text-accent text-sm font-semibold mb-3">{award.description}</p>
                     <p className="text-muted-foreground text-xs">{award.organization}</p>
                   </motion.div>
@@ -136,30 +143,32 @@ const Awards = () => {
           {/* Timeline Achievements */}
           {achievements.length > 0 && (
             <section className="container mx-auto px-4 md:px-8">
-              <h2 className="text-2xl font-bold font-playfair text-foreground mb-10 flex items-center gap-3">
+              <h2 className="text-2xl font-normal font-playfair text-foreground mb-10 flex items-center gap-3">
                 <Medal size={24} className="text-accent" />
                 {language.code === 'ar' ? 'الإنجازات المهنية' : 'Career Achievements'}
               </h2>
               
               <div className="relative">
-                <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent" />
+                {/* RTL aware timeline vertical line */}
+                <div className={`absolute top-0 bottom-0 w-px bg-gradient-to-b from-accent via-border to-transparent ${isRTL ? 'right-6' : 'left-6'}`} />
                 
                 <div className="space-y-6">
                   {achievements.map((item, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className="relative pl-16"
+                      transition={{ delay: i * 0.08 }}
+                      className={`relative ${isRTL ? 'pr-16 pl-0' : 'pl-16 pr-0'}`}
                     >
-                      <div className="absolute left-4 top-6 w-4 h-4 rounded-full bg-card border-2 border-accent z-10" />
+                      {/* RTL aware dot */}
+                      <div className={`absolute top-6 w-4 h-4 rounded-full bg-card border-2 border-accent z-10 ${isRTL ? 'right-4' : 'left-4'}`} />
                       
-                      <div className="bg-card rounded-xl p-6 border border-border/50 hover:shadow-md hover:border-accent/20 transition-all duration-300">
+                      <div className="bg-card rounded-sm p-6 border border-border/50 hover:border-accent/30 transition-colors duration-300">
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="font-semibold text-foreground">{item.title}</h3>
-                          <span className="text-xs font-bold text-accent-foreground bg-accent/10 px-3 py-1 rounded-full flex-shrink-0 ml-2">{item.year}</span>
+                          <h3 className="font-semibold text-foreground text-base">{item.title}</h3>
+                          <span className={`text-xs font-bold text-accent-foreground bg-accent/10 px-3 py-1 rounded-sm flex-shrink-0 ${isRTL ? 'mr-2' : 'ml-2'}`}>{item.year}</span>
                         </div>
                         <p className="text-sm text-muted-foreground">{item.description}</p>
                       </div>
@@ -175,6 +184,4 @@ const Awards = () => {
       </div>
     </PageTransition>
   );
-};
-
-export default Awards;
+}

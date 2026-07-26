@@ -109,11 +109,11 @@ const InteractiveCareerTimeline: React.FC = () => {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'executive':
-        return 'bg-luxury-gold text-white';
+        return 'bg-accent text-accent-foreground';
       case 'management':
-        return 'bg-luxury-navy text-white';
+        return 'bg-primary text-primary-foreground';
       case 'consultant':
-        return 'bg-luxury-emerald text-white';
+        return 'bg-luxury-emerald text-primary-foreground';
       default:
         return 'bg-secondary';
     }
@@ -158,7 +158,10 @@ const InteractiveCareerTimeline: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-playfair">
+          <div className="section-eyebrow justify-center">
+            {language.code === 'ar' ? 'المسيرة المهنية' : 'Career Timeline'}
+          </div>
+          <h2 className="text-3xl md:text-4xl font-normal mb-4 font-playfair">
             {language.code === 'ar' ? 'الخط الزمني المهني' : 'Career Timeline'}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -197,12 +200,12 @@ const InteractiveCareerTimeline: React.FC = () => {
               {/* Content Card */}
               <Card className={`ml-12 md:ml-0 ${
                 index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'
-              } hover:shadow-lg transition-all duration-300`}>
+              } hover:border-accent/40 transition-colors duration-300`}>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <Badge className={getTypeColor(event.type)}>
+                        <Badge className={`${getTypeColor(event.type)} rounded-sm`}>
                           {getTypeIcon(event.type)}
                           <span className="ml-1 capitalize">{event.type}</span>
                         </Badge>
@@ -264,7 +267,7 @@ const InteractiveCareerTimeline: React.FC = () => {
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {event.skills.map((skill, i) => (
-                              <Badge key={i} variant="secondary" className="text-xs">
+                              <Badge key={i} variant="secondary" className="text-xs rounded-sm">
                                 {skill}
                               </Badge>
                             ))}
