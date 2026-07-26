@@ -13,6 +13,7 @@ import Footer from '@/components/Footer';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { Input } from '@/components/ui/input';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import { BlogCover } from '@/components/ui/blog-covers';
 
 interface BlogPost {
   id: string;
@@ -164,11 +165,9 @@ const Blog = () => {
                   className="mb-10 bg-card rounded-sm border border-border/50 overflow-hidden cursor-pointer hover:border-accent/40 transition-colors duration-300 group"
                 >
                   <div className="grid md:grid-cols-2 gap-0">
-                    {featuredPost.image_url && (
-                      <div className="h-64 md:h-full overflow-hidden">
-                        <img src={featuredPost.image_url} alt={featuredPost.title} className="w-full h-full object-cover" />
-                      </div>
-                    )}
+                    <div className="h-64 md:h-full overflow-hidden">
+                      <BlogCover title={featuredPost.title} category={featuredPost.category || undefined} imageUrl={featuredPost.image_url} className="w-full h-full" />
+                    </div>
                     <div className="p-8 flex flex-col justify-center">
                       <Badge variant="secondary" className="w-fit mb-4 rounded-sm text-xs">
                         {language.code === 'ar' ? 'مقال مميز' : 'Featured'}
@@ -199,11 +198,9 @@ const Blog = () => {
                     onClick={() => handlePostClick(post)}
                     className="bg-card rounded-sm border border-border/50 overflow-hidden cursor-pointer hover:border-accent/40 transition-colors duration-300 group flex flex-col"
                   >
-                    {post.image_url && (
-                      <div className="h-48 overflow-hidden">
-                        <img src={post.image_url} alt={post.title} className="w-full h-full object-cover" />
-                      </div>
-                    )}
+                    <div className="h-48 overflow-hidden">
+                      <BlogCover title={post.title} category={post.category || undefined} imageUrl={post.image_url} className="w-full h-full" />
+                    </div>
                     <div className="p-5 flex flex-col flex-grow">
                       <div className="flex gap-2 mb-3 flex-wrap">
                         {post.category && <Badge variant="secondary" className="text-xs rounded-sm">{post.category}</Badge>}

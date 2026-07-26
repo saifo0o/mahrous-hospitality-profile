@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { motion, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import { PublicationLogo } from '@/components/ui/publication-logos';
 
 const MediaSection = () => {
   const { t, language } = useLanguage();
@@ -16,32 +17,32 @@ const MediaSection = () => {
     source: "Arab Tourism News",
     title: language.code === 'ar' ? "شيراتون المنتزه يستضيف البطولة العربية الثانية والعشرون لكمال الأجسام" : "Sheraton Montazah Hosts the 22nd Arab Championship for Bodybuilding",
     url: "https://arabtourismnews.com/291854/",
-    logo: "https://arabtourismnews.com/wp-content/uploads/2020/01/arab-tourism-news-logo.png"
+    logo: ""
   }, {
     source: "Discover Egypt Magazine",
     title: language.code === 'ar' ? "شيراتون المنتزه يستضيف البطولة العربية الثانية والعشرون لكمال الأجسام" : "Sheraton Montazah Hosts the 22nd Arab Championship for Body Building",
     url: "https://discoveregyptmagazine.com/sheraton-montazah-hosts-the-22nd-arab-championship-for-body-building/",
-    logo: "/placeholder.svg"
+    logo: ""
   }, {
     source: "Egypt Today",
     title: language.code === 'ar' ? "تعيين إسلام محروس مديراً عاماً لفندق شيراتون المنتزه" : "Islam Mahrous Appointed as General Manager of The Sheraton Montazah",
     url: "https://www.egypttoday.com/Article/6/98332/Islam-Mahrous-Appointed-as-General-Manager-of-The-Sheraton-Montazah",
-    logo: "https://www.egypttoday.com/Content/images/logo-not-retina.svg"
+    logo: ""
   }, {
     source: "Magnificent Online",
     title: language.code === 'ar' ? "مع الرجل على رأس مجلس إدارة شيراتون المنتزه" : "With the Man on Top of Board of Sheraton Montazah",
     url: "https://magnificentonline.com/with-the-man-on-top-of-board-of-sheraton-montazah/",
-    logo: "/placeholder.svg"
+    logo: ""
   }, {
     source: "Groubna Blog",
     title: language.code === 'ar' ? "قصة ريادة أعمال JW ماريوت" : "JW Marriott Entrepreneurship Story",
     url: "https://groubna.com/blog-1/f/jwmarriott-entrepreneurship-story",
-    logo: "/placeholder.svg"
+    logo: ""
   }, {
     source: "YouTube Interview",
     title: language.code === 'ar' ? "مقابلة حصرية مع إسلام محروس" : "Exclusive Interview with Islam Mahrous",
     url: "https://www.youtube.com/watch?v=RR9PInTWLJ4",
-    logo: "https://www.youtube.com/s/desktop/e1f448ab/img/favicon_144x144.png"
+    logo: ""
   }];
 
   const headerVariants = {
@@ -138,6 +139,9 @@ const MediaSection = () => {
                 className="p-6 flex flex-col h-full justify-between"
               >
                 <div className="flex-grow">
+                  <div className="mb-5 pb-4 border-b border-border/40 flex items-center justify-between">
+                    <PublicationLogo source={item.source} className="h-9 w-auto" />
+                  </div>
                   <motion.h3 
                     className="font-playfair font-normal text-accent mb-3 text-lg"
                     initial={{ opacity: 0 }}

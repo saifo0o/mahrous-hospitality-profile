@@ -9,6 +9,14 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
+import { 
+  IconConciergeBell, 
+  IconExecutiveCrown, 
+  IconSTRYield, 
+  IconQualityShield, 
+  IconTalentMentorship, 
+  IconKaizenLoop 
+} from '@/components/ui/hospitality-icons';
 
 export default function About() {
   const { language, t, isRTL } = useLanguage();
@@ -22,6 +30,7 @@ export default function About() {
   const skillCategories = [
     {
       category: ar ? 'العمليات الفندقية' : 'Hotel Operations',
+      icon: <IconConciergeBell className="w-5 h-5 text-accent" />,
       skills: [
         { name: ar ? 'عمليات ما قبل الافتتاح' : 'Pre-Opening Operations', level: 98 },
         { name: ar ? 'التميز التشغيلي والحوكمة' : 'Operational Governance', level: 95 },
@@ -31,6 +40,7 @@ export default function About() {
     },
     {
       category: ar ? 'القيادة التنفيذية' : 'Executive Leadership',
+      icon: <IconExecutiveCrown className="w-5 h-5 text-accent" />,
       skills: [
         { name: ar ? 'إدارة فرق العمل الكبرى' : 'Multi-Property Leadership', level: 97 },
         { name: ar ? 'التخطيط الاستراتيجي وعلاقات الملاك' : 'Strategic Stakeholder Relations', level: 93 },
@@ -40,6 +50,7 @@ export default function About() {
     },
     {
       category: ar ? 'إدارة الجودة والمالية' : 'Quality & Finance',
+      icon: <IconSTRYield className="w-5 h-5 text-accent" />,
       skills: [
         { name: ar ? 'نمو الإيرادات وتحسين الربحية' : 'Revenue & GOP Growth', level: 94 },
         { name: ar ? 'إدارة الأرباح والخسائر والمصروفات' : 'P&L / Flow-through Audits', level: 92 },
@@ -52,18 +63,22 @@ export default function About() {
   const philosophyItems = [
     {
       title: ar ? 'التميز التشغيلي' : 'Operational Excellence',
+      icon: <IconQualityShield className="w-6 h-6 text-accent" />,
       desc: ar ? 'تبسيط وتبويب العمليات لتحقيق أقصى كفاءة مع ضمان ثبات الجودة العالية.' : 'Streamlining core workflows to unlock high profit yield while locking in pristine quality standards.'
     },
     {
       title: ar ? 'تجربة الضيوف' : 'Guest Centricity',
+      icon: <IconConciergeBell className="w-6 h-6 text-accent" />,
       desc: ar ? 'ابتكار تجارب ضيافة مخصصة تتجاوز التوقعات وتخلق ولاءً دائمًا للعلامة.' : 'Designing bespoke service moments that exceed expectations, building long-term asset value.'
     },
     {
       title: ar ? 'تطوير وتمكين المواهب' : 'Talent Mentorship',
+      icon: <IconTalentMentorship className="w-6 h-6 text-accent" />,
       desc: ar ? 'تدريب وإرشاد وتفويض فرق العمل لبناء صف قيادي قادر على التقييم والتطوير.' : 'Coaching and empowering operational champions to take full ownership of departmental performance.'
     },
     {
       title: ar ? 'كايزن والتحسين المستمر' : 'Continuous Improvement',
+      icon: <IconKaizenLoop className="w-6 h-6 text-accent" />,
       desc: ar ? 'تبني الأفكار الإبداعية والتقنيات الحديثة لتعزيز الكفاءة واستدامة الأرباح.' : 'Adopting modern systems (e.g. Opera Cloud, CRM) and Kaizen loops for constant growth.'
     }
   ];
@@ -201,11 +216,17 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.6 }}
-                    className="bg-card rounded-sm p-6 border border-border hover:border-accent/40 transition-colors duration-300"
+                    className="bg-card rounded-sm p-6 border border-border hover:border-accent/40 transition-colors duration-300 flex flex-col justify-between group"
                   >
-                    <div className="w-1.5 h-10 bg-accent mb-5" />
-                    <h3 className="font-semibold text-foreground text-base mb-3">{item.title}</h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">{item.desc}</p>
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2 rounded bg-accent/10 border border-accent/20 group-hover:bg-accent/20 transition-colors">
+                          {item.icon}
+                        </div>
+                        <h3 className="font-semibold text-foreground text-base">{item.title}</h3>
+                      </div>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">{item.desc}</p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -248,9 +269,9 @@ export default function About() {
                     transition={{ delay: ci * 0.15, duration: 0.6 }}
                     className="bg-card rounded-sm p-6 sm:p-8 border border-border"
                   >
-                    <h3 className="font-semibold text-foreground mb-6 text-sm uppercase tracking-wider flex items-center gap-2 border-b border-border pb-4">
-                      <div className="w-2.5 h-2.5 bg-accent" />
-                      {category.category}
+                    <h3 className="font-semibold text-foreground mb-6 text-sm uppercase tracking-wider flex items-center gap-2.5 border-b border-border pb-4">
+                      {category.icon}
+                      <span>{category.category}</span>
                     </h3>
                     <div className="space-y-6">
                       {category.skills.map((skill, si) => (

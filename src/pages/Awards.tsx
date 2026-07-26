@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Trophy, Award as AwardIcon, Star, Calendar, Medal } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
+import { AwardMedallionCard } from '@/components/ui/AwardMedallion';
 
 interface AwardItem {
   id?: string;
@@ -106,9 +107,13 @@ export default function Awards() {
 
           {/* Trophy Shelf */}
           <section className="container mx-auto px-4 md:px-8 mb-20">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
               {majorAwards.map((award, i) => {
-                const Icon = iconMap[i % iconMap.length];
+                const orgStr = (award.organization || '').toLowerCase() + ' ' + (award.title || '').toLowerCase();
+                const iconType = orgStr.includes('marriott') || award.title.includes('ماريوت') ? 'marriott' :
+                  orgStr.includes('starwood') || award.title.includes('ستاروود') ? 'starwood' :
+                  orgStr.includes('ihg') || orgStr.includes('intercontinental') ? 'ihg' : 'general';
+
                 return (
                   <motion.div
                     key={award.title + i}
@@ -116,24 +121,15 @@ export default function Awards() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className={`relative bg-gradient-to-b ${tierStyles} rounded-sm border p-8 text-center group hover:border-accent/50 transition-colors duration-500`}
+                    className="h-full"
                   >
-                    <motion.div
-                      className="relative w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6"
-                      whileHover={{ rotate: [0, -5, 5, 0] }}
-                    >
-                      <Icon size={32} className="text-accent" />
-                      <div className="absolute inset-0 rounded-full border-2 border-accent/20 pointer-events-none" />
-                    </motion.div>
-
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-accent/10 text-accent-foreground text-xs font-bold mb-4">
-                      <Calendar size={10} />
-                      {award.year}
-                    </div>
-                    
-                    <h3 className="text-lg font-normal text-foreground mb-2 font-playfair">{award.title}</h3>
-                    <p className="text-accent text-sm font-semibold mb-3">{award.description}</p>
-                    <p className="text-muted-foreground text-xs">{award.organization}</p>
+                    <AwardMedallionCard
+                      title={award.title}
+                      issuer={award.organization}
+                      year={award.year}
+                      category={award.description}
+                      iconType={iconType as any}
+                    />
                   </motion.div>
                 );
               })}
