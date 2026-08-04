@@ -23,7 +23,10 @@ export default function ExperienceSection() {
       period: ar ? "ديسمبر ٢٠٢٥ - مايو ٢٠٢٦" : "Dec 2025 - May 2026",
       logo: primeHotelsLogo,
       current: true,
-      tag: ar ? 'إنجاز حديث' : 'Recently Completed',
+      tag: ar ? 'حوكمة المحفظة' : 'Portfolio Governance',
+      arc: ar
+        ? 'تولي حوكمة محفظة متعددة العقارات وصياغة خارطة طريق نموها المستقبلي.'
+        : 'Stepping into portfolio-wide governance to steer growth across a multi-property estate.',
       metrics: ar 
         ? ['إدارة الأرباح والخسائر للمحفظة الفندقية', 'تطوير خارطة طريق للتوسع إلى ١٠,٠٠٠ غرفة بحلول ٢٠٣٠', 'توحيد الحوكمة التشغيلية عبر العقارات']
         : ['Full P&L and operational governance across KSA portfolio', 'Formulated roadmap expansion to 10,000 keys by 2030', 'Standardized reporting & STR analytics across western region']
@@ -35,7 +38,10 @@ export default function ExperienceSection() {
       period: ar ? "أبريل ٢٠٢٣ - يوليو ٢٠٢٥" : "Apr 2023 - Jul 2025",
       logo: sheratonLogo,
       rooms: 172,
-      tag: ar ? 'استشاري المالك' : 'Ownership Advisory',
+      tag: ar ? 'الافتتاح واستشارات المالك' : 'Pre-Opening & Owner Advisory',
+      arc: ar
+        ? 'قيادة فندق من الأرض إلى الافتتاح بينما أمثل مصالح المالك في كل قرار.'
+        : 'Taking a hotel from ground to opening day while representing ownership in every decision.',
       metrics: ar 
         ? ['إدارة دورة التطوير والافتتاح لـ ١٧٢ غرفة', 'خفض ميزانية ما قبل الافتتاح بنسبة ١٢٪', 'توظيف وتأهيل فريق عمل يضم ١٥٠+ موظفاً']
         : ['Led full pre-opening cycle for 172 keys Marriott property', 'Refined pre-opening budget with a -12% CAPEX saving', 'Managed hiring & alignment of 150+ operational staff']
@@ -47,7 +53,10 @@ export default function ExperienceSection() {
       period: ar ? "يونيو ٢٠١٤ - مارس ٢٠٢٣" : "Jun 2014 - Mar 2023",
       logo: sheratonLogo,
       rooms: 288,
-      tag: ar ? 'تميز الأصول' : 'Asset Leadership',
+      tag: ar ? 'إعادة الهيكلة وقيادة الأصول' : 'Turnaround & Asset Leadership',
+      arc: ar
+        ? 'تسعة أعوام من إعادة هيكلة أصل متعثر وتحويله إلى نموذج للأداء التشغيلي.'
+        : 'Nine years turning around an underperforming asset into a benchmark for operational discipline.',
       metrics: ar 
         ? ['تحقيق زيادة بنسبة ٢٥٪ في العائد للغرفة المتاحة RevPAR', 'رفع رضا النزلاء بنسبة ٣٠٪ وتخفيض الصيانة ٢٠٪', 'إدارة وتوجيه أكبر مشروع تجديد في تاريخ الفندق']
         : ['9-year P&L leadership: +25% RevPAR, +30% Guest Satisfaction', 'Reduced utilities budget by -15% & maintenance by -20%', 'Directed the largest restoration in the history of the property']
@@ -139,6 +148,11 @@ export default function ExperienceSection() {
                       </span>
                     </div>
 
+                    {/* Narrative arc — one-line story hook */}
+                    <p className="text-sm text-accent-foreground/90 italic font-light mb-5 leading-relaxed">
+                      {exp.arc}
+                    </p>
+
                     {/* Company details */}
                     <div className="flex flex-wrap items-center gap-6 mb-5 text-sm font-semibold text-foreground/90">
                       <div className="flex items-center gap-2">
@@ -175,7 +189,7 @@ export default function ExperienceSection() {
                         to="/career" 
                         className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors group/link"
                       >
-                        <span>{ar ? 'استعراض التفاصيل الكاملة' : 'View Full Details'}</span>
+                        <span>{ar ? 'اقرأ الفصل' : 'Read chapter'}</span>
                         <ArrowRight size={13} className={`transition-transform group-hover/link:translate-x-1 ${isRTL ? 'rotate-180 group-hover/link:-translate-x-1' : ''}`} />
                       </Link>
                     </div>

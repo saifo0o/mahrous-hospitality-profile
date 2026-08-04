@@ -7,7 +7,7 @@ import { trackButtonClick } from '@/utils/analytics';
 import { socialLinks } from '@/lib/brandConstants';
 
 const WhatsAppButton = () => {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
   
   const handleWhatsAppClick = () => {
     trackButtonClick('WhatsApp');
@@ -24,20 +24,23 @@ const WhatsAppButton = () => {
         damping: 20,
         delay: 1 
       }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
     >
       <a 
         href={socialLinks.whatsapp}
         target="_blank" 
         rel="noopener noreferrer"
-        className="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300"
+        className="flex items-center gap-2 bg-whatsapp hover:bg-whatsapp-dark text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300 min-h-[48px]"
         onClick={handleWhatsAppClick}
-        aria-label="Contact through WhatsApp"
+        aria-label={language.code === 'ar' ? 'تواصل عبر واتساب' : 'Contact through WhatsApp'}
       >
         <MessageCircle size={20} />
         <span className="hidden sm:inline">
           {t('messageOnWhatsApp')}
+        </span>
+        <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-1.5 py-0.5 rounded-sm">
+          {language.code === 'ar' ? 'مصر' : 'EG'}
         </span>
       </a>
     </motion.div>
