@@ -37,34 +37,34 @@ export default function StatsSection() {
     { 
       value: 30, 
       suffix: '+', 
-      label: ar ? 'سنوات خبرة قيادية' : 'Years Leadership', 
+      label: ar ? '30+ عامًا' : '30+ Years', 
       icon: <Award className="w-5 h-5 text-accent" />,
-      desc: ar ? 'في كبرى سلاسل الفنادق العالمية' : 'Across premium global chains',
+      desc: ar ? 'افتتاح الفنادق وتجديدها وحوكمة أصولها' : 'Opening, renovating, and governing hotel assets',
       accent: true 
     },
     { 
       value: 5000, 
       suffix: '+', 
-      label: ar ? 'موظف فندقي مُدرّب' : 'Hoteliers Trained', 
+      label: ar ? '5,000+ مدرّب' : '5,000+ Trained', 
       icon: <BarChart3 className="w-5 h-5 text-accent" />,
-      desc: ar ? 'برامج تدريب معتمدة وبناء مواهب' : 'Accredited talent curriculums',
+      desc: ar ? 'من قاعات مجالس المدراء العامين إلى فرق الخط الأمامي' : 'From GM council rooms to front-line teams',
       accent: false 
     },
     { 
       value: 35, 
       suffix: '%', 
-      label: ar ? 'زيادة RevPAR' : 'RevPAR Increase', 
+      label: ar ? '+35% RevPAR' : '+35% RevPAR', 
       icon: <ShieldAlert className="w-5 h-5 text-accent" />,
-      desc: ar ? 'متوسط زيادة العائدات المحققة' : 'Average operational growth',
+      desc: ar ? 'متوسط الزيادة في مهام إعادة الهيكلة والتعافي' : 'Average uplift on turnaround mandates',
       accent: false 
     },
     { 
       value: 70, 
       suffix: 'M+', 
       prefix: '$', 
-      label: ar ? 'ميزانيات تجديد مدارة' : 'Renovation Budgets', 
+      label: ar ? '$70M+ منشورة' : '$70M+ Deployed', 
       icon: <BadgeDollarSign className="w-5 h-5 text-accent" />,
-      desc: ar ? 'توجيه كفاءة رأس المال والمشاريع' : 'Capital efficiency & audits',
+      desc: ar ? 'كفاءة رأسمالية عبر مشاريع التجديد والافتتاح' : 'Capital efficiency across renovations and pre-openings',
       accent: true 
     },
   ];
@@ -103,6 +103,16 @@ export default function StatsSection() {
           >
             {ar ? 'أرقام تعكس التميز والانضباط' : 'Auditable Impact & Quantitative Excellence'}
           </motion.h2>
+          <motion.p
+            className="text-sm md:text-base text-primary-foreground/60 leading-relaxed font-light mt-5"
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            {ar
+              ? 'هذه الأرقام ليست مجرد إحصائيات، بل خلاصة ثلاثة عقود من القرارات التشغيلية — كل فندق تم افتتاحه، كل فريق تم تدريبه، وكل ميزانية تم توجيهها بكفاءة نحو نتائج قابلة للتدقيق.'
+              : 'These figures are the residue of three decades of operating decisions — every hotel opened, every team trained, and every budget deployed toward auditable, repeatable results.'}
+          </motion.p>
         </div>
 
         {/* Stats Grid */}

@@ -100,14 +100,14 @@ const Navbar = () => {
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center gap-8">
               {navigationItems.map((item) => {
-                const isActive = location.pathname === item.path;
+                const isActive = location.pathname === item.path || location.pathname.startsWith(`${item.path}/`);
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
                     aria-label={language.code === 'ar' ? item.labelAr : item.labelEn}
                     aria-current={isActive ? 'page' : undefined}
-                    className="relative py-2 text-xs font-semibold uppercase tracking-wider transition-colors duration-300 focus-visible:outline-none"
+                    className="relative py-2 text-xs font-semibold uppercase tracking-wider transition-colors duration-300 focus-visible:outline-none min-h-[44px] flex items-center"
                   >
                     <span className={`relative z-10 transition-colors duration-300 ${
                       isActive
