@@ -19,8 +19,8 @@ export default function ProjectsSection() {
       stat: '+25% RevPAR',
       caseStudySlug: 'sheraton-montazah-renovation',
       desc: ar 
-        ? "إدارة وتوجيه أكبر تجديد شامل في تاريخ الفندق بـ ٢٨٨ غرفة لرفع الكفاءة التشغيلية والجمالية."
-        : "Led comprehensive renovation of 40-year-old property (288 rooms) to maximize asset performance.",
+        ? "فندق بعمر ٤٠ عامًا يعاني من تراجع الإشغال، فقدت قيادة أكبر تجديد شامل في تاريخه لـ ٢٨٨ غرفة، وارتفع العائد للغرفة المتاحة ٢٥٪."
+        : "A 40-year-old asset was losing ground to newer competitors, so I led its largest-ever renovation across 288 rooms, driving RevPAR up 25%.",
       cols: "md:col-span-2"
     },
     {
@@ -30,8 +30,8 @@ export default function ProjectsSection() {
       stat: '90% Occupancy',
       caseStudySlug: 'v-luxury-resort-pre-opening',
       desc: ar
-        ? "تخطيط وإطلاق الفندق الفاخر بـ ٢٩٨ غرفة لضمان تماسك معايير الخدمة منذ اليوم الأول."
-        : "Managed full pre-opening operations for 298-room luxury resort under aggressive timelines.",
+        ? "منتجع فاخر بـ ٢٩٨ غرفة كان بحاجة لإطلاق سريع دون المساس بالجودة، فقدت عمليات ما قبل الافتتاح بالكامل وحققت نسبة إشغال ٩٠٪ منذ الأشهر الأولى."
+        : "A 298-room luxury resort needed a fast, flawless launch, so I ran the full pre-opening operation end-to-end, hitting 90% occupancy within months.",
       cols: "md:col-span-1"
     },
     {
@@ -40,8 +40,8 @@ export default function ProjectsSection() {
       image: "https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/377246827_sqf4sq.jpg",
       stat: '+20% F&B Revenue',
       desc: ar
-        ? "قيادة مشروع إعادة بناء وتطوير بقيمة ٣.٥ مليون دولار لرفع إيرادات المطاعم والإشغال."
-        : "Directed a $3.5M restructuring project (168 rooms) to optimize GOP margins.",
+        ? "منتجع بـ ١٦٨ غرفة كان يعاني من ضعف هوامش الربح التشغيلي، فقدت مشروع إعادة هيكلة بقيمة ٣.٥ مليون دولار ورفعت إيرادات المطاعم ٢٠٪."
+        : "A 168-room resort was struggling with thin GOP margins, so I directed a $3.5M restructuring project that lifted F&B revenue by 20%.",
       cols: "md:col-span-1"
     }
   ];
@@ -102,9 +102,11 @@ export default function ProjectsSection() {
                   </span>
                 </div>
 
-                {/* Bottom left metrics badge */}
-                <div className="absolute bottom-4 start-4 flex items-center gap-1.5 bg-luxury-emerald text-primary-foreground text-xs font-bold px-3 py-2 rounded-sm">
+                {/* Bottom left result badge */}
+                <div className="absolute bottom-4 start-4 flex items-center gap-2 bg-luxury-emerald text-primary-foreground text-xs font-bold px-3 py-2 rounded-sm">
                   <Sparkles size={12} />
+                  <span className="uppercase tracking-wider text-[9px] opacity-80 font-semibold">{ar ? 'النتيجة' : 'Result'}</span>
+                  <span className="h-3 w-px bg-primary-foreground/30" />
                   <span>{project.stat}</span>
                 </div>
               </div>
