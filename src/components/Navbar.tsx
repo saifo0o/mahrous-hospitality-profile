@@ -158,8 +158,6 @@ const Navbar = () => {
                 </Button>
               </Link>
             </div>
-
-            </div>
           </div>
         </div>
       </motion.nav>
