@@ -277,7 +277,6 @@ const Career = () => {
       company: ar ? 'مجموعة فنادق برايم' : 'Prime Hotels Group',
       location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
       period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
-      current: true,
       description: ar
         ? 'مسؤولية كاملة عن الأرباح والخسائر والحوكمة التشغيلية لمحفظة سعودية متعددة العلامات (فاخر، متوسط، شقق فندقية)، مع التقرير المباشر إلى الملكية والمجلس.'
         : 'Full P&L accountability and operational governance across a multi-brand Saudi portfolio (luxury, midscale, serviced apartments), reporting to ownership and the board.',
