@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /private
 
-Sitemap: https://islam-mahrous.com/sitemap.xml
+Sitemap: https://mahrous-hospitality-profile.lovable.app/sitemap.xml

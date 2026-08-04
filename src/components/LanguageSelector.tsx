@@ -26,7 +26,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className }) => {
     <div className={className}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="flex items-center gap-2 bg-background border-border/60 hover:bg-muted transition-colors rounded-sm">
+          <Button variant="outline" className="flex items-center gap-2 bg-background border-border/60 hover:bg-muted transition-colors rounded-sm" aria-label={language.code === 'ar' ? 'تغيير اللغة' : 'Change language'}>
             <Globe className="h-4 w-4 text-muted-foreground" />
             <span>{language.flag}</span>
             <span className="hidden md:inline text-sm font-medium">{language.name}</span>

@@ -1,47 +1,74 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://islam-mahrous.com/</loc>
+    <loc>https://mahrous-hospitality-profile.lovable.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/?lang=ar"/>
   </url>
   <url>
-    <loc>https://islam-mahrous.com/about</loc>
+    <loc>https://mahrous-hospitality-profile.lovable.app/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/about?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/about?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/about?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/about?lang=ar"/>
   </url>
   <url>
-    <loc>https://islam-mahrous.com/career</loc>
+    <loc>https://mahrous-hospitality-profile.lovable.app/career</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/career?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/career?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/career?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/career?lang=ar"/>
   </url>
   <url>
-    <loc>https://islam-mahrous.com/projects</loc>
+    <loc>https://mahrous-hospitality-profile.lovable.app/projects</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/projects?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/projects?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/projects?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/projects?lang=ar"/>
   </url>
   <url>
-    <loc>https://islam-mahrous.com/awards</loc>
+    <loc>https://mahrous-hospitality-profile.lovable.app/awards</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/awards?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/awards?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/awards?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/awards?lang=ar"/>
   </url>
   <url>
-    <loc>https://islam-mahrous.com/contact</loc>
+    <loc>https://mahrous-hospitality-profile.lovable.app/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/contact?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/contact?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/contact?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/contact?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://mahrous-hospitality-profile.lovable.app/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/blog?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/blog?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://mahrous-hospitality-profile.lovable.app/book-consultation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/book-consultation?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/book-consultation?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://mahrous-hospitality-profile.lovable.app/auth</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/auth?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/auth?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://mahrous-hospitality-profile.lovable.app/admin</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mahrous-hospitality-profile.lovable.app/admin?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mahrous-hospitality-profile.lovable.app/admin?lang=ar"/>
   </url>
 </urlset>

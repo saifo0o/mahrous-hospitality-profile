@@ -140,7 +140,9 @@ const Navbar = () => {
                       size="icon"
                       className="rounded-sm border border-border/50 hover:border-accent/30 focus-visible:outline-none"
                       aria-label={language.code === 'ar' ? 'ملف المستخدم' : 'User profile'}
+                      title={language.code === 'ar' ? 'ملف المستخدم' : 'User profile'}
                     >
+                      <span className="sr-only">{language.code === 'ar' ? 'ملف المستخدم' : 'User profile'}</span>
                       <User className="h-4 w-4 text-accent" />
                     </Button>
                   </DropdownMenuTrigger>
@@ -182,9 +184,13 @@ const Navbar = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="rounded-sm border border-border/40 bg-card/60 backdrop-blur-sm focus-visible:outline-none"
                 aria-label={isOpen ? (language.code === 'ar' ? 'إغلاق القائمة' : 'Close menu') : (language.code === 'ar' ? 'فتح القائمة' : 'Open menu')}
+                title={isOpen ? (language.code === 'ar' ? 'إغلاق القائمة' : 'Close menu') : (language.code === 'ar' ? 'فتح القائمة' : 'Open menu')}
                 aria-expanded={isOpen}
                 aria-controls="mobile-menu"
               >
+                <span className="sr-only">
+                  {isOpen ? (language.code === 'ar' ? 'إغلاق القائمة' : 'Close menu') : (language.code === 'ar' ? 'فتح القائمة' : 'Open menu')}
+                </span>
                 {isOpen ? <X className="h-5 w-5 text-accent" /> : <Menu className="h-5 w-5 text-accent" />}
               </Button>
             </div>

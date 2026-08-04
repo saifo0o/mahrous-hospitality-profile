@@ -142,6 +142,7 @@ export default function HeroSection() {
               className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-normal font-playfair text-foreground mb-6 leading-[1.05] tracking-tight relative"
             >
               {ar ? 'إسلام' : 'Islam'}
+              <span className="sr-only"> {ar ? ', قائد الضيافة العالمية' : ', Global Hospitality Leader'}</span>
               <br />
               <span className="gradient-text font-normal italic font-playfair relative">
                 {ar ? 'محروس' : 'Mahrous'}

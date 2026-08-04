@@ -22,11 +22,11 @@ export default function BrandLogos() {
             </p>
             <span className="h-px w-6 bg-accent/40" />
           </div>
-          <h3 className="text-base md:text-xl font-playfair font-normal text-foreground/80 max-w-2xl mx-auto">
+          <h2 className="text-base md:text-xl font-playfair font-normal text-foreground/80 max-w-2xl mx-auto">
             {language.code === 'ar'
               ? 'خبرة مع أبرز العلامات التجارية الفندقية العالمية'
               : 'Trusted by World-Class Hospitality Brands'}
-          </h3>
+          </h2>
         </div>
 
         {/* Marquee Wrapper with fallback for reduced motion */}
