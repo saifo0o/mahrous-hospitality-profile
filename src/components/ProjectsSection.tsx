@@ -88,7 +88,7 @@ export default function ProjectsSection() {
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-[1200ms]"
+                  className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-1000"
                   loading="lazy"
                 />
                 
