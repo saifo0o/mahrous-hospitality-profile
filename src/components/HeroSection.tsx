@@ -111,7 +111,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden bg-background pt-24 pb-16 lg:pt-28 lg:pb-0"
+      className="relative min-h-[100svh] flex items-center overflow-hidden bg-background pt-20 pb-12 lg:pt-28 lg:pb-0"
       aria-label={ar ? 'المقدمة' : 'Introduction'}
     >
       {/* Restrained editorial backdrop */}

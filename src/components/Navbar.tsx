@@ -13,12 +13,12 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useAuth } from '@/context/AuthContext';
 import LanguageSelector from './LanguageSelector';
 import HiddenAdminLogin from './HiddenAdminLogin';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { navigationItems } from '@/lib/brandConstants';
 import signatureLogo from '@/assets/logos/im-signature-gold.png';
+import MobileBottomNav from './MobileBottomNav';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoClickCount, setLogoClickCount] = useState(0);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
@@ -33,23 +33,6 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => { 
-    setIsOpen(false); 
-  }, [location.pathname]);
-
-  // Lock scroll when mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
 
   const handleLogoClick = () => {
     setLogoClickCount(prev => prev + 1);
@@ -176,112 +159,12 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Mobile Menu Toggle Button */}
-            <div className="md:hidden flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsOpen(!isOpen)}
-                className="rounded-sm border border-border/40 bg-card/60 backdrop-blur-sm focus-visible:outline-none"
-                aria-label={isOpen ? (language.code === 'ar' ? 'إغلاق القائمة' : 'Close menu') : (language.code === 'ar' ? 'فتح القائمة' : 'Open menu')}
-                title={isOpen ? (language.code === 'ar' ? 'إغلاق القائمة' : 'Close menu') : (language.code === 'ar' ? 'فتح القائمة' : 'Open menu')}
-                aria-expanded={isOpen}
-                aria-controls="mobile-menu"
-              >
-                <span className="sr-only">
-                  {isOpen ? (language.code === 'ar' ? 'إغلاق القائمة' : 'Close menu') : (language.code === 'ar' ? 'فتح القائمة' : 'Open menu')}
-                </span>
-                {isOpen ? <X className="h-5 w-5 text-accent" /> : <Menu className="h-5 w-5 text-accent" />}
-              </Button>
             </div>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile Curtain Overlay Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            id="mobile-menu"
-            className="fixed inset-0 z-45 bg-background/96 backdrop-blur-2xl md:hidden flex flex-col justify-between pt-28 px-8 pb-12 overflow-y-auto"
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="flex flex-col gap-4">
-              <p className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold border-b border-border/20 pb-2">
-                {language.code === 'ar' ? 'القائمة الرئيسية' : 'NAVIGATION DIRECTORY'}
-              </p>
-              
-              {navigationItems.map((item, i) => {
-                const isActive = location.pathname === item.path;
-                return (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, x: isRTL ? 25 : -25 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: isRTL ? 25 : -25 }}
-                    transition={{ delay: i * 0.05, duration: 0.4, ease: "easeOut" }}
-                  >
-                    <Link
-                      to={item.path}
-                      aria-label={language.code === 'ar' ? item.labelAr : item.labelEn}
-                      aria-current={isActive ? 'page' : undefined}
-                      className={`block w-full py-4 px-6 rounded-sm text-base font-semibold uppercase tracking-wider transition-all duration-300 min-h-[50px] flex items-center justify-between border ${
-                        isActive
-                          ? 'bg-accent/10 text-accent border-accent/25'
-                          : 'text-muted-foreground hover:text-foreground border-border/30 hover:bg-muted/30'
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>{language.code === 'ar' ? item.labelAr : item.labelEn}</span>
-                      <span className="text-[10px] text-accent/50">0{i+1}</span>
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </div>
-            
-            <motion.div 
-              className="pt-6 mt-8 border-t border-border/30 flex flex-col gap-4"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 15 }}
-              transition={{ delay: navigationItems.length * 0.05, duration: 0.3 }}
-            >
-              <div className="flex items-center justify-between px-4 py-3 bg-muted/40 border border-border/30 rounded-sm">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  {language.code === 'ar' ? 'لغة الموقع' : 'Bilingual Select'}
-                </span>
-                <LanguageSelector />
-              </div>
-
-              <Link
-                to="/book-consultation"
-                onClick={() => setIsOpen(false)}
-                aria-label={language.code === 'ar' ? 'احجز استشارة' : 'Book Consultation'}
-              >
-                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-sm py-6 font-semibold uppercase tracking-wider text-sm shadow-gold-sm">
-                  {language.code === 'ar' ? 'احجز استشارة' : 'Book Consultation'}
-                </Button>
-              </Link>
-
-              {user && (
-                <Button
-                  variant="ghost"
-                  className="w-full justify-center text-destructive py-6 text-sm font-semibold uppercase tracking-wider rounded-sm border border-destructive/20 hover:bg-destructive/10"
-                  onClick={() => { handleSignOut(); setIsOpen(false); }}
-                >
-                  <LogOut className="me-2 h-5 w-5" />
-                  {language.code === 'ar' ? 'تسجيل الخروج' : 'Sign Out'}
-                </Button>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      <MobileBottomNav />
       <HiddenAdminLogin isOpen={showAdminLogin} onClose={() => setShowAdminLogin(false)} />
     </>
   );
