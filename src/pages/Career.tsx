@@ -5,7 +5,21 @@ import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Building, Calendar, ChevronDown, ChevronLeft, ChevronRight, Award, Briefcase, Users, ShieldCheck } from 'lucide-react';
+import {
+  MapPin,
+  Building,
+  Calendar,
+  ChevronDown,
+  Award,
+  Users,
+  ShieldCheck,
+  Sparkles,
+  Compass,
+  TrendingUp,
+  Crown,
+  Rocket,
+  Briefcase,
+} from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -24,71 +38,119 @@ type Experience = {
   achievements?: string[];
 };
 
+type Chapter = {
+  number: string;
+  title: string;
+  subtitle: string;
+  icon: React.ElementType;
+  roles: Experience[];
+};
+
 const Career = () => {
-  const [expandedExec, setExpandedExec] = useState<number | null>(null);
-  const [expandedCons, setExpandedCons] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState<'executive' | 'consulting'>('executive');
+  const [expandedKey, setExpandedKey] = useState<string | null>(null);
   const { language, isRTL } = useLanguage();
   const ar = language.code === 'ar';
-  const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
-  // EXECUTIVE LEADERSHIP (full-time roles per resume)
-  const executive: Experience[] = [
+  // ---------------------------------------------------------------------
+  // CHAPTER 1 — FOUNDATION (1993 - 2009)
+  // ---------------------------------------------------------------------
+  const foundationRoles: Experience[] = [
     {
-      position: ar ? 'مدير عمليات المجموعة' : 'Group Operations Director',
-      company: ar ? 'مجموعة فنادق برايم' : 'Prime Hotels Group',
-      location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
-      period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
-      current: true,
-
+      position: ar ? 'التقدم المهني المبكر' : 'Early Career Progression',
+      period: '1993 - 2004',
       description: ar
-        ? 'مسؤولية كاملة عن الأرباح والخسائر والحوكمة التشغيلية لمحفظة سعودية متعددة العلامات (فاخر، متوسط، شقق فندقية)، مع التقرير المباشر إلى الملكية والمجلس.'
-        : 'Full P&L accountability and operational governance across a multi-brand Saudi portfolio (luxury, midscale, serviced apartments), reporting to ownership and the board.',
-      metrics: [
-        { label: ar ? 'محفظة' : 'Portfolio', value: ar ? 'متعددة العلامات' : 'Multi-Brand' },
-        { label: ar ? 'الهدف 2030' : '2030 Target', value: ar ? '10,000 غرفة' : '10,000 Rooms' },
-      ],
+        ? 'تقدم تدريجي من موظف استقبال إلى مساعد مدير المكتب الأمامي عبر علامات دولية في الإمارات (دبي) ومصر. مساهمة في افتتاح سيتي سنتر سوفيتيل دبي (1998). جائزة أفضل مدرب - إنتركونتيننتال الغردقة (2000). Six Sigma Green Belt قبل الترقية إلى Black Belt.'
+        : 'Progressive advancement from Front Office Agent to Assistant Director of Front Office across international brands in UAE (Dubai) and Egypt. Pre-opening contribution at City Centre Sofitel Dubai (1998). Best Trainer Award, Hurghada InterContinental (2000). Six Sigma Green Belt prior to Black Belt certification.',
+    },
+    {
+      position: ar ? 'مدير الابتكار التشغيلي / نائب مدير خدمات الضيوف' : 'Director of Operational Innovation / Deputy Director of Guest Services',
+      company: ar ? 'منتجع شيراتون ميرامار' : 'Sheraton Miramar Resort',
+      location: ar ? 'الجونة، الغردقة، مصر' : 'El Gouna, Hurghada, Egypt',
+      period: ar ? 'يونيو 2003 - نوفمبر 2009' : 'Jun 2003 - Nov 2009',
+      description: ar
+        ? 'أول مدير للابتكار التشغيلي في منطقة AFIO، مع 4 ممارسات معتمدة صُدّرت إلى قسم أوروبا وأفريقيا والشرق الأوسط في ماريوت.'
+        : 'First Director of Operational Innovation in the AFIO region, with 4 certified Best Practices exported to Marriott\'s EMEA Division.',
       achievements: ar
         ? [
-            'إرساء مراجعة شهرية للأرباح والخسائر ولوحات قياس STR في الربع الأول كاشفة فرص تحسين التكلفة',
-            'هندسة إطار حوكمة تشغيلية لتوسعة المحفظة إلى 10,000 غرفة بحلول 2030',
-            'مواءمة أداء الأصول مع أهداف الاستثمار عبر تحليل المنافسة وأطر المساءلة',
-            'تطوير أدلة ما قبل الافتتاح ومواسم الذروة لدعم خط أنابيب التوسع',
+            'أفضل مدير للابتكار التشغيلي - منطقة AFIO (2007)',
+            'مدرّب الابتكار التشغيلي عبر 5 عقارات في مصر والمغرب',
+            '4 مشاريع Six Sigma DMAIC تجاوزت جميع الميزانيات والمعايير المالية (2004-2006)',
+            'أفضل نمو هامش EBITDA في قسم ماريوت EMEA (2003)',
           ]
         : [
-            'Established monthly P&L cadence and STR benchmarking dashboards in Q1, surfacing cost-optimisation opportunities',
-            'Architected operational governance framework for portfolio expansion to 10,000 rooms by 2030',
-            'Aligned asset performance with investment objectives through competitive set analysis and accountability frameworks',
-            'Developed pre-opening and seasonal demand playbooks supporting the group expansion pipeline',
+            'Best Director of Operational Innovation, AFIO Region (2007)',
+            'Operational Innovation Coach across 5 properties in Egypt and Morocco',
+            '4 Six Sigma DMAIC projects (2004-2006) exceeding all financial budgets and Six Sigma criteria',
+            'Best EBITDA Margin Growth, Marriott EMEA Division (2003)',
           ],
     },
     {
-      position: ar ? "ممثل المالك (ما قبل الافتتاح)" : "Owner's Representative (Pre-Opening)",
-      company: ar ? 'فور بوينتس باي شيراتون - طريق الملك عبدالعزيز' : 'Four Points by Sheraton, King Abdulaziz Road',
-      location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
-      period: ar ? 'أبريل 2023 - يوليو 2025' : 'Apr 2023 - Jul 2025',
-      rooms: 172,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/caption_kgnuht.jpg',
+      position: ar ? 'مهام EAM لما قبل الافتتاح (فرق المهام)' : 'Task Force Pre-Opening EAM Mandates',
+      company: ar ? 'لو ميريديان أبراج مكة + شيراتون غامبيا' : 'Le Meridien Makkah Towers + Sheraton Gambia',
+      location: ar ? 'مكة المكرمة، السعودية / غامبيا' : 'Makkah, KSA / The Gambia',
+      period: '2008',
       description: ar
-        ? 'إدارة دورة التطوير وما قبل الافتتاح كاملةً نيابةً عن الملكية لمشروع ماريوت جديد بـ172 غرفة، مع الالتزام بمعايير العلامة وميزانية رأس المال.'
-        : 'Managed full development and pre-opening cycle on behalf of ownership for a 172-room Marriott new-build, with brand compliance, timeline adherence and capital budget discipline.',
+        ? 'مهام متخصصة دولية لمدة 3 أشهر تقدم خبرة EAM لافتتاح كبار: لو ميريديان أبراج مكة (1,323 غرفة) وشيراتون غامبيا (181 غرفة).'
+        : '3-month international specialist mandates providing pre-opening EAM expertise: Le Meridien Makkah Towers (1,323 rooms) and Sheraton Gambia (181 rooms).',
       metrics: [
-        { label: ar ? 'غرف' : 'Rooms', value: '172' },
-        { label: ar ? 'الميزانية' : 'Budget', value: '−12%' },
-        { label: ar ? 'الفريق' : 'Team', value: '150+' },
+        { label: ar ? 'مكة' : 'Makkah', value: '1,323' },
+        { label: ar ? 'غامبيا' : 'Gambia', value: '181' },
+      ],
+    },
+    {
+      position: ar ? 'مساعد المدير التنفيذي العنقودي (ما قبل الافتتاح)' : 'Cluster Executive Assistant Manager (Pre-Opening)',
+      company: ar ? 'فور بوينتس وشيراتون طرابلس' : 'Four Points & Sheraton Tripoli',
+      location: ar ? 'طرابلس، ليبيا' : 'Tripoli, Libya',
+      period: ar ? 'ديسمبر 2009 - يونيو 2011' : 'Dec 2009 - Jun 2011',
+      rooms: 718,
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
+      description: ar
+        ? 'افتتاح عنقودي مزدوج العلامة بـ718 غرفة في شمال أفريقيا تحت ظروف سياسية صعبة، مع إرساء أنظمة وفقاً لمعايير ستاروود الدولية.'
+        : '718-room dual-brand cluster pre-opening in North Africa under challenging political conditions, with systems established to Starwood international brand standards.',
+      metrics: [
+        { label: ar ? 'الجاهزية' : 'Readiness', value: '95%' },
+        { label: ar ? 'غرف' : 'Rooms', value: '718' },
+      ],
+    },
+  ];
+
+  // ---------------------------------------------------------------------
+  // CHAPTER 2 — TURNAROUND & ASSET LEADERSHIP (2011 - 2014)
+  // ---------------------------------------------------------------------
+  const turnaroundRoles: Experience[] = [
+    {
+      position: ar ? 'نائب المدير العام المسؤول' : 'Deputy General Manager in Charge',
+      company: ar ? 'منتجع شيراتون ميرامار' : 'Sheraton Miramar Resort',
+      location: ar ? 'الجونة، الغردقة، مصر' : 'El Gouna, Hurghada, Egypt',
+      period: ar ? 'يوليو 2011 - يونيو 2014' : 'Jul 2011 - Jun 2014',
+      rooms: 339,
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
+      description: ar
+        ? 'تنفيذ تجديد متدرج بقيمة 5 مليون دولار مع استمرارية تشغيلية كاملة وإعادة تموضع استراتيجية.'
+        : 'Delivered a $5M phased refurbishment with full operational continuity and strategic repositioning.',
+      metrics: [
+        { label: 'ADR', value: '+15%' },
+        { label: ar ? 'الإشغال' : 'Occupancy', value: '+8%' },
+        { label: ar ? 'الرواتب' : 'Payroll', value: '−7%' },
       ],
       achievements: ar
         ? [
-            'تخفيض ميزانية ما قبل الافتتاح بنسبة 12٪ عبر التفاوض على المشتريات مع الالتزام بمواصفات FF&E من ماريوت',
-            'توظيف وتأهيل أكثر من 150 موظفاً قبل الافتتاح',
-            'حل مسائل تقنية وتصميمية حرجة، مع التسليم في الموعد وضمن ميزانية رأس المال',
+            '+12٪ تحسن في رضا الضيوف ونمو الإيرادات بعد التجديد',
+            '+15٪ في ADR و+8٪ في الإشغال خلال السنة الأولى بعد التجديد',
+            '−7٪ في نفقات الرواتب عبر التدريب المتقاطع وتحسين الجدولة',
           ]
         : [
-            'Achieved −12% pre-opening budget reduction via vendor and procurement negotiation while maintaining full Marriott FF&E specifications',
-            'Recruited and onboarded 150+ pre-opening staff',
-            'Resolved critical technical and design issues, delivering on schedule and within capital budget',
+            '+12% guest-satisfaction improvement and post-renovation revenue growth',
+            '+15% ADR and +8% occupancy gain in year one post-renovation',
+            '−7% payroll expenses through cross-training and scheduling optimization',
           ],
     },
+  ];
+
+  // ---------------------------------------------------------------------
+  // CHAPTER 3 — THE MONTAZAH ERA (2014 - 2023)
+  // ---------------------------------------------------------------------
+  const montazahRoles: Experience[] = [
     {
       position: ar ? 'المدير العام' : 'General Manager',
       company: ar ? 'فندق شيراتون المنتزه - ماريوت إنترناشيونال' : 'Sheraton Montazah Hotel, Marriott International',
@@ -142,94 +204,101 @@ const Career = () => {
             'Facilitated quarterly performance reviews and strategic planning sessions portfolio-wide',
           ],
     },
+  ];
+
+  // ---------------------------------------------------------------------
+  // CHAPTER 4 — PRE-OPENING & SCALE (2023 - 2025)
+  // ---------------------------------------------------------------------
+  const scaleRoles: Experience[] = [
     {
-      position: ar ? 'نائب المدير العام المسؤول' : 'Deputy General Manager in Charge',
-      company: ar ? 'منتجع شيراتون ميرامار' : 'Sheraton Miramar Resort',
-      location: ar ? 'الجونة، الغردقة، مصر' : 'El Gouna, Hurghada, Egypt',
-      period: ar ? 'يوليو 2011 - يونيو 2014' : 'Jul 2011 - Jun 2014',
-      rooms: 339,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
+      position: ar ? "ممثل المالك (ما قبل الافتتاح)" : "Owner's Representative (Pre-Opening)",
+      company: ar ? 'فور بوينتس باي شيراتون - طريق الملك عبدالعزيز' : 'Four Points by Sheraton, King Abdulaziz Road',
+      location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
+      period: ar ? 'أبريل 2023 - يوليو 2025' : 'Apr 2023 - Jul 2025',
+      rooms: 172,
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/caption_kgnuht.jpg',
       description: ar
-        ? 'تنفيذ تجديد متدرج بقيمة 5 مليون دولار مع استمرارية تشغيلية كاملة وإعادة تموضع استراتيجية.'
-        : 'Delivered a $5M phased refurbishment with full operational continuity and strategic repositioning.',
+        ? 'إدارة دورة التطوير وما قبل الافتتاح كاملةً نيابةً عن الملكية لمشروع ماريوت جديد بـ172 غرفة، مع الالتزام بمعايير العلامة وميزانية رأس المال.'
+        : 'Managed full development and pre-opening cycle on behalf of ownership for a 172-room Marriott new-build, with brand compliance, timeline adherence and capital budget discipline.',
       metrics: [
-        { label: 'ADR', value: '+15%' },
-        { label: ar ? 'الإشغال' : 'Occupancy', value: '+8%' },
-        { label: ar ? 'الرواتب' : 'Payroll', value: '−7%' },
+        { label: ar ? 'غرف' : 'Rooms', value: '172' },
+        { label: ar ? 'الميزانية' : 'Budget', value: '−12%' },
+        { label: ar ? 'الفريق' : 'Team', value: '150+' },
       ],
       achievements: ar
         ? [
-            '+12٪ تحسن في رضا الضيوف ونمو الإيرادات بعد التجديد',
-            '+15٪ في ADR و+8٪ في الإشغال خلال السنة الأولى بعد التجديد',
-            '−7٪ في نفقات الرواتب عبر التدريب المتقاطع وتحسين الجدولة',
+            'تخفيض ميزانية ما قبل الافتتاح بنسبة 12٪ عبر التفاوض على المشتريات مع الالتزام بمواصفات FF&E من ماريوت',
+            'توظيف وتأهيل أكثر من 150 موظفاً قبل الافتتاح',
+            'حل مسائل تقنية وتصميمية حرجة، مع التسليم في الموعد وضمن ميزانية رأس المال',
           ]
         : [
-            '+12% guest-satisfaction improvement and post-renovation revenue growth',
-            '+15% ADR and +8% occupancy gain in year one post-renovation',
-            '−7% payroll expenses through cross-training and scheduling optimization',
+            'Achieved −12% pre-opening budget reduction via vendor and procurement negotiation while maintaining full Marriott FF&E specifications',
+            'Recruited and onboarded 150+ pre-opening staff',
+            'Resolved critical technical and design issues, delivering on schedule and within capital budget',
           ],
     },
     {
-      position: ar ? 'مساعد المدير التنفيذي العنقودي (ما قبل الافتتاح)' : 'Cluster Executive Assistant Manager (Pre-Opening)',
-      company: ar ? 'فور بوينتس وشيراتون طرابلس' : 'Four Points & Sheraton Tripoli',
-      location: ar ? 'طرابلس، ليبيا' : 'Tripoli, Libya',
-      period: ar ? 'ديسمبر 2009 - يونيو 2011' : 'Dec 2009 - Jun 2011',
-      rooms: 718,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
+      position: ar ? 'مستشار مستقل لما قبل الافتتاح' : 'Independent Pre-Opening Consultant',
+      company: ar ? 'منتجع ذا في الفاخر - سهل حشيش' : 'The V Luxury Resort Sahl Hasheesh',
+      location: ar ? 'الغردقة، مصر' : 'Hurghada, Egypt',
+      period: ar ? 'مايو 2023 - مارس 2024' : 'May 2023 - Mar 2024',
+      rooms: 298,
+      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/photo-hurghada-18_krbjex.jpg',
       description: ar
-        ? 'افتتاح عنقودي مزدوج العلامة بـ718 غرفة في شمال أفريقيا تحت ظروف سياسية صعبة، مع إرساء أنظمة وفقاً لمعايير ستاروود الدولية.'
-        : '718-room dual-brand cluster pre-opening in North Africa under challenging political conditions, with systems established to Starwood international brand standards.',
+        ? 'استشارة شاملة لما قبل الافتتاح لمنتجع فاخر بـ298 غرفة، مع توفير استشارات شاملة في استراتيجية التوظيف، تنفيذ PMS، نشر معايير العلامة، وتخطيط الإطلاق التجاري.'
+        : 'Full pre-opening consultancy for a 298-room luxury resort: end-to-end advisory across staffing strategy, PMS implementation, brand standards deployment, and commercial launch planning.',
       metrics: [
-        { label: ar ? 'الجاهزية' : 'Readiness', value: '95%' },
-        { label: ar ? 'غرف' : 'Rooms', value: '718' },
+        { label: ar ? 'الإشغال' : 'Occupancy', value: '90%' },
+        { label: ar ? 'المدة' : 'Timeline', value: ar ? '4 أشهر' : '4 months' },
+        { label: ar ? 'الرضا' : 'Satisfaction', value: '+12%' },
       ],
-    },
-    {
-      position: ar ? 'مدير الابتكار التشغيلي / نائب مدير خدمات الضيوف' : 'Director of Operational Innovation / Deputy Director of Guest Services',
-      company: ar ? 'منتجع شيراتون ميرامار' : 'Sheraton Miramar Resort',
-      location: ar ? 'الجونة، الغردقة، مصر' : 'El Gouna, Hurghada, Egypt',
-      period: ar ? 'يونيو 2003 - نوفمبر 2009' : 'Jun 2003 - Nov 2009',
-      description: ar
-        ? 'أول مدير للابتكار التشغيلي في منطقة AFIO، مع 4 ممارسات معتمدة صُدّرت إلى قسم أوروبا وأفريقيا والشرق الأوسط في ماريوت.'
-        : 'First Director of Operational Innovation in the AFIO region, with 4 certified Best Practices exported to Marriott\'s EMEA Division.',
       achievements: ar
         ? [
-            'أفضل مدير للابتكار التشغيلي - منطقة AFIO (2007)',
-            'مدرّب الابتكار التشغيلي عبر 5 عقارات في مصر والمغرب',
-            '4 مشاريع Six Sigma DMAIC تجاوزت جميع الميزانيات والمعايير المالية (2004-2006)',
-            'أفضل نمو هامش EBITDA في قسم ماريوت EMEA (2003)',
+            '90٪ إشغال خلال 4 أشهر من الإطلاق - متفوقاً على معيار الصناعة (12-18 شهر) لاستقرار الفئة الفاخرة',
+            'استراتيجية تموضع تنافسية لممر البحر الأحمر الفاخر',
+            '+12٪ في رضا الضيوف خلال الربع الافتتاحي عبر برنامج ثقافة خدمة مخصص',
+            'منهج تدريب مخصص لـ300+ عضو فريق ما قبل الافتتاح',
           ]
         : [
-            'Best Director of Operational Innovation, AFIO Region (2007)',
-            'Operational Innovation Coach across 5 properties in Egypt and Morocco',
-            '4 Six Sigma DMAIC projects (2004-2006) exceeding all financial budgets and Six Sigma criteria',
-            'Best EBITDA Margin Growth, Marriott EMEA Division (2003)',
+            '90% occupancy within 4 months of launch — outperforming the 12-18 month industry standard for luxury-segment stabilisation',
+            'Competitive positioning strategy for the Red Sea luxury corridor',
+            '+12% guest satisfaction in the opening quarter via a bespoke service-culture programme',
+            'Custom training curriculum built for 300+ pre-opening team members',
           ],
-    },
-    {
-      position: ar ? 'مهام EAM لما قبل الافتتاح (فرق المهام)' : 'Task Force Pre-Opening EAM Mandates',
-      company: ar ? 'لو ميريديان أبراج مكة + شيراتون غامبيا' : 'Le Meridien Makkah Towers + Sheraton Gambia',
-      location: ar ? 'مكة المكرمة، السعودية / غامبيا' : 'Makkah, KSA / The Gambia',
-      period: '2008',
-      description: ar
-        ? 'مهام متخصصة دولية لمدة 3 أشهر تقدم خبرة EAM لافتتاح كبار: لو ميريديان أبراج مكة (1,323 غرفة) وشيراتون غامبيا (181 غرفة).'
-        : '3-month international specialist mandates providing pre-opening EAM expertise: Le Meridien Makkah Towers (1,323 rooms) and Sheraton Gambia (181 rooms).',
-      metrics: [
-        { label: ar ? 'مكة' : 'Makkah', value: '1,323' },
-        { label: ar ? 'غامبيا' : 'Gambia', value: '181' },
-      ],
-    },
-    {
-      position: ar ? 'التقدم المهني المبكر' : 'Early Career Progression',
-      period: '1993 - 2004',
-      description: ar
-        ? 'تقدم تدريجي من موظف استقبال إلى مساعد مدير المكتب الأمامي عبر علامات دولية في الإمارات (دبي) ومصر. مساهمة في افتتاح سيتي سنتر سوفيتيل دبي (1998). جائزة أفضل مدرب - إنتركونتيننتال الغردقة (2000). Six Sigma Green Belt قبل الترقية إلى Black Belt.'
-        : 'Progressive advancement from Front Office Agent to Assistant Director of Front Office across international brands in UAE (Dubai) and Egypt. Pre-opening contribution at City Centre Sofitel Dubai (1998). Best Trainer Award, Hurghada InterContinental (2000). Six Sigma Green Belt prior to Black Belt certification.',
     },
   ];
 
-  // INDEPENDENT CONSULTING (per resume)
-  const consulting: Experience[] = [
+  // ---------------------------------------------------------------------
+  // CHAPTER 5 — PORTFOLIO & INDEPENDENT CONSULTING (2025 - 2026)
+  // ---------------------------------------------------------------------
+  const portfolioRoles: Experience[] = [
+    {
+      position: ar ? 'مدير عمليات المجموعة' : 'Group Operations Director',
+      company: ar ? 'مجموعة فنادق برايم' : 'Prime Hotels Group',
+      location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
+      period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
+      current: true,
+      description: ar
+        ? 'مسؤولية كاملة عن الأرباح والخسائر والحوكمة التشغيلية لمحفظة سعودية متعددة العلامات (فاخر، متوسط، شقق فندقية)، مع التقرير المباشر إلى الملكية والمجلس.'
+        : 'Full P&L accountability and operational governance across a multi-brand Saudi portfolio (luxury, midscale, serviced apartments), reporting to ownership and the board.',
+      metrics: [
+        { label: ar ? 'محفظة' : 'Portfolio', value: ar ? 'متعددة العلامات' : 'Multi-Brand' },
+        { label: ar ? 'الهدف 2030' : '2030 Target', value: ar ? '10,000 غرفة' : '10,000 Rooms' },
+      ],
+      achievements: ar
+        ? [
+            'إرساء مراجعة شهرية للأرباح والخسائر ولوحات قياس STR في الربع الأول كاشفة فرص تحسين التكلفة',
+            'هندسة إطار حوكمة تشغيلية لتوسعة المحفظة إلى 10,000 غرفة بحلول 2030',
+            'مواءمة أداء الأصول مع أهداف الاستثمار عبر تحليل المنافسة وأطر المساءلة',
+            'تطوير أدلة ما قبل الافتتاح ومواسم الذروة لدعم خط أنابيب التوسع',
+          ]
+        : [
+            'Established monthly P&L cadence and STR benchmarking dashboards in Q1, surfacing cost-optimisation opportunities',
+            'Architected operational governance framework for portfolio expansion to 10,000 rooms by 2030',
+            'Aligned asset performance with investment objectives through competitive set analysis and accountability frameworks',
+            'Developed pre-opening and seasonal demand playbooks supporting the group expansion pipeline',
+          ],
+    },
     {
       position: ar ? 'مستشار مستقل لتحويل العلامة التجارية' : 'Independent Brand Conversion Consultant',
       company: ar ? 'كراون بلازا ميراج - آي إتش جي' : 'Crowne Plaza Mirage by IHG',
@@ -289,172 +358,229 @@ const Career = () => {
             'Repositioned the property within the Port Said competitive set',
           ],
     },
+  ];
+
+  const chapters: Chapter[] = [
     {
-      position: ar ? 'مستشار مستقل لما قبل الافتتاح' : 'Independent Pre-Opening Consultant',
-      company: ar ? 'منتجع ذا في الفاخر - سهل حشيش' : 'The V Luxury Resort Sahl Hasheesh',
-      location: ar ? 'الغردقة، مصر' : 'Hurghada, Egypt',
-      period: ar ? 'مايو 2023 - مارس 2024' : 'May 2023 - Mar 2024',
-      rooms: 298,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/photo-hurghada-18_krbjex.jpg',
-      description: ar
-        ? 'استشارة شاملة لما قبل الافتتاح لمنتجع فاخر بـ298 غرفة، مع توفير استشارات شاملة في استراتيجية التوظيف، تنفيذ PMS، نشر معايير العلامة، وتخطيط الإطلاق التجاري.'
-        : 'Full pre-opening consultancy for a 298-room luxury resort: end-to-end advisory across staffing strategy, PMS implementation, brand standards deployment, and commercial launch planning.',
-      metrics: [
-        { label: ar ? 'الإشغال' : 'Occupancy', value: '90%' },
-        { label: ar ? 'المدة' : 'Timeline', value: ar ? '4 أشهر' : '4 months' },
-        { label: ar ? 'الرضا' : 'Satisfaction', value: '+12%' },
-      ],
-      achievements: ar
-        ? [
-            '90٪ إشغال خلال 4 أشهر من الإطلاق - متفوقاً على معيار الصناعة (12-18 شهر) لاستقرار الفئة الفاخرة',
-            'استراتيجية تموضع تنافسية لممر البحر الأحمر الفاخر',
-            '+12٪ في رضا الضيوف خلال الربع الافتتاحي عبر برنامج ثقافة خدمة مخصص',
-            'منهج تدريب مخصص لـ300+ عضو فريق ما قبل الافتتاح',
-          ]
-        : [
-            '90% occupancy within 4 months of launch — outperforming the 12-18 month industry standard for luxury-segment stabilisation',
-            'Competitive positioning strategy for the Red Sea luxury corridor',
-            '+12% guest satisfaction in the opening quarter via a bespoke service-culture programme',
-            'Custom training curriculum built for 300+ pre-opening team members',
-          ],
+      number: '01',
+      title: ar ? 'التأسيس' : 'Foundation',
+      subtitle: ar
+        ? '1993-2009 · من موظف استقبال إلى مدرّب ابتكار تشغيلي معتمد دولياً'
+        : '1993-2009 · From front-desk agent to an internationally certified innovation coach',
+      icon: Compass,
+      roles: foundationRoles,
+    },
+    {
+      number: '02',
+      title: ar ? 'تحويل المسار وقيادة الأصول' : 'Turnaround & Asset Leadership',
+      subtitle: ar
+        ? '2011-2014 · قيادة تجديد بقيمة 5 مليون دولار مع استمرارية تشغيلية كاملة'
+        : '2011-2014 · Leading a $5M renovation while keeping the resort fully operational',
+      icon: TrendingUp,
+      roles: turnaroundRoles,
+    },
+    {
+      number: '03',
+      title: ar ? 'حقبة المنتزه' : 'The Montazah Era',
+      subtitle: ar
+        ? '2014-2023 · تسع سنوات في القيادة العامة ختمت بأكبر تجديد في تاريخ الفندق'
+        : '2014-2023 · Nine years at the helm, culminating in the property\'s largest-ever renovation',
+      icon: Crown,
+      roles: montazahRoles,
+    },
+    {
+      number: '04',
+      title: ar ? 'ما قبل الافتتاح والتوسع' : 'Pre-Opening & Scale',
+      subtitle: ar
+        ? '2023-2025 · قيادة افتتاحات جديدة نيابة عن الملاك عبر السعودية ومصر'
+        : '2023-2025 · Leading new-build pre-openings on behalf of ownership across KSA and Egypt',
+      icon: Rocket,
+      roles: scaleRoles,
+    },
+    {
+      number: '05',
+      title: ar ? 'المحفظة والاستشارات المستقلة' : 'Portfolio & Independent Consulting',
+      subtitle: ar
+        ? '2025-2026 · قيادة محفظة متعددة العلامات ومهام استشارية مستقلة عبر المنطقة'
+        : '2025-2026 · Leading a multi-brand portfolio alongside independent advisory mandates',
+      icon: Briefcase,
+      roles: portfolioRoles,
     },
   ];
 
-  const renderTimeline = (items: Experience[], expanded: number | null, setExpanded: (i: number | null) => void, keyPrefix: string) => (
-    <div className="relative">
-      <div className={`absolute ${isRTL ? 'right-6 md:right-8' : 'left-6 md:left-8'} top-0 bottom-0 w-px bg-gradient-to-b from-accent/80 via-border to-transparent`} />
+  const [activeChapter, setActiveChapter] = useState(0);
 
-      <div className="space-y-10">
-        {items.map((exp, index) => {
-          const isItemExpanded = expanded === index;
-          return (
-            <motion.div
-              key={`${keyPrefix}-${index}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className={`relative ${isRTL ? 'pr-14 md:pr-20' : 'pl-14 md:pl-20'}`}
-            >
-              {/* Timeline Bullet Node with Glow */}
-              <div className={`absolute ${isRTL ? 'right-3 md:right-5' : 'left-3 md:left-5'} top-6 w-6 h-6 rounded-full border-2 bg-card flex items-center justify-center z-10 transition-all ${
-                exp.current 
-                  ? 'border-accent shadow-[0_0_12px_rgba(181,80,43,0.5)] scale-110' 
-                  : 'border-border'
-              }`}>
-                {exp.current && <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />}
-              </div>
+  const leadershipPrinciples = [
+    {
+      icon: ShieldCheck,
+      title: ar ? 'التميز التشغيلي' : 'Operational Excellence',
+      description: ar
+        ? 'انضباط في الأرباح والخسائر، ومعايير SOP، وحوكمة الأصول عبر كل محفظة.'
+        : 'P&L discipline, SOP rigor, and asset governance carried across every portfolio.',
+    },
+    {
+      icon: Users,
+      title: ar ? 'محورية الضيف' : 'Guest Centricity',
+      description: ar
+        ? 'رفع رضا الضيوف بشكل مستدام عبر ثقافة خدمة مصممة خصيصاً لكل علامة.'
+        : 'Sustained satisfaction gains through service cultures tailored to each brand.',
+    },
+    {
+      icon: Award,
+      title: ar ? 'رعاية المواهب' : 'Talent Mentorship',
+      description: ar
+        ? 'بناء وتأهيل وتدريب فرق تضم مئات الموظفين عبر أسواق ومهام متعددة.'
+        : 'Building, onboarding and coaching teams of hundreds across markets and mandates.',
+    },
+    {
+      icon: Sparkles,
+      title: ar ? 'التحسين المستمر' : 'Continuous Improvement',
+      description: ar
+        ? 'منهجية Kaizen وSix Sigma لتحويل الفرص التشغيلية إلى نتائج مالية قابلة للقياس.'
+        : 'Kaizen and Six Sigma methodology turning operational opportunity into measurable results.',
+    },
+  ];
 
-              {/* Editorial Frame Container */}
-              <div className={`bg-card rounded-sm border border-border overflow-hidden transition-colors duration-500 hover:border-accent/35 ${
-                exp.current ? 'border-s-4 border-s-accent' : ''
-              } ${isItemExpanded ? 'border-accent/40' : ''}`}>
+  const renderCard = (exp: Experience, chapterIdx: number, index: number) => {
+    const key = `${chapterIdx}-${index}`;
+    const isItemExpanded = expandedKey === key;
+    return (
+      <motion.div
+        key={key}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`relative ${isRTL ? 'md:pr-14' : 'md:pl-14'}`}
+      >
+        {/* Timeline Bullet Node - hidden on mobile */}
+        <div
+          className={`hidden md:flex absolute ${isRTL ? 'right-3' : 'left-3'} top-6 w-6 h-6 rounded-full border-2 bg-card items-center justify-center z-10 transition-all ${
+            exp.current ? 'border-accent shadow-[0_0_12px_rgba(181,80,43,0.5)] scale-110' : 'border-border'
+          }`}
+        >
+          {exp.current && <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />}
+        </div>
 
-                {exp.image && (
-                  <div className="h-56 overflow-hidden relative group">
-                    <img
-                      src={exp.image}
-                      alt={exp.company || exp.position}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+        {/* Editorial Frame Container */}
+        <div
+          className={`bg-card rounded-sm border border-border overflow-hidden transition-colors duration-500 hover:border-accent/35 w-full ${
+            exp.current ? 'border-s-4 border-s-accent' : ''
+          } ${isItemExpanded ? 'border-accent/40' : ''}`}
+        >
+          {exp.image && (
+            <div className="h-48 md:h-56 overflow-hidden relative group">
+              <img
+                src={exp.image}
+                alt={exp.company || exp.position}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+            </div>
+          )}
+
+          <div className="p-5 md:p-8">
+            <div className="flex flex-wrap items-start justify-between gap-4 mb-4 pb-4 border-b border-border/30">
+              <div className="flex items-center gap-3">
+                {exp.current && (
+                  <div className="p-1 rounded-sm border border-border/30 bg-muted/30">
+                    <img src={primeHotelsLogo} alt="Prime Hotels" className="w-10 h-10 object-contain rounded-sm" />
                   </div>
                 )}
-
-                <div className="p-6 md:p-8">
-                  <div className="flex flex-wrap items-start justify-between gap-4 mb-4 pb-4 border-b border-border/30">
-                    <div className="flex items-center gap-3">
-                      {exp.current && (
-                        <div className="p-1 rounded-sm border border-border/30 bg-muted/30">
-                          <img src={primeHotelsLogo} alt="Prime Hotels" className="w-10 h-10 object-contain rounded-sm" />
-                        </div>
-                      )}
-                      <div>
-                        <h3 className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors">{exp.position}</h3>
-                        {exp.company && <p className="text-sm font-semibold text-accent mt-0.5">{exp.company}</p>}
-                      </div>
-                    </div>
-                    {exp.current && (
-                      <span className="px-3.5 py-1.5 rounded-sm bg-accent/15 text-accent-foreground text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
-                        {ar ? 'حالياً' : 'Current'}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Metadata line */}
-                  <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mb-4">
-                    {exp.location && (
-                      <span className="flex items-center gap-1.5">
-                        <MapPin size={13} className="text-accent" />
-                        {exp.location}
-                      </span>
-                    )}
-                    <span className="flex items-center gap-1.5">
-                      <Calendar size={13} className="text-accent" />
-                      {exp.period}
-                    </span>
-                    {exp.rooms && (
-                      <span className="flex items-center gap-1.5">
-                        <Building size={13} className="text-accent" />
-                        {exp.rooms} {ar ? 'غرفة' : 'Keys'}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-light">{exp.description}</p>
-
-                  {/* Detailed Dashboard Metrics */}
-                  {exp.metrics && exp.metrics.length > 0 && (
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                      {exp.metrics.map((m, i) => (
-                        <div key={i} className="p-3.5 rounded-sm bg-muted/40 border border-border/20 text-center">
-                          <p className="text-base font-bold font-playfair text-foreground">{m.value}</p>
-                          <p className="text-[9px] text-muted-foreground uppercase tracking-widest font-semibold mt-0.5">{m.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Accordion achievements */}
-                  {exp.achievements && exp.achievements.length > 0 && (
-                    <div className="mt-4 pt-4 border-t border-border/30">
-                      <button
-                        onClick={() => setExpanded(isItemExpanded ? null : index)}
-                        aria-expanded={isItemExpanded}
-                        className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors py-1 focus:outline-none"
-                      >
-                        <span>{ar ? 'إنجازات تشغيلية رئيسية' : 'Key Achievements'}</span>
-                        <ChevronDown size={14} className={`transition-transform duration-300 ${isItemExpanded ? 'rotate-180' : ''}`} />
-                      </button>
-                      
-                      <AnimatePresence initial={false}>
-                        {isItemExpanded && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="overflow-hidden"
-                          >
-                            <ul className="mt-4 space-y-3 ps-1">
-                              {exp.achievements.map((a, i) => (
-                                <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                                  <ShieldCheck size={15} className="text-luxury-emerald shrink-0 mt-0.5" />
-                                  <span>{a}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )}
+                <div>
+                  <h3 className="text-lg md:text-xl font-semibold text-foreground">{exp.position}</h3>
+                  {exp.company && <p className="text-sm font-semibold text-accent mt-0.5">{exp.company}</p>}
                 </div>
               </div>
-            </motion.div>
-          );
-        })}
+              {exp.current && (
+                <span className="px-3.5 py-1.5 rounded-sm bg-accent/15 text-accent-foreground text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
+                  {ar ? 'حالياً' : 'Current'}
+                </span>
+              )}
+            </div>
+
+            {/* Metadata line */}
+            <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mb-4">
+              {exp.location && (
+                <span className="flex items-center gap-1.5">
+                  <MapPin size={13} className="text-accent" />
+                  {exp.location}
+                </span>
+              )}
+              <span className="flex items-center gap-1.5">
+                <Calendar size={13} className="text-accent" />
+                {exp.period}
+              </span>
+              {exp.rooms && (
+                <span className="flex items-center gap-1.5">
+                  <Building size={13} className="text-accent" />
+                  {exp.rooms} {ar ? 'غرفة' : 'Keys'}
+                </span>
+              )}
+            </div>
+
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-light">{exp.description}</p>
+
+            {/* Metric chips */}
+            {exp.metrics && exp.metrics.length > 0 && (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                {exp.metrics.slice(0, 4).map((m, i) => (
+                  <div key={i} className="p-3.5 rounded-sm bg-muted/40 border border-border/20 text-center">
+                    <p className="text-base font-bold font-playfair text-foreground">{m.value}</p>
+                    <p className="text-[9px] text-muted-foreground uppercase tracking-widest font-semibold mt-0.5">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Accordion achievements */}
+            {exp.achievements && exp.achievements.length > 0 && (
+              <div className="mt-4 pt-4 border-t border-border/30">
+                <button
+                  onClick={() => setExpandedKey(isItemExpanded ? null : key)}
+                  aria-expanded={isItemExpanded}
+                  className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors py-1 focus:outline-none"
+                >
+                  <span>{ar ? 'إنجازات تشغيلية رئيسية' : 'Key Achievements'}</span>
+                  <ChevronDown size={14} className={`transition-transform duration-300 ${isItemExpanded ? 'rotate-180' : ''}`} />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isItemExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <ul className="mt-4 space-y-3 ps-1">
+                        {exp.achievements.map((a, i) => (
+                          <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                            <ShieldCheck size={15} className="text-luxury-emerald shrink-0 mt-0.5" />
+                            <span>{a}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
+  const renderChapterTimeline = (chapter: Chapter, chapterIdx: number) => (
+    <div className="relative">
+      <div
+        className={`hidden md:block absolute ${isRTL ? 'right-6' : 'left-6'} top-0 bottom-0 w-px bg-gradient-to-b from-accent/80 via-border to-transparent`}
+      />
+      <div className="space-y-10">
+        {chapter.roles.map((exp, index) => renderCard(exp, chapterIdx, index))}
       </div>
     </div>
   );
@@ -487,13 +613,37 @@ const Career = () => {
             </motion.div>
           </section>
 
+          {/* Mobile Chapter Tabs */}
+          <section className="container mx-auto px-4 md:px-8 mb-8 lg:hidden">
+            <div className="flex gap-2.5 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-none">
+              {chapters.map((chapter, idx) => {
+                const Icon = chapter.icon;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveChapter(idx)}
+                    aria-pressed={activeChapter === idx}
+                    className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-sm border text-xs font-bold tracking-wide whitespace-nowrap transition-colors ${
+                      activeChapter === idx
+                        ? 'bg-card text-accent border-accent/40'
+                        : 'text-muted-foreground border-border hover:text-foreground'
+                    }`}
+                  >
+                    <Icon size={14} />
+                    <span>{chapter.number} · {chapter.title}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
           {/* Main Grid Container */}
           <section className="container mx-auto px-4 md:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr] gap-10 lg:gap-16 items-start">
-              
-              {/* Left Sidebar - Sticky on desktop */}
-              <aside className="lg:sticky lg:top-28 space-y-8">
-                
+            <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10 lg:gap-16 items-start">
+
+              {/* Left Sidebar - Sticky on desktop, hidden on mobile (tabs used instead) */}
+              <aside className="hidden lg:block lg:sticky lg:top-28 space-y-8">
+
                 {/* Career Metrics Card */}
                 <div className="relative overflow-hidden rounded-sm border border-border bg-card p-6">
                   <h2 className="text-xs uppercase tracking-[0.2em] text-accent font-bold mb-6 flex items-center gap-2 border-b border-border pb-3">
@@ -502,7 +652,6 @@ const Career = () => {
                   </h2>
 
                   <div className="space-y-6">
-                    {/* Metric 1 */}
                     <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
                       <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-normal font-playfair text-accent">30+</span>
@@ -515,7 +664,6 @@ const Career = () => {
                       </p>
                     </div>
 
-                    {/* Metric 2 */}
                     <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
                       <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-normal font-playfair text-accent">19+</span>
@@ -528,7 +676,6 @@ const Career = () => {
                       </p>
                     </div>
 
-                    {/* Metric 3 */}
                     <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
                       <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-normal font-playfair text-accent">3,000+</span>
@@ -543,49 +690,33 @@ const Career = () => {
                   </div>
                 </div>
 
-                {/* Category Toggle */}
+                {/* Chapter Navigation */}
                 <div className="space-y-3">
                   <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-bold px-1">
-                    {ar ? 'أقسام المسيرة المهنية' : 'CAREER CHAPTERS'}
+                    {ar ? 'فصول المسيرة المهنية' : 'CAREER CHAPTERS'}
                   </p>
-                  <div className="flex flex-row lg:flex-col gap-2.5 p-2 bg-muted/40 border border-border rounded-sm">
-                    <button
-                      onClick={() => setActiveCategory('executive')}
-                      aria-pressed={activeCategory === 'executive'}
-                      className={`relative flex-1 lg:flex-none lg:w-full text-center lg:text-start px-4 py-3.5 rounded-sm text-xs font-bold tracking-wider transition-colors duration-300 flex items-center justify-center lg:justify-between ${
-                        activeCategory === 'executive'
-                          ? 'bg-card text-accent border border-accent/25'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/20'
-                      }`}
-                    >
-                      <span className="flex items-center gap-2">
-                        <Briefcase size={14} className={activeCategory === 'executive' ? 'text-accent' : 'text-muted-foreground'} />
-                        <span>{ar ? 'القيادة التنفيذية' : 'Executive Leadership'}</span>
-                      </span>
-                      <ChevronIcon
-                        size={14}
-                        className={`hidden lg:block ${activeCategory === 'executive' ? 'text-accent' : 'text-muted-foreground/30'}`}
-                      />
-                    </button>
-
-                    <button
-                      onClick={() => setActiveCategory('consulting')}
-                      aria-pressed={activeCategory === 'consulting'}
-                      className={`relative flex-1 lg:flex-none lg:w-full text-center lg:text-start px-4 py-3.5 rounded-sm text-xs font-bold tracking-wider transition-colors duration-300 flex items-center justify-center lg:justify-between ${
-                        activeCategory === 'consulting'
-                          ? 'bg-card text-accent border border-accent/25'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/20'
-                      }`}
-                    >
-                      <span className="flex items-center gap-2">
-                        <Users size={14} className={activeCategory === 'consulting' ? 'text-accent' : 'text-muted-foreground'} />
-                        <span>{ar ? 'الاستشارات والحلول' : 'Consulting & Advisory'}</span>
-                      </span>
-                      <ChevronIcon
-                        size={14}
-                        className={`hidden lg:block ${activeCategory === 'consulting' ? 'text-accent' : 'text-muted-foreground/30'}`}
-                      />
-                    </button>
+                  <div className="flex flex-col gap-2 p-2 bg-muted/40 border border-border rounded-sm">
+                    {chapters.map((chapter, idx) => {
+                      const Icon = chapter.icon;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveChapter(idx)}
+                          aria-pressed={activeChapter === idx}
+                          className={`relative w-full text-start px-4 py-3.5 rounded-sm text-xs font-bold tracking-wider transition-colors duration-300 flex items-center gap-3 ${
+                            activeChapter === idx
+                              ? 'bg-card text-accent border border-accent/25'
+                              : 'text-muted-foreground hover:text-foreground hover:bg-muted/20 border border-transparent'
+                          }`}
+                        >
+                          <span className={`text-[10px] font-playfair ${activeChapter === idx ? 'text-accent' : 'text-muted-foreground/50'}`}>
+                            {chapter.number}
+                          </span>
+                          <Icon size={14} className={activeChapter === idx ? 'text-accent' : 'text-muted-foreground'} />
+                          <span className="leading-tight">{chapter.title}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -595,54 +726,36 @@ const Career = () => {
               <div className="min-h-[500px]">
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={activeCategory}
+                    key={activeChapter}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     className="space-y-8"
                   >
-                    {activeCategory === 'executive' ? (
-                      <div>
-                        <div className="mb-8 border-b border-border/40 pb-4">
-                          <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-1">
-                            {ar ? 'الفصل الأول' : 'Chapter One'}
-                          </p>
-                          <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground flex items-center gap-3">
-                            <Briefcase className="text-accent" size={20} />
-                            {ar ? 'القيادة التنفيذية' : 'Executive Leadership'}
-                          </h2>
-                          <p className="text-sm text-muted-foreground mt-2">
-                            {ar
-                              ? 'أدوار تنفيذية بدوام كامل عبر علامات الضيافة الدولية الرائدة.'
-                              : 'Full-time executive mandates across leading international hospitality brands.'}
-                          </p>
+                    {(() => {
+                      const chapter = chapters[activeChapter];
+                      const Icon = chapter.icon;
+                      return (
+                        <div>
+                          <div className="mb-8 border-b border-border/40 pb-4">
+                            <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-1">
+                              {ar ? `الفصل ${chapter.number}` : `Chapter ${chapter.number}`}
+                            </p>
+                            <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground flex items-center gap-3">
+                              <Icon className="text-accent" size={20} />
+                              {chapter.title}
+                            </h2>
+                            <p className="text-sm text-muted-foreground mt-2">{chapter.subtitle}</p>
+                          </div>
+                          {renderChapterTimeline(chapter, activeChapter)}
                         </div>
-                        {renderTimeline(executive, expandedExec, setExpandedExec, 'exec')}
-                      </div>
-                    ) : (
-                      <div>
-                        <div className="mb-8 border-b border-border/40 pb-4">
-                          <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-1">
-                            {ar ? 'الفصل الثاني' : 'Chapter Two'}
-                          </p>
-                          <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground flex items-center gap-3">
-                            <Users className="text-accent" size={20} />
-                            {ar ? 'الاستشارات المستقلة والتوجيه' : 'Independent Consulting & Advisory'}
-                          </h2>
-                          <p className="text-sm text-muted-foreground mt-2">
-                            {ar
-                              ? 'مهام جانب الملكية عبر تحويل العلامة، تحويل المسار، وما قبل الافتتاح الفاخر.'
-                              : 'Owner-side mandates across brand conversion, turnaround, and luxury pre-opening.'}
-                          </p>
-                        </div>
-                        {renderTimeline(consulting, expandedCons, setExpandedCons, 'cons')}
-                      </div>
-                    )}
+                      );
+                    })()}
                   </motion.div>
                 </AnimatePresence>
 
-                {/* CTA - aligned inside Right Pane bottom */}
+                {/* CTA */}
                 <div className="text-center mt-16 pt-8 border-t border-border/40">
                   <Link to="/awards">
                     <Button variant="outline" className="rounded-sm px-8 py-6 text-base font-medium gap-2 border-border hover:border-accent transition-colors">
@@ -653,6 +766,46 @@ const Career = () => {
                 </div>
               </div>
 
+            </div>
+          </section>
+
+          {/* Leadership Principles */}
+          <section className="container mx-auto px-4 md:px-8 mt-20">
+            <div className="max-w-2xl mx-auto text-center mb-10">
+              <div className="section-eyebrow justify-center">
+                <Sparkles size={12} />
+                {ar ? 'فلسفة القيادة' : 'Leadership Philosophy'}
+              </div>
+              <h2 className="text-3xl md:text-4xl font-normal font-playfair text-foreground mb-4">
+                {ar ? 'مبادئ القيادة' : 'Leadership Principles'}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {ar
+                  ? 'المبادئ الثابتة التي وجّهت كل فصل من فصول هذه المسيرة عبر الأسواق والعلامات.'
+                  : 'The constants that have guided every chapter of this journey, across markets and brands.'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {leadershipPrinciples.map((principle, idx) => {
+                const Icon = principle.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.08, duration: 0.5 }}
+                    className="p-6 rounded-sm border border-border bg-card hover:border-accent/35 transition-colors"
+                  >
+                    <div className="w-11 h-11 rounded-sm bg-accent/10 flex items-center justify-center mb-4">
+                      <Icon size={20} className="text-accent" />
+                    </div>
+                    <h3 className="text-base font-semibold text-foreground mb-2">{principle.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{principle.description}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </section>
         </main>
