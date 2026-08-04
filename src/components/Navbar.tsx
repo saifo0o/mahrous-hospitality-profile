@@ -209,7 +209,7 @@ const Navbar = () => {
               </p>
               
               {navigationItems.map((item, i) => {
-                const isActive = location.pathname === item.path;
+                const isActive = location.pathname === item.path || location.pathname.startsWith(`${item.path}/`);
                 return (
                   <motion.div
                     key={item.path}
@@ -222,7 +222,7 @@ const Navbar = () => {
                       to={item.path}
                       aria-label={language.code === 'ar' ? item.labelAr : item.labelEn}
                       aria-current={isActive ? 'page' : undefined}
-                      className={`block w-full py-4 px-6 rounded-sm text-base font-semibold uppercase tracking-wider transition-all duration-300 min-h-[50px] flex items-center justify-between border ${
+                      className={`block w-full py-4 px-6 rounded-sm text-base font-semibold uppercase tracking-wider transition-all duration-300 min-h-[56px] flex items-center justify-between border ${
                         isActive
                           ? 'bg-accent/10 text-accent border-accent/25'
                           : 'text-muted-foreground hover:text-foreground border-border/30 hover:bg-muted/30'
