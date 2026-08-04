@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building, Calendar, MapPin, BarChart, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Building, Calendar, MapPin, BarChart, ArrowRight, CheckCircle2, ShieldCheck, TrendingDown, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -27,6 +27,9 @@ const Projects = () => {
       image: '/images/riyadh-skyline.jpg',
       budget: ar ? 'متعدد العقارات' : 'Multi-Property',
       featured: true,
+      challenge: ar
+        ? 'محفظة متعددة العلامات بلا حوكمة تشغيلية موحدة أو مسار نمو واضح'
+        : 'A multi-brand portfolio lacking unified operational governance or a clear growth path',
       results: ar
         ? ['حوكمة تشغيلية موحدة', 'نمو نحو 10,000 غرفة بحلول 2030', 'مراجعة P&L شهرية ولوحات STR']
         : ['Unified operational governance', 'Growth path to 10,000 rooms by 2030', 'Monthly P&L cadence + STR dashboards'],
@@ -43,6 +46,9 @@ const Projects = () => {
       rooms: 96,
       budget: ar ? '4 أشهر' : '4 months',
       caseStudySlug: 'crowne-plaza-mirage-conversion',
+      challenge: ar
+        ? 'تحويل عقار مستقل إلى معايير آي إتش جي الكاملة دون تعطيل تشغيل الضيوف'
+        : 'Converting an independent property to full IHG brand standards without disrupting guest operations',
       results: ar
         ? ['100٪ امتثال IHG من خط بداية صفر', 'نشر Opera Cloud + Concerto', 'جاهزية تدقيق العلامة دون اضطراب']
         : ['100% IHG compliance from zero baseline', 'Deployed Opera Cloud + Concerto', 'Brand-audit ready, zero guest disruption'],
@@ -58,6 +64,9 @@ const Projects = () => {
       image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/caption_kgnuht.jpg',
       rooms: 172,
       budget: '−12% budget',
+      challenge: ar
+        ? 'تسليم فندق جديد بالكامل ضمن رأس مال محدود مع الحفاظ على معايير ماريوت'
+        : 'Delivering a ground-up hotel within a constrained capital budget while meeting Marriott standards',
       results: ar
         ? ['−12٪ ميزانية ما قبل الافتتاح', 'التسليم في الموعد ضمن رأس المال', '150+ موظف تم توظيفه']
         : ['−12% pre-opening budget', 'On-schedule, within capital budget', '150+ pre-opening staff recruited'],
@@ -74,6 +83,9 @@ const Projects = () => {
       rooms: 298,
       budget: ar ? 'إطلاق فاخر' : 'Luxury Launch',
       caseStudySlug: 'v-luxury-resort-pre-opening',
+      challenge: ar
+        ? 'إطلاق منتجع فاخر مستقل من الصفر وبناء فريق كامل قبل موسم الذروة'
+        : 'Launching an independent luxury resort from scratch and building a full team ahead of peak season',
       results: ar
         ? ['90٪ إشغال خلال 4 أشهر', '+12٪ رضا الضيوف في الربع الافتتاحي', '300+ عضو فريق تم تدريبه']
         : ['90% occupancy in 4 months', '+12% guest satisfaction (opening quarter)', '300+ pre-opening team trained'],
@@ -89,6 +101,11 @@ const Projects = () => {
       image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/377246827_sqf4sq.jpg',
       rooms: 168,
       budget: '$3.5M',
+      challenge: ar
+        ? 'منتجع يعاني من إشغال منخفض وربحية تشغيلية سلبية (GOP) يحتاج تحولاً سريعاً'
+        : 'A resort suffering from low occupancy and negative GOP in urgent need of a rapid turnaround',
+      before: ar ? 'إشغال منخفض وGOP سلبي' : 'Low occupancy, negative GOP',
+      after: ar ? '+18٪ إشغال، GOP إيجابي خلال 4 أشهر' : '+18% occupancy, positive GOP in 4 months',
       results: ar
         ? ['+18٪ إشغال • +20٪ F&B', 'GOP إيجابي خلال 4 أشهر', '+30٪ رضا الضيوف']
         : ['+18% occupancy • +20% F&B', 'Positive GOP within 4 months', '+30% guest satisfaction'],
@@ -105,6 +122,11 @@ const Projects = () => {
       rooms: 288,
       budget: ar ? 'تجديد شامل' : 'Full Renovation',
       caseStudySlug: 'sheraton-montazah-renovation',
+      challenge: ar
+        ? 'أصل عمره 40 عاماً يحتاج إلى تحديث شامل دون فقدان حصته السوقية'
+        : 'A 40-year-old asset needing full modernization without losing market share',
+      before: ar ? 'أصل عمره 40 عاماً يحتاج تحديثاً' : '40-year asset needing modernization',
+      after: ar ? '+25٪ RevPAR، +30٪ رضا الضيوف' : '+25% RevPAR, +30% satisfaction',
       results: ar
         ? ['+25٪ RevPAR • +30٪ رضا', '−15٪ طاقة • −20٪ صيانة', 'تجاوز المنافسين عبر دورات سوق متعددة']
         : ['+25% RevPAR • +30% satisfaction', '−15% energy • −20% maintenance', 'Outperformed comp set across cycles'],
@@ -120,6 +142,9 @@ const Projects = () => {
       image: '/images/cairo-marriott.jpg',
       rooms: 3000,
       budget: ar ? '19 عقار' : '19 properties',
+      challenge: ar
+        ? 'رفع مستوى التميز التشغيلي بشكل متسق عبر 19 عقاراً متنوعاً'
+        : 'Raising operational excellence consistently across 19 diverse properties',
       results: ar
         ? ['+10٪ رضا الضيوف على مستوى المحفظة', '+8٪ إيرادات F&B', '+3٪ متوسط RevPAR (19 عقار)']
         : ['+10% portfolio guest satisfaction', '+8% F&B revenue', '+3% avg RevPAR (19 properties)'],
@@ -135,6 +160,11 @@ const Projects = () => {
       image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
       rooms: 339,
       budget: '$5M',
+      challenge: ar
+        ? 'أصل متقادم يحتاج إلى استثمار رأسمالي وإعادة وضع تنافسي في السوق'
+        : 'An aging asset requiring capital investment and competitive repositioning',
+      before: ar ? 'أصل متقادم' : 'Aging asset',
+      after: ar ? '+15٪ ADR، +8٪ إشغال' : '+15% ADR, +8% occupancy',
       results: ar
         ? ['+15٪ ADR • +8٪ إشغال', '−7٪ نفقات الرواتب', '+12٪ رضا الضيوف']
         : ['+15% ADR • +8% occupancy', '−7% payroll expenses', '+12% guest satisfaction'],
@@ -150,6 +180,9 @@ const Projects = () => {
       image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
       rooms: 718,
       budget: ar ? 'مزدوج العلامة' : 'Dual-Brand Cluster',
+      challenge: ar
+        ? 'افتتاح مجمع مزدوج العلامة في ظل ظروف سياسية وسوقية صعبة'
+        : 'Opening a dual-brand cluster amid challenging political and market conditions',
       results: ar
         ? ['95٪ جاهزية تشغيلية', 'افتتاح في ظروف سياسية صعبة', 'معايير ستاروود الدولية']
         : ['95% operational readiness', 'Delivered in challenging conditions', 'Starwood international standards'],
@@ -165,6 +198,9 @@ const Projects = () => {
       image: '/images/makkah-clock-tower.jpg',
       rooms: 1504,
       budget: ar ? '3 أشهر/كل مهمة' : '3 mo / mandate',
+      challenge: ar
+        ? 'دعم افتتاحات متعددة ومتزامنة عبر أسواق مختلفة بأطر زمنية ضيقة'
+        : 'Supporting multiple, simultaneous openings across different markets on tight timelines',
       results: ar
         ? ['لو ميريديان أبراج مكة (1,323 غرفة)', 'شيراتون غامبيا (181 غرفة)', 'خبرة EAM دولية متخصصة']
         : ['Le Meridien Makkah Towers (1,323 rooms)', 'Sheraton Gambia (181 rooms)', 'International EAM specialist mandates'],
@@ -203,6 +239,9 @@ const Projects = () => {
     return map[cat] || cat;
   };
 
+  const showBeforeAfter = (project: typeof projects[number]) =>
+    (project.category === 'Turnaround' || project.category === 'Renovation') && project.before && project.after;
+
   const billboardStats = [
     { value: '+25%', label: ar ? 'نمو RevPAR' : 'RevPAR Growth' },
     { value: '288', label: ar ? 'غرفة فاخرة' : 'Luxury Rooms' },
@@ -220,6 +259,14 @@ const Projects = () => {
         '−15% energy consumption • −20% maintenance overhead',
         'Outperformed regional competitor set across multiple market cycles',
       ];
+
+  const billboardChallenge = ar
+    ? 'أصل عمره 40 عاماً يعاني من تراجع في المكانة التنافسية ويحتاج إلى إعادة استثمار شامل دون إغلاق التشغيل.'
+    : 'A 40-year-old asset losing competitive positioning, requiring a full capital reinvestment without shutting down operations.';
+
+  const billboardOutcome = ar
+    ? 'إعادة وضع الأصل كرائد إقليمي، مع نمو مستدام في الإيرادات ورضا الضيوف طوال فترة ولاية المدير العام.'
+    : 'Repositioned the asset as a regional leader, with sustained revenue growth and guest satisfaction throughout the GM tenure.';
 
   return (
     <PageTransition>
@@ -310,7 +357,7 @@ const Projects = () => {
                       </span>
                     </div>
 
-                    <h3 className="hidden lg:block text-3xl font-playfair font-normal text-foreground mb-3 leading-tight">
+                    <h3 className="hidden lg:block text-4xl xl:text-5xl font-playfair font-normal text-foreground mb-3 leading-[1.05]">
                       {featuredProject.title}
                     </h3>
                     
@@ -322,12 +369,32 @@ const Projects = () => {
                     <div className="grid grid-cols-3 gap-2 border-y border-border/50 py-5 mb-6">
                       {billboardStats.map((stat, i) => (
                         <div key={i} className={`text-center ${i === 1 ? 'border-x border-border/50 px-2' : ''}`}>
-                          <div className="text-2xl font-bold font-playfair text-accent">{stat.value}</div>
+                          <div className="text-2xl md:text-3xl font-bold font-playfair text-accent">{stat.value}</div>
                           <div className="text-[9px] uppercase tracking-widest text-muted-foreground mt-1 font-semibold">
                             {stat.label}
                           </div>
                         </div>
                       ))}
+                    </div>
+
+                    {/* Challenge / Outcome summary */}
+                    <div className="space-y-4 mb-6">
+                      <div>
+                        <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-1.5">
+                          {ar ? 'التحدي' : 'The Challenge'}
+                        </h4>
+                        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
+                          {billboardChallenge}
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-1.5">
+                          {ar ? 'النتيجة' : 'The Outcome'}
+                        </h4>
+                        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
+                          {billboardOutcome}
+                        </p>
+                      </div>
                     </div>
 
                     {/* Key Results list */}
@@ -411,7 +478,6 @@ const Projects = () => {
                   </motion.div>
                 ) : (
                   filteredProjects.map((project) => {
-                    const isWideCard = project.rooms && project.rooms > 500;
                     return (
                       <motion.div
                         layout
@@ -420,21 +486,17 @@ const Projects = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className={`bg-card rounded-sm border border-border/40 overflow-hidden hover:border-accent/40 transition-colors duration-500 flex flex-col ${
-                          isWideCard ? 'md:col-span-2 md:flex-row' : ''
-                        }`}
+                        className="bg-card rounded-sm border border-border/40 overflow-hidden hover:border-accent/40 transition-colors duration-500 flex flex-col"
                       >
                         {/* Image component */}
-                        <div className={`relative overflow-hidden ${
-                          isWideCard ? 'md:w-1/2 aspect-[16/10] md:aspect-auto' : 'aspect-[16/10]'
-                        }`}>
+                        <div className="relative overflow-hidden aspect-[16/10]">
                           <img
                             src={project.image}
                             alt={project.title}
                             className="w-full h-full object-cover"
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
                           {/* Category chip */}
                           <div className="absolute top-4 start-4">
@@ -445,15 +507,18 @@ const Projects = () => {
                         </div>
 
                         {/* Text component */}
-                        <div className={`p-6 md:p-8 flex flex-col justify-between flex-1 ${
-                          isWideCard ? 'md:w-1/2' : 'flex-grow'
-                        }`}>
+                        <div className="p-6 md:p-8 flex flex-col justify-between flex-1 flex-grow">
                           <div>
-                            <h3 className="text-xl font-semibold text-foreground mb-1 leading-snug">
+                            <p className="text-[10px] text-accent font-bold mb-2 uppercase tracking-wider font-sans">
+                              {project.role}
+                            </p>
+                            <h3 className="text-xl font-semibold text-foreground mb-3 leading-snug">
                               {project.title}
                             </h3>
-                            <p className="text-xs text-accent font-bold mb-4 font-sans">
-                              {project.role}{project.brand ? ` • ${project.brand}` : ''}
+
+                            {/* Challenge statement */}
+                            <p className="text-sm text-muted-foreground italic mb-4 leading-relaxed font-sans">
+                              {project.challenge}
                             </p>
 
                             <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground mb-6 pb-4 border-b border-border/30 font-sans">
@@ -473,6 +538,26 @@ const Projects = () => {
                               )}
                             </div>
 
+                            {/* Before / After metrics */}
+                            {showBeforeAfter(project) && (
+                              <div className="grid grid-cols-2 gap-3 mb-6">
+                                <div className="rounded-sm border border-border/40 bg-background/50 p-3">
+                                  <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-bold text-muted-foreground mb-1.5">
+                                    <TrendingDown size={12} className="text-red-500" />
+                                    {ar ? 'قبل' : 'Before'}
+                                  </div>
+                                  <p className="text-xs text-foreground/85 leading-snug font-sans">{project.before}</p>
+                                </div>
+                                <div className="rounded-sm border border-accent/30 bg-accent/5 p-3">
+                                  <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-bold text-accent mb-1.5">
+                                    <TrendingUp size={12} className="text-luxury-emerald" />
+                                    {ar ? 'بعد' : 'After'}
+                                  </div>
+                                  <p className="text-xs text-foreground/85 leading-snug font-sans">{project.after}</p>
+                                </div>
+                              </div>
+                            )}
+
                             <div className="space-y-3 font-sans">
                               {project.results.map((result, i) => (
                                 <div key={i} className="flex items-start gap-3.5 text-xs sm:text-sm text-foreground/95 leading-relaxed">
@@ -489,7 +574,7 @@ const Projects = () => {
                                 to={`/projects/${project.caseStudySlug}`}
                                 className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors group/link"
                               >
-                                <span>{ar ? 'اقرأ دراسة الحالة' : 'Read Case Study'}</span>
+                                <span>{ar ? 'اقرأ دراسة الحالة' : 'View Case Study'}</span>
                                 <ArrowRight size={14} className={`transition-transform duration-300 group-hover/link:translate-x-0.5 ${isRTL ? 'rotate-180 group-hover/link:-translate-x-0.5' : ''}`} />
                               </Link>
                             </div>
@@ -520,4 +605,3 @@ const Projects = () => {
 };
 
 export default Projects;
-

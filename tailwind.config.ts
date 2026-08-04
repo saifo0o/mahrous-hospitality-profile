@@ -88,6 +88,10 @@ export default {
 					// Back-compat alias: legacy code referenced luxury-navy as the "dark structural" color.
 					navy: '#14171A',
 					gray: '#6B655C'
+				},
+				whatsapp: {
+					DEFAULT: '#25D366',
+					dark: '#128C7E'
 				}
 			},
 			fontFamily: {
