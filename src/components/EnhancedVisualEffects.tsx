@@ -33,24 +33,40 @@ export const EnhancedVisualEffects: React.FC<EnhancedVisualEffectsProps> = ({
     const scrollElements = container.querySelectorAll('.scroll-reveal');
     scrollElements.forEach((el) => observer.observe(el));
 
-    // Add mouse tracking for interactive elements
+    // Add mouse tracking for interactive elements (only on devices with fine pointer, e.g. desktop mouse)
+    let rafId: number | null = null;
+    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+
     const handleMouseMove = (e: MouseEvent) => {
-      const interactiveElements = container.querySelectorAll('.interactive-element');
-      interactiveElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        
-        (el as HTMLElement).style.setProperty('--mouse-x', `${x}%`);
-        (el as HTMLElement).style.setProperty('--mouse-y', `${y}%`);
+      if (!isFinePointer) return;
+      if (rafId !== null) return;
+
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const interactiveElements = container.querySelectorAll('.interactive-element');
+        interactiveElements.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          
+          (el as HTMLElement).style.setProperty('--mouse-x', `${x}%`);
+          (el as HTMLElement).style.setProperty('--mouse-y', `${y}%`);
+        });
       });
     };
 
-    container.addEventListener('mousemove', handleMouseMove);
+    if (isFinePointer) {
+      container.addEventListener('mousemove', handleMouseMove, { passive: true });
+    }
 
     return () => {
       observer.disconnect();
-      container.removeEventListener('mousemove', handleMouseMove);
+      if (isFinePointer) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 

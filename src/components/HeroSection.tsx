@@ -69,6 +69,7 @@ export default function HeroSection() {
   const frameY = useTransform(mouseYValue, [-300, 300], [8, -8]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -111,7 +112,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative min-h-[100svh] flex items-center overflow-hidden bg-background pt-20 pb-12 lg:pt-28 lg:pb-0"
+      className="relative min-h-[100dvh] flex items-center overflow-hidden bg-background pt-20 pb-12 lg:pt-28 lg:pb-0"
       aria-label={ar ? 'المقدمة' : 'Introduction'}
     >
       {/* Restrained editorial backdrop */}
@@ -122,7 +123,7 @@ export default function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10 w-full">
-        <div className={`grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-8 items-center min-h-[calc(100vh-6rem)] ${isRTL ? 'direction-rtl' : ''}`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-8 items-center min-h-[calc(100dvh-6rem)] ${isRTL ? 'direction-rtl' : ''}`}>
 
           {/* Text Column */}
           <motion.div

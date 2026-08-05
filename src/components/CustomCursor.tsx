@@ -15,15 +15,20 @@ export default function CustomCursor() {
 
     setIsVisible(true);
 
+    let rafId: number | null = null;
     const onMouseMove = (e: MouseEvent) => {
       const { clientX: x, clientY: y } = e;
+      if (rafId !== null) return;
       
-      if (cursorRingRef.current) {
-        cursorRingRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      }
-      if (cursorDotRef.current) {
-        cursorDotRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      }
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (cursorRingRef.current) {
+          cursorRingRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        }
+        if (cursorDotRef.current) {
+          cursorDotRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        }
+      });
     };
 
     const addHoverListeners = () => {
