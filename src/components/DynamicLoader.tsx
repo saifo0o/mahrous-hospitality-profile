@@ -1,5 +1,5 @@
 
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useRef, useState, useEffect } from 'react';
 import LoadingSpinner from './LoadingSpinner';
 
 interface DynamicLoaderProps {
@@ -30,7 +30,28 @@ const DynamicLoader: React.FC<DynamicLoaderProps> = ({
   ...props 
 }) => {
   const Component = componentMap[componentPath as keyof typeof componentMap];
+  const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
   
+  useEffect(() => {
+    // Only load components when they are approaching the viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '600px' } // Pre-load well before it enters viewport to prevent popping
+    );
+    
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    
+    return () => observer.disconnect();
+  }, []);
+
   if (!Component) {
     return (
       <div className="flex items-center justify-center min-h-[200px] p-8">
@@ -42,9 +63,15 @@ const DynamicLoader: React.FC<DynamicLoaderProps> = ({
   }
 
   return (
-    <Suspense fallback={fallback}>
-      <Component {...props} />
-    </Suspense>
+    <div ref={ref}>
+      {isInView ? (
+        <Suspense fallback={fallback}>
+          <Component {...props} />
+        </Suspense>
+      ) : (
+        <div aria-hidden="true">{fallback}</div>
+      )}
+    </div>
   );
 };
 
