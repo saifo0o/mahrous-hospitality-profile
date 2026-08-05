@@ -443,80 +443,97 @@ const Career = () => {
   const renderCard = (exp: Experience, chapterIdx: number, index: number) => {
     const key = `${chapterIdx}-${index}`;
     const isItemExpanded = expandedKey === key;
+    const hasDetail = !!(exp.achievements && exp.achievements.length > 0);
+    const toggle = () => hasDetail && setExpandedKey(isItemExpanded ? null : key);
+
     return (
       <motion.div
         key={key}
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: index * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`relative ${isRTL ? 'md:pr-14' : 'md:pl-14'}`}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ delay: index * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className={`relative group/card ${isRTL ? 'md:pr-14' : 'md:pl-14'}`}
       >
-        {/* Timeline Bullet Node - hidden on mobile */}
+        {/* Timeline node — pulses into the accent on hover/expand */}
         <div
-          className={`hidden md:flex absolute ${isRTL ? 'right-3' : 'left-3'} top-6 w-6 h-6 rounded-full border-2 bg-card items-center justify-center z-10 transition-all ${
-            exp.current ? 'border-accent shadow-[0_0_12px_rgba(181,80,43,0.5)] scale-110' : 'border-border'
+          className={`hidden md:flex absolute ${isRTL ? 'right-3' : 'left-3'} top-7 w-6 h-6 rounded-full border-2 bg-card items-center justify-center z-10 transition-all duration-300 ${
+            exp.current || isItemExpanded
+              ? 'border-accent shadow-[0_0_14px_hsl(var(--accent)/0.45)] scale-110'
+              : 'border-border group-hover/card:border-accent group-hover/card:scale-110'
           }`}
         >
-          {exp.current && <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />}
+          <div
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              exp.current ? 'bg-accent animate-pulse' : 'bg-transparent group-hover/card:bg-accent/60'
+            }`}
+          />
         </div>
 
-        {/* Editorial Frame Container */}
+        {/* Card */}
         <div
-          className={`bg-card rounded-sm border border-border overflow-hidden transition-colors duration-500 hover:border-accent/35 w-full ${
-            exp.current ? 'border-s-4 border-s-accent' : ''
-          } ${isItemExpanded ? 'border-accent/40' : ''}`}
+          className={`relative bg-card rounded-sm border overflow-hidden w-full transition-all duration-500 hover:-translate-y-1 hover:shadow-gold-md ${
+            isItemExpanded ? 'border-accent/45 shadow-gold-sm' : 'border-border hover:border-accent/35'
+          }`}
         >
-          {exp.image && (
-            <div className="relative aspect-[21/9] md:aspect-[3/1] overflow-hidden group">
-              <img
-                src={exp.image}
-                alt={exp.company || exp.position}
-                className="w-full h-full object-cover object-center scale-105 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-                loading="lazy"
-              />
-              {/* Editorial wash — keeps the architecture readable, avoids the flat black band */}
-              <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/25 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent pointer-events-none" />
+          {/* Accent rail that grows on hover / expand */}
+          <span
+            className={`absolute inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-[3px] bg-accent origin-top transition-transform duration-500 ${
+              exp.current || isItemExpanded ? 'scale-y-100' : 'scale-y-0 group-hover/card:scale-y-100'
+            }`}
+          />
 
-              {/* Caption plate */}
-              <div className={`absolute bottom-0 ${isRTL ? 'right-0 text-right' : 'left-0'} p-4 md:p-6 max-w-[85%]`}>
-                {exp.company && (
-                  <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-accent mb-1.5">
-                    {exp.company}
-                  </p>
-                )}
-                <div className={`h-px w-10 bg-accent/60 ${isRTL ? 'ms-auto' : ''}`} />
-              </div>
-
-              {/* Thin bottom rule to seat the image against the card body */}
-              <div className="absolute inset-x-0 bottom-0 h-px bg-border/60" />
-            </div>
-          )}
-
-
-          <div className="p-5 md:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-4 pb-4 border-b border-border/30">
-              <div className="flex items-center gap-3">
+          {/* Clickable header */}
+          <div
+            role={hasDetail ? 'button' : undefined}
+            tabIndex={hasDetail ? 0 : undefined}
+            aria-expanded={hasDetail ? isItemExpanded : undefined}
+            onClick={toggle}
+            onKeyDown={(e) => {
+              if (hasDetail && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault();
+                toggle();
+              }
+            }}
+            className={`p-5 md:p-7 ${hasDetail ? 'cursor-pointer' : ''} focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50`}
+          >
+            <div className="flex items-start justify-between gap-4 mb-4 pb-4 border-b border-border/30">
+              <div className="flex items-center gap-3 min-w-0">
                 {exp.current && (
-                  <div className="p-1 rounded-sm border border-border/30 bg-muted/30">
+                  <div className="p-1 rounded-sm border border-border/30 bg-muted/30 shrink-0">
                     <img src={primeHotelsLogo} alt="Prime Hotels" className="w-10 h-10 object-contain rounded-sm" />
                   </div>
                 )}
-                <div>
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground">{exp.position}</h3>
+                <div className="min-w-0">
+                  <h3 className="text-lg md:text-xl font-semibold text-foreground group-hover/card:text-accent transition-colors duration-300">
+                    {exp.position}
+                  </h3>
                   {exp.company && <p className="text-sm font-semibold text-accent mt-0.5">{exp.company}</p>}
                 </div>
               </div>
-              {exp.current && (
-                <span className="px-3.5 py-1.5 rounded-sm bg-accent/15 text-accent-foreground text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
-                  {ar ? 'حالياً' : 'Current'}
-                </span>
-              )}
+
+              <div className="flex items-center gap-2 shrink-0">
+                {exp.current && (
+                  <span className="px-3 py-1.5 rounded-sm bg-accent/15 text-accent-foreground text-[10px] font-bold uppercase tracking-wider">
+                    {ar ? 'حالياً' : 'Current'}
+                  </span>
+                )}
+                {hasDetail && (
+                  <span
+                    className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                      isItemExpanded
+                        ? 'border-accent text-accent rotate-180 bg-accent/10'
+                        : 'border-border text-muted-foreground group-hover/card:border-accent group-hover/card:text-accent'
+                    }`}
+                  >
+                    <ChevronDown size={15} />
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* Metadata line */}
-            <div className="flex flex-wrap gap-4 text-xs text-muted-foreground mb-4">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground mb-4">
               {exp.location && (
                 <span className="flex items-center gap-1.5">
                   <MapPin size={13} className="text-accent" />
@@ -535,59 +552,71 @@ const Career = () => {
               )}
             </div>
 
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-light">{exp.description}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed font-light">{exp.description}</p>
 
             {/* Metric chips */}
             {exp.metrics && exp.metrics.length > 0 && (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
                 {exp.metrics.slice(0, 4).map((m, i) => (
-                  <div key={i} className="p-3.5 rounded-sm bg-muted/40 border border-border/20 text-center">
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 + i * 0.06, duration: 0.4 }}
+                    className="p-3.5 rounded-sm bg-muted/40 border border-border/20 text-center transition-all duration-300 hover:bg-accent/[0.06] hover:border-accent/30 hover:-translate-y-0.5"
+                  >
                     <p className="text-base font-bold font-playfair text-foreground">{m.value}</p>
                     <p className="text-[9px] text-muted-foreground uppercase tracking-widest font-semibold mt-0.5">{m.label}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             )}
 
-            {/* Accordion achievements */}
-            {exp.achievements && exp.achievements.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-border/30">
-                <button
-                  onClick={() => setExpandedKey(isItemExpanded ? null : key)}
-                  aria-expanded={isItemExpanded}
-                  className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-foreground hover:text-accent transition-colors py-1 focus:outline-none"
-                >
-                  <span>{ar ? 'إنجازات تشغيلية رئيسية' : 'Key Achievements'}</span>
-                  <ChevronDown size={14} className={`transition-transform duration-300 ${isItemExpanded ? 'rotate-180' : ''}`} />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isItemExpanded && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <ul className="mt-4 space-y-3 ps-1">
-                        {exp.achievements.map((a, i) => (
-                          <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                            <ShieldCheck size={15} className="text-luxury-emerald shrink-0 mt-0.5" />
-                            <span>{a}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+            {hasDetail && !isItemExpanded && (
+              <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-accent/80 group-hover/card:text-accent transition-colors">
+                {ar ? 'اضغط لعرض الإنجازات' : 'Tap to reveal key achievements'}
+              </p>
             )}
           </div>
+
+          {/* Expandable achievements */}
+          <AnimatePresence initial={false}>
+            {isItemExpanded && exp.achievements && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="px-5 md:px-7 pb-6 pt-5 border-t border-border/30 bg-muted/20">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent mb-4">
+                    {ar ? 'إنجازات تشغيلية رئيسية' : 'Key Achievements'}
+                  </p>
+                  <ul className="space-y-3">
+                    {exp.achievements.map((a, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: isRTL ? 12 : -12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.05 + i * 0.07, duration: 0.35 }}
+                        className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed"
+                      >
+                        <ShieldCheck size={15} className="text-luxury-emerald shrink-0 mt-0.5" />
+                        <span>{a}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.div>
     );
   };
+
 
   const renderChapterTimeline = (chapter: Chapter, chapterIdx: number) => (
     <div className="relative">
