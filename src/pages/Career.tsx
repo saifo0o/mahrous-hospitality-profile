@@ -31,7 +31,6 @@ type Experience = {
   location?: string;
   period: string;
   rooms?: number;
-  image?: string;
   current?: boolean;
   description: string;
   metrics?: { label: string; value: string }[];
@@ -103,7 +102,6 @@ const Career = () => {
       location: ar ? 'طرابلس، ليبيا' : 'Tripoli, Libya',
       period: ar ? 'ديسمبر 2009 - يونيو 2011' : 'Dec 2009 - Jun 2011',
       rooms: 718,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614237/Four_Points_by_Sheraton_Hotel_Tripoli_Libya_qalags.jpg',
       description: ar
         ? 'افتتاح عنقودي مزدوج العلامة بـ718 غرفة في شمال أفريقيا تحت ظروف سياسية صعبة، مع إرساء أنظمة وفقاً لمعايير ستاروود الدولية.'
         : '718-room dual-brand cluster pre-opening in North Africa under challenging political conditions, with systems established to Starwood international brand standards.',
@@ -124,7 +122,6 @@ const Career = () => {
       location: ar ? 'الجونة، الغردقة، مصر' : 'El Gouna, Hurghada, Egypt',
       period: ar ? 'يوليو 2011 - يونيو 2014' : 'Jul 2011 - Jun 2014',
       rooms: 339,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749614476/si-hrgsi-bridges-lagoons-ext-11832-83257_Feature-Hor_xgnwfh.jpg',
       description: ar
         ? 'تنفيذ تجديد متدرج بقيمة 5 مليون دولار مع استمرارية تشغيلية كاملة وإعادة تموضع استراتيجية.'
         : 'Delivered a $5M phased refurbishment with full operational continuity and strategic repositioning.',
@@ -157,7 +154,6 @@ const Career = () => {
       location: ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt',
       period: ar ? 'يونيو 2014 - مارس 2023' : 'Jun 2014 - Mar 2023',
       rooms: 288,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/2025-05-31_nclbzr.webp',
       description: ar
         ? 'مدير عام (2021-2023)، مدير الفندق المسؤول (2015-2020)، نائب المدير العام (2014-2015). 9 سنوات بمسؤولية كاملة عن الأرباح والخسائر، ختمت بأكبر تجديد في تاريخ الفندق الممتد لـ40 عاماً.'
         : 'General Manager (2021-2023), Hotel Manager in Charge (2015-2020), Deputy GM (2014-2015). 9-year tenure with full P&L accountability, culminating in the most comprehensive renovation in the property\'s 40-year history.',
@@ -216,7 +212,6 @@ const Career = () => {
       location: ar ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia',
       period: ar ? 'أبريل 2023 - يوليو 2025' : 'Apr 2023 - Jul 2025',
       rooms: 172,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/caption_kgnuht.jpg',
       description: ar
         ? 'إدارة دورة التطوير وما قبل الافتتاح كاملةً نيابةً عن الملكية لمشروع ماريوت جديد بـ172 غرفة، مع الالتزام بمعايير العلامة وميزانية رأس المال.'
         : 'Managed full development and pre-opening cycle on behalf of ownership for a 172-room Marriott new-build, with brand compliance, timeline adherence and capital budget discipline.',
@@ -243,7 +238,6 @@ const Career = () => {
       location: ar ? 'الغردقة، مصر' : 'Hurghada, Egypt',
       period: ar ? 'مايو 2023 - مارس 2024' : 'May 2023 - Mar 2024',
       rooms: 298,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/photo-hurghada-18_krbjex.jpg',
       description: ar
         ? 'استشارة شاملة لما قبل الافتتاح لمنتجع فاخر بـ298 غرفة، مع توفير استشارات شاملة في استراتيجية التوظيف، تنفيذ PMS، نشر معايير العلامة، وتخطيط الإطلاق التجاري.'
         : 'Full pre-opening consultancy for a 298-room luxury resort: end-to-end advisory across staffing strategy, PMS implementation, brand standards deployment, and commercial launch planning.',
@@ -304,7 +298,6 @@ const Career = () => {
       location: ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt',
       period: ar ? 'أغسطس - ديسمبر 2025' : 'Aug - Dec 2025',
       rooms: 96,
-      image: '/images/crowne-plaza-alexandria.jpg',
       description: ar
         ? 'تكليف من المُلّاك لتنفيذ تحويل كامل لعلامة كراون بلازا من خط بداية صفر، خلال 4 أشهر، لعقار مستقل بـ96 غرفة.'
         : 'Engaged by ownership to deliver full IHG Crowne Plaza brand conversion within 4 months from a zero brand baseline, transitioning a 96-room independent property to fully compliant IHG standards.',
@@ -333,7 +326,6 @@ const Career = () => {
       location: ar ? 'بورسعيد، مصر' : 'Port Said, Egypt',
       period: ar ? 'أبريل - أغسطس 2024' : 'Apr - Aug 2024',
       rooms: 168,
-      image: 'https://res.cloudinary.com/dt6hz3295/image/upload/f_auto,q_auto/v1749613983/377246827_sqf4sq.jpg',
       description: ar
         ? 'تكليف من الملكية لتقديم استشارة تحويل المسار والتجديد لعقار 168 غرفة ومول تجزئة بـ24 منفذاً.'
         : 'Engaged by ownership to deliver turnaround and renovation consultancy for a 168-room property and 24-outlet retail mall.',
