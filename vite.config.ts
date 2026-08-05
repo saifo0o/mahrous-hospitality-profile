@@ -27,10 +27,7 @@ export default defineConfig(() => ({
           if (id.includes('node_modules')) {
             if (id.includes('framer-motion')) return 'vendor-framer';
             if (id.includes('lucide-react')) return 'vendor-icons';
-            if (id.includes('@radix-ui') || id.includes('cmdk') || id.includes('vaul')) return 'vendor-ui';
             if (id.includes('@supabase')) return 'vendor-supabase';
-            if (id.includes('react-router') || id.includes('react-dom') || id.includes('react')) return 'vendor-react';
-            return 'vendor';
           }
         },
       },
