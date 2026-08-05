@@ -234,7 +234,7 @@ const AIChatAssistant = () => {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="bg-background/95 backdrop-blur-xl border border-border rounded-sm shadow-lg overflow-hidden">
+            <div className="bg-background/95 backdrop-blur-md border border-border rounded-sm shadow-lg overflow-hidden">
               {/* Header */}
               <div className="bg-gradient-to-r from-primary to-primary/80 px-6 py-4 text-primary-foreground">
                 <div className="flex items-center gap-3">

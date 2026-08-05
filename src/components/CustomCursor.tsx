@@ -31,39 +31,31 @@ export default function CustomCursor() {
       });
     };
 
-    const addHoverListeners = () => {
-      const interactiveSelector = 'a, button, [role="button"], input, select, textarea, .interactive-element, .hover-lift';
-      const elements = document.querySelectorAll(interactiveSelector);
-      
-      elements.forEach((el) => {
-        el.addEventListener('mouseenter', handleMouseEnter);
-        el.addEventListener('mouseleave', handleMouseLeave);
-      });
+    // Use event delegation for hover states instead of MutationObserver
+    const interactiveSelector = 'a, button, [role="button"], input, select, textarea, .interactive-element, .hover-lift';
+    
+    const onMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest(interactiveSelector)) {
+        setIsHovered(true);
+      }
     };
 
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
+    const onMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest(interactiveSelector)) {
+        setIsHovered(false);
+      }
+    };
 
-    // Watch DOM changes to re-add listeners on dynamic component load
-    const observer = new MutationObserver(() => {
-      addHoverListeners();
-    });
-
-    window.addEventListener('mousemove', onMouseMove);
-    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    document.addEventListener('mouseover', onMouseOver, { passive: true });
+    document.addEventListener('mouseout', onMouseOut, { passive: true });
     
-    // Add initial listeners
-    addHoverListeners();
-
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      observer.disconnect();
-      
-      const elements = document.querySelectorAll('a, button, [role="button"], input, select, textarea, .interactive-element, .hover-lift');
-      elements.forEach((el) => {
-        el.removeEventListener('mouseenter', handleMouseEnter);
-        el.removeEventListener('mouseleave', handleMouseLeave);
-      });
+      document.removeEventListener('mouseover', onMouseOver);
+      document.removeEventListener('mouseout', onMouseOut);
     };
   }, []);
 
