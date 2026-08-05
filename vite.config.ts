@@ -23,13 +23,6 @@ export default defineConfig(() => ({
         entryFileNames: "[name].js",
         chunkFileNames: "[name]-[hash].js",
         assetFileNames: "[name]-[hash][extname]",
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('framer-motion')) return 'vendor-framer';
-            if (id.includes('lucide-react')) return 'vendor-icons';
-            if (id.includes('@supabase')) return 'vendor-supabase';
-          }
-        },
       },
     },
   },
