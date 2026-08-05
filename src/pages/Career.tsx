@@ -468,16 +468,32 @@ const Career = () => {
           } ${isItemExpanded ? 'border-accent/40' : ''}`}
         >
           {exp.image && (
-            <div className="h-48 md:h-56 overflow-hidden relative group">
+            <div className="relative aspect-[21/9] md:aspect-[3/1] overflow-hidden group">
               <img
                 src={exp.image}
                 alt={exp.company || exp.position}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center scale-105 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+              {/* Editorial wash — keeps the architecture readable, avoids the flat black band */}
+              <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/25 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent pointer-events-none" />
+
+              {/* Caption plate */}
+              <div className={`absolute bottom-0 ${isRTL ? 'right-0 text-right' : 'left-0'} p-4 md:p-6 max-w-[85%]`}>
+                {exp.company && (
+                  <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-accent mb-1.5">
+                    {exp.company}
+                  </p>
+                )}
+                <div className={`h-px w-10 bg-accent/60 ${isRTL ? 'ms-auto' : ''}`} />
+              </div>
+
+              {/* Thin bottom rule to seat the image against the card body */}
+              <div className="absolute inset-x-0 bottom-0 h-px bg-border/60" />
             </div>
           )}
+
 
           <div className="p-5 md:p-8">
             <div className="flex flex-wrap items-start justify-between gap-4 mb-4 pb-4 border-b border-border/30">
