@@ -775,14 +775,29 @@ const Career = () => {
                       return (
                         <div>
                           <div className="mb-8 border-b border-border/40 pb-4">
-                            <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-1">
-                              {ar ? `الفصل ${chapter.number}` : `Chapter ${chapter.number}`}
-                            </p>
+                            <div className="flex items-center justify-between gap-4 mb-1">
+                              <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold">
+                                {ar ? `الفصل ${chapter.number}` : `Chapter ${chapter.number}`}
+                              </p>
+                              <p className="text-[10px] font-mono tracking-widest text-muted-foreground">
+                                {activeChapter + 1} / {chapters.length}
+                              </p>
+                            </div>
                             <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground flex items-center gap-3">
                               <Icon className="text-accent" size={20} />
                               {chapter.title}
                             </h2>
                             <p className="text-sm text-muted-foreground mt-2">{chapter.subtitle}</p>
+
+                            {/* Progress rail */}
+                            <div className="mt-5 h-[3px] w-full bg-border/50 rounded-full overflow-hidden">
+                              <motion.div
+                                className="h-full bg-accent rounded-full"
+                                initial={{ width: 0 }}
+                                animate={{ width: `${((activeChapter + 1) / chapters.length) * 100}%` }}
+                                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                              />
+                            </div>
                           </div>
                           {renderChapterTimeline(chapter, activeChapter)}
                         </div>
@@ -790,6 +805,42 @@ const Career = () => {
                     })()}
                   </motion.div>
                 </AnimatePresence>
+
+                {/* Chapter pagination */}
+                <div className="mt-12 flex items-center justify-between gap-4 border-t border-border/40 pt-6">
+                  <button
+                    onClick={() => setActiveChapter((c) => Math.max(0, c - 1))}
+                    disabled={activeChapter === 0}
+                    className="group/nav flex items-center gap-3 text-start disabled:opacity-30 disabled:cursor-not-allowed max-w-[45%]"
+                  >
+                    <ChevronDown size={18} className="rotate-90 text-accent shrink-0 transition-transform group-hover/nav:-translate-x-1" />
+                    <span className="min-w-0">
+                      <span className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold">
+                        {ar ? 'السابق' : 'Previous'}
+                      </span>
+                      <span className="block text-sm font-semibold text-foreground truncate group-hover/nav:text-accent transition-colors">
+                        {activeChapter > 0 ? chapters[activeChapter - 1].title : '—'}
+                      </span>
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveChapter((c) => Math.min(chapters.length - 1, c + 1))}
+                    disabled={activeChapter === chapters.length - 1}
+                    className="group/nav flex items-center gap-3 text-end disabled:opacity-30 disabled:cursor-not-allowed max-w-[45%]"
+                  >
+                    <span className="min-w-0">
+                      <span className="block text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold">
+                        {ar ? 'التالي' : 'Next'}
+                      </span>
+                      <span className="block text-sm font-semibold text-foreground truncate group-hover/nav:text-accent transition-colors">
+                        {activeChapter < chapters.length - 1 ? chapters[activeChapter + 1].title : '—'}
+                      </span>
+                    </span>
+                    <ChevronDown size={18} className="-rotate-90 text-accent shrink-0 transition-transform group-hover/nav:translate-x-1" />
+                  </button>
+                </div>
+
 
                 {/* CTA */}
                 <div className="text-center mt-16 pt-8 border-t border-border/40">
