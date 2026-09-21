@@ -44,4 +44,25 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/contact?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/contact?lang=ar"/>
   </url>
+  <url>
+    <loc>https://islam-mahrous.com/blog</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/blog?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/blog?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://islam-mahrous.com/consulting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/consulting?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/consulting?lang=ar"/>
+  </url>
+  <url>
+    <loc>https://islam-mahrous.com/book-consultation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://islam-mahrous.com/book-consultation?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://islam-mahrous.com/book-consultation?lang=ar"/>
+  </url>
 </urlset>
