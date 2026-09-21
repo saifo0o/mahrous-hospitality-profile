@@ -185,8 +185,8 @@ const SEOHead: React.FC<SEOProps> = ({
       <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={image} />
       
-      {/* Google Search Console Verification (Replace with your actual verification code) */}
-      <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+      {/* Google Search Console Verification */}
+      <meta name="google-site-verification" content="l-xvN35nXCZRgpJe0wKggd2xBfTfSTftAB54e4NVC1c" />
       
       {/* Structured Data / Schema.org */}
       <script type="application/ld+json">
