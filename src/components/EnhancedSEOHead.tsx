@@ -57,7 +57,17 @@ const EnhancedSEOHead: React.FC<EnhancedSEOHeadProps> = ({
     },
     "description": "Hospitality Executive with over 30 years of experience specializing in pre-opening, renovations, and operational excellence.",
     "nationality": "Egyptian",
-    "knowsLanguage": ["English", "Arabic"],
+    "knowsLanguage": ["Arabic", "English", "German"],
+    "knowsAbout": [
+      "Hotel Pre-Opening",
+      "Hotel Brand Conversion",
+      "Hospitality Operations Management",
+      "Hotel Turnaround Management",
+      "Revenue and P&L Management",
+      "Renovation While Operating",
+      "Guest Experience and Quality",
+      "MENA Hospitality Markets"
+    ],
     "award": [
       "Middle East & Africa General Manager Award - Customer Excellence (2017)",
       "Best-in-Class Award Star Voice (2017)",
@@ -68,13 +78,7 @@ const EnhancedSEOHead: React.FC<EnhancedSEOHeadProps> = ({
       "name": "Hospitality Executive",
       "occupationalCategory": "Management Occupations",
       "experienceRequirements": "30+ years of hospitality industry experience"
-    },
-    "alumniOf": [
-      {
-        "@type": "EducationalOrganization",
-        "name": "Cornell University School of Hotel Administration"
-      }
-    ]
+    }
   });
 
   const createOrganizationSchema = () => ({

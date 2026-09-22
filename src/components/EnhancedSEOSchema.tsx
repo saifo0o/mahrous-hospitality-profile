@@ -49,10 +49,6 @@ const EnhancedSEOSchema: React.FC<SEOSchemaProps> = ({
       "@type": "Organization",
       "name": "Luxury Hospitality Group"
     },
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Cornell University School of Hotel Administration"
-    },
     "knowsAbout": [
       "Hotel Management",
       "Hospitality Operations",
