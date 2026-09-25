@@ -58,6 +58,8 @@ const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?
 export default function HeroSection() {
   const { language, isRTL } = useLanguage();
   const ar = language.code === 'ar';
+  const [dossierOpen, setDossierOpen] = React.useState(false);
+  React.useEffect(() => { if (window.location.hash === '#dossier') setDossierOpen(true); }, []);
 
   const mouseXValue = useMotionValue(0);
   const mouseYValue = useMotionValue(0);
