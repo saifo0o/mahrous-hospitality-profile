@@ -650,3 +650,11 @@ html.reduce-motion *::after {
 .skip-link:focus {
   top: 0;
 }
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body.dossier-open > *:not(.dossier-root) { display: none !important; }
+  .dossier-root { position: static !important; background: none !important; padding: 0 !important; backdrop-filter: none !important; overflow: visible !important; }
+  .dossier-toolbar { display: none !important; }
+  .dossier-page { box-shadow: none !important; border: none !important; padding: 0 !important; }
+}

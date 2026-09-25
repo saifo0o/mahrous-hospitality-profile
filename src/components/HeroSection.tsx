@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import EnhancedButton from './EnhancedButton';
+import ExecutiveDossier from './ExecutiveDossier';
+import { FileText } from 'lucide-react';
 import { FloatingDecoration, GradientMesh } from './EnhancedVisualEffects';
 
 const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?: number; className?: string }) => {
@@ -233,6 +235,16 @@ export default function HeroSection() {
                 </EnhancedButton>
               </Link>
             </motion.div>
+            <motion.button
+              variants={itemVariants}
+              type="button"
+              onClick={() => setDossierOpen(true)}
+              className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent hover:underline underline-offset-4"
+            >
+              <FileText size={14} />
+              {ar ? 'عرض الملف التنفيذي للمجالس' : 'View board executive dossier'}
+            </motion.button>
+            <ExecutiveDossier open={dossierOpen} onClose={() => setDossierOpen(false)} />
           </motion.div>
 
           {/* Image Column */}
