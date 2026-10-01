@@ -24,7 +24,7 @@ const Projects = () => {
       brand: 'Multi-Brand',
       location: ar ? 'الرياض، السعودية' : 'Riyadh, KSA',
       period: ar ? 'ديسمبر 2025 - مايو 2026' : 'Dec 2025 - May 2026',
-      image: '/images/riyadh-skyline.jpg',
+      image: '/images/prime-hotels-strategy.jpg',
       budget: ar ? 'متعدد العقارات' : 'Multi-Property',
       featured: true,
       challenge: ar
@@ -40,9 +40,9 @@ const Projects = () => {
       categoryAr: 'تحويل علامة',
       role: ar ? 'مستشار تحويل علامة مستقل' : 'Independent Brand Conversion Consultant',
       brand: 'IHG',
-      location: ar ? 'الإسكندرية، مصر' : 'Alexandria, Egypt',
+      location: ar ? 'سموحة، الإسكندرية، مصر' : 'Smouha, Alexandria, Egypt',
       period: ar ? 'أغسطس - ديسمبر 2025' : 'Aug - Dec 2025',
-      image: '/images/crowne-plaza-alexandria.jpg',
+      image: '/images/crowne-plaza-mirage-smouha.jpg',
       rooms: 96,
       budget: ar ? '4 أشهر' : '4 months',
       caseStudySlug: 'crowne-plaza-mirage-conversion',
@@ -139,7 +139,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'منطقة مصر' : 'Egypt Region',
       period: '2018 - 2022',
-      image: '/images/cairo-marriott.jpg',
+      image: '/images/marriott-egypt-governance.jpg',
       rooms: 3000,
       budget: ar ? '19 عقار' : '19 properties',
       challenge: ar
@@ -195,7 +195,7 @@ const Projects = () => {
       brand: 'Marriott',
       location: ar ? 'مكة المكرمة، السعودية / غامبيا' : 'Makkah, KSA / The Gambia',
       period: '2008',
-      image: '/images/makkah-clock-tower.jpg',
+      image: '/images/le-meridien-towers-makkah.jpg',
       rooms: 1504,
       budget: ar ? '3 أشهر/كل مهمة' : '3 mo / mandate',
       challenge: ar
