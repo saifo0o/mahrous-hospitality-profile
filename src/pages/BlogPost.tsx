@@ -30,6 +30,7 @@ interface BlogPost {
   published_at?: string;
   created_at: string;
   views_count?: number;
+  updated_at?: string;
 }
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
