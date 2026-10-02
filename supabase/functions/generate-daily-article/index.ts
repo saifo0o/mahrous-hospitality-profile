@@ -6,22 +6,24 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// High-intent, search-engine-friendly topics — phrased the way executives
+// actually search ("how to…", "checklist", "playbook"), not abstract labels.
 const HOTEL_TOPICS = [
-  "Guest Satisfaction and Service Excellence",
-  "Staff Training and Team Leadership",
-  "Revenue Management Strategies",
-  "Front Office Operations",
-  "Housekeeping Standards and Efficiency",
-  "Food & Beverage Management",
-  "Hotel Sustainability Practices",
-  "Crisis Management and Problem Solving",
-  "Technology in Modern Hotels",
-  "Guest Experience Innovation",
-  "Pre-Opening and Renovations",
-  "Luxury Hotel Standards",
-  "Staff Motivation and Retention",
-  "Operational Excellence",
-  "Budget Management",
+  "How to Improve Hotel RevPAR Without Cutting Rates",
+  "Hotel Pre-Opening Checklist: A GM's Step-by-Step Guide",
+  "How to Reduce Staff Turnover in Luxury Hotels",
+  "What Guests Really Notice: First Impressions in 5-Star Hotels",
+  "How to Run a Profitable Hotel F&B Operation",
+  "Hotel Renovation Without Closing: A Practical Playbook",
+  "How to Prepare a Hotel Budget That Survives the Year",
+  "OTA vs Direct Bookings: How Hotels Win the Balance",
+  "How to Standardize Service Quality Across Multiple Hotels",
+  "Sustainability in Luxury Hotels: What Actually Works",
+  "How to Open a Hotel on Time: Pre-Opening Timeline Secrets",
+  "Revenue Management for Independent Hotels: Where to Start",
+  "How Great GMs Handle Guest Complaints in 5-Star Hotels",
+  "Hotel Housekeeping Standards That Pass Any Inspection",
+  "Hospitality Technology Every Modern Hotel Should Use",
 ];
 
 serve(async (req) => {
@@ -148,6 +150,30 @@ Return ONLY a valid JSON object with this structure:
     }
 
     console.log("Article published successfully:", newArticle.id);
+
+    // Ping IndexNow so Bing / Copilot / Yandex / Naver index the new article
+    // the same day. The key is a public verification token, not a secret.
+    const INDEXNOW_KEY = '216cf7e801a017d57375aea2808ac979';
+    try {
+      const pingRes = await fetch('https://api.indexnow.org/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify({
+          host: 'islam-mahrous.com',
+          key: INDEXNOW_KEY,
+          keyLocation: `https://islam-mahrous.com/${INDEXNOW_KEY}.txt`,
+          urlList: [
+            `https://islam-mahrous.com/blog/${slug}`,
+            'https://islam-mahrous.com/blog',
+            'https://islam-mahrous.com/',
+          ],
+        }),
+      });
+      console.log(`IndexNow ping status: ${pingRes.status}`);
+    } catch (pingError) {
+      // Never fail the article publication because of a ping problem.
+      console.error('IndexNow ping failed (non-fatal):', pingError);
+    }
 
     return new Response(
       JSON.stringify({
