@@ -7,6 +7,7 @@ import EnhancedButton from './EnhancedButton';
 import ExecutiveDossier from './ExecutiveDossier';
 import { FileText } from 'lucide-react';
 import { FloatingDecoration, GradientMesh } from './EnhancedVisualEffects';
+import heroPortrait from '@/assets/profile-new.jpeg';
 
 const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?: number; className?: string }) => {
   // Split on words, not characters: Arabic is a cursive script whose glyphs
@@ -273,7 +274,7 @@ export default function HeroSection() {
               {/* Main Image Container — editorial cover treatment */}
               <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[420px] lg:w-[350px] lg:h-[470px] overflow-hidden shadow-gold-lg bg-card z-10 border border-foreground/10">
                 <img
-                  src="/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg"
+                  src={heroPortrait}
                   alt={ar ? 'إسلام محروس' : 'Islam Mahrous'}
                   className="w-full h-full object-cover select-none"
                   loading="eager"
