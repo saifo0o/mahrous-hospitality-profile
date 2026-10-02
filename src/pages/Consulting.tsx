@@ -7,6 +7,7 @@ import PageTransition from '@/components/PageTransition';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import ReadingProgress from '@/components/ReadingProgress';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import JsonLd from '@/components/JsonLd';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { contactInfo, socialLinks } from '@/lib/brandConstants';
@@ -230,10 +231,31 @@ export default function Consulting() {
       <EnhancedSEOHead
         title={ar ? 'إسلام محروس | مستشار تنفيذي دولي' : 'Islam Mahrous | International Executive Advisor'}
         description={ar
-          ? 'إسلام محروس، مستشار تنفيذي دولي وباني منظومات التحول — خمسة وثلاثون عاماً في قيادة العمليات مع ماريوت وأكور وستاروود وإنتركونتيننتال.'
-          : 'Islam Mahrous, International Executive Advisor and Architect of Transformation — thirty-five years leading operations for Marriott, Accor, Starwood and InterContinental.'}
+          ? 'إسلام محروس، مستشار تنفيذي دولي وباني منظومات التحول — ثلاثون عاماً في قيادة العمليات مع ماريوت وأكور وستاروود وإنتركونتيننتال.'
+          : 'Islam Mahrous, International Executive Advisor and Architect of Transformation — thirty years leading operations for Marriott, Accor, Starwood and InterContinental.'}
         tags={['executive advisor', 'architect of transformation', 'management consulting', 'operational excellence', 'Six Sigma Black Belt']}
         type="profile"
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'ProfessionalService',
+          name: 'Islam Mahrous — Hospitality Consulting',
+          alternateName: 'إسلام محروس — الاستشارات الفندقية',
+          url: 'https://islam-mahrous.com/consulting',
+          image: 'https://islam-mahrous.com/profile.jpg',
+          description: 'Executive hospitality advisory: pre-opening management, hotel renovations and turnarounds, operational governance, and multi-property portfolio excellence across the MENA region.',
+          founder: {
+            '@type': 'Person',
+            name: 'Islam Mahrous',
+            jobTitle: 'Group Operations Director & Hospitality Consultant',
+            sameAs: ['https://www.linkedin.com/in/islam-mahrous-'],
+          },
+          telephone: '+201095556779',
+          areaServed: ['Egypt', 'Saudi Arabia', 'United Arab Emirates', 'Qatar', 'MENA'],
+          knowsAbout: ['Hotel Pre-Opening', 'Hotel Renovations & Turnarounds', 'Revenue Management', 'Operational Governance', 'FF&E Specifications', 'Luxury Hotel Standards'],
+          sameAs: ['https://www.linkedin.com/in/islam-mahrous-'],
+        }}
       />
 
       <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>

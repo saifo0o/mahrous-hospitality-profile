@@ -55,4 +55,5 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
+Sitemap: https://xjyjlquttwvjgudlfbsh.supabase.co/functions/v1/sitemap
 Sitemap: https://islam-mahrous.com/sitemap.xml

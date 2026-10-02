@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import heroPortraitAsset from '@/assets/profile-new.jpeg';
 
 interface VideoTestimonial {
   id: string;
@@ -42,7 +43,7 @@ const TestimonialVideoIntegration: React.FC = () => {
       name: 'Sarah Johnson',
       title: 'Regional Director',
       company: 'International Hotels',
-      thumbnail: '/lovable-uploads/ceab1cbd-052e-4068-8889-c6014f2be5ce.jpg',
+      thumbnail: heroPortraitAsset,
       videoUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
       quote: 'Working with Islam was a masterclass in hospitality excellence and operational efficiency.',
       duration: '1:45',
