@@ -13,6 +13,7 @@ import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import JsonLd from '@/components/JsonLd';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -144,6 +145,48 @@ const BlogPostPage = () => {
         type="article"
         publishedTime={post.published_at || post.created_at}
         tags={post.tags || []}
+      />
+      <JsonLd
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: post.excerpt,
+            image: [
+              post.image_url
+                ? (post.image_url.startsWith('http') ? post.image_url : `${window.location.origin}${post.image_url}`)
+                : `${window.location.origin}/profile.jpg`,
+            ],
+            datePublished: post.published_at || post.created_at,
+            dateModified: post.updated_at || post.published_at || post.created_at,
+            inLanguage: language.code === 'ar' ? 'ar' : 'en',
+            keywords: (post.tags || []).join(', '),
+            ...(post.category ? { articleSection: post.category } : {}),
+            author: {
+              '@type': 'Person',
+              name: 'Islam Mahrous',
+              url: 'https://islam-mahrous.com',
+              jobTitle: 'Group Operations Director & Hospitality Consultant',
+              sameAs: ['https://www.linkedin.com/in/islam-mahrous-'],
+            },
+            publisher: {
+              '@type': 'Person',
+              name: 'Islam Mahrous',
+              url: 'https://islam-mahrous.com',
+            },
+            mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://islam-mahrous.com/' },
+              { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://islam-mahrous.com/blog' },
+              { '@type': 'ListItem', position: 3, name: post.title, item: canonicalUrl },
+            ],
+          },
+        ]}
       />
       <Navbar />
       <article className={`min-h-screen bg-background pt-28 pb-20 ${language.code === 'ar' ? 'text-right' : 'text-left'}`}>

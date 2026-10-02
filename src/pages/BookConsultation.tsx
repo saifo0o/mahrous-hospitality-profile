@@ -45,6 +45,28 @@ const BookConsultation = () => {
         tags={['hospitality advisor', 'hotel consultancy', 'pre opening advisor']}
         type="website"
       />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Executive Hospitality Consultation',
+          serviceType: 'Hospitality Consulting',
+          provider: {
+            '@type': 'ProfessionalService',
+            name: 'Islam Mahrous — Hospitality Consulting',
+            url: 'https://islam-mahrous.com',
+            telephone: '+201095556779',
+          },
+          areaServed: ['Egypt', 'Saudi Arabia', 'United Arab Emirates', 'Qatar', 'MENA'],
+          availableLanguage: ['English', 'Arabic', 'German'],
+          url: 'https://islam-mahrous.com/book-consultation',
+          potentialAction: {
+            '@type': 'ReserveAction',
+            name: 'Book an executive consultation',
+            target: 'https://islam-mahrous.com/book-consultation',
+          },
+        }}
+      />
       
       <div className={`min-h-screen flex flex-col bg-background ${isRTL ? 'text-right' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
         <Navbar />
