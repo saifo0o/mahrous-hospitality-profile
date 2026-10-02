@@ -7,6 +7,7 @@ import PageTransition from '@/components/PageTransition';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 import ReadingProgress from '@/components/ReadingProgress';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import JsonLd from '@/components/JsonLd';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { contactInfo, socialLinks } from '@/lib/brandConstants';

@@ -8,6 +8,7 @@ import BreadcrumbNav from '@/components/BreadcrumbNav';
 import FAQSection from '@/components/FAQSection';
 import { useLanguage } from '@/context/LanguageContext';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import JsonLd from '@/components/JsonLd';
 import { Clock, Award, Target, Calendar, Sparkles } from 'lucide-react';
 
 const BookConsultation = () => {
