@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import heroPortraitAsset from '@/assets/profile-new.jpeg';
 
 interface VideoTestimonial {
   id: string;
