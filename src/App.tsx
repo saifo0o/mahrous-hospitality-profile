@@ -25,7 +25,6 @@ import WhatsAppButton from './components/WhatsAppButton';
 import TrackingScripts from './components/TrackingScripts';
 import SkipToContent from './components/SkipToContent';
 import { trackPageView, trackLanguageChange } from './utils/analytics';
-import CustomCursor from './components/CustomCursor';
 
 const queryClient = new QueryClient();
 
@@ -75,7 +74,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <AuthProvider>
-          <CustomCursor />
           <BrowserRouter>
             <SkipToContent />
             <TrackingScripts />
