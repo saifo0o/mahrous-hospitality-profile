@@ -114,12 +114,30 @@ export default function ProjectsSection() {
               {/* Details container */}
               <div className="p-6 md:p-8 flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors mb-3">
+                  <h3 className="text-xl font-playfair text-foreground group-hover:text-accent transition-colors mb-4">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed font-light mb-6">
-                    {project.desc}
-                  </p>
+                  {(() => {
+                    const [challenge, action] = project.desc.split(ar ? '، فقدت' : ', so I');
+                    const rows = [
+                      { k: ar ? 'التحدي' : 'Challenge', v: challenge },
+                      { k: ar ? 'التدخل' : 'Intervention', v: action ? (ar ? 'قدت' + action : 'I' + action) : '' },
+                    ].filter(r => r.v);
+                    return (
+                      <dl className="space-y-3 mb-6">
+                        {rows.map(r => (
+                          <div key={r.k} className="grid grid-cols-[88px_1fr] gap-3 items-baseline">
+                            <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent">{r.k}</dt>
+                            <dd className="text-sm text-muted-foreground leading-relaxed font-light">{r.v.trim()}</dd>
+                          </div>
+                        ))}
+                        <div className="grid grid-cols-[88px_1fr] gap-3 items-baseline pt-3 border-t border-accent/20">
+                          <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent">{ar ? 'الأثر' : 'Impact'}</dt>
+                          <dd className="text-2xl font-playfair text-foreground">{project.stat}</dd>
+                        </div>
+                      </dl>
+                    );
+                  })()}
                 </div>
                 
                 <div className="pt-4 border-t border-border/30 flex items-center justify-between">
