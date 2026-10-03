@@ -228,25 +228,26 @@ export default function HeroSection() {
                   {ar ? 'احجز استشارة' : 'Book a consultation'}
                 </EnhancedButton>
               </Link>
-              <Link to="/career" className="w-full sm:w-auto">
-                <EnhancedButton
-                  variant="outline"
-                  className="w-full sm:w-auto border-border hover:border-accent hover:bg-accent/5 text-foreground font-medium rounded-sm px-8 py-6 text-sm sm:text-base gap-2"
-                >
-                  {ar ? 'اقرأ قصتي المهنية' : 'View my career story'}
-                  <ArrowRight size={18} className={isRTL ? 'rotate-180' : ''} />
-                </EnhancedButton>
+              <EnhancedButton
+                type="button"
+                onClick={() => setDossierOpen(true)}
+                variant="outline"
+                className="w-full sm:w-auto border-accent/60 bg-accent/5 hover:bg-accent/10 text-foreground font-semibold rounded-sm px-8 py-6 text-sm sm:text-base gap-2"
+              >
+                <FileText size={18} className="text-accent" />
+                {ar ? 'الملف التنفيذي (PDF)' : 'Executive dossier (PDF)'}
+              </EnhancedButton>
+            </motion.div>
+            <motion.div variants={itemVariants} className="mt-5 flex items-center gap-3">
+              <span className="h-px w-10 bg-accent/60" />
+              <Link
+                to="/career"
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-accent transition-colors"
+              >
+                {ar ? 'اقرأ قصتي المهنية' : 'Read my career story'}
+                <ArrowRight size={14} className={isRTL ? 'rotate-180' : ''} />
               </Link>
             </motion.div>
-            <motion.button
-              variants={itemVariants}
-              type="button"
-              onClick={() => setDossierOpen(true)}
-              className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent hover:underline underline-offset-4"
-            >
-              <FileText size={14} />
-              {ar ? 'عرض الملف التنفيذي للمجالس' : 'View board executive dossier'}
-            </motion.button>
             <ExecutiveDossier open={dossierOpen} onClose={() => setDossierOpen(false)} />
           </motion.div>
 

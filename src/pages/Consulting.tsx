@@ -321,6 +321,32 @@ export default function Consulting() {
             </motion.div>
           </section>
 
+          {/* ───────────────── Advisory Pillars ───────────────── */}
+          <section className="container mx-auto px-4 md:px-8 mb-24">
+            <div className="section-eyebrow">{ar ? 'مسارات الاستشارة' : 'Advisory pillars'}</div>
+            <h2 className="text-3xl md:text-4xl font-playfair text-foreground mb-10">
+              {ar ? 'ما التحدي الذي تواجهه أصولك؟' : 'Which challenge is your asset facing?'}
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { n: '01', t: ar ? 'ما قبل الافتتاح وتحويل العلامة' : 'Pre-opening & brand conversion', c: ar ? 'من تسليم المبنى إلى افتتاح خالٍ من العيوب وفق معايير العلامة.' : 'From construction handover to a defect-free, brand-compliant launch.', p: ar ? 'افتتاح في الموعد · 90٪ إشغال' : 'On-time launch · 90% occupancy' },
+                { n: '02', t: ar ? 'إنقاذ الأصول وتدقيق الجودة' : 'Asset turnaround & QA audit', c: ar ? 'استعادة هوامش الربح وإعادة بناء الأداء التشغيلي.' : 'Recovering GOP margins and rebuilding operational performance.', p: ar ? '+25٪ RevPAR · −15٪ طاقة' : '+25% RevPAR · −15% energy' },
+                { n: '03', t: ar ? 'تمثيل الملاك والاستشارة' : 'Owner representation', c: ar ? 'سد الفجوة بين طموح المالك وواقع المشغل.' : 'Bridging owner ambition with brand-operator reality.', p: ar ? '19 فندقًا في مجلس ماريوت مصر' : '19-property Marriott council' },
+              ].map(x => (
+                <Link key={x.n} to="/book-consultation" className="group bg-card border border-border/50 hover:border-accent/60 rounded-sm p-8 flex flex-col transition-colors">
+                  <span className="font-playfair text-4xl text-accent/70 mb-4">{x.n}</span>
+                  <h3 className="text-lg font-semibold text-foreground mb-3">{x.t}</h3>
+                  <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6 flex-1">{x.c}</p>
+                  <div className="pt-4 border-t border-accent/20 text-xs font-bold uppercase tracking-wider text-foreground">{x.p}</div>
+                  <span className="mt-4 text-xs font-semibold uppercase tracking-wider text-accent group-hover:underline underline-offset-4">
+                    {ar ? 'ناقش هذا التحدي ←' : 'Discuss this challenge →'}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+
           {/* ───────────────── Executive Brief + Archetypes ───────────────── */}
           <section className="bg-muted/20 border-y border-border/40 py-24 mb-24">
             <div className="container mx-auto px-4 md:px-8">
