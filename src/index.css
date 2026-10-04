@@ -363,11 +363,12 @@ select:focus-visible,
 
   /* Numbered section eyebrow — "01 — About" editorial marker, italic Fraunces voice */
   .section-eyebrow {
-    @apply inline-flex items-center gap-3 mb-5 text-clay;
+    @apply inline-flex items-center gap-3 mb-5;
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 0.95rem;
     letter-spacing: 0.02em;
+    color: var(--color-clay);
   }
 
   .section-eyebrow::before {
