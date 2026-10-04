@@ -112,10 +112,18 @@ export default function Contact() {
           <section className="container mx-auto px-4 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl mb-16">
               <div className="section-eyebrow">
-                {ar ? 'تواصل مباشر' : 'Direct Channels'}
+                07 &mdash; {ar ? 'قنوات التواصل المباشر' : 'Direct Advisory Channels'}
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-4 leading-tight">
-                {ar ? 'تواصل معي' : 'Get in Touch'}
+                {ar ? (
+                  <>
+                    تواصل معي <span className="italic text-accent">لمناقشة التكليفات</span>
+                  </>
+                ) : (
+                  <>
+                    Initiate <span className="italic text-accent">Executive Dialogue</span>
+                  </>
+                )}
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed font-light">
                 {ar
@@ -126,12 +134,12 @@ export default function Contact() {
 
             <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-12 items-stretch">
               
-              {/* Form Column - Luxury registration desk style */}
+              {/* Form Column - White panel with clay corner brackets */}
               <motion.div 
                 initial={{ opacity: 0, x: isRTL ? 35 : -35 }} 
                 animate={{ opacity: 1, x: 0 }} 
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-card border border-border/40 p-8 sm:p-10 rounded-sm relative overflow-hidden flex flex-col justify-center"
+                className="corner-frame bg-card border border-border/40 p-8 sm:p-10 rounded-sm relative overflow-hidden flex flex-col justify-center"
               >
                 <AnimatePresence mode="wait">
                   {!isSuccess ? (
@@ -322,13 +330,16 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Quote Card (styled like a luxury directory cover) */}
-                <div className="bg-primary text-primary-foreground rounded-sm p-6 sm:p-8 border border-primary-foreground/[0.06] relative overflow-hidden mt-2 flex flex-col justify-center">
-                  <p className="italic text-xs sm:text-sm leading-relaxed text-primary-foreground/95 font-light">
+                {/* Quote Card — framed with clay corner brackets & ghost watermark */}
+                <div className="corner-frame bg-primary text-primary-foreground rounded-sm p-6 sm:p-8 border border-white/10 relative overflow-hidden mt-2 flex flex-col justify-center">
+                  <div className="ghost-word -bottom-4 end-2 text-7xl select-none opacity-20">
+                    {ar ? 'تميّز' : 'PRIME'}
+                  </div>
+                  <p className="italic text-xs sm:text-sm leading-relaxed text-primary-foreground/95 font-light relative z-10">
                     {ar ? signatureQuote.ar : signatureQuote.en}
                   </p>
-                  <div className="w-6 h-px bg-accent/60 my-4" />
-                  <p className="text-accent text-xs font-bold uppercase tracking-widest font-playfair">— Islam Mahrous</p>
+                  <div className="w-6 h-px bg-accent/60 my-4 relative z-10" />
+                  <p className="text-accent text-xs font-bold uppercase tracking-widest font-playfair relative z-10">— Islam Mahrous</p>
                 </div>
               </motion.div>
 

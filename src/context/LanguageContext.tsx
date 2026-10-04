@@ -147,9 +147,13 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Check localStorage for saved language or default to browser language
   const getInitialLanguage = () => {
-    const savedLang = localStorage.getItem('language');
-    if (savedLang === 'ar' || savedLang === 'en') {
-      return languages[savedLang];
+    try {
+      const savedLang = localStorage.getItem('language');
+      if (savedLang === 'ar' || savedLang === 'en') {
+        return languages[savedLang];
+      }
+    } catch {
+      // iOS Safari Private Browsing throws SecurityError on localStorage access
     }
     // Try to detect browser language
     const browserLang = navigator.language.split('-')[0];
@@ -163,7 +167,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     const newLang = languages[langCode];
     setLanguageState(newLang);
     setIsRTL(newLang.dir === 'rtl');
-    localStorage.setItem('language', langCode);
+    try { localStorage.setItem('language', langCode); } catch { /* Private Browsing fallback */ }
     
     // Update document direction and language attributes
     document.documentElement.lang = langCode;

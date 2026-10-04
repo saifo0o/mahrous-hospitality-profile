@@ -635,13 +635,20 @@ const Career = () => {
           <section className="container mx-auto px-4 md:px-8 mb-12">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
               <div className="section-eyebrow">
-                <Calendar size={12} />
-                {ar ? '+30 عامًا • 6 دول • 7 علامات دولية' : '30+ Years • 6 Countries • 7 International Brands'}
+                04 &mdash; {ar ? '+٣٠ عامًا من القيادة والتميز' : '30+ Years Leadership Memoir'}
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-5 leading-[1.1]">
-                {ar ? 'المسيرة المهنية' : 'Career Journey'}
+                {ar ? (
+                  <>
+                    سردية المسيرة <span className="italic text-accent">المهنية والقيادية</span>
+                  </>
+                ) : (
+                  <>
+                    The Executive <span className="italic text-accent">Career Timeline</span>
+                  </>
+                )}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
                 {ar
                   ? 'مدير ضيافة دولي عبر دول الخليج وشمال أفريقيا والشام و EMEA. خبرة تشغيلية ممتدة مع ماريوت، آي إتش جي، ستاروود، أكور، وعلامات الفخامة المستقلة.'
                   : 'International hospitality executive across the GCC, North Africa, the Levant and broader EMEA — with Marriott International, IHG, Starwood, Accor and independent luxury brands.'}
@@ -681,7 +688,7 @@ const Career = () => {
               <aside className="hidden lg:block lg:sticky lg:top-28 space-y-8">
 
                 {/* Career Metrics Card */}
-                <div className="relative overflow-hidden rounded-sm border border-border bg-card p-6">
+                <div className="corner-frame relative overflow-hidden rounded-sm border border-border bg-card p-6">
                   <h2 className="text-xs uppercase tracking-[0.2em] text-accent font-bold mb-6 flex items-center gap-2 border-b border-border pb-3">
                     <Award size={14} />
                     {ar ? 'ملخص الأداء التشغيلي' : 'Operational Metrics'}
@@ -690,7 +697,7 @@ const Career = () => {
                   <div className="space-y-6">
                     <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-normal font-playfair text-accent">30+</span>
+                        <span className="oversized-stat text-accent text-3xl">30+</span>
                         <span className="text-sm font-semibold text-foreground">
                           {ar ? 'عاماً من الخبرة' : 'Years of Experience'}
                         </span>
@@ -702,7 +709,7 @@ const Career = () => {
 
                     <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-normal font-playfair text-accent">19+</span>
+                        <span className="oversized-stat text-accent text-3xl">19+</span>
                         <span className="text-sm font-semibold text-foreground">
                           {ar ? 'فندقاً ومنشأة' : 'Properties Managed'}
                         </span>
@@ -714,7 +721,7 @@ const Career = () => {
 
                     <div className="group border-b border-border/40 pb-4 last:border-0 last:pb-0">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-normal font-playfair text-accent">3,000+</span>
+                        <span className="oversized-stat text-accent text-3xl">3,000+</span>
                         <span className="text-sm font-semibold text-foreground">
                           {ar ? 'غرفة وجناح' : 'Rooms & Keys'}
                         </span>
@@ -774,23 +781,32 @@ const Career = () => {
                       const Icon = chapter.icon;
                       return (
                         <div>
-                          <div className="mb-8 border-b border-border/40 pb-4">
-                            <div className="flex items-center justify-between gap-4 mb-1">
-                              <p className="text-xs uppercase tracking-[0.3em] text-accent font-bold">
-                                {ar ? `الفصل ${chapter.number}` : `Chapter ${chapter.number}`}
-                              </p>
-                              <p className="text-[10px] font-mono tracking-widest text-muted-foreground">
-                                {activeChapter + 1} / {chapters.length}
-                              </p>
+                          <div className="mb-10 border-b border-border/60 pb-6 relative overflow-hidden">
+                            <div className="flex items-start justify-between gap-6">
+                              <div>
+                                <div className="flex items-center gap-3 mb-2">
+                                  <span className="oversized-stat text-accent text-5xl md:text-6xl leading-none">
+                                    {chapter.number}
+                                  </span>
+                                  <div>
+                                    <p className="text-[10px] uppercase tracking-[0.3em] text-accent font-bold">
+                                      {ar ? `الفصل ${chapter.number}` : `Chapter ${chapter.number}`}
+                                    </p>
+                                    <p className="text-[10px] font-mono tracking-widest text-muted-foreground">
+                                      {activeChapter + 1} / {chapters.length}
+                                    </p>
+                                  </div>
+                                </div>
+                                <h2 className="text-3xl md:text-4xl font-normal font-playfair italic text-foreground flex items-center gap-3 mt-1">
+                                  <Icon className="text-accent not-italic" size={24} />
+                                  <span>{chapter.title}</span>
+                                </h2>
+                                <p className="text-sm text-muted-foreground mt-2 font-light leading-relaxed">{chapter.subtitle}</p>
+                              </div>
                             </div>
-                            <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground flex items-center gap-3">
-                              <Icon className="text-accent" size={20} />
-                              {chapter.title}
-                            </h2>
-                            <p className="text-sm text-muted-foreground mt-2">{chapter.subtitle}</p>
 
                             {/* Progress rail */}
-                            <div className="mt-5 h-[3px] w-full bg-border/50 rounded-full overflow-hidden">
+                            <div className="mt-6 h-[2px] w-full bg-border/50 rounded-full overflow-hidden">
                               <motion.div
                                 className="h-full bg-accent rounded-full"
                                 initial={{ width: 0 }}

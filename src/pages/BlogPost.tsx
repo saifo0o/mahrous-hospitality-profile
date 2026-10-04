@@ -205,8 +205,12 @@ const BlogPostPage = () => {
               {language.code === 'ar' ? 'كل المقالات' : 'All articles'}
             </Link>
 
+            <div className="section-eyebrow">
+              06 &mdash; {language.code === 'ar' ? 'مقال تحليلي تنفيذي' : 'Executive Article Dispatch'}
+            </div>
+
             <div className="flex flex-wrap gap-2 mb-4">
-              {post.category && <Badge variant="secondary" className="rounded-sm">{post.category}</Badge>}
+              {post.category && <Badge variant="secondary" className="rounded-sm border-accent/20 text-accent font-semibold">{post.category}</Badge>}
               {post.tags?.slice(0, 3).map((t) => (
                 <Badge key={t} variant="outline" className="rounded-sm text-xs">
                   <Tag className="w-3 h-3 me-1" />{t}
@@ -214,7 +218,7 @@ const BlogPostPage = () => {
               ))}
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-normal font-playfair text-foreground leading-tight mb-5">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground leading-[1.15] mb-5">
               {post.title}
             </h1>
 
@@ -228,7 +232,7 @@ const BlogPostPage = () => {
             </div>
 
             {post.image_url && (
-              <div className="my-8 rounded-sm overflow-hidden border border-border">
+              <div className="corner-frame my-8 rounded-sm overflow-hidden border border-border">
                 <img src={post.image_url} alt={post.title} className="w-full h-auto object-cover" />
               </div>
             )}

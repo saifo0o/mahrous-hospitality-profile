@@ -91,13 +91,20 @@ export default function Awards() {
           <section className="container mx-auto px-4 md:px-8 mb-16">
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
               <div className="section-eyebrow">
-                <Trophy size={12} />
-                {language.code === 'ar' ? 'إنجازات مميزة' : 'Distinguished Achievements'}
+                08 &mdash; {language.code === 'ar' ? 'إنجازات وأوسمة التميز' : 'Distinguished Honors'}
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-5 leading-[1.1]">
-                {language.code === 'ar' ? 'الجوائز والتقدير' : 'Awards & Recognition'}
+                {language.code === 'ar' ? (
+                  <>
+                    الجوائز <span className="italic text-accent">والتقدير المهني</span>
+                  </>
+                ) : (
+                  <>
+                    Honors & <span className="italic text-accent">Industry Recognition</span>
+                  </>
+                )}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
                 {language.code === 'ar'
                   ? 'تقدير للتميز في قيادة الضيافة والابتكار والخدمة على مدار ثلاثة عقود من العطاء.'
                   : 'Recognized for excellence in hospitality leadership, innovation, and service over three decades.'}

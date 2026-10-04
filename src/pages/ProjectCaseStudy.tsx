@@ -59,11 +59,11 @@ const ProjectCaseStudy = () => {
                 </div>
 
                 {/* Headline metric — the outcome, given hero-scale prominence */}
-                <div className="signature-frame text-center lg:text-left rtl:lg:text-right">
-                  <p className="text-5xl md:text-6xl font-playfair text-accent leading-none mb-2">
+                <div className="corner-frame bg-card p-6 border border-border/40 text-center lg:text-left rtl:lg:text-right">
+                  <p className="oversized-stat text-accent leading-none mb-2">
                     {study.headlineMetric.value}
                   </p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  <p className="oversized-stat-label">
                     {ar ? study.headlineMetric.label.ar : study.headlineMetric.label.en}
                   </p>
                 </div>
@@ -78,9 +78,9 @@ const ProjectCaseStudy = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="relative rounded-sm overflow-hidden h-64 md:h-[420px] border border-border">
+            <div className="corner-frame relative rounded-sm overflow-hidden h-64 md:h-[420px] border border-border">
               <img src={study.heroImage} alt={ar ? study.title.ar : study.title.en} className="w-full h-full object-cover" loading="eager" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.section>
 

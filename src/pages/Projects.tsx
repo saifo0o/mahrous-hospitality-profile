@@ -282,11 +282,18 @@ const Projects = () => {
           <section className="container mx-auto px-4 md:px-8 mb-16">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
               <div className="section-eyebrow">
-                <Building size={12} />
-                {language.code === 'ar' ? 'أكثر من ٧٠ مليون دولار ميزانيات مشاريع مدارة' : 'Over $70M in projects delivered'}
+                05 &mdash; {ar ? 'سجل المشاريع المنجزة' : 'Portfolio Showcase'}
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-5 leading-[1.1]">
-                {language.code === 'ar' ? 'مشاريع وإنجازات الضيافة' : 'Signature Projects'}
+                {ar ? (
+                  <>
+                    مشاريع وإنجازات <span className="italic text-accent">الضيافة الفاخرة</span>
+                  </>
+                ) : (
+                  <>
+                    Signature <span className="italic text-accent">Hospitality Deployments</span>
+                  </>
+                )}
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed font-light font-sans">
                 {language.code === 'ar'
@@ -314,11 +321,11 @@ const Projects = () => {
               <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
 
                 {/* Image panel */}
-                <div className="relative lg:col-span-7 xl:col-span-8 overflow-hidden min-h-[350px] md:min-h-[500px]">
+                <div className="corner-frame relative lg:col-span-7 xl:col-span-8 overflow-hidden min-h-[350px] md:min-h-[500px]">
                   <img
                     src={featuredProject.image}
                     alt={featuredProject.title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                     loading="eager"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/90 via-black/30 to-transparent pointer-events-none" />
@@ -369,8 +376,8 @@ const Projects = () => {
                     <div className="grid grid-cols-3 gap-2 border-y border-border/50 py-5 mb-6">
                       {billboardStats.map((stat, i) => (
                         <div key={i} className={`text-center ${i === 1 ? 'border-x border-border/50 px-2' : ''}`}>
-                          <div className="text-2xl md:text-3xl font-bold font-playfair text-accent">{stat.value}</div>
-                          <div className="text-[9px] uppercase tracking-widest text-muted-foreground mt-1 font-semibold">
+                          <div className="oversized-stat text-accent text-3xl md:text-4xl">{stat.value}</div>
+                          <div className="oversized-stat-label mt-1 text-[8px] sm:text-[9px]">
                             {stat.label}
                           </div>
                         </div>
@@ -489,17 +496,17 @@ const Projects = () => {
                         className="bg-card rounded-sm border border-border/40 overflow-hidden hover:border-accent/40 transition-colors duration-500 flex flex-col"
                       >
                         {/* Image component */}
-                        <div className="relative overflow-hidden aspect-[16/10]">
+                        <div className="corner-frame relative overflow-hidden aspect-[16/10]">
                           <img
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                             loading="lazy"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
                           {/* Category chip */}
-                          <div className="absolute top-4 start-4">
+                          <div className="absolute top-4 start-4 z-10">
                             <span className={`inline-block px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-wider ${categoryColors[project.category]}`}>
                               {ar ? project.categoryAr : project.category}
                             </span>
@@ -512,7 +519,7 @@ const Projects = () => {
                             <p className="text-[10px] text-accent font-bold mb-2 uppercase tracking-wider font-sans">
                               {project.role}
                             </p>
-                            <h3 className="text-xl font-semibold text-foreground mb-3 leading-snug">
+                            <h3 className="text-2xl font-normal font-playfair text-foreground mb-3 leading-snug">
                               {project.title}
                             </h3>
 

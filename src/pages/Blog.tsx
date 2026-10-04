@@ -7,7 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Tag, TrendingUp, Eye, Search, Clock, FileText } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { format } from 'date-fns';
+import { formatDateSafe } from '@/utils/formatDate';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
@@ -92,13 +92,20 @@ const Blog = () => {
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mb-12">
             <div className="section-eyebrow">
-              <TrendingUp size={12} />
-              {language.code === 'ar' ? 'رؤى يومية' : 'Daily Insights'}
+              06 &mdash; {language.code === 'ar' ? 'رؤى تنفيذية يومية' : 'Daily Executive Insights'}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground mb-5 leading-[1.1]">
-              {language.code === 'ar' ? 'المدونة' : 'The Blog'}
+              {language.code === 'ar' ? (
+                <>
+                  المدونة <span className="italic text-accent">ورؤى الضيافة</span>
+                </>
+              ) : (
+                <>
+                  The Editorial <span className="italic text-accent">Journal & Insights</span>
+                </>
+              )}
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light">
               {language.code === 'ar'
                 ? 'نصائح عملية ورؤى من خبرة تمتد لأكثر من 30 عامًا في الضيافة العالمية.'
                 : "Practical tips and real-world insights from 30+ years in global hospitality."}
@@ -162,23 +169,23 @@ const Blog = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   onClick={() => handlePostClick(featuredPost)}
-                  className="mb-10 bg-card rounded-sm border border-border/50 overflow-hidden cursor-pointer hover:border-accent/40 transition-colors duration-300 group"
+                  className="mb-12 bg-card rounded-sm border border-border/50 overflow-hidden cursor-pointer hover:border-accent/40 transition-colors duration-300 group"
                 >
                   <div className="grid md:grid-cols-2 gap-0">
-                    <div className="h-64 md:h-full overflow-hidden">
+                    <div className="corner-frame relative h-64 md:h-full overflow-hidden">
+                      <span className="float-label top-4 start-4">
+                        {language.code === 'ar' ? 'مقال مميز' : 'Featured Essay'}
+                      </span>
                       <BlogCover title={featuredPost.title} category={featuredPost.category || undefined} imageUrl={featuredPost.image_url} className="w-full h-full" />
                     </div>
-                    <div className="p-8 flex flex-col justify-center">
-                      <Badge variant="secondary" className="w-fit mb-4 rounded-sm text-xs">
-                        {language.code === 'ar' ? 'مقال مميز' : 'Featured'}
-                      </Badge>
+                    <div className="p-8 md:p-10 flex flex-col justify-center">
                       <div className="flex gap-2 mb-3 flex-wrap">
-                        {featuredPost.category && <Badge variant="outline" className="text-xs rounded-sm">{featuredPost.category}</Badge>}
+                        {featuredPost.category && <Badge variant="outline" className="text-xs rounded-sm border-accent/30 text-accent font-semibold">{featuredPost.category}</Badge>}
                       </div>
-                      <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground mb-3 group-hover:text-accent-foreground transition-colors line-clamp-2">{featuredPost.title}</h2>
-                      <p className="text-muted-foreground mb-4 line-clamp-3">{featuredPost.excerpt}</p>
+                      <h2 className="text-2xl md:text-3xl font-normal font-playfair text-foreground mb-3 group-hover:text-accent transition-colors line-clamp-2">{featuredPost.title}</h2>
+                      <p className="text-muted-foreground mb-4 line-clamp-3 font-light leading-relaxed">{featuredPost.excerpt}</p>
                       <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{format(new Date(featuredPost.published_at || featuredPost.created_at), 'MMM dd, yyyy')}</span>
+                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{formatDateSafe(featuredPost.published_at || featuredPost.created_at, 'MMM dd, yyyy')}</span>
                         <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{getReadingTime(featuredPost.content)} min read</span>
                         {featuredPost.views_count && featuredPost.views_count > 0 && <span className="flex items-center gap-1"><Eye className="w-3 h-3" />{featuredPost.views_count}</span>}
                       </div>
@@ -198,7 +205,7 @@ const Blog = () => {
                     onClick={() => handlePostClick(post)}
                     className="bg-card rounded-sm border border-border/50 overflow-hidden cursor-pointer hover:border-accent/40 transition-colors duration-300 group flex flex-col"
                   >
-                    <div className="h-48 overflow-hidden">
+                    <div className="corner-frame relative h-48 overflow-hidden">
                       <BlogCover title={post.title} category={post.category || undefined} imageUrl={post.image_url} className="w-full h-full" />
                     </div>
                     <div className="p-5 flex flex-col flex-grow">
@@ -208,7 +215,7 @@ const Blog = () => {
                           <Badge key={tag} variant="outline" className="text-xs rounded-sm"><Tag className="w-3 h-3 me-1" />{tag}</Badge>
                         ))}
                       </div>
-                      <h3 className="font-semibold text-foreground line-clamp-2 mb-2 group-hover:text-accent-foreground transition-colors">{post.title}</h3>
+                      <h3 className="font-playfair text-lg font-normal text-foreground line-clamp-2 mb-2 group-hover:text-accent transition-colors">{post.title}</h3>
                       <p className="text-sm text-muted-foreground line-clamp-2 flex-grow">{post.excerpt}</p>
                       <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 mt-4 border-t border-border/50">
                         <div className="flex items-center gap-3">

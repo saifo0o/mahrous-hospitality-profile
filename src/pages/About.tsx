@@ -104,13 +104,17 @@ export default function About() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="relative max-w-sm mx-auto w-full"
               >
-                <div className="signature-frame">
-                  <div className="relative overflow-hidden aspect-[3/4]">
+                <div className="corner-frame portrait-tone relative">
+                  <span className="float-label -top-3 start-4">
+                    {ar ? 'مدير عمليات تنفيذي' : 'Operations Executive'}
+                  </span>
+                  <div className="relative overflow-hidden aspect-[3/4] rounded-sm">
                     <img
                       alt={ar ? 'إسلام محروس' : 'Islam Mahrous'}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-all duration-700"
                       src="/lovable-uploads/2a742c4a-aaea-4c0f-ad38-ea2891228c62.jpg"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>
                 </div>
 
@@ -128,10 +132,18 @@ export default function About() {
               <div className="space-y-8 flex flex-col justify-center">
                 <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
                   <div className="section-eyebrow">
-                    {ar ? 'مدير عمليات فندقية محترف بـ ٣٠+ عامًا من الخبرة' : '30+ Years Professional Operations Record'}
+                    01 &mdash; {ar ? 'سيرة مهنية وتنفيذية' : 'Executive Biography'}
                   </div>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground leading-tight">
-                    {ar ? 'مسيرة مهنية مبنية على التميز' : 'Leading with Precision & Passion'}
+                    {ar ? (
+                      <>
+                        مسيرة مهنية <span className="italic text-accent">مبنية على التميز</span>
+                      </>
+                    ) : (
+                      <>
+                        Leading with <span className="italic text-accent">Precision & Passion</span>
+                      </>
+                    )}
                   </h1>
                 </motion.div>
 
@@ -172,8 +184,11 @@ export default function About() {
             </div>
           </section>
 
-          {/* Quick Metrics Banner */}
-          <section className="bg-primary text-primary-foreground py-14 mb-24 relative overflow-hidden">
+          {/* Quick Metrics Banner — elevated dark band with ghost watermark */}
+          <section className="bg-primary text-primary-foreground py-16 mb-24 relative overflow-hidden border-y border-white/10">
+            <div className="ghost-word -bottom-10 start-1/2 -translate-x-1/2 text-[12rem] md:text-[18rem] select-none opacity-40">
+              {ar ? 'ريادة' : 'Legacy'}
+            </div>
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
             <div className="container mx-auto px-4 md:px-8 relative z-10">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -190,8 +205,8 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08, duration: 0.6 }}
                   >
-                    <p className="text-3xl md:text-4xl font-bold font-playfair text-accent">{stat.value}</p>
-                    <p className="text-[10px] text-primary-foreground/70 uppercase tracking-widest mt-2 font-semibold">{stat.label}</p>
+                    <p className="oversized-stat text-accent">{stat.value}</p>
+                    <p className="oversized-stat-label">{stat.label}</p>
                   </motion.div>
                 ))}
               </div>
@@ -202,7 +217,7 @@ export default function About() {
           <section className="py-24 bg-muted/20 border-y border-border/40 mb-24 relative">
             <div className="container mx-auto px-4 md:px-8">
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16 max-w-xl mx-auto">
-                <div className="section-eyebrow">{ar ? 'رؤيتنا المهنية' : 'Philosophy'}</div>
+                <div className="section-eyebrow">02 &mdash; {ar ? 'رؤيتنا المهنية والفلسفية' : 'Leadership Philosophy'}</div>
                 <h2 className="section-heading inline-block">
                   {ar ? 'روافد الفلسفة القيادية' : 'Leadership Philosophy'}
                 </h2>
@@ -231,12 +246,12 @@ export default function About() {
                 ))}
               </div>
 
-              {/* Immersive Quote Block */}
+              {/* Immersive Quote Block — Framed with signature clay brackets */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-card rounded-sm p-8 md:p-14 text-center border border-border relative overflow-hidden"
+                className="corner-frame bg-card rounded-sm p-8 md:p-14 text-center border border-border relative overflow-hidden"
               >
                 <blockquote className="text-xl md:text-2xl italic font-light max-w-3xl mx-auto text-foreground leading-relaxed">
                   {ar
@@ -253,7 +268,7 @@ export default function About() {
           <section className="py-20 mb-24">
             <div className="container mx-auto px-4 md:px-8">
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16 max-w-xl mx-auto">
-                <div className="section-eyebrow">{ar ? 'المهارات والكفاءات' : 'Competencies'}</div>
+                <div className="section-eyebrow">03 &mdash; {ar ? 'المهارات والكفاءات الجوهرية' : 'Core Capabilities'}</div>
                 <h2 className="section-heading inline-block">
                   {ar ? 'القدرات الإدارية والتشغيلية' : 'Core Capabilities'}
                 </h2>
@@ -314,7 +329,7 @@ export default function About() {
           <section className="bg-muted/20 border-y border-border/40 py-24">
             <div className="container mx-auto px-4 md:px-8">
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16 max-w-xl mx-auto">
-                <div className="section-eyebrow">{ar ? 'الأكاديميات والاعتمادات' : 'Education'}</div>
+                <div className="section-eyebrow">04 &mdash; {ar ? 'الأكاديميات والاعتمادات الدولية' : 'Academic Credentials'}</div>
                 <h2 className="section-heading inline-block">
                   {ar ? 'المؤهلات العلمية والمهنية' : 'Education & Certifications'}
                 </h2>
@@ -326,7 +341,7 @@ export default function About() {
                   initial={{ opacity: 0, x: isRTL ? 30 : -30 }} 
                   whileInView={{ opacity: 1, x: 0 }} 
                   viewport={{ once: true }} 
-                  className="bg-card rounded-sm p-8 border border-border flex flex-col justify-between"
+                  className="corner-frame bg-card rounded-sm p-8 border border-border flex flex-col justify-between"
                 >
                   <div>
                     <h3 className="font-bold text-foreground mb-6 text-base flex items-center gap-2.5 border-b border-border/40 pb-4">
@@ -371,7 +386,7 @@ export default function About() {
                   initial={{ opacity: 0, x: isRTL ? -30 : 30 }} 
                   whileInView={{ opacity: 1, x: 0 }} 
                   viewport={{ once: true }} 
-                  className="bg-card rounded-sm p-8 border border-border flex flex-col justify-between"
+                  className="corner-frame bg-card rounded-sm p-8 border border-border flex flex-col justify-between"
                 >
                   <div>
                     <h3 className="font-bold text-foreground mb-6 text-base flex items-center gap-2.5 border-b border-border/40 pb-4">

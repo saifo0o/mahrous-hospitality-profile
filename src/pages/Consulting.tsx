@@ -272,15 +272,19 @@ export default function Consulting() {
             <div className="max-w-4xl">
               <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
                 <div className="section-eyebrow">
-                  <Sparkles size={12} />
-                  {ar ? 'مستشار تنفيذي دولي' : 'International Executive Advisor'}
+                  03 &mdash; {ar ? 'الممارسة الاستشارية التنفيذية' : 'Executive Advisory Practice'}
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-playfair text-foreground leading-tight">
-                  Islam Mahrous
+                  {ar ? (
+                    <>
+                      إسلام محروس <span className="italic text-accent">— باني منظومات التحول</span>
+                    </>
+                  ) : (
+                    <>
+                      Islam Mahrous <span className="italic text-accent">— Architect of Transformation</span>
+                    </>
+                  )}
                 </h1>
-                <p className="text-xl md:text-2xl text-accent font-playfair italic mt-2">
-                  {ar ? 'باني منظومات التحول' : 'Architect of Transformation'}
-                </p>
               </motion.div>
 
               <motion.p initial="hidden" animate="visible" custom={1} variants={fadeUp} className="text-lg text-muted-foreground leading-relaxed font-light mt-8 max-w-3xl">
@@ -289,7 +293,7 @@ export default function Consulting() {
                   : 'Thirty-five years leading operations for Marriott, Accor, Starwood and InterContinental. I translate boardroom vision into precise operating systems and build enterprises that scale without breaking.'}
               </motion.p>
 
-              <motion.div initial="hidden" animate="visible" custom={2} variants={fadeUp} className="bg-card border border-border rounded-sm p-8 mt-10 max-w-2xl">
+              <motion.div initial="hidden" animate="visible" custom={2} variants={fadeUp} className="corner-frame bg-card border border-border rounded-sm p-8 mt-10 max-w-2xl">
                 <blockquote className="text-lg md:text-xl italic font-light text-foreground leading-relaxed">
                   {ar
                     ? '"التميز في التشغيل ليس مجرد نتائج، بل استراتيجية، رؤية، ديمومة، وذكاء عاطفي."'
@@ -314,8 +318,8 @@ export default function Consulting() {
                 { value: '04', label: ar ? 'دول عبر ثلاث قارات' : 'Countries, Three Continents' },
               ].map((stat, i) => (
                 <div key={i} className="bg-card border border-border rounded-sm p-5 text-center">
-                  <p className="text-xl md:text-2xl font-bold font-playfair text-accent">{stat.value}</p>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest mt-2 font-semibold leading-relaxed">{stat.label}</p>
+                  <p className="oversized-stat text-accent text-2xl md:text-3xl">{stat.value}</p>
+                  <p className="oversized-stat-label mt-2">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -323,24 +327,44 @@ export default function Consulting() {
 
           {/* ───────────────── Advisory Pillars ───────────────── */}
           <section className="container mx-auto px-4 md:px-8 mb-24">
-            <div className="section-eyebrow">{ar ? 'مسارات الاستشارة' : 'Advisory pillars'}</div>
-            <h2 className="text-3xl md:text-4xl font-playfair text-foreground mb-10">
-              {ar ? 'ما التحدي الذي تواجهه أصولك؟' : 'Which challenge is your asset facing?'}
+            <div className="section-eyebrow">03.1 &mdash; {ar ? 'ركائز الاستشارة' : 'Advisory Pillars'}</div>
+            <h2 className="text-3xl md:text-4xl font-normal font-playfair text-foreground mb-10">
+              {ar ? 'ما التحدي الذي تواجهه محفظتك الفندقية؟' : 'Which strategic challenge is your asset facing?'}
             </h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-8">
               {[
-                { n: '01', t: ar ? 'ما قبل الافتتاح وتحويل العلامة' : 'Pre-opening & brand conversion', c: ar ? 'من تسليم المبنى إلى افتتاح خالٍ من العيوب وفق معايير العلامة.' : 'From construction handover to a defect-free, brand-compliant launch.', p: ar ? 'افتتاح في الموعد · 90٪ إشغال' : 'On-time launch · 90% occupancy' },
-                { n: '02', t: ar ? 'إنقاذ الأصول وتدقيق الجودة' : 'Asset turnaround & QA audit', c: ar ? 'استعادة هوامش الربح وإعادة بناء الأداء التشغيلي.' : 'Recovering GOP margins and rebuilding operational performance.', p: ar ? '+25٪ RevPAR · −15٪ طاقة' : '+25% RevPAR · −15% energy' },
-                { n: '03', t: ar ? 'تمثيل الملاك والاستشارة' : 'Owner representation', c: ar ? 'سد الفجوة بين طموح المالك وواقع المشغل.' : 'Bridging owner ambition with brand-operator reality.', p: ar ? '19 فندقًا في مجلس ماريوت مصر' : '19-property Marriott council' },
+                { n: '01', t: ar ? 'ما قبل الافتتاح وتحويل العلامة' : 'Pre-opening & brand conversion', c: ar ? 'من تسليم المبنى إلى افتتاح خالٍ من العيوب وفق معايير العلامة الدولية.' : 'From construction handover to a defect-free, brand-compliant launch.', p: ar ? 'افتتاح في الموعد · 90٪ إشغال' : 'On-time launch · 90% occupancy' },
+                { n: '02', t: ar ? 'إنقاذ الأصول وتدقيق الجودة' : 'Asset turnaround & QA audit', c: ar ? 'استعادة هوامش الربح وإعادة بناء الأداء التشغيلي وضبط النفقات.' : 'Recovering GOP margins and rebuilding operational performance.', p: ar ? '+25٪ RevPAR · −15٪ طاقة' : '+25% RevPAR · −15% energy' },
+                { n: '03', t: ar ? 'تمثيل الملاك والاستشارة' : 'Owner representation', c: ar ? 'سد الفجوة بين طموح المالك الاستثماري وواقع المشغل الفندقي.' : 'Bridging owner ambition with brand-operator reality.', p: ar ? '19 فندقًا في مجلس ماريوت مصر' : '19-property Marriott council' },
               ].map(x => (
-                <Link key={x.n} to="/book-consultation" className="group bg-card border border-border/50 hover:border-accent/60 rounded-sm p-8 flex flex-col transition-colors">
-                  <span className="font-playfair text-4xl text-accent/70 mb-4">{x.n}</span>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">{x.t}</h3>
-                  <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6 flex-1">{x.c}</p>
-                  <div className="pt-4 border-t border-accent/20 text-xs font-bold uppercase tracking-wider text-foreground">{x.p}</div>
-                  <span className="mt-4 text-xs font-semibold uppercase tracking-wider text-accent group-hover:underline underline-offset-4">
-                    {ar ? 'ناقش هذا التحدي ←' : 'Discuss this challenge →'}
-                  </span>
+                <Link 
+                  key={x.n} 
+                  to="/book-consultation" 
+                  className="corner-frame group bg-card border border-border/50 hover:border-accent/60 rounded-sm p-8 flex flex-col justify-between transition-all duration-300 hover-lift relative overflow-hidden"
+                >
+                  <div>
+                    <div className="flex items-baseline justify-between mb-4">
+                      <span className="oversized-stat text-accent/50 group-hover:text-accent transition-colors text-4xl md:text-5xl">{x.n}</span>
+                      <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-bold font-sans">
+                        {ar ? 'مسار استشاري' : 'Pillar'}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-normal font-playfair text-foreground group-hover:text-accent transition-colors mb-3">
+                      {x.t}
+                    </h3>
+                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6 group-hover:text-foreground/90 transition-colors">
+                      {x.c}
+                    </p>
+                  </div>
+                  <div>
+                    <div className="pt-4 border-t border-accent/20 text-xs font-bold uppercase tracking-wider text-foreground">
+                      {x.p}
+                    </div>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-accent group-hover:underline underline-offset-4">
+                      <span>{ar ? 'ناقش هذا التحدي' : 'Discuss this challenge'}</span>
+                      <ArrowRight size={14} className={isRTL ? 'rotate-180' : ''} />
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>
