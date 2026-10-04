@@ -148,10 +148,14 @@ export default function HeroSection() {
             >
               {ar ? 'إسلام' : 'Islam'}
               <br />
-              <span className="gradient-text font-normal italic font-playfair relative">
+              <span
+                className={`gradient-text font-normal italic font-playfair relative inline-block ${
+                  isRTL ? 'me-8 md:me-24' : 'ms-8 md:ms-24'
+                }`}
+              >
                 {ar ? 'محروس' : 'Mahrous'}
                 {/* Scroll underline animation */}
-                <motion.span 
+                <motion.span
                   className="absolute bottom-0 start-0 h-[2px] bg-accent/60 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: '80%' }}
