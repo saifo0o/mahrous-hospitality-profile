@@ -106,7 +106,7 @@ const TestimonialsSection = () => {
                       ))}
                     </div>
 
-                    <blockquote className="text-lg md:text-xl text-foreground leading-relaxed mb-8 font-light italic">
+                    <blockquote className="text-lg md:text-2xl text-foreground leading-relaxed mb-8 font-playfair italic font-light">
                       "{testimonial.content}"
                     </blockquote>
                     

@@ -96,48 +96,35 @@ export default function MethodologySection() {
         {/* Asymmetrical Layout: Interactive Dashboard */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1.5fr] gap-10 lg:gap-16 items-stretch">
           
-          {/* Left Panel: Vertical steps list */}
-          <div className="flex flex-col gap-4 justify-between">
+          {/* Left Panel: hover-reveal editorial rows */}
+          <div className="border-t border-foreground/10 flex flex-col justify-start">
             {steps.map((step, idx) => {
-              const StepIcon = step.icon;
               const isActive = activeStep === idx;
               return (
-                <motion.div
+                <motion.button
                   key={idx}
+                  type="button"
                   onClick={() => setActiveStep(idx)}
-                  className={`p-5 rounded-sm border cursor-pointer transition-colors duration-300 flex items-center justify-between group ${
-                    isActive
-                      ? 'bg-card border-accent'
-                      : 'bg-card/40 border-border/40 hover:border-accent/40 hover:bg-card/80'
-                  }`}
+                  className="editorial-row"
                   initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.2 + idx * 0.1, duration: 0.5 }}
+                  aria-expanded={isActive}
                 >
-                  <div className="flex items-center gap-4">
-                    {/* Number index badge */}
-                    <div className={`w-10 h-10 rounded-sm flex items-center justify-center font-playfair font-bold text-sm transition-colors ${
-                      isActive 
-                        ? 'bg-accent text-accent-foreground shadow-sm' 
-                        : 'bg-muted text-muted-foreground group-hover:bg-accent/10 group-hover:text-accent'
+                  <div className="flex items-center justify-between gap-6">
+                    <h3 className={`row-title text-xl md:text-2xl font-playfair leading-snug transition-colors ${
+                      isActive ? 'text-accent' : 'text-foreground'
                     }`}>
-                      0{idx + 1}
-                    </div>
-                    <div>
-                      <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold">{step.phase}</span>
-                      <h3 className="text-sm font-semibold text-foreground mt-0.5">{step.title}</h3>
-                    </div>
+                      {step.title}
+                    </h3>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/50 whitespace-nowrap">
+                      {step.phase}
+                    </span>
                   </div>
-                  
-                  {/* Arrow Indicator */}
-                  <div className={`text-muted-foreground transition-transform duration-300 ${
-                    isActive 
-                      ? 'text-accent translate-x-1 rtl:-translate-x-1' 
-                      : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5'
-                  }`}>
-                    <ChevronRight size={16} className={isRTL ? 'rotate-180' : ''} />
-                  </div>
-                </motion.div>
+                  <p className="row-desc mt-3 text-sm text-muted-foreground/80 leading-relaxed max-w-md">
+                    {step.desc}
+                  </p>
+                </motion.button>
               );
             })}
           </div>
@@ -151,7 +138,7 @@ export default function MethodologySection() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.98 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="luxury-container h-full flex flex-col justify-between p-8 md:p-10 relative overflow-hidden"
+                className="luxury-container corner-frame h-full flex flex-col justify-between p-8 md:p-10 relative overflow-hidden"
               >
                 {/* Background overlay mesh */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.015] to-transparent pointer-events-none" />
