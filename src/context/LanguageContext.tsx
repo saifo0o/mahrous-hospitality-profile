@@ -155,8 +155,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     } catch {
       // iOS Safari Private Browsing throws SecurityError on localStorage access
     }
-    // Try to detect browser language
-    const browserLang = navigator.language.split('-')[0];
+    // Try to detect browser language safely
+    const navLang = typeof navigator !== 'undefined' && navigator.language ? navigator.language : 'en';
+    const browserLang = navLang.split('-')[0];
     return browserLang === 'ar' ? languages.ar : languages.en;
   };
 

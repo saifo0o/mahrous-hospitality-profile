@@ -23,10 +23,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Log error in development only
-    if (import.meta.env.DEV) {
-      console.error('ErrorBoundary caught an error:', error, errorInfo);
-    }
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
   }
 
   public render() {

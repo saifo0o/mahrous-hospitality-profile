@@ -24,7 +24,7 @@ const Index = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, []);
 
   const sectionFallback = <EnhancedLoader type="card" className="min-h-[200px]" />;

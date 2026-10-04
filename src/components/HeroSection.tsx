@@ -259,7 +259,7 @@ export default function HeroSection() {
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end">
             <motion.div
               className="relative cursor-pointer"
-              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+              style={{ rotateX, rotateY }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               initial={{ opacity: 0, scale: 0.95 }}

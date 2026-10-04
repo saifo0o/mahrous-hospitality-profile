@@ -24,11 +24,12 @@ export function formatDateSafe(
   if (dateInput instanceof Date) {
     date = dateInput;
   } else {
-    // parseISO handles "2025-03-14T12:00:00" and "2025-03-14" reliably
-    date = parseISO(dateInput);
+    // Normalize space-separated SQL timestamp strings ("2025-03-14 12:00:00") to ISO format for Safari
+    const normalized = typeof dateInput === 'string' ? dateInput.trim().replace(' ', 'T') : dateInput;
+    date = parseISO(normalized);
     if (!isValid(date)) {
       // Last resort — constructor can still handle some formats
-      date = new Date(dateInput);
+      date = new Date(normalized);
     }
   }
 
