@@ -58,6 +58,11 @@ const AwardsSection = () => {
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
       </div>
 
+      {/* Ghost watermark — giant italic word behind the recognition band */}
+      <div aria-hidden className="ghost-word top-6 end-[-3rem] text-[12rem] md:text-[16rem] hidden md:block">
+        {language.code === 'ar' ? 'تميّز' : 'Excellence'}
+      </div>
+
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <motion.div
           className="text-center mb-16"

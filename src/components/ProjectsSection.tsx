@@ -84,7 +84,7 @@ export default function ProjectsSection() {
               className={`group bg-card rounded-sm overflow-hidden border border-border/40 hover:border-accent/40 transition-colors duration-500 flex flex-col justify-between ${project.cols}`}
             >
               {/* Media container */}
-              <div className="relative overflow-hidden aspect-[16/10] sm:aspect-auto sm:h-72 w-full">
+              <div className="corner-frame relative overflow-hidden aspect-[16/10] sm:aspect-auto sm:h-72 w-full">
                 <img 
                   src={project.image} 
                   alt={project.title} 
@@ -114,7 +114,7 @@ export default function ProjectsSection() {
               {/* Details container */}
               <div className="p-6 md:p-8 flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="text-xl font-playfair text-foreground group-hover:text-accent transition-colors mb-4">
+                  <h3 className="text-2xl font-playfair text-foreground group-hover:text-accent transition-colors mb-4 leading-snug">
                     {project.title}
                   </h3>
                   {(() => {
@@ -133,7 +133,7 @@ export default function ProjectsSection() {
                         ))}
                         <div className="grid grid-cols-[88px_1fr] gap-3 items-baseline pt-3 border-t border-accent/20">
                           <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent">{ar ? 'الأثر' : 'Impact'}</dt>
-                          <dd className="text-2xl font-playfair text-foreground">{project.stat}</dd>
+                          <dd className="text-3xl font-playfair text-foreground">{project.stat}</dd>
                         </div>
                       </dl>
                     );

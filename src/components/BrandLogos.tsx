@@ -43,7 +43,7 @@ export default function BrandLogos() {
                 key={`${brand.name}-${i}`}
                 className="flex-shrink-0 transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="w-24 h-14 sm:w-32 sm:h-18 md:w-38 md:h-22 rounded-sm bg-card border border-border/40 flex items-center justify-center p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-accent/40 hover:bg-card transition-all duration-300">
+                <div className="w-28 h-16 sm:w-36 sm:h-20 md:w-40 md:h-22 rounded-sm bg-card border border-border/40 flex items-center justify-center p-3 sm:p-4 shadow-sm hover:shadow-md hover:border-accent/40 hover:bg-card transition-all duration-300">
                   <img
                     src={brand.logo}
                     alt={`${brand.name} logo`}
