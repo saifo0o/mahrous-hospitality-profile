@@ -4,9 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Tag, TrendingUp, Eye, Clock, ArrowRight } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
+import { formatDateSafe } from '@/utils/formatDate';
 import { Button } from '@/components/ui/button';
 import BlogPostModal from './BlogPostModal';
 import { BlogCover } from '@/components/ui/blog-covers';
@@ -156,7 +154,7 @@ const BlogSection = () => {
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
-                      <span>{format(new Date(featuredPost.published_at || featuredPost.created_at), 'MMM dd, yyyy')}</span>
+                      <span>{formatDateSafe(featuredPost.published_at || featuredPost.created_at, 'MMM dd, yyyy')}</span>
                     </div>
                     {featuredPost.views_count && featuredPost.views_count > 0 && (
                       <div className="flex items-center gap-1">
@@ -218,7 +216,7 @@ const BlogSection = () => {
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <span>{format(new Date(post.published_at || post.created_at), 'MMM dd, yyyy')}</span>
+                          <span>{formatDateSafe(post.published_at || post.created_at, 'MMM dd, yyyy')}</span>
                         </div>
                         {post.views_count && post.views_count > 0 && (
                           <div className="flex items-center gap-1">

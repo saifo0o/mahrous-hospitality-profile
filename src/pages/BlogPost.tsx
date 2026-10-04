@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
-import { format } from 'date-fns';
+import { formatDateSafe } from '@/utils/formatDate';
 import { ArrowLeft, Calendar, Clock, Eye, Tag, Facebook, Twitter, Linkedin, Link2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -224,7 +224,7 @@ const BlogPostPage = () => {
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground pb-6 border-b border-border/60">
               <span className="font-medium text-foreground">{language.code === 'ar' ? 'بواسطة إسلام محروس' : 'By Islam Mahrous'}</span>
-              <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{format(new Date(post.published_at || post.created_at), 'MMMM dd, yyyy')}</span>
+              <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{formatDateSafe(post.published_at || post.created_at, 'MMMM dd, yyyy')}</span>
               <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{readingTime} min read</span>
               {post.views_count && post.views_count > 0 && (
                 <span className="flex items-center gap-1.5"><Eye className="w-4 h-4" />{post.views_count}</span>

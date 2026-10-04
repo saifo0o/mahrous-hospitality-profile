@@ -219,7 +219,7 @@ const Blog = () => {
                       <p className="text-sm text-muted-foreground line-clamp-2 flex-grow">{post.excerpt}</p>
                       <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 mt-4 border-t border-border/50">
                         <div className="flex items-center gap-3">
-                          <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{format(new Date(post.published_at || post.created_at), 'MMM dd, yyyy')}</span>
+                          <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{formatDateSafe(post.published_at || post.created_at, 'MMM dd, yyyy')}</span>
                           <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{getReadingTime(post.content)} min</span>
                           {post.views_count && post.views_count > 0 && <span className="flex items-center gap-1"><Eye className="w-3 h-3" />{post.views_count}</span>}
                         </div>

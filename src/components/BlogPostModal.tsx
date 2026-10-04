@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Share2, Bookmark, Calendar, Tag, Eye, Facebook, Twitter, Linkedin, Link2, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { format } from 'date-fns';
+import { formatDateSafe } from '@/utils/formatDate';
 import { toast } from 'sonner';
 import ReactMarkdown from 'react-markdown';
 import EnhancedSEOSchema from './EnhancedSEOSchema';
@@ -114,7 +114,7 @@ const BlogPostModal: React.FC<BlogPostModalProps> = ({ isOpen, onClose, post }) 
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground pb-4 border-b">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                <span>{format(new Date(post.published_at || post.created_at), 'MMMM dd, yyyy')}</span>
+                <span>{formatDateSafe(post.published_at || post.created_at, 'MMMM dd, yyyy')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
