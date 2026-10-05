@@ -116,7 +116,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden bg-background pt-24 pb-16 lg:pt-28 lg:pb-0"
+      className="relative flex items-center overflow-hidden bg-background pt-24 pb-16 lg:min-h-screen lg:pt-28 lg:pb-0"
       aria-label={ar ? 'المقدمة' : 'Introduction'}
     >
       {/* Restrained editorial backdrop */}
@@ -127,7 +127,7 @@ export default function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10 w-full">
-        <div className={`grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-8 items-center min-h-[calc(100vh-6rem)] ${isRTL ? 'direction-rtl' : ''}`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-8 items-center lg:min-h-[calc(100vh-6rem)] ${isRTL ? 'direction-rtl' : ''}`}>
 
           {/* Text Column */}
           <motion.div
@@ -258,7 +258,7 @@ export default function HeroSection() {
           {/* Image Column */}
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end">
             <motion.div
-              className="relative cursor-pointer"
+              className="relative lg:cursor-pointer"
               style={{ rotateX, rotateY }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -281,19 +281,23 @@ export default function HeroSection() {
               />
 
               {/* Main Image Container — editorial cover treatment */}
-              <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[420px] lg:w-[350px] lg:h-[470px] overflow-hidden shadow-gold-lg bg-card z-10 border border-foreground/10 portrait-tone">
+              <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[420px] lg:w-[350px] lg:h-[470px] overflow-hidden shadow-gold-lg bg-card z-10 border border-foreground/10">
                 <img
                   src={heroPortrait}
                   alt={ar ? 'إسلام محروس' : 'Islam Mahrous'}
                   className="w-full h-full object-cover select-none"
                   loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width={825}
+                  height={1131}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/35 via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Floating ink label chip — independent advisory positioning */}
               <motion.div
-                className="float-label -bottom-4 -left-4 rtl:-left-auto rtl:-right-4"
+                className="float-label bottom-3 left-3 rtl:left-auto rtl:right-3 lg:-bottom-4 lg:-left-4 lg:rtl:left-auto lg:rtl:-right-4 !px-3 !py-3 lg:!px-7 !tracking-[0.15em] lg:!tracking-[0.4em] whitespace-nowrap"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
