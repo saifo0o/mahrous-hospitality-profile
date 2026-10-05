@@ -8,6 +8,7 @@ import { Briefcase, Award, GraduationCap, Globe, Download, ArrowRight, ShieldChe
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
+import profilePhoto from '@/assets/profile-new.jpeg';
 import { Progress } from '@/components/ui/progress';
 import { 
   IconConciergeBell, 
@@ -104,7 +105,7 @@ export default function About() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="relative max-w-sm mx-auto w-full"
               >
-                <div className="corner-frame portrait-tone relative">
+                <div className="corner-frame relative">
                   <span className="float-label -top-3 start-4">
                     {ar ? 'مدير عمليات تنفيذي' : 'Operations Executive'}
                   </span>
@@ -112,7 +113,11 @@ export default function About() {
                     <img
                       alt={ar ? 'إسلام محروس' : 'Islam Mahrous'}
                       className="w-full h-full object-cover transition-all duration-700"
-                      src="/lovable-uploads/2a742c4a-aaea-4c0f-ad38-ea2891228c62.jpg"
+                      src={profilePhoto}
+                      width={825}
+                      height={1131}
+                      loading="eager"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                   </div>

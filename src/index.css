@@ -522,18 +522,6 @@ select:focus-visible,
     color: var(--color-clay);
   }
 
-  /* Portrait reveals from monochrome to full color on hover (pointer devices only) */
-  @media (hover: hover) and (pointer: fine) {
-    .portrait-tone img {
-      filter: grayscale(100%);
-      transition: filter 1.1s ease;
-    }
-    .portrait-tone:hover img,
-    .portrait-tone:focus-within img {
-      filter: grayscale(0%);
-    }
-  }
-
   .interactive-element {
     @apply cursor-pointer relative overflow-hidden;
     transition: var(--transition-smooth);
