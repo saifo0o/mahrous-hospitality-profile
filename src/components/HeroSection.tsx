@@ -281,7 +281,7 @@ export default function HeroSection() {
               />
 
               {/* Main Image Container — editorial cover treatment */}
-              <div className="relative w-56 h-64 sm:w-72 sm:h-96 md:w-80 md:h-[420px] lg:w-[350px] lg:h-[470px] overflow-hidden shadow-gold-lg bg-card z-10 border border-foreground/10">
+              <div className="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[420px] lg:w-[350px] lg:h-[470px] overflow-hidden shadow-gold-lg bg-card z-10 border border-foreground/10">
                 <img
                   src={heroPortrait}
                   alt={ar ? 'إسلام محروس' : 'Islam Mahrous'}
@@ -297,7 +297,7 @@ export default function HeroSection() {
 
               {/* Floating ink label chip — independent advisory positioning */}
               <motion.div
-                className="float-label -bottom-4 -left-4 rtl:-left-auto rtl:-right-4"
+                className="float-label bottom-3 left-3 rtl:left-auto rtl:right-3 lg:-bottom-4 lg:-left-4 lg:rtl:left-auto lg:rtl:-right-4 !px-3 !py-3 lg:!px-7 !tracking-[0.15em] lg:!tracking-[0.4em] whitespace-nowrap"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -310,7 +310,7 @@ export default function HeroSection() {
 
             {/* Grounded stat strip — replaces floating glass badges */}
             <motion.div
-              className="w-56 sm:w-72 md:w-80 lg:w-[350px] mt-0 grid grid-cols-3 border border-t-0 border-border bg-card divide-x rtl:divide-x-reverse divide-border"
+              className="w-64 sm:w-72 md:w-80 lg:w-[350px] mt-0 grid grid-cols-3 border border-t-0 border-border bg-card divide-x rtl:divide-x-reverse divide-border"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.6 }}
