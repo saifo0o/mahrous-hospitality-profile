@@ -1,56 +1,47 @@
 import React from 'react';
+import { Layers, ShieldCheck, Users } from 'lucide-react';
 
 interface BannerProps {
   className?: string;
 }
 
-export const SystemsBuilderBanner: React.FC<BannerProps> = ({ className = "w-full h-36" }) => (
-  <div className={`relative overflow-hidden rounded-sm border border-border/60 group ${className}`}>
-    <img 
-      src="/systems-builder.png?v=charts" 
-      alt="Systems Builder Architecture & SOPs Chart" 
-      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-      loading="lazy"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+const BannerShell: React.FC<BannerProps & { label: string; children: React.ReactNode }> = ({
+  className = "w-full h-36",
+  label,
+  children,
+}) => (
+  <div className={`relative overflow-hidden rounded-sm border border-border/60 bg-primary group ${className}`}>
+    {/* faint oversized icon watermark */}
+    <div className="absolute -end-4 -bottom-6 opacity-[0.08] text-primary-foreground pointer-events-none transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-3">
+      {children}
+    </div>
+    {/* hairline inner frame */}
+    <div className="absolute inset-2 border border-primary-foreground/15 pointer-events-none" />
+    <div className="absolute inset-0 flex items-center justify-center text-primary-foreground/90 transition-transform duration-700 group-hover:scale-110">
+      {children}
+    </div>
     <div className="z-10 bg-background/90 backdrop-blur-md px-3.5 py-1.5 rounded border border-accent/30 absolute bottom-3 start-3 shadow-md">
       <span className="text-[10px] font-mono tracking-widest text-accent uppercase font-bold">
-        ARCHITECTURE & SOPs
+        {label}
       </span>
     </div>
   </div>
 );
 
-export const FieldOperatorBanner: React.FC<BannerProps> = ({ className = "w-full h-36" }) => (
-  <div className={`relative overflow-hidden rounded-sm border border-border/60 group ${className}`}>
-    <img 
-      src="/field-operator.png?v=charts" 
-      alt="Field Operator Asset Protection & Governance Chart" 
-      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-      loading="lazy"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-    <div className="z-10 bg-background/90 backdrop-blur-md px-3.5 py-1.5 rounded border border-emerald-500/30 absolute bottom-3 start-3 shadow-md">
-      <span className="text-[10px] font-mono tracking-widest text-emerald-500 uppercase font-bold">
-        ASSET PROTECTION & GOVERNANCE
-      </span>
-    </div>
-  </div>
+export const SystemsBuilderBanner: React.FC<BannerProps> = ({ className }) => (
+  <BannerShell className={className} label="ARCHITECTURE & SOPs">
+    <Layers className="w-14 h-14" strokeWidth={1.25} />
+  </BannerShell>
 );
 
-export const MentorCoachBanner: React.FC<BannerProps> = ({ className = "w-full h-36" }) => (
-  <div className={`relative overflow-hidden rounded-sm border border-border/60 group ${className}`}>
-    <img 
-      src="/mentor-coach.png?v=charts" 
-      alt="Mentor & Coach Talent Architecture & Leadership Chart" 
-      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-      loading="lazy"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-    <div className="z-10 bg-background/90 backdrop-blur-md px-3.5 py-1.5 rounded border border-accent/30 absolute bottom-3 start-3 shadow-md">
-      <span className="text-[10px] font-mono tracking-widest text-accent uppercase font-bold">
-        TALENT ARCHITECTURE & LEADERSHIP
-      </span>
-    </div>
-  </div>
+export const FieldOperatorBanner: React.FC<BannerProps> = ({ className }) => (
+  <BannerShell className={className} label="ASSET PROTECTION & GOVERNANCE">
+    <ShieldCheck className="w-14 h-14" strokeWidth={1.25} />
+  </BannerShell>
+);
+
+export const MentorCoachBanner: React.FC<BannerProps> = ({ className }) => (
+  <BannerShell className={className} label="TALENT ARCHITECTURE & LEADERSHIP">
+    <Users className="w-14 h-14" strokeWidth={1.25} />
+  </BannerShell>
 );
