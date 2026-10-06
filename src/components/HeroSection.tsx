@@ -25,11 +25,10 @@ const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?
   };
 
   const child = {
-    hidden: { opacity: 0, y: 15, filter: 'blur(4px)' },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
-      filter: 'blur(0px)',
       // Spring physics overshoot past the target, which briefly drives the
       // blur() filter negative (invalid) and spams console warnings on
       // every settle frame — a tween has no overshoot, so it can't do that.
@@ -92,13 +91,13 @@ export default function HeroSection() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.8, staggerChildren: 0.1, delayChildren: 0.6 }
+      transition: { duration: 0.8, staggerChildren: 0.06, delayChildren: 0.1 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
   };
 
   const pillars = [

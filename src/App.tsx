@@ -2,23 +2,23 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from './components/ui/toaster';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
 import Index from './pages/Index';
-import About from './pages/About';
-import Career from './pages/Career';
-import Projects from './pages/Projects';
-import ProjectCaseStudy from './pages/ProjectCaseStudy';
-import Consulting from './pages/Consulting';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import Awards from './pages/Awards';
-import Contact from './pages/Contact';
-import BookConsultation from './pages/BookConsultation';
-import Admin from './pages/Admin';
-import Auth from './pages/Auth';
-import NotFound from './pages/NotFound';
+const About = lazy(() => import('./pages/About'));
+const Career = lazy(() => import('./pages/Career'));
+const Projects = lazy(() => import('./pages/Projects'));
+const ProjectCaseStudy = lazy(() => import('./pages/ProjectCaseStudy'));
+const Consulting = lazy(() => import('./pages/Consulting'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const Awards = lazy(() => import('./pages/Awards'));
+const Contact = lazy(() => import('./pages/Contact'));
+const BookConsultation = lazy(() => import('./pages/BookConsultation'));
+const Admin = lazy(() => import('./pages/Admin'));
+const Auth = lazy(() => import('./pages/Auth'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -48,6 +48,7 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
@@ -66,6 +67,7 @@ const AnimatedRoutes = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
+    </Suspense>
   );
 };
 
