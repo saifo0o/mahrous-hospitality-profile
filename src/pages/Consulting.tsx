@@ -18,7 +18,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import KaizenDiagram from '@/components/KaizenDiagram';
-import { SystemsBuilderBanner, FieldOperatorBanner, MentorCoachBanner } from '@/components/ui/service-banners';
 
 export default function Consulting() {
   const { language, isRTL } = useLanguage();
@@ -31,23 +30,23 @@ export default function Consulting() {
 
   // ── Executive archetypes ─────────────────────────────────
   const archetypes = [
-    { 
-      icon: Layers, 
-      title: ar ? 'باني منظومات العمل' : 'Systems Builder', 
+    {
+      icon: Layers,
+      numeral: '01',
+      title: ar ? 'باني منظومات العمل' : 'Systems Builder',
       desc: ar ? 'منهجي، يعتمد الهيكلة العميقة والبيانات' : 'Methodical — grounded in deep structure and data',
-      banner: <SystemsBuilderBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
     },
-    { 
-      icon: Zap, 
-      title: ar ? 'المشغّل الميداني' : 'Field Operator', 
+    {
+      icon: Zap,
+      numeral: '02',
+      title: ar ? 'المشغّل الميداني' : 'Field Operator',
       desc: ar ? 'يركّز على التنفيذ ويحمي الأصول بمرونة' : 'Execution-focused, protecting assets with agility',
-      banner: <FieldOperatorBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
     },
-    { 
-      icon: GraduationCap, 
-      title: ar ? 'المرشد والموجّه' : 'Mentor & Coach', 
+    {
+      icon: GraduationCap,
+      numeral: '03',
+      title: ar ? 'المرشد والموجّه' : 'Mentor & Coach',
       desc: ar ? 'يبني القدرات ويوجّه القيادات للنجاح' : 'Builds capability and guides leaders to succeed',
-      banner: <MentorCoachBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
     },
   ];
 
