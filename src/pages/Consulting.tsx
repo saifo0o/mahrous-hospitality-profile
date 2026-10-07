@@ -18,7 +18,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import KaizenDiagram from '@/components/KaizenDiagram';
-import { SystemsBuilderBanner, FieldOperatorBanner, MentorCoachBanner } from '@/components/ui/service-banners';
 
 export default function Consulting() {
   const { language, isRTL } = useLanguage();
@@ -31,23 +30,23 @@ export default function Consulting() {
 
   // ── Executive archetypes ─────────────────────────────────
   const archetypes = [
-    { 
-      icon: Layers, 
-      title: ar ? 'باني منظومات العمل' : 'Systems Builder', 
+    {
+      icon: Layers,
+      numeral: '01',
+      title: ar ? 'باني منظومات العمل' : 'Systems Builder',
       desc: ar ? 'منهجي، يعتمد الهيكلة العميقة والبيانات' : 'Methodical — grounded in deep structure and data',
-      banner: <SystemsBuilderBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
     },
-    { 
-      icon: Zap, 
-      title: ar ? 'المشغّل الميداني' : 'Field Operator', 
+    {
+      icon: Zap,
+      numeral: '02',
+      title: ar ? 'المشغّل الميداني' : 'Field Operator',
       desc: ar ? 'يركّز على التنفيذ ويحمي الأصول بمرونة' : 'Execution-focused, protecting assets with agility',
-      banner: <FieldOperatorBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
     },
-    { 
-      icon: GraduationCap, 
-      title: ar ? 'المرشد والموجّه' : 'Mentor & Coach', 
+    {
+      icon: GraduationCap,
+      numeral: '03',
+      title: ar ? 'المرشد والموجّه' : 'Mentor & Coach',
       desc: ar ? 'يبني القدرات ويوجّه القيادات للنجاح' : 'Builds capability and guides leaders to succeed',
-      banner: <MentorCoachBanner className="w-full h-44 sm:h-52 mb-5 shadow-inner" />
     },
   ];
 
@@ -393,17 +392,26 @@ export default function Consulting() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1, duration: 0.5 }}
-                      className="p-5 rounded-sm bg-card border border-border hover:border-accent/40 transition-colors duration-300 flex flex-col justify-between"
+                      className="group relative p-6 pt-5 bg-card border border-border/60 hover:border-accent/40 transition-colors duration-300 overflow-hidden"
                     >
-                      {item.banner}
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-sm bg-accent/8 flex items-center justify-center flex-shrink-0">
-                          <item.icon size={18} className="text-accent" />
+                      {/* hairline top rule + clay corner brackets on hover */}
+                      <div className="absolute top-0 inset-x-0 h-px bg-border/60 group-hover:bg-accent/50 transition-colors duration-300" />
+                      <span className="absolute top-2 start-2 w-4 h-4 border-t-2 border-s-2 border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                      <span className="absolute bottom-2 end-2 w-4 h-4 border-b-2 border-e-2 border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-4">
+                          <div className="w-10 h-10 rounded-sm bg-accent/8 flex items-center justify-center flex-shrink-0 mt-1">
+                            <item.icon size={18} className="text-accent" />
+                          </div>
+                          <div>
+                            <h3 className="font-playfair text-lg text-foreground leading-snug group-hover:text-accent transition-colors duration-300">{item.title}</h3>
+                            <p className="text-xs sm:text-sm text-muted-foreground mt-1.5 leading-relaxed font-light">{item.desc}</p>
+                          </div>
                         </div>
-                        <div>
-                          <h3 className="font-semibold text-foreground text-base">{item.title}</h3>
-                          <p className="text-xs sm:text-sm text-muted-foreground mt-1 leading-relaxed font-light">{item.desc}</p>
-                        </div>
+                        <span className="font-playfair italic text-3xl leading-none text-accent/25 group-hover:text-accent/60 transition-colors duration-300 select-none flex-shrink-0">
+                          {item.numeral}
+                        </span>
                       </div>
                     </motion.div>
                   ))}
