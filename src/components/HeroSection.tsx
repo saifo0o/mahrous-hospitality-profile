@@ -10,10 +10,10 @@ import { FloatingDecoration, GradientMesh } from './EnhancedVisualEffects';
 import heroPortrait from '@/assets/profile-new.jpeg';
 
 const CharRevealText = ({ text, delay = 0.2, className }: { text: string; delay?: number; className?: string }) => {
-  // Split on words, not characters: Arabic is a cursive script whose glyphs
-  // change shape based on neighboring letters, so wrapping each character in
-  // its own span breaks that shaping (and mid-word line-wrapping) — a word is
-  // the smallest unit that's safe to isolate in its own inline box.
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+  if (isMobile) {
+    return <span className={className}>{text}</span>;
+  }
   const words = text.split(' ');
 
   const container = {
@@ -87,17 +87,19 @@ export default function HeroSection() {
     mouseYValue.set(0);
   };
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isMobile ? 1 : 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.8, staggerChildren: 0.06, delayChildren: 0.1 }
+      transition: isMobile ? { duration: 0 } : { duration: 0.8, staggerChildren: 0.06, delayChildren: 0.1 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 16 },
+    visible: { opacity: 1, y: 0, transition: isMobile ? { duration: 0 } : { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
   };
 
   const pillars = [
@@ -258,10 +260,10 @@ export default function HeroSection() {
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end">
             <motion.div
               className="relative lg:cursor-pointer"
-              style={{ rotateX, rotateY }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              initial={{ opacity: 0, scale: 0.95 }}
+              style={isMobile ? undefined : { rotateX, rotateY }}
+              onMouseMove={isMobile ? undefined : handleMouseMove}
+              onMouseLeave={isMobile ? undefined : handleMouseLeave}
+              initial={isMobile ? false : { opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -297,7 +299,7 @@ export default function HeroSection() {
               {/* Floating ink label chip — independent advisory positioning */}
               <motion.div
                 className="float-label bottom-3 left-3 rtl:left-auto rtl:right-3 lg:-bottom-4 lg:-left-4 lg:rtl:left-auto lg:rtl:-right-4 !px-3 !py-3 lg:!px-7 !tracking-[0.15em] lg:!tracking-[0.4em] whitespace-nowrap"
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
@@ -310,7 +312,7 @@ export default function HeroSection() {
             {/* Grounded stat strip — replaces floating glass badges */}
             <motion.div
               className="w-64 sm:w-72 md:w-80 lg:w-[350px] mt-0 grid grid-cols-3 border border-t-0 border-border bg-card divide-x rtl:divide-x-reverse divide-border"
-              initial={{ opacity: 0, y: 12 }}
+              initial={isMobile ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.6 }}
             >

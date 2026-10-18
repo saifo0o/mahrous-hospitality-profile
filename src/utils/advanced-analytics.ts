@@ -50,7 +50,7 @@ class AdvancedAnalytics {
     });
 
     // Track scroll depth
-    window.addEventListener('scroll', this.trackScroll.bind(this));
+    window.addEventListener('scroll', this.trackScroll.bind(this), { passive: true });
 
     // Track interactions
     document.addEventListener('click', this.trackInteraction.bind(this));

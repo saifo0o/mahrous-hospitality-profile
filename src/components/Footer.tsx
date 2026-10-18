@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import NewsletterSignup from './NewsletterSignup';
+const NewsletterSignup = React.lazy(() => import('./NewsletterSignup'));
 
 // Import brand constants single source of truth
 import { 
@@ -230,7 +230,9 @@ const Footer = () => {
 
             {/* Newsletter Column */}
             <div className="space-y-6">
-              <NewsletterSignup />
+              <React.Suspense fallback={<div className="h-24 bg-card/20 rounded animate-pulse" />}>
+                <NewsletterSignup />
+              </React.Suspense>
             </div>
           </div>
           

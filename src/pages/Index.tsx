@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
 import StatsSection from '@/components/StatsSection';
 import ContactSection from '@/components/ContactSection';
-import AIChatAssistant from '@/components/AIChatAssistant';
+const AIChatAssistant = React.lazy(() => import('@/components/AIChatAssistant'));
 import ReadingProgress from '@/components/ReadingProgress';
 import DynamicLoader from '@/components/DynamicLoader';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -96,7 +96,9 @@ const Index = () => {
         </main>
         
         <Footer />
-        <AIChatAssistant />
+        <React.Suspense fallback={null}>
+          <AIChatAssistant />
+        </React.Suspense>
         <BackToTopButton />
       </div>
     </PageTransition>

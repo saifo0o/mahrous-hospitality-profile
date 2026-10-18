@@ -34,8 +34,8 @@ const ReadingProgress: React.FC<ReadingProgressProps> = ({
       setIsVisible(scrollTop > targetTop - 100);
     };
 
-    window.addEventListener('scroll', updateProgress);
-    window.addEventListener('resize', updateProgress);
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
     updateProgress(); // Initial calculation
 
     return () => {
