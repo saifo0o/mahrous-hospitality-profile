@@ -16,18 +16,30 @@ export default defineConfig(() => ({
     },
   },
   build: {
+    // Target Safari 14+ (iOS 14), Chrome 87, Firefox 78, Edge 88
+    // Without this Vite defaults to ESNext which crashes older iOS Safari
+    target: ['es2015', 'chrome87', 'firefox78', 'safari14', 'edge88'],
     outDir: "dist",
     sourcemap: false,
-    // Let Vite/Rollup handle chunk splitting automatically.
-    // Manual chunks caused vendor-libs to load React-dependent packages
-    // (cmdk, sonner, vaul, recharts, embla-carousel-react, next-themes, etc.)
-    // before vendor-react was initialized, crashing with:
-    // "Cannot read properties of undefined (reading 'useLayoutEffect')"
     rollupOptions: {
       output: {
         entryFileNames: "[name]-[hash].js",
         chunkFileNames: "[name]-[hash].js",
         assetFileNames: "[name]-[hash][extname]",
+        manualChunks: (id) => {
+          if (!id.includes('node_modules')) return;
+
+          // Supabase — large, no React dependency, load independently
+          if (id.includes('@supabase')) return 'vendor-supabase';
+
+          // Icons — large but static, no React lifecycle hooks at init
+          if (id.includes('lucide-react')) return 'vendor-icons';
+
+          // Everything else React-dependent (react, react-dom, radix, framer,
+          // recharts, cmdk, sonner, vaul, tanstack, react-day-picker, etc.)
+          // must all live in ONE chunk so React is always initialized first.
+          return 'vendor-react-ui';
+        },
       },
     },
   },
