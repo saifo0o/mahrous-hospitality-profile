@@ -124,17 +124,26 @@
     @apply border-border;
   }
 
-  html, body {
+  html {
     width: 100%;
     min-height: 100%;
-    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    width: 100%;
+    min-height: 100%;
+    /* overflow-x on body delegates to viewport — IntersectionObserver
+       works correctly. DO NOT set overflow-x on #root; on iOS Safari that
+       creates a new scroll context that breaks IntersectionObserver, causing
+       Framer Motion sections to stay at opacity:0 forever on mobile. */
+    overflow-x: hidden;
   }
 
   #root {
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
-    overflow-x: hidden;
+    /* No overflow-x here — see body comment above */
     position: relative;
   }
 
