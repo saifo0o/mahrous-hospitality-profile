@@ -4,6 +4,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/404.html"
-  status = 404
-  force = true
+  to = "/index.html"
+  status = 200

@@ -1,9 +1,8 @@
-// Site removed: clear caches and unregister so visitors get the 404.
+// Unregister this service worker and clear caches
 self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('activate', (e) => {
-  e.waitUntil((async () => {
-    for (const k of await caches.keys()) await caches.delete(k);
-    await self.registration.unregister();
-    for (const c of await self.clients.matchAll()) c.navigate(c.url);
-  })());
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then(names => Promise.all(names.map(name => caches.delete(name))))
+      .then(() => self.clients.claim())
+  );
 });

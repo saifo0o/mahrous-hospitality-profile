@@ -35,16 +35,16 @@ const Footer = () => {
     <>
       {/* Pre-footer CTA */}
       <section 
-        className="relative py-24 md:py-32 bg-[#14171A] text-white overflow-hidden border-b border-accent/20"
+        className="relative py-24 md:py-32 bg-[#2c2c2c] text-white overflow-hidden border-b border-accent/20"
         aria-label={ar ? 'دعوة للاتصال والعمل' : 'Call to Action'}
       >
         {/* Premium Mesh Gradient Backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-[#14171A]" />
-          <div className="absolute top-[-30%] start-[-10%] w-[600px] h-[600px] bg-accent/[0.06] rounded-full blur-[140px]" />
-          <div className="absolute bottom-[-30%] end-[-10%] w-[600px] h-[600px] bg-luxury-emerald/[0.04] rounded-full blur-[140px]" />
+          <div className="absolute inset-0 bg-[#2c2c2c]" />
+          <div className="absolute top-[-30%] start-[-10%] w-[600px] h-[600px] bg-accent/[0.08] rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-30%] end-[-10%] w-[600px] h-[600px] bg-luxury-emerald/[0.08] rounded-full blur-[140px]" />
           {/* Elegant structural grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(181,80,43,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(181,80,43,0.012)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(197,160,89,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(197,160,89,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         </div>
 
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
@@ -91,7 +91,7 @@ const Footer = () => {
 
       {/* Footer */}
       <footer 
-        className="bg-[#101315] text-white py-16 relative z-10 border-t border-border/30"
+        className="bg-[#1e1e1e] text-white py-16 relative z-10 border-t border-border/30"
         role="contentinfo" 
         aria-label={ar ? 'تذييل الصفحة' : 'Site Footer'}
       >

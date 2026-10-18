@@ -6,97 +6,118 @@
 
 @layer base {
   :root {
-    /* Islam Mahrous — Editorial Identity 2026
-       Ink / Paper / Clay — a confident, editorial hospitality-executive brand */
+    /* Islam Mahrous — Executive Identity matching islam-mahrous-elevate.lovable.app */
+    /* Parchment — global canvas, warm ivory #fdfbf7 */
+    --background: 40 50% 98%;
+    /* Charcoal — primary text & structural dark elements #2c2c2c */
+    --foreground: 0 0% 17%;
 
-    /* Paper — global canvas, warm ivory, quieter than raw white */
-    --background: 42 30% 95%;
-    /* Ink — primary type & structure */
-    --foreground: 200 12% 10%;
-
-    /* Pure white — container surface, data blocks only */
+    /* Alabaster — pure white container cards */
     --card: 0 0% 100%;
-    --card-foreground: 200 12% 10%;
+    --card-foreground: 0 0% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 200 12% 10%;
+    --popover-foreground: 0 0% 17%;
 
-    /* Ink as the site's structural dark anchor (stat bands, footer, CTA) */
-    --primary: 200 12% 10%;
-    --primary-foreground: 42 30% 95%;
+    /* Charcoal as primary brand anchor */
+    --primary: 0 0% 17%;
+    --primary-foreground: 40 50% 98%;
 
-    /* Warm paper-gray secondary surface */
-    --secondary: 42 16% 90%;
-    --secondary-foreground: 200 12% 10%;
+    /* Emerald — secondary executive accent #2e5a44 */
+    --secondary: 150 32% 26%;
+    --secondary-foreground: 40 50% 98%;
 
-    --muted: 42 16% 92%;
-    --muted-foreground: 30 6% 40%;
+    /* Ivory surface #f7f5f1 */
+    --muted: 40 25% 96%;
+    --muted-foreground: 26 7% 40%; /* #6e6660 */
 
-    /* Clay — the single accent: CTAs, rules, marks. Used with restraint. */
-    --accent: 16 62% 44%;
-    --accent-foreground: 42 30% 97%;
+    /* Gold — signature accent #c5a059 */
+    --accent: 39 49% 56%;
+    --accent-foreground: 0 0% 17%;
 
-    --destructive: 6 55% 45%;
+    --destructive: 10 56% 42%; /* #a8432f */
     --destructive-foreground: 0 0% 100%;
 
-    --success: 142.1 76.2% 36.3%;
-    --success-foreground: 355.7 100% 97.3%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 48 96% 89%;
+    --success: 150 46% 33%; /* #2e7d5a growth */
+    --success-foreground: 0 0% 100%;
+    --warning: 34 56% 38%; /* #96682a gold-ink */
+    --warning-foreground: 40 50% 98%;
     --info: 199 89% 48%;
     --info-foreground: 200 98% 95%;
 
-    /* Soft clay-tinted hairline — never full-strength clay as a default border */
-    --border: 16 20% 86%;
-    --input: 16 20% 86%;
-    --ring: 16 62% 44%;
+    /* Sandstone hairline border #e6e1d5 */
+    --border: 42 25% 87%;
+    --input: 42 25% 87%;
+    --ring: 39 49% 56%; /* #c5a059 */
 
-    --radius: 0.3rem;
+    --radius: 0.5rem;
 
-    --sidebar-background: 42 20% 96%;
-    --sidebar-foreground: 200 12% 12%;
-    --sidebar-primary: 200 12% 10%;
-    --sidebar-primary-foreground: 42 30% 95%;
-    --sidebar-accent: 16 25% 91%;
-    --sidebar-accent-foreground: 200 12% 12%;
-    --sidebar-border: 16 15% 87%;
-    --sidebar-ring: 16 62% 44%;
+    --sidebar-background: 40 50% 98%;
+    --sidebar-foreground: 0 0% 17%;
+    --sidebar-primary: 0 0% 17%;
+    --sidebar-primary-foreground: 40 50% 98%;
+    --sidebar-accent: 40 25% 94%;
+    --sidebar-accent-foreground: 0 0% 17%;
+    --sidebar-border: 42 25% 87%;
+    --sidebar-ring: 39 49% 56%;
+
+    /* Direct brand tokens from islam-mahrous-elevate.lovable.app */
+    --parchment: #fdfbf7;
+    --alabaster: #ffffff;
+    --gold: #c5a059;
+    --gold-soft: #e0c88e;
+    --gold-ink: #96682a;
+    --charcoal: #2c2c2c;
+    --charcoal-soft: #4a4a4a;
+    --emerald: #2e5a44;
+    --forest: #1f3d2d;
+    --growth: #2e7d5a;
+    --ivory: #f7f5f1;
+    --sand: #d9c6a3;
+    --copper: #b5602f;
+    --warm-graphite: #6e6660;
   }
 
   .dark {
-    --background: 200 15% 8%;
-    --foreground: 42 20% 93%;
+    --background: 0 0% 11%; /* #1c1c1c */
+    --foreground: 40 50% 96%; /* #fdfbf7 */
 
-    --card: 200 14% 11%;
-    --card-foreground: 42 20% 93%;
+    --card: 0 0% 15%; /* #262626 */
+    --card-foreground: 40 50% 96%;
 
-    --popover: 200 14% 11%;
-    --popover-foreground: 42 20% 93%;
+    --popover: 0 0% 15%;
+    --popover-foreground: 40 50% 96%;
 
-    --primary: 42 20% 93%;
-    --primary-foreground: 200 15% 8%;
+    --primary: 40 50% 96%;
+    --primary-foreground: 0 0% 11%;
 
-    --secondary: 200 10% 16%;
-    --secondary-foreground: 42 20% 93%;
+    --secondary: 150 25% 22%;
+    --secondary-foreground: 40 50% 96%;
 
-    --muted: 200 10% 15%;
-    --muted-foreground: 30 8% 65%;
+    --muted: 0 0% 17%;
+    --muted-foreground: 40 20% 70%;
 
-    --accent: 16 65% 54%;
-    --accent-foreground: 200 15% 8%;
+    --accent: 39 49% 56%;
+    --accent-foreground: 0 0% 11%;
 
-    --border: 200 10% 20%;
-    --input: 200 10% 20%;
-    --ring: 16 65% 54%;
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 39 49% 56%;
 
-    --sidebar-background: 200 15% 10%;
-    --sidebar-foreground: 42 20% 90%;
-    --sidebar-primary: 42 20% 93%;
-    --sidebar-primary-foreground: 200 15% 8%;
-    --sidebar-accent: 200 10% 18%;
-    --sidebar-accent-foreground: 42 20% 90%;
-    --sidebar-border: 200 10% 20%;
-    --sidebar-ring: 16 65% 54%;
+    --sidebar-background: 0 0% 13%;
+    --sidebar-foreground: 40 50% 90%;
+    --sidebar-primary: 40 50% 96%;
+    --sidebar-primary-foreground: 0 0% 11%;
+    --sidebar-accent: 0 0% 19%;
+    --sidebar-accent-foreground: 40 50% 90%;
+    --sidebar-border: 0 0% 22%;
+    --sidebar-ring: 39 49% 56%;
+
+    --parchment: #1c1c1c;
+    --alabaster: #262626;
+    --charcoal: #fdfbf7;
+    --charcoal-soft: #dcdad5;
+    --ivory: #222222;
   }
 }
 
@@ -150,12 +171,14 @@
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --transition-spring: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-    /* Literal brand hex — for contexts that need the exact value rather than the HSL token */
-    --color-paper: #F5F2EA;
-    --color-white: #FFFFFF;
-    --color-clay: #B5502B;
-    --color-ink: #14171A;
-    --color-pine: #1E3630;
+    /* Literal brand hex — matching islam-mahrous-elevate.lovable.app */
+    --color-paper: #fdfbf7;
+    --color-white: #ffffff;
+    --color-clay: #c5a059;
+    --color-gold: #c5a059;
+    --color-ink: #2c2c2c;
+    --color-pine: #2e5a44;
+    --color-emerald: #2e5a44;
 
     /* Fibonacci spacing scale — golden-ratio-aligned, kept from the prior spec for rhythm */
     --space-xs: 8px;
@@ -164,11 +187,13 @@
     --space-lg: 34px;
     --space-xl: 55px;
 
-    /* Restrained shadows — flat and structural, never soft-focus luxury glow */
-    --shadow-soft: 0 2px 8px rgba(20, 23, 26, 0.06);
-    --shadow-medium: 0 4px 16px rgba(20, 23, 26, 0.08);
-    --shadow-large: 0 12px 32px rgba(20, 23, 26, 0.1);
-    --shadow-clay: 0 4px 20px rgba(181, 80, 43, 0.18);
+    /* Shadows matching islam-mahrous-elevate.lovable.app */
+    --shadow-soft: 0 1px 2px rgba(44, 44, 44, 0.04), 0 8px 24px rgba(44, 44, 44, 0.06);
+    --shadow-medium: 0 4px 12px rgba(44, 44, 44, 0.08), 0 16px 36px rgba(44, 44, 44, 0.08);
+    --shadow-large: 0 4px 12px rgba(44, 44, 44, 0.08), 0 24px 60px rgba(44, 44, 44, 0.12);
+    --shadow-lift: 0 4px 12px rgba(44, 44, 44, 0.08), 0 24px 60px rgba(44, 44, 44, 0.12);
+    --shadow-gold: 0 0 0 1px rgba(197, 160, 89, 0.35), 0 12px 40px rgba(197, 160, 89, 0.18);
+    --shadow-clay: 0 4px 20px rgba(197, 160, 89, 0.22);
   }
 
   @media (max-width: 640px) {
@@ -193,7 +218,73 @@
 }
 
 .gradient-text {
-  color: var(--color-clay);
+  color: var(--color-gold);
+}
+
+.text-gradient-gold {
+  color: var(--gold-ink);
+  background: none;
+}
+
+.btn-primary {
+  background: var(--charcoal);
+  color: var(--parchment);
+  border: 1px solid var(--charcoal);
+  border-radius: 4px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+}
+
+.btn-primary:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--charcoal);
+}
+
+.btn-emerald {
+  background: var(--emerald);
+  color: var(--parchment);
+  border: 1px solid var(--emerald);
+  border-radius: 4px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+}
+
+.btn-emerald:hover {
+  color: var(--emerald);
+  background: transparent;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--emerald);
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+}
+
+.eyebrow-gold {
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--gold-ink);
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
 }
 
 .story-link {
@@ -617,7 +708,7 @@ select:focus-visible,
     transform: scale(1.06);
   }
 
-  /* Button ripple effect — soft clay wash, not a neon glow */
+  /* Button ripple effect — soft gold wash */
   .btn-ripple {
     position: relative;
     overflow: hidden;
@@ -626,7 +717,7 @@ select:focus-visible,
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(181, 80, 43, 0.18) 0%, transparent 60%);
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(197, 160, 89, 0.22) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.3s;
   }
@@ -660,7 +751,7 @@ select:focus-visible,
       height: 36px;
       margin-left: -18px;
       margin-top: -18px;
-      border: 1px solid var(--color-clay);
+      border: 1px solid var(--color-gold);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
@@ -675,14 +766,14 @@ select:focus-visible,
       height: 6px;
       margin-left: -3px;
       margin-top: -3px;
-      background-color: var(--color-clay);
+      background-color: var(--color-gold);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
     }
     .custom-cursor.hovered {
       transform: scale(1.6);
-      background-color: rgba(181, 80, 43, 0.12);
+      background-color: rgba(197, 160, 89, 0.16);
       border-color: transparent;
     }
   }
