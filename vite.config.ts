@@ -18,34 +18,16 @@ export default defineConfig(() => ({
   build: {
     outDir: "dist",
     sourcemap: false,
+    // Let Vite/Rollup handle chunk splitting automatically.
+    // Manual chunks caused vendor-libs to load React-dependent packages
+    // (cmdk, sonner, vaul, recharts, embla-carousel-react, next-themes, etc.)
+    // before vendor-react was initialized, crashing with:
+    // "Cannot read properties of undefined (reading 'useLayoutEffect')"
     rollupOptions: {
       output: {
         entryFileNames: "[name]-[hash].js",
         chunkFileNames: "[name]-[hash].js",
         assetFileNames: "[name]-[hash][extname]",
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-              return 'vendor-react';
-            }
-            if (id.includes('framer-motion')) {
-              return 'vendor-framer';
-            }
-            if (id.includes('@tanstack/react-query')) {
-              return 'vendor-query';
-            }
-            if (id.includes('@supabase')) {
-              return 'vendor-supabase';
-            }
-            if (id.includes('lucide-react')) {
-              return 'vendor-icons';
-            }
-            if (id.includes('@radix-ui')) {
-              return 'vendor-radix';
-            }
-            return 'vendor-libs';
-          }
-        },
       },
     },
   },
